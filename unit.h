@@ -16,28 +16,28 @@ Unit Template file */
 class unit{
  public:
   unit();
-  virtual void increment() = 0;
+  virtual void increment();
   virtual void draw()=0;
-  void setx();
-  void sety();
-  void setax();
-  void setay();
-  void setvx();
-  void setvy();
-  float getx();
-  float gety();
-  float getax();
-  float getay();
-  float setvx();
-  float setvy();
+  virtual void setx(double);
+  virtual void sety(double);
+  virtual void setax(double);
+  virtual void setay(double);
+  virtual void setvx(double);
+  virtual void setvy(double);
+  virtual float getx();
+  virtual float gety();
+  virtual float getax();
+  virtual float getay();
+  virtual float setvx();
+  virtual float setvy();
 
  private:
-  float x;
-  float y;
-  float ax;
-  float ay;
-  float vx;
-  float vy;
+  double x;
+  double y;
+  double ax;
+  double ay;
+  double vx;
+  double vy;
 
 };
 
