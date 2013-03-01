@@ -1,0 +1,22 @@
+/* FCII Final Project
+Spring 2013
+Michael Powers
+Brad Stalcup
+Sean Murphy
+Neal Sheehan
+Solara
+Enemy template file */
+
+#ifndef ENEMY_H
+#define ENEMY_H
+
+#include <iostream>
+#include <iomanip>
+#include "unit.h"
+
+class enemy: public unit{
+ public:
+
+ private:
+
+};
