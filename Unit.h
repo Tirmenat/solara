@@ -31,6 +31,7 @@ class Unit{
   virtual float setvx();
   virtual float setvy();
   virtual void increment();
+  virtual void draw() = 0;
 
  private:
   double x;
