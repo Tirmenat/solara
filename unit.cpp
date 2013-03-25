@@ -62,3 +62,10 @@ virtual float unit::getvx(){
 virtual float unit::getvy(){
   return(vy);
 }
+
+virtual void unit::increment(){
+	x += vx;
+	y += vy;
+	vx += ax;
+	vy += ay;
+}
