@@ -7,8 +7,8 @@ Neal Sheehan
 Solara
 Unit Template file */
 
-#ifndef SOLARA_H
-#define SOLARA_H
+#ifndef UNIT_H
+#define UNIT_H
 
 #include <iostream>
 #include <iomanip>

@@ -7,6 +7,10 @@ Neal Sheehan
 Solara
 Unit Implementation file */
 
+#ifndef STAGE_H
+#define STAGE_H
+
+
 #include "Unit.h"
 
 
@@ -20,3 +24,5 @@ class Stage{
 	void addUnit(Unit);
 	void removeUnit(Unit)
 };
+	
+	#endif
