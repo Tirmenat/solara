@@ -13,7 +13,7 @@ Unit Template file */
 #include <iostream>
 #include <iomanip>
 
-class unit{
+class Unit{
  public:
   unit();
   virtual void increment();
@@ -30,6 +30,7 @@ class unit{
   virtual float getay();
   virtual float setvx();
   virtual float setvy();
+  virtual void increment();
 
  private:
   double x;
