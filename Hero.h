@@ -14,10 +14,9 @@ Hero template file */
 #include <iomanip>
 #include "unit.h"
 
-class hero: public unit{
+class Hero: public Unit{
  public:
   virtual void draw();
-  virtual void increment;
 
  private:
 

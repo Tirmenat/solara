@@ -9,61 +9,61 @@ Unit Implementation file */
 
 #include <iostream>
 #include <iomanip>
-#include "unit.h"
+#include "Unit.h"
 
-unit::unit(){
+Unit::Unit(){
 
 }
 
-virtual void unit::setx(double newx){
+virtual void Unit::setx(double newx){
   x=newx;
 }
 
-virtual void unit::sety(double newy){
+virtual void Unit::sety(double newy){
   y=newy;
 }
 
-virtual void unit::setax(double newax){
+virtual void Unit::setax(double newax){
   ax=newax;
 }
 
-virtual void unit::setay(double neway){
+virtual void Unit::setay(double neway){
   ay=neway;
 }
 
-virtual void unit::setvx(double newvx){
+virtual void Unit::setvx(double newvx){
   vx=newvx;
 }
 
-virtual void unit::setvy(double newvy){
+virtual void Unit::setvy(double newvy){
   vy=newvy;
 }
 
-virtual float unit::getx(){
+virtual float Unit::getx(){
   return(x);
 }
 
-virtual float unit::gety(){
+virtual float Unit::gety(){
   return(y);
 }
 
-virtual float unit::getax(){
+virtual float Unit::getax(){
   return(ax);
 }
 
-virtual float unit::getay(){
+virtual float Unit::getay(){
   return(ay);
 }
 
-virtual float unit::getvx(){
+virtual float Unit::getvx(){
   return(vx);
 }
 
-virtual float unit::getvy(){
+virtual float Unit::getvy(){
   return(vy);
 }
 
-virtual void unit::increment(){
+virtual void Unit::increment(){
 	x += vx;
 	y += vy;
 	vx += ax;
