@@ -14,7 +14,7 @@ Enemy template file */
 #include <iomanip>
 #include "unit.h"
 
-class enemy: public unit{
+class Enemy: public Unit{
  public:
 
  private:
