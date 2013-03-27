@@ -37,6 +37,9 @@ int isInBounds(int x, int y){
 	while(i < areas.size())
 	{
 		if(x >= areas[i] && x <= areas[i+2])
-			if(y >= areas
+			if(y >= areas[i+1] && y <= areas[i+3])
+				return true;
+		i+=4;
 	}
+	return false;
 }
