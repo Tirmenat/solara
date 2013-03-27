@@ -84,5 +84,6 @@ virtual bool Unit::operator==(Unit u){ //returns 1 if u and *this are the same
 		return false;
 	if(u.getay() != ay)
 		return false;
+	return true;
 	
 }
