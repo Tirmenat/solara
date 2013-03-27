@@ -21,7 +21,7 @@ class Stage{
 	int isInBounds(int, int);
 	void addArea(int, int, int, int);
 	void draw();
-	void addUnit(Unit);
+	void addUnit(Unit, int, int);
 	void removeUnit(Unit);
 private: 
 	int size_x;
