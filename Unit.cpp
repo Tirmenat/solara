@@ -69,3 +69,20 @@ virtual void Unit::increment(){
 	vx += ax;
 	vy += ay;
 }
+
+virtual bool Unit::operator==(Unit u){ //returns 1 if u and *this are the same
+	//right now this isn't foolproof, may have to work on it l
+	if(u.getx() != x)
+		return false;
+	if(u.getx() != y)
+		return false;
+	if(u.getdx() != dx)
+		return false;
+	if(u.getdy() != dy)
+		return false;
+	if(u.getax() != ax)
+		return false;
+	if(u.getay() != ay)
+		return false;
+	
+}

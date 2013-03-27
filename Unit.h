@@ -32,6 +32,7 @@ class Unit{
   virtual float setvy();
   virtual void increment();
   virtual void draw() = 0;
+  virtual void collide(Unit u) = 0;
 
  private:
   double x;
