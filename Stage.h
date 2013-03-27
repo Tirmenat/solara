@@ -23,6 +23,10 @@ class Stage{
 	void draw();
 	void addUnit(Unit);
 	void removeUnit(Unit)
+private: 
+	int size_x;
+	int size_y;
+
 };
 	
 	#endif
