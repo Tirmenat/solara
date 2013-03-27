@@ -22,7 +22,7 @@ class Stage{
 	void addArea(int, int, int, int);
 	void draw();
 	void addUnit(Unit);
-	void removeUnit(Unit)
+	void removeUnit(Unit);
 private: 
 	int size_x;
 	int size_y;
