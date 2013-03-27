@@ -27,7 +27,9 @@ class Stage{
 	int removeUnit(Unit); //returns 1 if unit was successfully removed, 0 otherwise
 	private:
 	vector<Unit> units;
-	vector<int> areas; //contains the areas of the stage, stored in rectangle form, 4 points at a time in a vector
+	vector<int> areas; //contains the areas of the stage, stored in rectangle form, 4 points at a time in a vector 
+	int size_x;
+	int size_y;
 };
 	
 	#endif

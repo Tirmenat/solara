@@ -1,4 +1,5 @@
 #include "Stage.h"
+//DOES THIS WORK???
 
 Stage::Stage()
 {	
@@ -32,7 +33,18 @@ int addArea(int a, int b, int c, int d) //adds an area and checks to make sure i
 	return true;
 }
 
-int isInBounds(int x, int y){
+int Stage::removeUnit(Unit spr){
+  for(int i = 0; i<units.size(); i++)
+  {
+	  if(units[i] == spr){  
+		  units.remove(units.begin()+i);
+		  return 1;
+	  }
+  }
+	return 0;
+}
+
+int Stage::isInBounds(int x, int y){
 	int i = 0;
 	while(i < areas.size())
 	{
