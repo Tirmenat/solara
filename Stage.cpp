@@ -20,6 +20,7 @@ int addArea(int a, int b, int c, int d) //adds an area and checks to make sure i
 	areas.push_back(b);
 	areas.push_back(c);
 	areas.push_back(d);
+	// returns int, false == 0, true == 1
 	if(areas[areas.size()-1] != d)
 		return false;
 	if(areas[areas.size()-2] != c)
