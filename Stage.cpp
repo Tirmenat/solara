@@ -33,6 +33,10 @@ int addArea(int a, int b, int c, int d) //adds an area and checks to make sure i
 	return true;
 }
 
+void Stge::addUnit(Unit spr){
+	units.push_back(spr);
+}
+
 int Stage::removeUnit(Unit spr){
   for(int i = 0; i<units.size(); i++)
   {
