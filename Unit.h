@@ -5,7 +5,7 @@ Brad Stalcup
 Sean Murphy
 Neal Sheehan
 Solara
-Unit Template file */
+Unit header file */
 
 #ifndef UNIT_H
 #define UNIT_H
