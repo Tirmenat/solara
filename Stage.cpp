@@ -21,7 +21,7 @@ void Stage::perform()
 		units[i].increment();
 }
 
-int addArea(int a, int b, int c, int d) //adds an area and checks to make sure it is added
+int Stage::addArea(int a, int b, int c, int d) //adds an area and checks to make sure it is added
 {
 	//a = topleft x, b = topleft y
 	//c = botright x, d = botright y
@@ -43,7 +43,7 @@ int addArea(int a, int b, int c, int d) //adds an area and checks to make sure i
 	return true;
 }
 
-void Stge::addUnit(Unit spr){
+void Stage::addUnit(Unit spr){
 	units.push_back(spr);
 }
 
