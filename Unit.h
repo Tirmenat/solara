@@ -29,6 +29,7 @@ class Unit{
   virtual float setvx();
   virtual float setvy();
   virtual void increment();
+  virtual bool operator(Unit);
   virtual void draw() = 0;
   virtual void collide(Unit u) = 0;
 
