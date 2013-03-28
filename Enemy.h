@@ -16,6 +16,7 @@ Enemy template file */
 
 class Enemy: public Unit{
  public:
+    virtual void draw();
 
  private:
 
