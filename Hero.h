@@ -5,7 +5,7 @@ Brad Stalcup
 Sean Murphy
 Neal Sheehan
 Solara
-Hero template file */
+Hero header file */
 
 #ifndef HERO_H
 #define HERO_H
