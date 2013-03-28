@@ -1,3 +1,12 @@
+/* FCII Final Project
+Spring 2013
+Michael Powers
+Brad Stalcup
+Sean Murphy
+Neal Sheehan
+Solara
+Stage Implementation file */
+#include <vector>
 #include "Stage.h"
 //DOES THIS WORK???
 
