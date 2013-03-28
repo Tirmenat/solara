@@ -15,6 +15,7 @@ Unit::Unit(){
 
 }
 
+// Set Functions
 virtual void Unit::setx(double newx){
   x=newx;
 }
@@ -39,6 +40,7 @@ virtual void Unit::setvy(double newvy){
   vy=newvy;
 }
 
+// Get Functions
 virtual float Unit::getx(){
   return(x);
 }
@@ -85,5 +87,4 @@ virtual bool Unit::operator==(Unit u){ //returns 1 if u and *this are the same
 	if(u.getay() != ay)
 		return false;
 	return true;
-	
 }
