@@ -5,7 +5,7 @@ Brad Stalcup
 Sean Murphy
 Neal Sheehan
 Solara
-Unit Implementation file */
+Stage header file */
 
 #ifndef STAGE_H
 #define STAGE_H
