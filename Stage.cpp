@@ -59,4 +59,5 @@ int Stage::isInBounds(int x, int y){
 		i+=4;
 	}
 	return false;
+	// returns int, false == 0, true == 1
 }
