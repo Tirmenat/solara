@@ -16,8 +16,6 @@ Unit header file */
 class Unit{
  public:
   unit();
-  virtual void increment();
-  virtual void draw()=0;
   virtual void setx(double);
   virtual void sety(double);
   virtual void setax(double);
