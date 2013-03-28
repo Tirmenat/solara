@@ -5,7 +5,7 @@ Brad Stalcup
 Sean Murphy
 Neal Sheehan
 Solara
-Enemy template file */
+Enemy header file */
 
 #ifndef ENEMY_H
 #define ENEMY_H
