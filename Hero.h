@@ -10,13 +10,13 @@ Hero header file */
 #ifndef HERO_H
 #define HERO_H
 
-#include <iostream>
-#include <iomanip>
-#include "unit.h"
+#include "Unit.h"
 
 class Hero: public Unit{
  public:
+  Hero(int, int);
   virtual void draw();
+  virtual void collide(Unit*);
 
  private:
 

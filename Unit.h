@@ -15,7 +15,8 @@ Unit header file */
 
 class Unit{
  public:
-  unit();
+  Unit();
+  Unit(int,int);
   virtual void setx(double);
   virtual void sety(double);
   virtual void setax(double);
@@ -29,9 +30,9 @@ class Unit{
   virtual float setvx();
   virtual float setvy();
   virtual void increment();
-  virtual bool operator(Unit);
+  virtual bool operator==(Unit*);
   virtual void draw() = 0;
-  virtual void collide(Unit u) = 0;
+  virtual void collide(Unit*) = 0;
 
  private:
   double x;

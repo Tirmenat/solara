@@ -18,7 +18,7 @@ Stage::Stage()
 void Stage::perform()
 {
 	for(int i = 0; i < units.size(); i++)
-		units[i].increment();
+		*units[i].increment();
 }
 
 int Stage::addArea(int a, int b, int c, int d) //adds an area and checks to make sure it is added
@@ -43,11 +43,11 @@ int Stage::addArea(int a, int b, int c, int d) //adds an area and checks to make
 	return true;
 }
 
-void Stage::addUnit(Unit spr){
+void Stage::addUnit(Unit* spr){
 	units.push_back(spr);
 }
 
-int Stage::removeUnit(Unit spr){
+int Stage::removeUnit(Unit* spr){
   for(int i = 0; i<units.size(); i++)
   {
 	  if(units[i] == spr){  

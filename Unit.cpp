@@ -12,7 +12,13 @@ Unit Implementation file */
 #include "Unit.h"
 
 Unit::Unit(){
+  x = 0;
+  y = 0;
+}
 
+Unit::Unit(int X, int Y){
+  x = X;
+  y = Y;
 }
 
 // Set Functions
