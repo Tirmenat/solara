@@ -4,6 +4,8 @@
 #include "Stage.h"
 #include "Hero.h"
 
+using namespace std;
+
 int main(void)
 {
   Stage stage;

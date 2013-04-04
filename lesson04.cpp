@@ -126,39 +126,39 @@ int main( int argc, char* args[] )
     {
       return 1;    
     }
-
+  
   //While the user hasn't quit
   while( quit == false )
     {
-
+      
       //While there's an event to handle
       while( SDL_PollEvent( &event ) )
         {
-
+	  
 	  //if( SDL_PollEvent( &event ) )
 	  //{
-	      //If a key was pressed
-	      if( event.type == SDL_KEYDOWN )
+	  //If a key was pressed
+	  if( event.type == SDL_KEYDOWN )
+	    {
+	      //Set the proper message surface
+	      switch( event.key.keysym.sym )
 		{
-		  //Set the proper message surface
-		  switch( event.key.keysym.sym )
-		    {
-                    case SDLK_q: quit = true; break;
-                    }
+		case SDLK_q: quit = true; break;
 		}
-            
-	      //If the user has Xed out the window
-	       else if( event.type == SDL_QUIT )
-	      {
-		  //Quit the program
-	        quit = true;
-	      }
-	      // }
+	    }
+	  
+	  //If the user has Xed out the window
+	  else if( event.type == SDL_QUIT )
+	    {
+	      //Quit the program
+	      quit = true;
+	    }
+	  // }
         }
     }
-
+  
   //Free the surface and quit SDL
   clean_up();
-        
+  
   return 0;    
 }
