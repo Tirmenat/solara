@@ -27,11 +27,11 @@ class Unit{
   virtual float gety();
   virtual float getax();
   virtual float getay();
-  virtual float setvx();
-  virtual float setvy();
+  virtual float getvx();
+  virtual float getvy();
   virtual void increment();
-  virtual bool operator==(Unit*);
   virtual void draw() = 0;
+  virtual bool isEqualTo(Unit*);
   virtual void collide(Unit*) = 0;
 
  private:

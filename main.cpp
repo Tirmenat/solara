@@ -1,6 +1,5 @@
 //main program
 #include <iostream>
-#include "Unit.h"
 #include "Stage.h"
 #include "Hero.h"
 
@@ -8,8 +7,10 @@ using namespace std;
 
 int main(void)
 {
-  Stage stage;
-  stage.addArea(0,0,500,500);
-  Hero unit(200,200);
-  stage.addUnit(&unit);
+  Stage stages;
+  stages.addArea(0,0,500,500);
+  Hero units(200,200);
+  stages.addUnit(&units);
+
+  cout << units.getx() << units.gety() << units.getvx() << units.getvy();
 }

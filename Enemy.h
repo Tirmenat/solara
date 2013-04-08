@@ -12,12 +12,15 @@ Enemy header file */
 
 #include <iostream>
 #include <iomanip>
-#include "unit.h"
+#include "Unit.h"
 
 class Enemy: public Unit{
  public:
-    virtual void draw();
-
+  Enemy(int, int);
+  virtual void collide(Unit* u);
+  virtual void draw();
  private:
 
 };
+
+#endif
