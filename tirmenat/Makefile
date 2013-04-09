@@ -1,2 +1,2 @@
-main: main.cpp
-	g++ -o main main.cpp -lSDL -lSDL_image
+main: lesson04.cpp
+	g++ -o main lesson04.cpp -lSDL -lSDL_image
