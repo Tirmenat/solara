@@ -10,9 +10,9 @@ Stage Implementation file */
 #include "Stage.h"
 //DOES THIS WORK???
 
-Stage::Stage()
+Stage::Stage(x,y)
 {	
-	
+  units.push_back(new Hero(x,y));
 }
 
 void Stage::perform()
@@ -21,14 +21,53 @@ void Stage::perform()
     units[i]->increment();
 }
 
+void draw(){
+
+  //drawing the terrain sprites
+  for(int i = 0; i<areas.size(); i+=4){
+    for(int x = areas[i]; x<areas[i+2]; x+=16){
+      for(int y = areas[i+1]; y<areas[i+3]; y+=16){
+	//draw correct sprite based on location
+	if(x == areas[i]){ //left most column of sprites
+	  if(y == areas[i+1]){ //top row of sprites
+	    //draw top left corner sprite
+	  }
+	  else{
+	    //draw left edge sprite
+	  }
+	}
+	else if(y == areas[i+1]){//top row of sprites
+	  //draw top edge sprite
+	}
+	else if(x == areas[i+2]-16){//right most column of sprites
+	  if(y == areas[i+3]-16){//bottom row of sprites
+	    //draw bottom right corner sprite
+	  }
+	  else{
+	    //draw right edge sprite
+	  } 
+	}
+	else if(y == areas[i+3]-16){
+	  //draw bottom edge sprite
+	}
+	else
+	  //draw regular sprite
+      }
+    }
+  }
+  for(int i = 0; i < units.size(); i++)
+    if(inBounds(units[i]->getx()/*minus size?*/, units[i]->gety()))
+      units[i]->draw();
+}
+
 int Stage::addArea(int a, int b, int c, int d) //adds an area and checks to make sure it is added
 {
   //a = topleft x, b = topleft y
   //c = botright x, d = botright y
-  areas.push_back(a);
-  areas.push_back(b);
-  areas.push_back(c);
-  areas.push_back(d);
+  areas.push_back(a-a%16); //rounds down to nearest 16 in all of them
+  areas.push_back(b-b%16);
+  areas.push_back(c-c%16);
+  areas.push_back(d-d%16);
   // returns int, false == 0, true == 1
   if(areas[areas.size()-1] != d)
     return false;
@@ -50,7 +89,8 @@ void Stage::addUnit(Unit* spr){
 int Stage::removeUnit(Unit* spr){
   for(int i = 0; i<units.size(); i++)
     {
-      if(units[i]->isEqualTo(spr)){  
+      if(units[i]->isEqualTo(spr)){
+	delete units[i];
 	units.erase(units.begin()+i);
 	return 1;
       }
