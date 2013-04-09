@@ -74,6 +74,33 @@ float Unit::getvy(){
   return(vy);
 }
 
+void Unit::draw(){
+	if(vx > 0)
+	{
+		status = UNIT_LEFT;  //Unit moves left
+		frame++; //animation continues
+	}
+	if(vx < 0)
+	{
+		status = UNIT_RIGHT; //Unit moves right
+		frame++; //animation continues
+	}
+	else
+	{
+		frame = 0; //Animation stops at neutral position
+	}
+	if(frame >= 3)
+	{
+		frame = 0;
+	}
+	if(status == UNIT_LEFT){
+		apply_surface( x, y, unit, screen, &clipsRight[frame])
+	}
+	if(status == UNIT_RIGHT){
+		apply_surface( x, y, unit, screen, &clipsRight[frane])
+	}
+}
+
 void Unit::increment(){
 	x += vx;
 	y += vy;
