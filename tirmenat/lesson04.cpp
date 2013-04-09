@@ -261,7 +261,7 @@ main (int argc, char *args[])
 	      //Set the proper message surface                                       
 	      switch (event.key.keysym.sym)
 		{
-		case SDLK_q:
+		case SDLK_ESC:
 		  quit = true;
 		  break;
 
