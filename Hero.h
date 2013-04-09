@@ -19,6 +19,8 @@ class Hero: public Unit{
   virtual void collide(Unit*);
 
  private:
+ double x;
+ double y;
 
 };
 
