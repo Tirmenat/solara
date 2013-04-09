@@ -94,7 +94,7 @@ void Unit::draw(){
 		frame = 0;
 	}
 	if(status == UNIT_LEFT){
-		apply_surface( x, y, unit, screen, &clipsRight[frame])
+		apply_surface( x, y, unit, screen, &clipsLEFT[frame])
 	}
 	if(status == UNIT_RIGHT){
 		apply_surface( x, y, unit, screen, &clipsRight[frane])
