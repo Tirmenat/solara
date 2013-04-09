@@ -12,16 +12,26 @@ Unit Implementation file */
 #include <iomanip>
 #include "Unit.h"
 
+#define SPRLENGTH 24
+#define SPRWIDTH 16
 
 
 Unit::Unit(){
   x = 0;
   y = 0;
+  clip.x = 0;
+  clip.y = 0;
+  clip.w = SPRLENGTH;
+  clip.h = SPRWIDTH;
 }
 
 Unit::Unit(int X, int Y){
   x = X;
   y = Y;
+  clip.x = X;
+  clip.y = Y;
+  clip.w = SPRWIDTH;
+  clip.h = SPRLENGTH;
 }
 
 // Set Functions
@@ -50,28 +60,32 @@ void Unit::setvy(double newvy){
 }
 
 // Get Functions
-float Unit::getx(){
+double Unit::getx(){
   return(x);
 }
 
-float Unit::gety(){
+double Unit::gety(){
   return(y);
 }
 
-float Unit::getax(){
+double Unit::getax(){
   return(ax);
 }
 
-float Unit::getay(){
+double Unit::getay(){
   return(ay);
 }
 
-float Unit::getvx(){
+double Unit::getvx(){
   return(vx);
 }
 
-float Unit::getvy(){
+double Unit::getvy(){
   return(vy);
+}
+
+SDL_Rect Unit::getrect(){
+  return clip;
 }
 
 void Unit::increment(){

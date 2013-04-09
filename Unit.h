@@ -23,24 +23,27 @@ class Unit{
   virtual void setay(double);
   virtual void setvx(double);
   virtual void setvy(double);
-  virtual float getx();
-  virtual float gety();
-  virtual float getax();
-  virtual float getay();
-  virtual float getvx();
-  virtual float getvy();
+  virtual double getx();
+  virtual double gety();
+  virtual double getax();
+  virtual double getay();
+  virtual double getvx();
+  virtual double getvy();
+  virtual SDL_Rect getrect();
   virtual void increment();
   virtual void draw() = 0;
   virtual bool isEqualTo(Unit*);
   virtual void collide(Unit*) = 0;
 
  private:
+  SDL_Rect clip;
   double x;
   double y;
   double ax;
   double ay;
   double vx;
   double vy;
+  
 
 };
 
