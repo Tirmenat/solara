@@ -41,6 +41,8 @@ class Unit{
   double ay;
   double vx;
   double vy;
+  int frame;  //Used for animation
+  int status;  //Used for animation
 
 };
 
