@@ -43,7 +43,12 @@ class Unit{
   double ay;
   double vx;
   double vy;
+<<<<<<< HEAD
   
+=======
+  int frame;  //Used for animation
+  int status;  //Used for animation
+>>>>>>> 8915434441add2a972453853bd163329174c0c0b
 
 };
 

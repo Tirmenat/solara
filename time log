@@ -5,6 +5,8 @@ Brad: 1 hour
 Neal: 1 hour
 Sean: .5 hours
 
+total: 4.5
+
 //is there a better way of doing this???
 
 3/25/2013
@@ -12,21 +14,39 @@ Sean: .5 hours
 Brad: 1 hour
 Mike: 3 hours, trying to get SDL to work with XCode (couldn't get it to work, huge waste of time)
 
+cumulative total: 8.5
+
 3/27/2013
 
 Mike: 4 hours, SDL tutorials and completed work for lab (title screen with user events (q and exit) to quit the window)
+
+cumulative total: 12.5
 
 3/28/2013
 Neal: 2 hours
 reviewed everyone's commits and added comments
 create template for readme file
 tried to do SDL tutorial for a long time, but could not get files to work properly
-total: 3 hours
+
+Cumulative total: 15.5
 
 4/3/2013
 Neal and Sean: 1 hour on SDL tutorials in lab
-Neal and Brad: 1 hour on setting up Git stuff
-1-2 hours Neal on SDL Tutorials; Brad on converting Unit class and Sprites
+Neal and Brad: 1 hour on setting up Git stuff 
+Neal: 2 hours on SDL Tutorials; 
+Brad: 2 hours on converting Unit class and Sprites
+
+Cumulative total: 23.5
 
 4/4/2013
 Neal: 1 hour on SDL Tutorials
+
+Cumulative total: 24.5
+
+4/8/2013
+Neal: 2 hours on SDL implementation
+Sean: 2 hours on SDL Tutorials and makefile and Unit and Stage class implementation
+Brad: 2 hours on "
+Mike: 1 Hour on transitioning from title screen to game screen
+
+Cumulative total: 31.5

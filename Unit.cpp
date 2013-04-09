@@ -84,8 +84,36 @@ double Unit::getvy(){
   return(vy);
 }
 
+<<<<<<< HEAD
 SDL_Rect Unit::getrect(){
   return clip;
+=======
+void Unit::draw(){
+	if(vx > 0)
+	{
+		status = UNIT_LEFT;  //Unit moves left
+		frame++; //animation continues
+	}
+	if(vx < 0)
+	{
+		status = UNIT_RIGHT; //Unit moves right
+		frame++; //animation continues
+	}
+	else
+	{
+		frame = 0; //Animation stops at neutral position
+	}
+	if(frame >= 3)
+	{
+		frame = 0;
+	}
+	if(status == UNIT_LEFT){
+		apply_surface( x, y, unit, screen, &clipsLEFT[frame])
+	}
+	if(status == UNIT_RIGHT){
+		apply_surface( x, y, unit, screen, &clipsRight[frane])
+	}
+>>>>>>> 8915434441add2a972453853bd163329174c0c0b
 }
 
 void Unit::increment(){

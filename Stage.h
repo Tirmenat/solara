@@ -18,7 +18,7 @@ using namespace std;
 
 class Stage{
  public:
-  Stage();
+  Stage(x,y);
   void perform();
   int isInBounds(int, int);
   int addArea(int, int, int, int); //returns 1 if area was successfully added, 0 otherwise
