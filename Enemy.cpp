@@ -1,6 +1,6 @@
 #include "Enemy.h"
 
-Enemy::Enemy(int x, int y):Unit(x,y)
+Enemy::Enemy(double X, double Y, double VX, double VY, double AX, double AY):Unit(X,Y,VX,VY,AX,AY)
 {
   
 }

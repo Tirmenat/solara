@@ -14,7 +14,7 @@ Hero header file */
 
 class Hero: public Unit{
  public:
-  Hero(int, int);
+  Hero(double, double, double, double, double, double);
   virtual void draw();
   virtual void collide(Unit*);
 

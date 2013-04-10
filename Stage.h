@@ -12,13 +12,14 @@ Stage header file */
 
 
 #include "Unit.h"
+#include "SDL/SDL.h"
 #include <vector>
 
 using namespace std;
 
 class Stage{
  public:
-  Stage(x,y);
+  Stage(int,int);
   void perform();
   int isInBounds(int, int);
   int addArea(int, int, int, int); //returns 1 if area was successfully added, 0 otherwise
@@ -27,7 +28,7 @@ class Stage{
   int removeUnit(Unit*); //returns 1 if unit was successfully removed, 0 otherwise
  private:
   vector<Unit*> units;
-  vector<int> areas; //contains the areas of the stage, stored in rectangle form, 4 points at a time in a vector 
+  vector<SDL_Rect> areas; //contains the areas of the stage, stored in rectangle form, 4 points at a time in a vector 
   int size_x;
   int size_y;
 };

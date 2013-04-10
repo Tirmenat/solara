@@ -7,12 +7,14 @@ Neal Sheehan
 Solara
 Stage Implementation file */
 #include <vector>
+#include "SDL/SDL.h"
 #include "Stage.h"
+#include "Hero.h"
 //DOES THIS WORK???
 
-Stage::Stage(x,y)
+Stage::Stage(int x, int y)
 {	
-  units.push_back(new Hero(x,y));
+  units.push_back(new Hero(x,y,0,0,0,0));
 }
 
 void Stage::perform()
@@ -21,47 +23,64 @@ void Stage::perform()
     units[i]->increment();
 }
 
-void draw(){
+void Stage::draw(){
 
   //drawing the terrain sprites
-  for(int i = 0; i<areas.size(); i+=4){
-    for(int x = areas[i]; x<areas[i+2]; x+=16){
-      for(int y = areas[i+1]; y<areas[i+3]; y+=16){
+  for(int i = 0; i<areas.size(); i++){
+    for(int x = areas[i].x; x<areas[i].x+areas[i].w; x+=16){
+      for(int y = areas[i].y; y<areas[i].y+areas[i].h; y+=16){
 	//draw correct sprite based on location
-	if(x == areas[i]){ //left most column of sprites
-	  if(y == areas[i+1]){ //top row of sprites
+	if(x == areas[i].x){ //left most column of sprites
+	  if(y == areas[i].y){ //top row of sprites
 	    //draw top left corner sprite
 	  }
 	  else{
 	    //draw left edge sprite
 	  }
 	}
-	else if(y == areas[i+1]){//top row of sprites
+	else if(y == areas[i].y){//top row of sprites
 	  //draw top edge sprite
 	}
-	else if(x == areas[i+2]-16){//right most column of sprites
-	  if(y == areas[i+3]-16){//bottom row of sprites
+	else if(x == areas[i].x+areas[i].w-16){//right most column of sprites
+	  if(y == areas[i].y+areas[i].h-16){//bottom row of sprites
 	    //draw bottom right corner sprite
 	  }
 	  else{
 	    //draw right edge sprite
 	  } 
 	}
-	else if(y == areas[i+3]-16){
+	else if(y == areas[i].y+areas[i].h-16){
 	  //draw bottom edge sprite
 	}
-	else
+	else{
+	  
+	}
 	  //draw regular sprite
       }
     }
   }
   for(int i = 0; i < units.size(); i++)
-    if(inBounds(units[i]->getx()/*minus size?*/, units[i]->gety()))
+    if(isInBounds(units[i]->getx()/*minus size?*/, units[i]->gety()))
       units[i]->draw();
 }
 
-int Stage::addArea(int a, int b, int c, int d) //adds an area and checks to make sure it is added
+int Stage::addArea(int x, int y, int w, int h) //adds an area and checks to make sure it is added
 {
+
+  SDL_Rect add;
+  add.x = x-x%16;
+  add.y = y-y%16;
+  add.w = w-w%16;
+  add.h = h-h%16;
+  areas.push_back(add);
+  return 1;
+/*
+  if(add == areas[areas.size()-1])
+    return true;
+  else
+  return false;*/
+  
+/*
   //a = topleft x, b = topleft y
   //c = botright x, d = botright y
   areas.push_back(a-a%16); //rounds down to nearest 16 in all of them
@@ -79,7 +98,7 @@ int Stage::addArea(int a, int b, int c, int d) //adds an area and checks to make
     return false;
   if(areas.size()%4 != 0) //there are not the right number of elements in the areas vector, so return 0
     return false;
-  return true;
+    return true;*/
 }
 
 void Stage::addUnit(Unit* spr){
@@ -98,14 +117,14 @@ int Stage::removeUnit(Unit* spr){
   return 0;
 }
 
-int Stage::isInBounds(int x, int y){
+int Stage::isInBounds(int x, int y){ //checks if a point is inside any of the areas
   int i = 0;
   while(i < areas.size())
     {
-      if(x >= areas[i] && x <= areas[i+2])
-	if(y >= areas[i+1] && y <= areas[i+3])
+      if(x >= areas[i].x && x <= areas[i].x+areas[i].w)
+	if(y >= areas[i].y && y <= areas[i].y+areas[i].h)
 	  return true;
-      i+=4;
+      i++;
     }
   return false;
   // returns int, false == 0, true == 1

@@ -24,3 +24,5 @@ class Frog: public Enemy{
     int health = 5;
 
 }
+
+#endif

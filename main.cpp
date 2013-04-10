@@ -7,10 +7,10 @@ using namespace std;
 
 int main(void)
 {
-  Stage stages;
+  Stage stages(100,100);
   stages.addArea(0,0,500,500);
-  Hero units(200,200);
+  Hero units(1.0,1.0,1.0,1.0,1.0,1.0);
   stages.addUnit(&units);
 
-  cout << units.getx() << units.gety() << units.getvx() << units.getvy();
+  cout << units.getx() << endl << units.gety() << endl << units.getvx() << endl << units.getvy() << endl; //testcode
 }

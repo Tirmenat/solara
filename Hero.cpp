@@ -1,6 +1,6 @@
 #include "Hero.h"
 
-Hero::Hero(int X, int Y):Unit(X,Y)
+Hero::Hero(double X, double Y, double VX, double VY, double AX, double AY):Unit(X,Y,VX,VY,AX,AY)
 {
 }
 

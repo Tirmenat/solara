@@ -12,11 +12,12 @@ Unit header file */
 
 #include <iostream>
 #include <iomanip>
+#include "SDL/SDL.h"
 
 class Unit{
  public:
   Unit();
-  Unit(int,int);
+  Unit(double,double,double,double,double,double);
   virtual void setx(double);
   virtual void sety(double);
   virtual void setax(double);
@@ -43,12 +44,8 @@ class Unit{
   double ay;
   double vx;
   double vy;
-<<<<<<< HEAD
-  
-=======
   int frame;  //Used for animation
   int status;  //Used for animation
->>>>>>> 8915434441add2a972453853bd163329174c0c0b
 
 };
 

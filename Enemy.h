@@ -16,7 +16,7 @@ Enemy header file */
 
 class Enemy: public Unit{
  public:
-  Enemy(int, int);
+  Enemy(double,double,double,double,double,double);
   virtual void collide(Unit* u);
   virtual void draw();
  private:

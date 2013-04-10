@@ -11,36 +11,46 @@ Unit Implementation file */
 #include <iostream>
 #include <iomanip>
 #include "Unit.h"
+#include "SDL/SDL.h"
 
 #define SPRLENGTH 24
 #define SPRWIDTH 16
-
+#define UNIT_LEFT 0
+#define UNIT_RIGHT 1
 
 Unit::Unit(){
-  x = 0;
-  y = 0;
+  //x = 0;
+  //y = 0;
   clip.x = 0;
   clip.y = 0;
   clip.w = SPRLENGTH;
   clip.h = SPRWIDTH;
+  vx = 0;
+  vy = 0;
 }
 
-Unit::Unit(int X, int Y){
-  x = X;
-  y = Y;
+Unit::Unit(double X, double Y, double VX, double VY, double AX, double AY){
+  // x = X;
+  //y = Y;
   clip.x = X;
   clip.y = Y;
   clip.w = SPRWIDTH;
   clip.h = SPRLENGTH;
+  vx = VX;
+  vy = VY;
+  ax = AX;
+  ay = AY;
 }
 
 // Set Functions
 void Unit::setx(double newx){
-  x=newx;
+  clip.x=newx;
+  //x=newx;
 }
 
 void Unit::sety(double newy){
-  y=newy;
+  clip.y=newy;
+  //y=newy;
 }
 
 void Unit::setax(double newax){
@@ -61,11 +71,11 @@ void Unit::setvy(double newvy){
 
 // Get Functions
 double Unit::getx(){
-  return(x);
+  return(clip.x);
 }
 
 double Unit::gety(){
-  return(y);
+  return(clip.y);
 }
 
 double Unit::getax(){
@@ -108,10 +118,10 @@ void Unit::draw(){
 		frame = 0;
 	}
 	if(status == UNIT_LEFT){
-		apply_surface( x, y, unit, screen, &clipsLEFT[frame])
+	  //apply_surface( x, y, unit, screen, &clipsLEFT[frame])
 	}
 	if(status == UNIT_RIGHT){
-		apply_surface( x, y, unit, screen, &clipsRight[frane])
+	  //apply_surface( x, y, unit, screen, &clipsRight[frane])
 	}
 }
 
@@ -124,9 +134,9 @@ void Unit::increment(){
 
 bool Unit::isEqualTo(Unit* u)
 {
-  	if(u->getx() != x)
+  	if(u->getx() != clip.x)
 		return false;
-	if(u->getx() != y)
+	if(u->getx() != clip.y)
 		return false;
 	if(u->getvx() != vx)
 		return false;
