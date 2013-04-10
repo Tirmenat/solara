@@ -84,10 +84,10 @@ double Unit::getvy(){
   return(vy);
 }
 
-<<<<<<< HEAD
 SDL_Rect Unit::getrect(){
   return clip;
-=======
+}
+
 void Unit::draw(){
 	if(vx > 0)
 	{
@@ -113,7 +113,6 @@ void Unit::draw(){
 	if(status == UNIT_RIGHT){
 		apply_surface( x, y, unit, screen, &clipsRight[frane])
 	}
->>>>>>> 8915434441add2a972453853bd163329174c0c0b
 }
 
 void Unit::increment(){
