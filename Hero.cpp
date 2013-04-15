@@ -74,6 +74,7 @@ Uint8 *keystates = SDL_GETKEYSTATE( NULL )
   else if (keystates[SDLK_RIGHT])
   {
     ax=ACCEL_X;
+    //motionx=1;
   }
   else
   {
