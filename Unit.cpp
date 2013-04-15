@@ -27,6 +27,7 @@ Unit::Unit(){
   clip.h = SPRWIDTH;
   vx = 0;
   vy = 0;
+  direction = UNIT_RIGHT;
 }
 
 Unit::Unit(double X, double Y, double VX, double VY, double AX, double AY){

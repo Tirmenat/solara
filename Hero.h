@@ -17,6 +17,7 @@ class Hero: public Unit{
   Hero(double, double, double, double, double, double);
   virtual void draw();
   virtual void collide(Unit*);
+  virtual void increment();
 
  private:
  double x;
