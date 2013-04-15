@@ -17,6 +17,7 @@ class Hero: public Unit{
   Hero(double, double, double, double, double, double);
   virtual void draw();
   virtual void collide(Unit*);
+  void processEvent(SDL_Event event)
 
  private:
  double x;
