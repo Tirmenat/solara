@@ -26,11 +26,21 @@ class Stage{
   void draw();
   void addUnit(Unit*);
   int removeUnit(Unit*); //returns 1 if unit was successfully removed, 0 otherwise
+  void clean_up();
  private:
+  int location;
   vector<Unit*> units;
-  vector<SDL_Rect> areas; //contains the areas of the stage, stored in rectangle form, 4 points at a time in a vector 
+  vector<SDL_Rect> areas; //contains the areas of the stage, stored in rectangle form, 4 points at a time in a vector
+  SDL_Rect clip_background[60][22];
+  SDL_Surface *background;
+  SDL_Surface *screen;
   int size_x;
   int size_y;
+  SDL_Surface *load_image( string );
+  void apply_surface( int, int, SDL_Surface*, SDL_Surface*, SDL_Rect* );
+  bool init();
+  bool load_files();
+  void set_clips();
 };
 
 	#endif
