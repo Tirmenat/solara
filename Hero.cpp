@@ -35,13 +35,52 @@ void Hero::increment()
     vy = -MAX_VY;
   else
     vy += ay;
-
+}
   //else 
   //  make things go toward 0;
 =======
-void Hero::processEvent(SDL_Event event)
+void Hero::processEvent()
+Uint8 *keystates = SDL_GETKEYSTATE( NULL )
 {
-  switch(event.type)
+  if( keystates[SDLK_UP] && keystates [SDLK_DOWN] )
+  {
+    ay=0;
+    //motiony=1;
+  }
+  else if( keystates[SDLK_UP] )
+  {
+    ay=-ACCEL_Y;
+    //motiiony=1;
+  }
+  else if ( keystates[SDLK_DOWN] )
+  {
+    ay=ACCEL_Y;
+    //motiony=1;
+  }
+  else
+  {
+    //motiony=0;
+  }
+  if( keystates[SDLK_LEFT] && keystates[SDLK_RIGHT] )
+  {
+    ax=0;
+    //motionx=1;
+  }
+  else if (keystates[SDLK_LEFT])
+  {
+    ax=-ACCEL_X;
+    //motionx=1;
+  }
+  else if (keystates[SDLK_RIGHT])
+  {
+    ax=ACCEL_X;
+  }
+  else
+  {
+    //motionx=0;
+  }
+  //Old Event based code
+  /*switch(event.type)
   {
     case SDL_KEYDOWN:
       switch(event.key.keysym.sym)
@@ -77,7 +116,5 @@ void Hero::processEvent(SDL_Event event)
         case SDLK_RIGHT:
           ax=0;
           break;
-      }
-  }
->>>>>>> 58beb1f9ad4d5a87b9ffcf8222cda1611729d07e
+      }*/
 }
