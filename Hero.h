@@ -11,7 +11,8 @@ Hero header file */
 #define HERO_H
 
 #include "Unit.h"
-#include "SDL"
+#include "SDL/SDL_image.h"
+#include "SDL/SDL_ttf.h"
 
 class Hero: public Unit{
  public:
