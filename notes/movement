@@ -1,0 +1,27 @@
+For movement, we're going to want to have 1 character that moves based on a keyboard event.  We're going to need to make a function for hero called processEvent
+
+going to need a switch statement 
+
+
+case up_pressed:
+     set ay = -ACCEL_Y
+case down_pressed:
+     set ay = ACCEL_Y
+case left_pressed
+     set ax = -ACCEL_X
+case right_pressed
+     set ax = ACCEL_X
+case up_released
+     if(ay==-ACCEL_Y)
+	set ay = 0
+case down_released
+     if(ay==ACCEL_Y)
+          set ay = 0
+case left_released
+     if(ax == -ACCEL_X)
+     	   set ax = 0
+case right_released
+     if(ax == ACCEL_X)
+     	   set ax = 0
+default
+	break;
