@@ -12,6 +12,7 @@ Unit Implementation file */
 #include <iomanip>
 #include "Unit.h"
 #include "SDL/SDL.h"
+#include "SDL/SDL_image.h"
 
 #define SPRLENGTH 24
 #define SPRWIDTH 16
@@ -19,38 +20,38 @@ Unit Implementation file */
 #define UNIT_RIGHT 1
 
 Unit::Unit(){
-  //x = 0;
-  //y = 0;
-  clip.x = 0;
-  clip.y = 0;
-  clip.w = SPRLENGTH;
-  clip.h = SPRWIDTH;
+  x=0;
+  y=0;
   vx = 0;
   vy = 0;
+  ax=0;
+  ay=0;
+  char_left = NULL;
+  char_right = NULL;
+  load_files();
+  set_clips(0);
 }
 
-Unit::Unit(double X, double Y, double VX, double VY, double AX, double AY){
-  // x = X;
-  //y = Y;
-  clip.x = X;
-  clip.y = Y;
-  clip.w = SPRWIDTH;
-  clip.h = SPRLENGTH;
+Unit::Unit(double X, double Y, double VX, double VY, double AX, double AY, int location){
+  x=X;
+  y=Y;
   vx = VX;
   vy = VY;
   ax = AX;
   ay = AY;
+  char_left = NULL;
+  char_right = NULL;
+  load_files();
+  set_clips(location);
 }
 
 // Set Functions
 void Unit::setx(double newx){
-  clip.x=newx;
-  //x=newx;
+  x=newx;
 }
 
 void Unit::sety(double newy){
-  clip.y=newy;
-  //y=newy;
+  y=newy;
 }
 
 void Unit::setax(double newax){
@@ -71,11 +72,11 @@ void Unit::setvy(double newvy){
 
 // Get Functions
 double Unit::getx(){
-  return(clip.x);
+  return(x);
 }
 
 double Unit::gety(){
-  return(clip.y);
+  return(y);
 }
 
 double Unit::getax(){
@@ -94,11 +95,100 @@ double Unit::getvy(){
   return(vy);
 }
 
-SDL_Rect Unit::getrect(){
+/*SDL_Rect Unit::getrect(){
   return clip;
+  }*/
+
+SDL_Surface *Unit::load_image( std::string filename )
+{
+  //Lazyfoo.net
+
+  //The image that's loaded
+  SDL_Surface* loadedImage = NULL;
+
+  //The optimized image that will be used
+  SDL_Surface* optimizedImage = NULL;
+
+  //Load the image
+  loadedImage = IMG_Load( filename.c_str() );
+
+  //If the image loaded
+  if( loadedImage != NULL )
+    {
+      //Create an optimized image
+      optimizedImage = SDL_DisplayFormat( loadedImage );
+
+      //Free the old image
+      SDL_FreeSurface( loadedImage );
+
+      //If the image was optimized just fine
+      if( optimizedImage != NULL)
+	{
+	  //Map the color key
+	  Uint32 colorkey = SDL_MapRGB( optimizedImage->format, 0, 136, 255);
+	  //Set all pixels of color R 0, G 0 xFF, B 0xFF to be transparent
+	  SDL_SetColorKey( optimizedImage, SDL_SRCCOLORKEY, colorkey );
+	}
+    }
+
+  //Return the optimized image
+  return optimizedImage;
 }
 
-void Unit::draw(){
+void Unit::apply_surface( int x, int y, SDL_Surface* source, SDL_Surface* destination, SDL_Rect* clip = NULL )
+{
+  //Lazyfoo.net
+
+  //Holds offsets
+  SDL_Rect offset;
+
+  //Get offsets
+  offset.x = x;
+  offset.y = y;
+
+  //Blit
+  SDL_BlitSurface( source, clip , destination, &offset );
+}
+
+bool Unit::load_files()
+{
+  //Lazyfoo.net 
+
+  //Load the surfaces
+  char_left = load_image( "neal.png");
+  char_right = load_image( "nealflipped.png");
+
+  //If there was an error in loading the terrain
+  if( (char_left == NULL) || (char_right == NULL) )
+    {
+      return false;
+    }
+
+  //If everything loaded fine
+  return true;
+}
+
+void Unit::set_clips(int location){
+  //Clip range for characters
+  for(int i=0; i<11; ++i)
+    {
+      clip_char_left[i].x = 30*i;
+      clip_char_left[i].y = location*30;
+      clip_char_left[i].w = SPRWIDTH;
+      clip_char_left[i].h = SPRLENGTH;
+    }
+
+  //Clip range for flipped characters
+  for(int i=0; i<11; ++i)
+    {
+      clip_char_right[i].x = 684 - 30*i;
+      clip_char_right[i].y = location*30;
+      clip_char_right[i].w = SPRWIDTH;
+      clip_char_right[i].h = SPRLENGTH;
+    }
+}
+
+void Unit::draw(SDL_Surface* screen){
 	if(vx > 0)
 	{
 		status = UNIT_LEFT;  //Unit moves left
@@ -118,10 +208,10 @@ void Unit::draw(){
 		frame = 0;
 	}
 	if(status == UNIT_LEFT){
-	  //apply_surface( x, y, unit, screen, &clipsLEFT[frame])
+	  apply_surface( x, y, char_left, screen, &clip_char_left[frame]);
 	}
 	if(status == UNIT_RIGHT){
-	  //apply_surface( x, y, unit, screen, &clipsRight[frane])
+	  apply_surface( x, y, char_right, screen, &clip_char_right[frame]);
 	}
 }
 
@@ -134,9 +224,9 @@ void Unit::increment(){
 
 bool Unit::isEqualTo(Unit* u)
 {
-  	if(u->getx() != clip.x)
+  	if(u->getx() != x)
 		return false;
-	if(u->getx() != clip.y)
+	if(u->getx() != y)
 		return false;
 	if(u->getvx() != vx)
 		return false;

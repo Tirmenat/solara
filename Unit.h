@@ -14,10 +14,12 @@ Unit header file */
 #include <iomanip>
 #include "SDL/SDL.h"
 
+using namespace std;
+
 class Unit{
  public:
   Unit();
-  Unit(double,double,double,double,double,double);
+  Unit(double,double,double,double,double,double,int);
   virtual void setx(double);
   virtual void sety(double);
   virtual void setax(double);
@@ -30,14 +32,16 @@ class Unit{
   virtual double getay();
   virtual double getvx();
   virtual double getvy();
-  virtual SDL_Rect getrect();
+  //  virtual SDL_Rect getrect();
   virtual void increment();
-  virtual void draw() = 0;
+  virtual void draw( SDL_Surface*);
   virtual bool isEqualTo(Unit*);
   virtual void collide(Unit*) = 0;
+  void clean_up();
 
  private:
-  SDL_Rect clip;
+  SDL_Rect clip_char_left[11];
+  SDL_Rect clip_char_right[11];
   double x;
   double y;
   double ax;
@@ -46,6 +50,12 @@ class Unit{
   double vy;
   int frame;  //Used for animation
   int status;  //Used for animation
+  virtual SDL_Surface *load_image( string );
+  SDL_Surface *char_left;
+  SDL_Surface *char_right;
+  virtual bool load_files();
+  virtual void apply_surface( int, int, SDL_Surface*, SDL_Surface*, SDL_Rect*);
+  virtual void set_clips(int);
 
 };
 

@@ -19,7 +19,7 @@ const int SCREEN_BPP = 32;
 
 Stage::Stage(int x, int y)
 {	
-  units.push_back(new Hero(x,y,0,0,0,0));
+  //units.push_back(new Hero(x,y,0,0,0,0,0));
   screen = NULL;
   background = NULL;
   init();
@@ -133,14 +133,14 @@ bool Stage::load_files()
 void Stage::set_clips()
 {
   //Clip range for terrain
-  for(int i=0; i<60; ++i )
+  for(int i=0; i<60; ++i)
     {
-    for(int j=0; j<22; ++j )
+    for(int j=0; j<22; ++j)
       {
-	clip_background[ i ][ j ].x = 17*i+1;
-	clip_background[ i ][ j ].y = 17*j+1;
-	clip_background[ i ][ j ].w = 16;
-	clip_background[ i ][ j ].h = 16;
+	clip_background[i][j].x = 17*i+1;
+	clip_background[i][j].y = 17*j+1;
+	clip_background[i][j].w = 16;
+	clip_background[i][j].h = 16;
       }
   }
 }
@@ -198,11 +198,11 @@ void Stage::draw(){
     }
   }
 
-  SDL_Flip(screen);
-
   for(int i = 0; i < units.size(); i++)
     if(isInBounds(units[i]->getx()/*minus size?*/, units[i]->gety()))
-      units[i]->draw();
+      units[i]->draw(screen);
+
+  SDL_Flip(screen);
 }
 
 int Stage::addArea(int x, int y, int w, int h) //adds an area and checks to make sure it is added

@@ -40,7 +40,7 @@ class Stage{
   void apply_surface( int, int, SDL_Surface*, SDL_Surface*, SDL_Rect* );
   bool init();
   bool load_files();
-  void set_clips();
+  virtual void set_clips();
 };
 
 	#endif
