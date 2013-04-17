@@ -30,6 +30,7 @@ Unit::Unit(){
   char_right = NULL;
   load_files();
   set_clips(0);
+  status = UNIT_RIGHT;
 }
 
 Unit::Unit(double X, double Y, double VX, double VY, double AX, double AY, int location){
@@ -43,6 +44,7 @@ Unit::Unit(double X, double Y, double VX, double VY, double AX, double AY, int l
   char_right = NULL;
   load_files();
   set_clips(location);
+  status = UNIT_RIGHT;
 }
 
 // Set Functions
