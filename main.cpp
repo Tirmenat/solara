@@ -2,6 +2,7 @@
 #include <iostream>
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
+#include "SDL/SDL_mixer.h"
 #include "Stage.h"
 #include "Hero.h"
 #include "Enemy.h"
@@ -10,6 +11,7 @@ using namespace std;
 
 int main(void)
 {
+	
   Stage stage_test(100,100);
   stage_test.addArea(0,0,250,250);
   stage_test.addArea(250,0,250,250);
