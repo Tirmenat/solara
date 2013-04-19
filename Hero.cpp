@@ -29,11 +29,17 @@ void Hero::processEvent(double dt)
     }
    else if(keystates[SDLK_UP])
     {
-      ay=-ACCEL_Y_GO;
+      if( vy > 0)
+	ay = -ACCEL_Y_STOP;
+      else
+	ay = -ACCEL_Y_GO;
     }
   else if(keystates[SDLK_DOWN])
     {
-      ay=ACCEL_Y_GO;
+      if( vy < 0 )
+	ay = ACCEL_Y_STOP;
+      else
+	ay=ACCEL_Y_GO;
     }
 
   if ( (!keystates[SDLK_DOWN]) && (!keystates[SDLK_UP]) )
@@ -64,11 +70,17 @@ void Hero::processEvent(double dt)
     }
   else if(keystates[SDLK_LEFT])
     {
-      ax = -ACCEL_X_GO;
+      if( vx > 0 )
+	ax = -ACCEL_X_STOP;
+      else
+	ax = -ACCEL_X_GO;
     }
   else if(keystates[SDLK_RIGHT])
     {
-      ax = ACCEL_X_GO;
+      if( vx < 0 )
+	ax = ACCEL_X_STOP;
+      else
+	ax = ACCEL_X_GO;
     }
   // No keys pressed
  if ( (!keystates[SDLK_RIGHT]) && (!keystates[SDLK_LEFT]) )
