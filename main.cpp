@@ -29,10 +29,51 @@ int main(void)
 
   int dt = 1;
 
+  bool next = false;
   bool quit = false;
   SDL_Event event;
+
+
+  stage_test.drawTitle();
+
   //While the user hasn't quit
-  while( quit == false )
+  while (quit == false)
+    {
+
+      //While there's an event to handle
+      while (SDL_PollEvent (&event))
+	{
+
+
+	  if (event.type == SDL_KEYDOWN)
+	    {
+	      //Set the proper message surface
+	      switch (event.key.keysym.sym)
+		{
+		case SDLK_q:
+		  quit = true;
+		  break;
+		case SDLK_k:
+		  quit = true;
+		  next = true;
+		  break;
+		}
+	    }
+
+	  //If the user has Xed out the window
+	  else if (event.type == SDL_QUIT)
+	    {
+	      //Quit the program
+	      quit = true;
+	    }
+	}
+    }
+
+  stage_test.clear_screen();
+  quit = false;
+
+  //While the user hasn't quit
+  while( quit == false && next == true)
     {
       //If there's an event
       if( SDL_PollEvent( &event ) )
