@@ -25,7 +25,7 @@ void Hero::processEvent(double dt)
    //Up and down handling
    if( keystates[SDLK_UP] && keystates[SDLK_DOWN] )
     {
-      ax = 0;
+      ay = 0;
     }
    else if(keystates[SDLK_UP])
     {
