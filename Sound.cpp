@@ -48,7 +48,7 @@ bool Sound::load_music(){
 
 }
 
-void Sound::clean_up(){
+void Sound::clean_up_sound(){
 
 Mix_FreeMusic( music1 );
 
