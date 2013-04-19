@@ -10,6 +10,7 @@ using namespace std;
 
 int main(void)
 {
+	
   Stage stage_test(100,100);
   stage_test.addArea(0,0,250,250);
   stage_test.addArea(250,0,250,250);

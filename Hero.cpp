@@ -25,7 +25,7 @@ void Hero::processEvent(double dt)
    //Up and down handling
    if( keystates[SDLK_UP] && keystates[SDLK_DOWN] )
     {
-      ax = 0;
+      ay = 0;
     }
    else if(keystates[SDLK_UP])
     {
@@ -36,41 +36,11 @@ void Hero::processEvent(double dt)
       ay=ACCEL_Y_GO;
     }
 
-  //Left and right handling
-  if( keystates[SDLK_LEFT] && keystates[SDLK_RIGHT] )
+  if ( (!keystates[SDLK_DOWN]) && (!keystates[SDLK_UP]) )
     {
-      ax = 0;
-    }
-  else if(keystates[SDLK_LEFT])
-    {
-      ax = -ACCEL_X_GO;
-    }
-  else if(keystates[SDLK_RIGHT])
-    {
-      ax = ACCEL_X_GO;
-    }
-  // No keys pressed
-  if ( (!keystates[SDLK_RIGHT]) && (!keystates[SDLK_LEFT]) && (!keystates[SDLK_DOWN]) && (!keystates[SDLK_UP]) )
-    {
-      if( abs(vx) <= ACCEL_X_STOP*dt )
-	{
-	  vx = 0;
-	}
       if( abs(vy) <= ACCEL_Y_STOP*dt )
 	{
 	  vy = 0;
-	}
-      if( vx > 0 )
-	{
-	  ax = -ACCEL_X_STOP;
-	}
-      else if( vx < 0 )
-	{
-	  ax = ACCEL_X_STOP;
-	}
-      else
-	{
-	  ax = 0;
 	}
       if( vy > 0 )
 	{
@@ -86,6 +56,44 @@ void Hero::processEvent(double dt)
 	}
     }
 
+
+  //Left and right handling
+  if( keystates[SDLK_LEFT] && keystates[SDLK_RIGHT] )
+    {
+      ax = 0;
+    }
+  else if(keystates[SDLK_LEFT])
+    {
+      ax = -ACCEL_X_GO;
+    }
+  else if(keystates[SDLK_RIGHT])
+    {
+      ax = ACCEL_X_GO;
+    }
+  // No keys pressed
+ if ( (!keystates[SDLK_RIGHT]) && (!keystates[SDLK_LEFT]) )
+    {
+      
+      if( abs(vx) <= ACCEL_X_STOP*dt )
+	{
+	  vx = 0;
+	}
+      
+      if( vx > 0 )
+	{
+	  ax = -ACCEL_X_STOP;
+	}
+      else if( vx < 0 )
+	{
+	  ax = ACCEL_X_STOP;
+	}
+      else
+	{
+	  ax = 0;
+	}
+      
+    }
+ 
   //Old Event based code
   /*switch(event.type)
   {
