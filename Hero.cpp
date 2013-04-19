@@ -1,9 +1,13 @@
 #include "Hero.h"
+#include "SDL/SDL.h"
+#include <cmath>
 
-#define ACCEL_X 4
-#define ACCEL_Y 4
-#define MAX_VX 20
-#define MAX_VY 20
+using namespace std;
+
+#define ACCEL_X_GO .001
+#define ACCEL_Y_GO .001
+#define ACCEL_X_STOP .003
+#define ACCEL_Y_STOP .003
 
 Hero::Hero(double X, double Y, double VX, double VY, double AX, double AY, int location):Unit(X,Y,VX,VY,AX,AY,location)
 {
@@ -13,67 +17,75 @@ void Hero::collide(Unit* u)
 {
 }
 
-void Hero::increment()
+void Hero::processEvent(double dt)
 {
-  /*  x+=vx;
-  y+=vy;
-  //  if(moving)
-  if(vx+ax>=MAX_VX)
-    vx = MAX_VX;
-  else if(vx+ax<=-MAX_VX)
-    vx = -MAX_VX;
-  else
-    vx += ax
-  if(vy+ay>=MAX_VY)
-    vy = MAX_VY;
-  else if(vy+ay<=-MAX_VY)
-    vy = -MAX_VY;
-  else
-  vy += ay;*/
-}
-  //else 
-  //  make things go toward 0;
-void Hero::processEvent()
-{
-  /*  Uint8 *keystates = SDL_GETKEYSTATE( NULL );
-  if( keystates[SDLK_UP] && keystates [SDLK_DOWN] )
-  {
-    ay=0;
-    //motiony=1;
-  }
-  else if( keystates[SDLK_UP] )
-  {
-    ay=-ACCEL_Y;
-    //motiiony=1;
-  }
-  else if ( keystates[SDLK_DOWN] )
-  {
-    ay=ACCEL_Y;
-    //motiony=1;
-  }
-  else
-  {
-    //motiony=0;
-  }
+  //Get the keystates
+   Uint8 *keystates = SDL_GetKeyState( NULL );
+
+   //Up and down handling
+   if( keystates[SDLK_UP] && keystates[SDLK_DOWN] )
+    {
+      ax = 0;
+    }
+   else if(keystates[SDLK_UP])
+    {
+      ay=-ACCEL_Y_GO;
+    }
+  else if(keystates[SDLK_DOWN])
+    {
+      ay=ACCEL_Y_GO;
+    }
+
+  //Left and right handling
   if( keystates[SDLK_LEFT] && keystates[SDLK_RIGHT] )
-  {
-    ax=0;
-    //motionx=1;
-  }
-  else if (keystates[SDLK_LEFT])
-  {
-    ax=-ACCEL_X;
-    //motionx=1;
-  }
-  else if (keystates[SDLK_RIGHT])
-  {
-    ax=ACCEL_X;
-    //motionx=1;
-  }
-  else
-  {
-    //motionx=0;
-  }
+    {
+      ax = 0;
+    }
+  else if(keystates[SDLK_LEFT])
+    {
+      ax = -ACCEL_X_GO;
+    }
+  else if(keystates[SDLK_RIGHT])
+    {
+      ax = ACCEL_X_GO;
+    }
+  // No keys pressed
+  if ( (!keystates[SDLK_RIGHT]) && (!keystates[SDLK_LEFT]) && (!keystates[SDLK_DOWN]) && (!keystates[SDLK_UP]) )
+    {
+      if( abs(vx) <= ACCEL_X_STOP*dt )
+	{
+	  vx = 0;
+	}
+      if( abs(vy) <= ACCEL_Y_STOP*dt )
+	{
+	  vy = 0;
+	}
+      if( vx > 0 )
+	{
+	  ax = -ACCEL_X_STOP;
+	}
+      else if( vx < 0 )
+	{
+	  ax = ACCEL_X_STOP;
+	}
+      else
+	{
+	  ax = 0;
+	}
+      if( vy > 0 )
+	{
+	  ay = -ACCEL_Y_STOP;
+	}
+      else if( vy < 0 )
+	{
+	  ay = ACCEL_Y_STOP;
+	}
+      else
+	{
+	  ay = 0;
+	}
+    }
+
   //Old Event based code
   /*switch(event.type)
   {

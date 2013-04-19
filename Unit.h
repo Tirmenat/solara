@@ -17,6 +17,7 @@ Unit header file */
 using namespace std;
 
 class Unit{
+  friend class Hero;
  public:
   Unit();
   Unit(double,double,double,double,double,double,int);
@@ -33,7 +34,7 @@ class Unit{
   virtual double getvx();
   virtual double getvy();
   //  virtual SDL_Rect getrect();
-  virtual void increment();
+  virtual void increment(double);
   virtual void draw( SDL_Surface*);
   virtual bool isEqualTo(Unit*);
   virtual void collide(Unit*) = 0;

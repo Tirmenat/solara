@@ -9,15 +9,16 @@ using namespace std;
 
 int main(void)
 {
-  Stage stages(100,100);
-  stages.addArea(0,0,250,250);
-  stages.addArea(250,0,250,250);
-  stages.addArea(150,150,250,250);
+  Stage stage_test(100,100);
+  stage_test.addArea(0,0,250,250);
+  stage_test.addArea(250,0,250,250);
+  stage_test.addArea(150,150,250,250);
+  stage_test.addArea(150,350,300,150);
 
-  Hero units(50,50,1.0,1.0,1.0,1.0,0);
-  stages.addUnit(&units);
+  Hero hero_test(50,50,0,0,0,0,0);
+  stage_test.addUnit(&hero_test);
 
-  units.setax(.25);
+  int dt = 1;
 
   bool quit = false;
   SDL_Event event;
@@ -33,10 +34,11 @@ int main(void)
 	      quit = true;
 	    }
 	}
-      stages.draw();
+      hero_test.processEvent(dt);
+      stage_test.perform(dt);
+      stage_test.draw();
+      //cout << units.getx() << endl << units.gety() << endl << units.getvx() << endl << units.getvy() << endl;
     }
 
-  stages.clean_up();
-
-  cout << units.getx() << endl << units.gety() << endl << units.getvx() << endl << units.getvy() << endl; //testcode
+  stage_test.clean_up();
 }

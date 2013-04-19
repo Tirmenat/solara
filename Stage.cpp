@@ -30,10 +30,10 @@ Stage::Stage(int x, int y)
   location = 5;
 }
 
-void Stage::perform()
+void Stage::perform(double dt)
 {
   for(int i = 0; i < units.size(); i++)
-    units[i]->increment();
+    units[i]->increment(dt);
 }
 
 SDL_Surface *Stage::load_image( std::string filename )

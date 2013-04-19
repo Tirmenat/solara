@@ -18,6 +18,8 @@ Unit Implementation file */
 #define SPRWIDTH 16
 #define UNIT_LEFT 0
 #define UNIT_RIGHT 1
+#define MAX_VX 20
+#define MAX_VY 20
 
 Unit::Unit(){
   x=0;
@@ -217,13 +219,6 @@ void Unit::draw(SDL_Surface* screen){
 	}
 }
 
-void Unit::increment(){
-	x += vx;
-	y += vy;
-	vx += ax;
-	vy += ay;
-}
-
 bool Unit::isEqualTo(Unit* u)
 {
   	if(u->getx() != x)
@@ -258,3 +253,23 @@ bool Unit::operator==(Unit* u){ //returns 1 if u and *this are the same
 		return false;
 	return true;
 	}*/
+
+void Unit::increment(double dt){
+  x=x + vx*dt;
+  y=y + vy*dt;
+  //  if(moving)
+  // horizontal velocity
+  if( (vx + ax*dt) >= MAX_VX)
+    vx = MAX_VX;
+  else if( (vx + ax*dt) <= -MAX_VX)
+    vx = -MAX_VX;
+  else
+    vx = vx + ax*dt;
+  // vertical velocity
+  if( (vy + ay*dt) >= MAX_VY)
+    vy = MAX_VY;
+  else if( (vy + ay*dt) <= -MAX_VY)
+    vy = -MAX_VY;
+  else
+  vy = vy + ay*dt;
+}
