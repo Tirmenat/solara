@@ -159,7 +159,7 @@ bool Unit::load_files()
   //Lazyfoo.net 
 
   //Load the surfaces
-  char_left = load_image( "neal.png");
+  char_left = load_image( "neal.png" );
   char_right = load_image( "nealflipped.png");
 
   //If there was an error in loading the terrain
@@ -185,22 +185,23 @@ void Unit::set_clips(int location){
   //Clip range for flipped characters
   for(int i=0; i<11; ++i)
     {
-      clip_char_right[i].x = 684 - 30*i;
+      clip_char_right[i].x = 684 - 30*i; //684
       clip_char_right[i].y = location*30;
       clip_char_right[i].w = SPRWIDTH;
       clip_char_right[i].h = SPRLENGTH;
     }
+
 }
 
 void Unit::draw(SDL_Surface* screen){
-	if(vx > 0)
+        if(vx > 0)
 	{
-		status = UNIT_LEFT;  //Unit moves left
+		status = UNIT_RIGHT;  //Unit moves left
 		frame++; //animation continues
 	}
 	if(vx < 0)
 	{
-		status = UNIT_RIGHT; //Unit moves right
+		status = UNIT_LEFT; //Unit moves right
 		frame++; //animation continues
 	}
 	else

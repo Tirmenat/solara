@@ -22,6 +22,7 @@ Stage::Stage(int x, int y)
   //units.push_back(new Hero(x,y,0,0,0,0,0));
   screen = NULL;
   background = NULL;
+  title = NULL;
   init();
   load_files();
   set_clips();
@@ -119,6 +120,13 @@ bool Stage::load_files()
 
   //Load the surfaces
   background = load_image( "terrain.png");
+
+  title = load_image( "Solara_TitleV1.png" );
+
+  if( title == NULL )
+    {
+      return false;
+    }
 
   //If there was an error in loading the terrain
   if( background == NULL )
@@ -269,6 +277,24 @@ int Stage::isInBounds(int x, int y){ //checks if a point is inside any of the ar
     }
   return false;
   // returns int, false == 0, true == 1
+}
+
+void Stage::drawTitle()
+{
+  apply_surface(0,0,title,screen);
+  if( SDL_Flip( screen ) == -1 )
+    {
+      return;
+    }
+
+
+}
+
+void Stage::clear_screen()
+{
+  SDL_FillRect (screen, &screen->clip_rect,
+		SDL_MapRGB (screen->format, 0xFF, 0xFF, 0xFF));
+ 
 }
 
 void Stage::clean_up()

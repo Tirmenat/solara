@@ -19,8 +19,8 @@ class Enemy: public Unit{
   Enemy(double,double,double,double,double,double,int);
   virtual void collide(Unit* u);
   virtual void draw();
+  void chase(double,double,int);
  private:
-
 };
 
 #endif

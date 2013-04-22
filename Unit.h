@@ -17,6 +17,7 @@ Unit header file */
 using namespace std;
 
 class Unit{
+  friend class Enemy;
   friend class Hero;
  public:
   Unit();
