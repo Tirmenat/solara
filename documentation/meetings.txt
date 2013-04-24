@@ -13,6 +13,11 @@ Realized a pretty huge flaw (you can't instantiate abstract objects), decided to
 4/8/2013 at 7:00
 
 We wanted to get a robust makefile working (to save a lot of stress later), so it was Brad and Neal's job to do that. We wanted to re-implement unit to keep track of itself via an SDL object (to make it easier to implement sub-classes).  This was brad's job.  It was mike's task to regulate frame rate and geta title screen working.  
-4/18/2013
+
+4/18/2013 5:00
 
 We wanted to develop several enemy sub-classes, but we wanted to get a base enemy working before that.  That was mainly Mike's job (the base one) it would eventually be a collaborative effort from mainly Brad and Neal to get all of the sub-enemies working. It's also Sean's job to get Sound working (for now just music playing in the background)
+
+4/24/2013 5:00
+
+We want to develop all the sub-classes for Enemy, so we set up 4 ideas for enemies (Patroller, burster, pursuer, shooter).  This will be primarily Brad and Mike's job.
