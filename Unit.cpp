@@ -18,8 +18,8 @@ Unit Implementation file */
 #define SPRWIDTH 16
 #define UNIT_LEFT 0
 #define UNIT_RIGHT 1
-#define MAX_VX 1
-#define MAX_VY 1
+#define MAX_VX .25
+#define MAX_VY .25
 
 Unit::Unit(){
   x=0;
