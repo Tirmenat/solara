@@ -19,18 +19,15 @@ Music implementation file */
 class Sound{
 public:
   Sound();
-  void play_music(std::string);
+  void play_music();
+  void change_music(std::string);
   void stop_music();
   void clean_up_sound();
+  bool load_music(std::string);
 
 private:
-  Mix_Music *music1;
-  Mix_Music *music2;
-  Mix_Music *music3;
-  Mix_Music *music4;
-  Mix_Music *music5;
+  Mix_Music *music;
   bool init_sound();
-  bool load_music();
 
 };
 

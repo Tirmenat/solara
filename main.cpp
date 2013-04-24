@@ -24,8 +24,8 @@ int main(void)
   stage_test.addUnit(&enemy_test);
 
   Sound sounds;
-  
-  sounds.play_music("music1");
+  sounds.load_music("music1");
+  sounds.play_music();
 
   //Enemy enemy_test2(100,150,0,0,0,0,1);
   //stage_test.addUnit(&enemy_test2);
@@ -60,6 +60,8 @@ int main(void)
 		  quit = true;
 		  break;
 		case SDLK_k:
+		  sounds.change_music("music5");
+		  sounds.play_music();
 		  quit = true;
 		  next = true;
 		  break;
