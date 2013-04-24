@@ -1,17 +1,19 @@
 //main program
 #include <iostream>
+#include <string>
+#include "string.h"
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
 #include "SDL/SDL_mixer.h"
 #include "Stage.h"
 #include "Hero.h"
 #include "Enemy.h"
+#include "Sound.h"
 
 using namespace std;
 
 int main(void)
 {
-	
   Stage stage_test(100,100);
   stage_test.addArea(0,0,250,250);
   stage_test.addArea(250,0,250,250);
@@ -20,6 +22,10 @@ int main(void)
 
   Enemy enemy_test(100,100,0,0,0,0,20);
   stage_test.addUnit(&enemy_test);
+
+  Sound sounds;
+  
+  sounds.play_music("music1");
 
   //Enemy enemy_test2(100,150,0,0,0,0,1);
   //stage_test.addUnit(&enemy_test2);
@@ -71,7 +77,6 @@ int main(void)
 
   stage_test.clear_screen();
   quit = false;
-
   //While the user hasn't quit
   while( quit == false && next == true)
     {
@@ -101,6 +106,7 @@ int main(void)
       stage_test.draw();
       //cout << units.getx() << endl << units.gety() << endl << units.getvx() << endl << units.getvy() << endl;
     }
-
+  sounds.stop_music();
+  sounds.clean_up_sound();
   stage_test.clean_up();
 }
