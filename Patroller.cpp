@@ -26,7 +26,6 @@ void Patroller::patrol(){
   x=getx();
   y=gety();
   v=150;
-  cout<<vx<<" "<<vy<<endl;
   
   angle = atan ((yp1-y)/(xp1-x));
 
@@ -96,5 +95,4 @@ void Patroller::chase(double herox, double heroy)
   setvx(vx);
   setvy(vy);
   }
-  cout<<x<<" "<<y<<endl;
 }
