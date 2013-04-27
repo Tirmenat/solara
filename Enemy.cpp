@@ -4,13 +4,13 @@
 
 using namespace std;
 
-#define ACCEL_X_GO .05
-#define ACCEL_Y_GO .05
-#define ACCEL_X_STOP .01
-#define ACCEL_Y_STOP .01
+#define ACCEL_X_GO 5
+#define ACCEL_Y_GO 5
+#define ACCEL_X_STOP 1
+#define ACCEL_Y_STOP 1
 #define _USE_MATH_DEFINES
 
-Enemy::Enemy(double X, double Y, double VX, double VY, double AX, double AY, int location):Unit(X,Y,VX,VY,AX,AY,location)
+Enemy::Enemy(double X, double Y, int location):Unit(X,Y,0,0,0,0,location)
 {
   
 }
@@ -25,33 +25,38 @@ void Enemy::draw()
   
 }
 
-void Enemy::chase(double X, double Y, int dt)
+void Enemy::chase(double herox, double heroy)
 {
   double angle;
-  if (X==x){
-    if (Y>y) angle = 3.14159/2;
+  double v;
+  if(sqrt((herox-x)*(herox-x)+(heroy-y)*(heroy-y))<100)
+    v = 150;
+  else
+    v = 0;
+  
+  angle = atan ((heroy-y)/(herox-x));
+  
+  
+  if (x>herox && y>heroy){
+    vy = -v * sin(angle);
+    vx = -v * cos(angle);
   }
-  else if (Y==y){
-    if(X<x)angle = 0;
+  else if(x>herox && y<heroy){
+    vx = -v*cos(angle);
+    vy = -v *sin(angle);
+  }
+  else if (x<herox && y>heroy){
+    vx = v*cos(angle);
+    vy = v*sin(angle);
   }
   else{
-    angle = atan ((Y-y)/(X-x));
+    vx = v*cos(angle);
+    vy = v*sin(angle);
   }
-  if (Y>y) {
-    ay = ACCEL_Y_GO * sin(angle);
-  }
-
-  else {
-    ay = -ACCEL_Y_GO * sin(angle);
-  }
-
-  if (X>x) {
-    ax = ACCEL_X_GO * cos(angle);
-  }
-
-  else {
-    ax = -ACCEL_X_GO * cos(angle);
-  }
-
+  
+  
+  
+  //    vy = -v * sin(angle);
+  //vx = -v * cos(angle);
   
 }
