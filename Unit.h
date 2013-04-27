@@ -28,12 +28,14 @@ class Unit{
   virtual void setay(double);
   virtual void setvx(double);
   virtual void setvy(double);
+  // virtual void setv(double);
   virtual double getx();
   virtual double gety();
   virtual double getax();
   virtual double getay();
   virtual double getvx();
   virtual double getvy();
+  //  virtual double getv();
   //  virtual SDL_Rect getrect();
   virtual void increment(double);
   virtual void draw( SDL_Surface*);
@@ -50,6 +52,7 @@ class Unit{
   double ay;
   double vx;
   double vy;
+  //  double v;
   int frame;  //Used for animation
   int status;  //Used for animation
   virtual SDL_Surface *load_image( string );
