@@ -87,6 +87,14 @@ void Patroller::chase(double herox, double heroy)
     vx = v * cos(angle);
     vy = v * sin(angle);
   }
+  else if (x<herox && angle==0){
+    vx = v;
+    vy = 0;
+  }
+  else if (x>herox && angle==0){
+    vx = -v;
+    vy = 0;
+  }
   else{
     vx = v * cos(angle);
     vy = v * sin(angle);
