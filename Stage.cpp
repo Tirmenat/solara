@@ -329,6 +329,7 @@ void Stage::adjustUnits()
       //if bottom right is in bounds
       if(topleft || topright || botleft || botright)
 	{
+	  
 	  while(!isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()+SPRLENGTH) || !isInBounds(units[i]->getx(),units[i]->gety()+SPRLENGTH) || !isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()) || !isInBounds(units[i]->getx(),units[i]->gety()))
 	    {
 	  units[i]->setx(units[i]->getx()+botleft*.5+topleft*.5-botright*.5-topright*.5);
