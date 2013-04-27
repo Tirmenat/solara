@@ -33,7 +33,7 @@ int main(void)
   //Enemy enemy_test2(100,150,0,0,0,0,1);
   //stage_test.addUnit(&enemy_test2);
 
-  Hero hero_test(200,50,0,0,0,0,0);
+  Hero hero_test(200,200,0,0,0,0,0);
   stage_test.addUnit(&hero_test);
 
   double dt = 1/60.0;
