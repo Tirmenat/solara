@@ -46,9 +46,31 @@ bool Sound::load_music(std::string song){
 
 }
 
+void Sound::load_effects(){
+
+  croak = Mix_LoadWAV( "sfx/FrogCroak.wav" );
+  lasergun = Mix_LoadWAV( "sfx/LaserGun.wav" );
+  gun = Mix_LoadWAV( "sfx/Gun.wav" );
+
+}
+
 Sound::Sound()
 {
   init_sound();
+  load_effects();
+}
+
+void Sound::play_effect(std::string sound){
+  if(sound=="croak"){
+     Mix_PlayChannel(-1, croak, 0);
+  }
+  if(sound=="lasergun"){
+    Mix_PlayChannel(-1, lasergun, 0);
+  }
+  if(sound=="gun"){
+    Mix_PlayChannel(-1, gun, 0);
+  }
+
 }
 
 void Sound::play_music(){
@@ -69,6 +91,9 @@ void Sound::stop_music(){
 
 void Sound::clean_up_sound(){
 
+  Mix_FreeChunk( croak );
+  Mix_FreeChunk( lasergun );
+  Mix_FreeChunk( gun );
   Mix_FreeMusic( music );
 
   Mix_CloseAudio();

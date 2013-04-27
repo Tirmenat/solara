@@ -105,6 +105,16 @@ int main(void)
 		{
 		case SDLK_q:
 		  quit=true;
+		  break;
+		case SDLK_w:
+		  sounds.play_effect("gun");
+		  break;
+		case SDLK_e:
+		  sounds.play_effect("croak");
+		  break;
+		case SDLK_d:
+		  sounds.play_effect("lasergun");
+		  break;
 		}
 	    }
 	}
