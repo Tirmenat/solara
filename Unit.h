@@ -46,10 +46,10 @@ class Unit{
   SDL_Rect clip_char_right[11];
   double x;
   double y;
-  double ax;
-  double ay;
   double vx;
   double vy;
+  double ax;
+  double ay;
   int frame;  //Used for animation
   int status;  //Used for animation
   int moving; //Used for animation

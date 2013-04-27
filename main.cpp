@@ -48,7 +48,7 @@ int main(void)
 
   stage_test.drawTitle();
 
-  //While the user hasn't quit
+  //Title screen
   while (quit == false)
     {
 
@@ -62,10 +62,12 @@ int main(void)
 	      //Set the proper message surface
 	      switch (event.key.keysym.sym)
 		{
+		  //Quit game
 		case SDLK_q:
 		  quit = true;
 		  break;
 		case SDLK_k:
+		  //Enter game
 		  sounds.change_music("music5");
 		  sounds.play_music();
 		  quit = true;
@@ -85,7 +87,7 @@ int main(void)
 
   stage_test.clear_screen();
   quit = false;
-  //While the user hasn't quit
+  //In-game screen
   while( quit == false && next == true)
     {
       start = clock();
