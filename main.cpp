@@ -30,8 +30,8 @@ int main(void)
   sounds.load_music("music1");
   sounds.play_music();
 
-  //Enemy enemy_test2(100,150,0,0,0,0,1);
-  //stage_test.addUnit(&enemy_test2);
+  Patroller patrol_test2(250,250,0,0,100,5);
+  stage_test.addUnit(&patrol_test2);
 
   Hero hero_test(50,50,0,0,0,0,0);
   stage_test.addUnit(&hero_test);
@@ -119,6 +119,7 @@ int main(void)
 	    }
 	}
       patrol_test.chase(hero_test.getx(),hero_test.gety());
+      patrol_test2.chase(hero_test.getx(),hero_test.gety());
       //enemy_test2.chase(herox,heroy);
       hero_test.processEvent(dt);
       stage_test.perform(dt);
