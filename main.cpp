@@ -104,6 +104,10 @@ int main(void)
 		{
 		case SDLK_q:
 		  quit=true;
+		  break;
+		case SDLK_w:
+		  sounds.play_effect("gun");
+		  break;
 		}
 	    }
 	}
