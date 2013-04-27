@@ -9,6 +9,7 @@
 #include "Hero.h"
 #include "Enemy.h"
 #include "Sound.h"
+#include "Patroller.h"
 #include <ctime>
 #include <unistd.h>
 
@@ -22,8 +23,8 @@ int main(void)
   stage_test.addArea(150,150,250,250);
   stage_test.addArea(150,350,300,150);
 
-  Enemy enemy_test(100,100,20);
-  stage_test.addUnit(&enemy_test);
+  Patroller patrol_test(100,100,0,0,20);
+  stage_test.addUnit(&patrol_test);
 
   Sound sounds;
   sounds.load_music("music1");
@@ -32,7 +33,7 @@ int main(void)
   //Enemy enemy_test2(100,150,0,0,0,0,1);
   //stage_test.addUnit(&enemy_test2);
 
-  Hero hero_test(50,50,0,0,0,0,0);
+  Hero hero_test(200,200,0,0,0,0,0);
   stage_test.addUnit(&hero_test);
 
   double dt = 1/60.0;
@@ -44,9 +45,8 @@ int main(void)
   bool next = false;
   bool quit = false;
   SDL_Event event;
-
-
   stage_test.drawTitle();
+
 
   //While the user hasn't quit
   while (quit == false)
@@ -117,19 +117,17 @@ int main(void)
 		}
 	    }
 	}
-      enemy_test.chase(hero_test.getx(),hero_test.gety());
+      patrol_test.chase(hero_test.getx(),hero_test.gety());
       //enemy_test2.chase(herox,heroy);
       hero_test.processEvent(dt);
       stage_test.perform(dt);
       stage_test.adjustUnits();
       stage_test.draw();
-
       duration = (clock() - start)/((double)CLOCKS_PER_SEC);
      
       if (duration>.016){
 	duration=.016;
       }
-
       usleep((.017-duration)*1000000);
     }
   sounds.stop_music();
