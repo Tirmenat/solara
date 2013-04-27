@@ -16,12 +16,15 @@ Stage Implementation file */
 const int SCREEN_WIDTH = 500;
 const int SCREEN_HEIGHT = 500;
 const int SCREEN_BPP = 32;
+const int SPRWIDTH = 16;
+const int SPRLENGTH = 24;
 
 Stage::Stage(int x, int y)
 {	
   //units.push_back(new Hero(x,y,0,0,0,0,0));
   screen = NULL;
   background = NULL;
+  title = NULL;
   init();
   load_files();
   set_clips();
@@ -119,6 +122,13 @@ bool Stage::load_files()
 
   //Load the surfaces
   background = load_image( "terrain.png");
+
+  title = load_image( "Solara_TitleV1.png" );
+
+  if( title == NULL )
+    {
+      return false;
+    }
 
   //If there was an error in loading the terrain
   if( background == NULL )
@@ -271,6 +281,24 @@ int Stage::isInBounds(int x, int y){ //checks if a point is inside any of the ar
   // returns int, false == 0, true == 1
 }
 
+void Stage::drawTitle()
+{
+  apply_surface(0,0,title,screen);
+  if( SDL_Flip( screen ) == -1 )
+    {
+      return;
+    }
+
+
+}
+
+void Stage::clear_screen()
+{
+  SDL_FillRect (screen, &screen->clip_rect,
+		SDL_MapRGB (screen->format, 0xFF, 0xFF, 0xFF));
+ 
+}
+
 void Stage::clean_up()
 {
   //Free the surfaces
@@ -278,4 +306,34 @@ void Stage::clean_up()
 
   //Quit SDL
   SDL_Quit();
+}
+
+void Stage::adjustUnits()
+{
+  bool topleft,topright,botleft,botright;
+
+  for(int i = 0; i<units.size(); i++)
+    {
+      topleft = topright = botleft = botright = 1;
+      if(isInBounds(units[i]->getx(),units[i]->gety()))
+	topleft = 0;
+      if(isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()))
+	topright = 0;
+      if(isInBounds(units[i]->getx(),units[i]->gety()+SPRLENGTH))
+	botleft = 0;
+      if(isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()+SPRLENGTH))
+	botright = 0;
+      //if topleft is in bounds
+      //if top right is in bounds
+      //if bottom left is in bounds
+      //if bottom right is in bounds
+      if(topleft || topright || botleft || botright)
+	{
+	  while(!isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()+SPRLENGTH) || !isInBounds(units[i]->getx(),units[i]->gety()+SPRLENGTH) || !isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()) || !isInBounds(units[i]->getx(),units[i]->gety()))
+	    {
+	  units[i]->setx(units[i]->getx()+botleft*.5+topleft*.5-botright*.5-topright*.5);
+	  units[i]->sety(units[i]->gety()-botleft*.5+topleft*.5-botright*.5+topright*.5);
+	    }
+	}
+    }
 }

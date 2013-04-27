@@ -1,0 +1,32 @@
+3/1/2013 at 3:00
+
+Decided on heirarchy for the project Mike developed the initial prototypes for the basic classes (unit, enemy, hero), and it was Brad's job to flesh them out and make sure they work.  We all had to get Git set up on our accounts/computers.
+
+3/25/2013 at 2:00
+
+Made the final decision that we were going to use SDL (barring a major flaw in implementation), and it was Mike's job to get it set up.
+
+4/3/2013 at 4:00
+
+Realized a pretty huge flaw (you can't instantiate abstract objects), decided to make all contributions compileable (as much as possible) before pushing them to Git (which we didn't excatly follow through on until later). We started using spritesheets.  It was Neal's job to make the spriting work and to get the SDL implemented with the classes we had (working amidst the classes, not exclusive of them).  It was Sean's job to develop the story for the game.
+
+4/8/2013 at 7:00
+
+<<<<<<< HEAD
+We wanted to get a robust makefile working (to save a lot of stress later), so it was Brad and Neal's job to do that. We wanted to re-implement unit to keep track of itself via an SDL object (to make it easier to implement sub-classes).  This was brad's job.  It was Mike's task to regulate frame rate and geta title screen working.  
+4/18/2013
+=======
+We wanted to get a robust makefile working (to save a lot of stress later), so it was Brad and Neal's job to do that. We wanted to re-implement unit to keep track of itself via an SDL object (to make it easier to implement sub-classes).  This was brad's job.  It was mike's task to regulate frame rate and geta title screen working.  
+
+4/18/2013 5:00
+>>>>>>> 3b1d49c2522a33cf55d5c4c636eeff3208545df9
+
+We wanted to develop several enemy sub-classes, but we wanted to get a base enemy working before that.  That was mainly Mike's job (the base one) it would eventually be a collaborative effort from mainly Brad and Neal to get all of the sub-enemies working. It's also Sean's job to get Sound working (for now just music playing in the background)
+
+4/24/2013 5:00
+
+We want to develop all the sub-classes for Enemy, so we set up 4 ideas for enemies (Patroller, burster, pursuer, shooter).  This will be primarily Brad and Mike's job.
+
+4/27/2013 11:30
+
+We decided we need to better keep track of what frame each unit is on (we're going to develop a frameShift() function), and work on a bunch of the new subclasses.  Brad will work on the frameShift(), and sean will 

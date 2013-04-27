@@ -1,0 +1,19 @@
+//Okay guys i'm basing this off the rubric that was handed out in class today
+
+WORK AND COLLABORATION
+ 
+5 pts: Document each team meeting (the date and time of the meeting, who was present, what was discussed, what was decided, what tasks were defined, and who was assigend to each task
+5 pts: time log
+5 pts: UML diagrams for at least one class developed in the project, along with interaction diagrams like those in the text/sample on web.
+
+CODE DOCUMENTATION/VERSION CONTROL
+
+5 pts: comments CHECK
+5 pts: git repository CHECK
+5 pts: evidence repository was used for most of the development CHECK
+10 pts: well-written user manual for the software that describes how to run it.  This is basically a group written file similar tothe reports with some extra information:
+  1. Special libraries needed to build/compile if personal machines were used
+  2. Instructions on how to build/compile your program
+  3. User manual with how the controls/interactions work
+  4. Known bugs.  If you document what you know is wrong, and these are minor issues, we will not take off for them.  Examples include weird behavior, image mismatches, other last minute issues.  If you document more serious issues (seg faults on conclusion, program crashing, etc.) we will give more partial credit
+  5. Any other information that will inform the instructor and TAs for final grading.  If there is special equipment, e.g., NES controllers, we'll make an appointment for the demo during exam week

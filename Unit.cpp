@@ -18,8 +18,8 @@ Unit Implementation file */
 #define SPRWIDTH 16
 #define UNIT_LEFT 0
 #define UNIT_RIGHT 1
-#define MAX_VX 1
-#define MAX_VY 1
+#define MAX_VX 300
+#define MAX_VY 300
 
 Unit::Unit(){
   x=0;
@@ -33,6 +33,8 @@ Unit::Unit(){
   load_files();
   set_clips(0);
   status = UNIT_RIGHT;
+  moving = 0;
+  frame = 0;
 }
 
 Unit::Unit(double X, double Y, double VX, double VY, double AX, double AY, int location){
@@ -47,6 +49,8 @@ Unit::Unit(double X, double Y, double VX, double VY, double AX, double AY, int l
   load_files();
   set_clips(location);
   status = UNIT_RIGHT;
+  moving = 0;
+  frame = 0;
 }
 
 // Set Functions
@@ -159,7 +163,7 @@ bool Unit::load_files()
   //Lazyfoo.net 
 
   //Load the surfaces
-  char_left = load_image( "neal.png");
+  char_left = load_image( "neal.png" );
   char_right = load_image( "nealflipped.png");
 
   //If there was an error in loading the terrain
@@ -185,22 +189,23 @@ void Unit::set_clips(int location){
   //Clip range for flipped characters
   for(int i=0; i<11; ++i)
     {
-      clip_char_right[i].x = 684 - 30*i;
+      clip_char_right[i].x = 684 - 30*i; //684
       clip_char_right[i].y = location*30;
       clip_char_right[i].w = SPRWIDTH;
       clip_char_right[i].h = SPRLENGTH;
     }
+
 }
 
 void Unit::draw(SDL_Surface* screen){
-	if(vx > 0)
+  /*if(vx > 0)
 	{
-		status = UNIT_LEFT;  //Unit moves left
+		status = UNIT_RIGHT;  //Unit moves left
 		frame++; //animation continues
 	}
 	if(vx < 0)
 	{
-		status = UNIT_RIGHT; //Unit moves right
+		status = UNIT_LEFT; //Unit moves right
 		frame++; //animation continues
 	}
 	else
@@ -210,7 +215,7 @@ void Unit::draw(SDL_Surface* screen){
 	if(frame >= 3)
 	{
 		frame = 0;
-	}
+		}*/
 	if(status == UNIT_LEFT){
 	  apply_surface( x, y, char_left, screen, &clip_char_left[frame]);
 	}
@@ -255,6 +260,7 @@ bool Unit::operator==(Unit* u){ //returns 1 if u and *this are the same
 	}*/
 
 void Unit::increment(double dt){
+  frameShift();
   x=x + vx*dt;
   y=y + vy*dt;
   //  if(moving)
@@ -272,4 +278,40 @@ void Unit::increment(double dt){
     vy = -MAX_VY;
   else
   vy = vy + ay*dt;
+}
+
+void Unit::frameShift()
+{
+   if(ax>0)
+    {
+      status = UNIT_RIGHT;
+    }
+   else if(ax<0)
+     {
+       status = UNIT_LEFT;
+     }
+   else if(vx>0)
+     {
+       status = UNIT_RIGHT;    
+     }
+   else if(vx<0)
+     {
+       status = UNIT_LEFT;
+     }
+   
+  if(vx!=0 || vy != 0)
+    {
+      moving++;
+    }
+  else
+    {
+      moving = 0;
+      frame = 0;
+    }
+  if(moving>9)
+    {
+      
+      moving = 0;
+      frame = (frame==1) ? 0 : 1;
+    }
 }
