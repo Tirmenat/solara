@@ -28,7 +28,7 @@ Stage::Stage(int x, int y)
   init();
   load_files();
   set_clips();
-  location = 5;
+  location = 0;
 }
 
 void Stage::perform(double dt)
@@ -215,8 +215,9 @@ void Stage::draw(){
   SDL_Flip(screen);
 }
 
-int Stage::addArea(int x, int y, int w, int h) //adds an area and checks to make sure it is added
+int Stage::addArea(int x, int y, int w, int h, int loc) //adds an area and checks to make sure it is added
 {
+  location = loc;
 
   SDL_Rect add;
   add.x = x-x%16;

@@ -18,10 +18,7 @@ using namespace std;
 int main(void)
 {
   Stage stage_test(100,100);
-  stage_test.addArea(0,0,250,250);
-  stage_test.addArea(250,0,250,250);
-  stage_test.addArea(150,150,250,250);
-  stage_test.addArea(150,350,300,150);
+  stage_test.addArea(50,50,400,400,6);
 
   Patroller patrol_test(100,100,0,0,20);
   stage_test.addUnit(&patrol_test);

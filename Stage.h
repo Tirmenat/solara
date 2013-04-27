@@ -22,7 +22,7 @@ class Stage{
   Stage(int,int);
   void perform(double);
   int isInBounds(int, int);
-  int addArea(int, int, int, int); //returns 1 if area was successfully added, 0 otherwise
+  int addArea(int, int, int, int, int); //returns 1 if area was successfully added, 0 otherwise
   void draw();
   void addUnit(Unit*);
   int removeUnit(Unit*); //returns 1 if unit was successfully removed, 0 otherwise
