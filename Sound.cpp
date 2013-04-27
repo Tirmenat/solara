@@ -48,8 +48,8 @@ bool Sound::load_music(std::string song){
 
 void Sound::load_effects(){
 
-  //croak = Mix_LoadWAV( "sfx/FrogCroak.wav" );
-  //lasergun = Mix_LoadWAV( "sfx/LaserGun.wav" );
+  croak = Mix_LoadWAV( "sfx/FrogCroak.wav" );
+  lasergun = Mix_LoadWAV( "sfx/LaserGun.wav" );
   gun = Mix_LoadWAV( "sfx/Gun.wav" );
 
 }
@@ -91,8 +91,8 @@ void Sound::stop_music(){
 
 void Sound::clean_up_sound(){
 
-  //Mix_FreeChunk( croak );
-  //Mix_FreeChunk( lasergun );
+  Mix_FreeChunk( croak );
+  Mix_FreeChunk( lasergun );
   Mix_FreeChunk( gun );
   Mix_FreeMusic( music );
 
