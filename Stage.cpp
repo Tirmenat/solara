@@ -28,8 +28,6 @@ Stage::Stage(int x, int y)
   init();
   load_files();
   set_clips();
-  //Fill the screen white
-  SDL_FillRect( screen, &screen->clip_rect, SDL_MapRGB( screen->format, 255, 255, 255 ) );
   location = 5;
 }
 
@@ -156,6 +154,8 @@ void Stage::set_clips()
 }
 
 void Stage::draw(){
+  //Fill the screen black
+  SDL_FillRect( screen, &screen->clip_rect, SDL_MapRGB( screen->format, 32, 32, 32 ) );
 
   //drawing the terrain sprites
   for(int i = 0; i<areas.size(); i++){
