@@ -21,3 +21,7 @@ We wanted to develop several enemy sub-classes, but we wanted to get a base enem
 4/24/2013 5:00
 
 We want to develop all the sub-classes for Enemy, so we set up 4 ideas for enemies (Patroller, burster, pursuer, shooter).  This will be primarily Brad and Mike's job.
+
+4/27/2013 11:30
+
+We decided we need to better keep track of what frame each unit is on (we're going to develop a frameShift() function), and work on a bunch of the new subclasses.  Brad will work on the frameShift(), and sean will 
