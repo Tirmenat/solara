@@ -29,6 +29,7 @@ class Stage{
   void clean_up();
   void clear_screen();
   void drawTitle();
+  void adjustUnits(); //keeps units in bounds
  private:
   int location;
   vector<Unit*> units;

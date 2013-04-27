@@ -115,6 +115,7 @@ int main(void)
       //enemy_test2.chase(herox,heroy);
       hero_test.processEvent(dt);
       stage_test.perform(dt);
+      stage_test.adjustUnits();
       stage_test.draw();
 
       duration = (clock() - start)/((double)CLOCKS_PER_SEC);
