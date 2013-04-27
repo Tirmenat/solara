@@ -29,13 +29,12 @@ void Hero::processEvent(double dt)
     }
    else if(keystates[SDLK_UP])
     {
-      if(vy<=0)
-	ay=-ACCEL_Y_GO;
+      if( vy <= 0)
+	ay = -ACCEL_Y_GO;
       else
 	ay = -ACCEL_Y_STOP;
-	
     }
-  else if(keystates[SDLK_DOWN])
+   else if(keystates[SDLK_DOWN])
     {
       if(vy>=0)
 	ay=ACCEL_Y_GO;
@@ -71,15 +70,15 @@ void Hero::processEvent(double dt)
     }
   else if(keystates[SDLK_LEFT])
     {
-      if(vx<=0)
-	ax=-ACCEL_X_GO;
+      if( vx <= 0 )
+	ax = -ACCEL_X_GO;
       else
 	ax = -ACCEL_X_STOP;
     }
   else if(keystates[SDLK_RIGHT])
     {
-      if(vx>=0)
-	ax=ACCEL_X_GO;
+      if(vx >= 0)
+	ax = ACCEL_X_GO;
       else
 	ax = ACCEL_X_STOP;
     }

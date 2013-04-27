@@ -16,6 +16,8 @@ Stage Implementation file */
 const int SCREEN_WIDTH = 500;
 const int SCREEN_HEIGHT = 500;
 const int SCREEN_BPP = 32;
+const int SPRWIDTH = 16;
+const int SPRLENGTH = 24;
 
 Stage::Stage(int x, int y)
 {	
@@ -26,8 +28,6 @@ Stage::Stage(int x, int y)
   init();
   load_files();
   set_clips();
-  //Fill the screen white
-  SDL_FillRect( screen, &screen->clip_rect, SDL_MapRGB( screen->format, 255, 255, 255 ) );
   location = 5;
 }
 
@@ -154,6 +154,8 @@ void Stage::set_clips()
 }
 
 void Stage::draw(){
+  //Fill the screen black
+  SDL_FillRect( screen, &screen->clip_rect, SDL_MapRGB( screen->format, 32, 32, 32 ) );
 
   //drawing the terrain sprites
   for(int i = 0; i<areas.size(); i++){
@@ -304,4 +306,34 @@ void Stage::clean_up()
 
   //Quit SDL
   SDL_Quit();
+}
+
+void Stage::adjustUnits()
+{
+  bool topleft,topright,botleft,botright;
+
+  for(int i = 0; i<units.size(); i++)
+    {
+      topleft = topright = botleft = botright = 1;
+      if(isInBounds(units[i]->getx(),units[i]->gety()))
+	topleft = 0;
+      if(isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()))
+	topright = 0;
+      if(isInBounds(units[i]->getx(),units[i]->gety()+SPRLENGTH))
+	botleft = 0;
+      if(isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()+SPRLENGTH))
+	botright = 0;
+      //if topleft is in bounds
+      //if top right is in bounds
+      //if bottom left is in bounds
+      //if bottom right is in bounds
+      if(topleft || topright || botleft || botright)
+	{
+	  while(!isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()+SPRLENGTH) || !isInBounds(units[i]->getx(),units[i]->gety()+SPRLENGTH) || !isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()) || !isInBounds(units[i]->getx(),units[i]->gety()))
+	    {
+	  units[i]->setx(units[i]->getx()+botleft*.5+topleft*.5-botright*.5-topright*.5);
+	  units[i]->sety(units[i]->gety()-botleft*.5+topleft*.5-botright*.5+topright*.5);
+	    }
+	}
+    }
 }
