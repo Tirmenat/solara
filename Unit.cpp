@@ -33,6 +33,8 @@ Unit::Unit(){
   load_files();
   set_clips(0);
   status = UNIT_RIGHT;
+  moving = 0;
+  frame = 0;
 }
 
 Unit::Unit(double X, double Y, double VX, double VY, double AX, double AY, int location){
@@ -47,6 +49,8 @@ Unit::Unit(double X, double Y, double VX, double VY, double AX, double AY, int l
   load_files();
   set_clips(location);
   status = UNIT_RIGHT;
+  moving = 0;
+  frame = 0;
 }
 
 // Set Functions
@@ -194,7 +198,7 @@ void Unit::set_clips(int location){
 }
 
 void Unit::draw(SDL_Surface* screen){
-        if(vx > 0)
+  /*if(vx > 0)
 	{
 		status = UNIT_RIGHT;  //Unit moves left
 		frame++; //animation continues
@@ -211,7 +215,7 @@ void Unit::draw(SDL_Surface* screen){
 	if(frame >= 3)
 	{
 		frame = 0;
-	}
+		}*/
 	if(status == UNIT_LEFT){
 	  apply_surface( x, y, char_left, screen, &clip_char_left[frame]);
 	}
@@ -256,6 +260,7 @@ bool Unit::operator==(Unit* u){ //returns 1 if u and *this are the same
 	}*/
 
 void Unit::increment(double dt){
+  frameShift();
   x=x + vx*dt;
   y=y + vy*dt;
   //  if(moving)
@@ -273,4 +278,40 @@ void Unit::increment(double dt){
     vy = -MAX_VY;
   else
   vy = vy + ay*dt;
+}
+
+void Unit::frameShift()
+{
+   if(ax>0)
+    {
+      status = UNIT_RIGHT;
+    }
+   else if(ax<0)
+     {
+       status = UNIT_LEFT;
+     }
+   else if(vx>0)
+     {
+       status = UNIT_RIGHT;    
+     }
+   else if(vx<0)
+     {
+       status = UNIT_LEFT;
+     }
+   
+  if(vx!=0 || vy != 0)
+    {
+      moving++;
+    }
+  else
+    {
+      moving = 0;
+      frame = 0;
+    }
+  if(moving>9)
+    {
+      
+      moving = 0;
+      frame = (frame==1) ? 0 : 1;
+    }
 }

@@ -52,13 +52,14 @@ class Unit{
   double vy;
   int frame;  //Used for animation
   int status;  //Used for animation
+  int moving; //Used for animation
   virtual SDL_Surface *load_image( string );
   SDL_Surface *char_left;
   SDL_Surface *char_right;
   virtual bool load_files();
   virtual void apply_surface( int, int, SDL_Surface*, SDL_Surface*, SDL_Rect*);
   virtual void set_clips(int);
-
+  virtual void frameShift();
 };
 
 
