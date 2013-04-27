@@ -23,7 +23,7 @@ int main(void)
   stage_test.addArea(150,150,250,250);
   stage_test.addArea(150,350,300,150);
 
-  Patroller patrol_test(100,100,0,0,20);
+  Patroller patrol_test(100,100,0,0,150,20);
   stage_test.addUnit(&patrol_test);
 
   Sound sounds;
@@ -33,7 +33,7 @@ int main(void)
   //Enemy enemy_test2(100,150,0,0,0,0,1);
   //stage_test.addUnit(&enemy_test2);
 
-  Hero hero_test(200,200,0,0,0,0,0);
+  Hero hero_test(50,50,0,0,0,0,0);
   stage_test.addUnit(&hero_test);
 
   double dt = 1/60.0;

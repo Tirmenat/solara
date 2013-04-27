@@ -10,7 +10,7 @@ using namespace std;
 #define ACCEL_Y_STOP 1
 #define _USE_MATH_DEFINES
 
-Patroller::Patroller(double XP1, double YP1, double XP2, double YP2, int loc):Enemy(XP1,YP1,loc){
+Patroller::Patroller(double XP1, double YP1, double XP2, double YP2, double maxv, int loc):Enemy(XP1,YP1,maxv,loc){
   xp1 = XP1;
   yp1 = YP1;
   xp2 = XP2;
@@ -25,7 +25,7 @@ void Patroller::patrol(){
   double v;
   x=getx();
   y=gety();
-  v=150;
+  v=getmaxv();
   
   angle = atan ((yp1-y)/(xp1-x));
 
@@ -66,7 +66,7 @@ void Patroller::chase(double herox, double heroy)
   x=getx();
   y=gety();
   if(sqrt((herox-x)*(herox-x)+(heroy-y)*(heroy-y))<100){
-    v = 150;
+    v = getmaxv();
   }
   else {
     patrol();

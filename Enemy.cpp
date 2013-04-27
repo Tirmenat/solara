@@ -10,9 +10,9 @@ using namespace std;
 #define ACCEL_Y_STOP 1
 #define _USE_MATH_DEFINES
 
-Enemy::Enemy(double X, double Y, int location):Unit(X,Y,0,0,0,0,location)
+Enemy::Enemy(double X, double Y, double MAXV, int location):Unit(X,Y,0,0,0,0,location)
 {
-  
+  maxv=MAXV;
 }
 
 void Enemy::collide(Unit* u)
@@ -23,6 +23,16 @@ void Enemy::collide(Unit* u)
 void Enemy::draw()
 {
   
+}
+
+void Enemy::setmaxv(double max)
+{
+  maxv=max;
+}
+
+double Enemy::getmaxv()
+{
+  return (maxv);
 }
 
 void Enemy::chase(double herox, double heroy)
