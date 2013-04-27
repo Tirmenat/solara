@@ -6,7 +6,7 @@ STAGE = Stage
 HERO = Hero
 ENEMY = Enemy
 SOUND = Sound
-FLAGS = -lSDL -lSDL_image -lSDL_ttf -lSDL_mixer
+FLAGS = -lSDL -lSDL_image -lSDL_ttf -lSDL_mixer -lX11
 
 $(EXEC): $(MAIN).o $(UNIT).o $(STAGE).o $(HERO).o $(ENEMY).o $(SOUND).o
 	$(COMP) $(MAIN).o $(UNIT).o $(STAGE).o $(HERO).o $(ENEMY).o $(SOUND).o -o $(EXEC) $(FLAGS)

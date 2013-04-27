@@ -4,10 +4,10 @@
 
 using namespace std;
 
-#define ACCEL_X_GO .001
-#define ACCEL_Y_GO .001
-#define ACCEL_X_STOP .003
-#define ACCEL_Y_STOP .003
+#define ACCEL_X_GO 450
+#define ACCEL_Y_GO 450
+#define ACCEL_X_STOP 600
+#define ACCEL_Y_STOP 600
 
 Hero::Hero(double X, double Y, double VX, double VY, double AX, double AY, int location):Unit(X,Y,VX,VY,AX,AY,location)
 {
@@ -29,11 +29,18 @@ void Hero::processEvent(double dt)
     }
    else if(keystates[SDLK_UP])
     {
-      ay=-ACCEL_Y_GO;
+      if(vy<=0)
+	ay=-ACCEL_Y_GO;
+      else
+	ay = -ACCEL_Y_STOP;
+	
     }
   else if(keystates[SDLK_DOWN])
     {
-      ay=ACCEL_Y_GO;
+      if(vy>=0)
+	ay=ACCEL_Y_GO;
+      else
+	ay=ACCEL_Y_STOP;
     }
 
   if ( (!keystates[SDLK_DOWN]) && (!keystates[SDLK_UP]) )
@@ -64,11 +71,17 @@ void Hero::processEvent(double dt)
     }
   else if(keystates[SDLK_LEFT])
     {
-      ax = -ACCEL_X_GO;
+      if(vx<=0)
+	ax=-ACCEL_X_GO;
+      else
+	ax = -ACCEL_X_STOP;
     }
   else if(keystates[SDLK_RIGHT])
     {
-      ax = ACCEL_X_GO;
+      if(vx>=0)
+	ax=ACCEL_X_GO;
+      else
+	ax = ACCEL_X_STOP;
     }
   // No keys pressed
  if ( (!keystates[SDLK_RIGHT]) && (!keystates[SDLK_LEFT]) )
