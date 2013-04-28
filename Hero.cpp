@@ -23,18 +23,18 @@ void Hero::processEvent(double dt)
    Uint8 *keystates = SDL_GetKeyState( NULL );
 
    //Up and down handling
-   if( keystates[SDLK_UP] && keystates[SDLK_DOWN] )
+   if( keystates[SDLK_s] && keystates[SDLK_w] )
     {
       ay = 0;
     }
-   else if(keystates[SDLK_UP])
+   else if(keystates[SDLK_w])
     {
       if( vy <= 0)
 	ay = -ACCEL_Y_GO;
       else
 	ay = -ACCEL_Y_STOP;
     }
-   else if(keystates[SDLK_DOWN])
+   else if(keystates[SDLK_s])
     {
       if(vy>=0)
 	ay=ACCEL_Y_GO;
@@ -42,7 +42,7 @@ void Hero::processEvent(double dt)
 	ay=ACCEL_Y_STOP;
     }
 
-  if ( (!keystates[SDLK_DOWN]) && (!keystates[SDLK_UP]) )
+  if ( (!keystates[SDLK_s]) && (!keystates[SDLK_w]) )
     {
       if( abs(vy) <= ACCEL_Y_STOP*dt )
 	{
@@ -64,18 +64,18 @@ void Hero::processEvent(double dt)
 
 
   //Left and right handling
-  if( keystates[SDLK_LEFT] && keystates[SDLK_RIGHT] )
+  if( keystates[SDLK_a] && keystates[SDLK_d] )
     {
       ax = 0;
     }
-  else if(keystates[SDLK_LEFT])
+  else if(keystates[SDLK_a])
     {
       if( vx <= 0 )
 	ax = -ACCEL_X_GO;
       else
 	ax = -ACCEL_X_STOP;
     }
-  else if(keystates[SDLK_RIGHT])
+  else if(keystates[SDLK_d])
     {
       if(vx >= 0)
 	ax = ACCEL_X_GO;
@@ -83,7 +83,7 @@ void Hero::processEvent(double dt)
 	ax = ACCEL_X_STOP;
     }
   // No keys pressed
- if ( (!keystates[SDLK_RIGHT]) && (!keystates[SDLK_LEFT]) )
+ if ( (!keystates[SDLK_d]) && (!keystates[SDLK_a]) )
     {
       
       if( abs(vx) <= ACCEL_X_STOP*dt )

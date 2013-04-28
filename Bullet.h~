@@ -1,0 +1,24 @@
+/* FCII Final Project
+Spring 2013
+Michael Powers
+Brad Stalcup
+Sean Murphy
+Neal Sheehan
+Solara
+Hero header file */
+
+#ifndef BULLET_H
+#define BULLET_H
+
+#include "Unit.h"
+#include
+
+class Bullet: public Unit{
+ public:
+  Bullet(Unit*,int)
+  
+}
+
+
+
+#endif
