@@ -23,7 +23,8 @@ int main(void)
   //stage_test.addArea(50,50,400,400,6);
 
   // x1, y1, x2, y2, max v, sprite location 
-  Patroller patrol_test(128,128,0,0,150,20);
+  Patroller patrol_test(100,100,200,200,150,20);
+
   stage_test.addUnit(&patrol_test);
   stage_test.addArea(128-25,128-25,100,100,2);
 
@@ -31,12 +32,19 @@ int main(void)
   sounds.load_music("music1");
   sounds.play_music();
 
+
   Patroller patrol_test2(384,384,0,0,100,3);
   stage_test.addUnit(&patrol_test2);
   stage_test.addArea(384-25,384-25,100,100,2);
 
+  //Patroller patrol_test2(250,250,100,100,100,5);
+  //stage_test.addUnit(&patrol_test2);
+
+  stage_test.addArea(350-25,350-25,100,100,2);
+
+
   // x, y, vx, vy, ax, ay
-  Hero hero_test(250,250,0,0,0,0,0);
+  Hero hero_test(150,150,0,0,0,0,0);
   stage_test.addUnit(&hero_test);
 
   //  Bullet bullet_test(&hero_test,0,0);
@@ -89,12 +97,12 @@ int main(void)
 	    }
 	}
     }
-
   stage_test.clear_screen();
   quit = false;
   //In-game screen
   while( quit == false && next == true)
     {
+      cout<<"Entered while loop"<<endl;
       start = clock();
       //      int time = time();
       //If there's an event
@@ -125,8 +133,7 @@ int main(void)
 	    }
 	}
       patrol_test.chase(hero_test.getx(),hero_test.gety());
-      patrol_test2.chase(hero_test.getx(),hero_test.gety());
-      //enemy_test2.chase(herox,heroy);
+      //patrol_test2.chase(hero_test.getx(),hero_test.gety());
       hero_test.processEvent(dt);
       stage_test.perform(dt);
       stage_test.adjustUnits();
