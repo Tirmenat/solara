@@ -11,14 +11,15 @@ Hero header file */
 #define BULLET_H
 
 #include "Unit.h"
-#include "SDL.h"
 
 class Bullet: public Unit{
  public:
   Bullet(Unit*,int,int);
+  virtual void draw();
  private:
-  int direction;
-
+  int directionl;
+  int x;
+  int y;
 }
 
 

@@ -10,6 +10,7 @@
 #include "Enemy.h"
 #include "Sound.h"
 #include "Patroller.h"
+//#include "Bullet.h"
 #include <ctime>
 #include <unistd.h>
 
@@ -21,12 +22,11 @@ int main(void)
   // x, y, x size, y size, sprite location
   //stage_test.addArea(50,50,400,400,6);
 
-
+  // x1, y1, x2, y2, max v, sprite location 
   Patroller patrol_test(100,100,200,200,150,20);
 
-  // x1, y1, x2, y2, max v, sprite location 
   stage_test.addUnit(&patrol_test);
-  stage_test.addArea(100-25,100-25,100,100,2);
+  stage_test.addArea(100,100,128,144,2);
 
   Sound sounds;
   sounds.load_music("music1");
@@ -34,13 +34,15 @@ int main(void)
 
   //Patroller patrol_test2(250,250,100,100,100,5);
   //stage_test.addUnit(&patrol_test2);
-
-  stage_test.addArea(350-25,350-25,100,100,2);
+  //stage_test.addArea(350-25,350-25,100,100,2);
 
 
   // x, y, vx, vy, ax, ay
-  Hero hero_test(150,150,0,0,0,0,0);
+  Hero hero_test(350,350,0,0,0,0,0);
   stage_test.addUnit(&hero_test);
+
+  //  Bullet bullet_test(&hero_test,0,0);
+  // stage_test.addUnit(&bullet_test);
 
   double dt = 1/60.0;
 
@@ -94,7 +96,6 @@ int main(void)
   //In-game screen
   while( quit == false && next == true)
     {
-      cout<<"Entered while loop"<<endl;
       start = clock();
       //      int time = time();
       //If there's an event

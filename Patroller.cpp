@@ -48,7 +48,6 @@ void Patroller::patrol(){
       vy = v*sin(angle);
     }
     if(sqrt((xp1-x)*(xp1-x)+(yp1-y)*(yp1-y))<=5){
-      cout<<"State to 0"<<endl;
       state = 0;
     }
   }
@@ -93,7 +92,6 @@ void Patroller::chase(double herox, double heroy)
     v = getmaxv();
   }
   else {
-    cout<<"Hi"<<endl;
     patrol();
     control=0;
   }
