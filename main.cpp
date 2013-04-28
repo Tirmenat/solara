@@ -22,7 +22,7 @@ int main(void)
   //stage_test.addArea(50,50,400,400,6);
 
 
-  Patroller patrol_test(100,100,250,250,150,20);
+  Patroller patrol_test(100,100,200,200,150,20);
 
   // x1, y1, x2, y2, max v, sprite location 
   stage_test.addUnit(&patrol_test);
@@ -36,13 +36,11 @@ int main(void)
   //Patroller patrol_test2(250,250,100,100,100,5);
   //stage_test.addUnit(&patrol_test2);
 
-  Patroller patrol_test2(350,350,0,0,100,3);
-  stage_test.addUnit(&patrol_test2);
   stage_test.addArea(350-25,350-25,100,100,2);
 
 
   // x, y, vx, vy, ax, ay
-  Hero hero_test(250,250,0,0,0,0,0);
+  Hero hero_test(150,150,0,0,0,0,0);
   stage_test.addUnit(&hero_test);
 
   double dt = 1/60.0;
@@ -92,12 +90,12 @@ int main(void)
 	    }
 	}
     }
-
   stage_test.clear_screen();
   quit = false;
   //In-game screen
   while( quit == false && next == true)
     {
+      cout<<"Entered while loop"<<endl;
       start = clock();
       //      int time = time();
       //If there's an event
@@ -128,7 +126,7 @@ int main(void)
 	    }
 	}
       patrol_test.chase(hero_test.getx(),hero_test.gety());
-      //      patrol_test2.chase(hero_test.getx(),hero_test.gety());
+      //patrol_test2.chase(hero_test.getx(),hero_test.gety());
       hero_test.processEvent(dt);
       stage_test.perform(dt);
       stage_test.adjustUnits();

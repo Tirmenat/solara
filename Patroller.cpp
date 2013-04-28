@@ -16,7 +16,7 @@ Patroller::Patroller(double XP1, double YP1, double XP2, double YP2, double maxv
   xp2 = XP2;
   yp2 = YP2;
   location = loc;
-  state = 1;
+  state = 0;
 }
 
 void Patroller::patrol(){
@@ -93,6 +93,7 @@ void Patroller::chase(double herox, double heroy)
     v = getmaxv();
   }
   else {
+    cout<<"Hi"<<endl;
     patrol();
     control=0;
   }
