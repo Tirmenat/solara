@@ -26,25 +26,19 @@ int main(void)
   Patroller patrol_test(100,100,200,200,150,20);
 
   stage_test.addUnit(&patrol_test);
-  stage_test.addArea(128-25,128-25,100,100,2);
+  stage_test.addArea(100,100,128,144,2);
 
   Sound sounds;
   sounds.load_music("music1");
   sounds.play_music();
 
-
-  Patroller patrol_test2(384,384,0,0,100,3);
-  stage_test.addUnit(&patrol_test2);
-  stage_test.addArea(384-25,384-25,100,100,2);
-
   //Patroller patrol_test2(250,250,100,100,100,5);
   //stage_test.addUnit(&patrol_test2);
-
-  stage_test.addArea(350-25,350-25,100,100,2);
+  //stage_test.addArea(350-25,350-25,100,100,2);
 
 
   // x, y, vx, vy, ax, ay
-  Hero hero_test(150,150,0,0,0,0,0);
+  Hero hero_test(350,350,0,0,0,0,0);
   stage_test.addUnit(&hero_test);
 
   //  Bullet bullet_test(&hero_test,0,0);
