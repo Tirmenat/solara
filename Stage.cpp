@@ -33,8 +33,10 @@ Stage::Stage(int x, int y)
   yoffset = 100;
 }
 
-void Stage::perform(double dt)
+void Stage::perform(double dt, Unit* hero)
 {
+  xoffset = -hero->getx() + SCREEN_WIDTH/2;
+  yoffset = -hero->gety() + SCREEN_HEIGHT/2;
   for(int i = 0; i < units.size(); i++)
     units[i]->increment(dt);
 }

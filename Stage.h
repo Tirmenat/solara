@@ -20,7 +20,7 @@ using namespace std;
 class Stage{
  public:
   Stage(int,int);
-  void perform(double);
+  void perform(double, Unit*);
   int isInBounds(int, int);
   int addArea(int, int, int, int, int); //returns 1 if area was successfully added, 0 otherwise
   void draw();
