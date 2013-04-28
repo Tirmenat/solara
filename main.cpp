@@ -18,22 +18,33 @@ using namespace std;
 int main(void)
 {
   Stage stage_test(100,100);
-  stage_test.addArea(0,0,250,250);
-  stage_test.addArea(250,0,250,250);
-  stage_test.addArea(150,150,250,250);
-  stage_test.addArea(150,350,300,150);
+  // x, y, x size, y size, sprite location
+  //stage_test.addArea(50,50,400,400,6);
 
+<<<<<<< HEAD
   Patroller patrol_test(100,100,250,250,150,20);
+=======
+  // x1, y1, x2, y2, max v, sprite location 
+  Patroller patrol_test(100,100,0,0,150,20);
+>>>>>>> e60a34dace6fceeae702b6bfd7aa8a9043c2da97
   stage_test.addUnit(&patrol_test);
+  stage_test.addArea(100-25,100-25,100,100,2);
 
   Sound sounds;
   sounds.load_music("music1");
   sounds.play_music();
 
+<<<<<<< HEAD
   //Patroller patrol_test2(250,250,100,100,100,5);
   //stage_test.addUnit(&patrol_test2);
+=======
+  Patroller patrol_test2(350,350,0,0,100,3);
+  stage_test.addUnit(&patrol_test2);
+  stage_test.addArea(350-25,350-25,100,100,2);
+>>>>>>> e60a34dace6fceeae702b6bfd7aa8a9043c2da97
 
-  Hero hero_test(50,50,0,0,0,0,0);
+  // x, y, vx, vy, ax, ay
+  Hero hero_test(250,250,0,0,0,0,0);
   stage_test.addUnit(&hero_test);
 
   double dt = 1/60.0;

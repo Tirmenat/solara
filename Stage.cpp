@@ -28,7 +28,7 @@ Stage::Stage(int x, int y)
   init();
   load_files();
   set_clips();
-  location = 5;
+  addArea(SCREEN_WIDTH/10, SCREEN_HEIGHT/10, SCREEN_WIDTH*4/5, SCREEN_HEIGHT*4/5,0);
 }
 
 void Stage::perform(double dt)
@@ -165,44 +165,44 @@ void Stage::draw(){
 	if(x == areas[i].x){ //left most column of sprites
 	  if(y == areas[i].y){ //top row of sprites
 	    //draw top left corner sprite
-	    apply_surface( x, y, background, screen, &clip_background[3+location*7][1]);
+	    apply_surface( x, y, background, screen, &clip_background[3+location[i]*7][1]);
 	  }
 	  else if(y == areas[i].y + areas[i].h - 16){
 	    //draw bottom left sprite
-	    apply_surface( x, y, background, screen, &clip_background[1+location*7][4]);
+	    apply_surface( x, y, background, screen, &clip_background[1+location[i]*7][4]);
 	  }
 	  else{
 	    //draw left edge sprite
-	    apply_surface( x, y, background, screen, &clip_background[3+location*7][2]);
+	    apply_surface( x, y, background, screen, &clip_background[3+location[i]*7][2]);
 	  }
 	}
 	else if(y == areas[i].y){//top row of sprites
 	  if(x == areas[i].x + areas[i].w - 16){
 	    //draw top right sprite
-	    apply_surface( x, y, background, screen, &clip_background[4+location*7][1]);
+	    apply_surface( x, y, background, screen, &clip_background[4+location[i]*7][1]);
 	  }
 	    else{
 	      //draw top edge sprite
-	      apply_surface( x, y, background, screen, &clip_background[2+location*7][3]);
+	      apply_surface( x, y, background, screen, &clip_background[2+location[i]*7][3]);
 	    }
 	}
 	else if(x == areas[i].x+areas[i].w-16){//right most column of sprites
 	  if(y == areas[i].y+areas[i].h-16){//bottom row of sprites
 	    //draw bottom right corner sprite
-	    apply_surface( x, y, background, screen, &clip_background[4+location*7][6]);
+	    apply_surface( x, y, background, screen, &clip_background[4+location[i]*7][6]);
 	  }
 	  else{
 	    //draw right edge sprite
-	    apply_surface( x, y, background, screen, &clip_background[4+location*7][5]);
+	    apply_surface( x, y, background, screen, &clip_background[4+location[i]*7][5]);
 	  } 
 	}
 	else if(y == areas[i].y+areas[i].h-16){
 	  //draw bottom edge sprite
-	  apply_surface( x, y, background, screen, &clip_background[5+location*7][4]);
+	  apply_surface( x, y, background, screen, &clip_background[5+location[i]*7][4]);
 	}
 	else{
 	  //draw regular sprite
-	  apply_surface( x, y, background, screen, &clip_background[2+location*7][2]);
+	  apply_surface( x, y, background, screen, &clip_background[2+location[i]*7][2]);
 	}
       }
     }
@@ -215,8 +215,10 @@ void Stage::draw(){
   SDL_Flip(screen);
 }
 
-int Stage::addArea(int x, int y, int w, int h) //adds an area and checks to make sure it is added
+int Stage::addArea(int x, int y, int w, int h, int loc) //adds an area and checks to make sure it is added
 {
+  //sprite type
+  location.push_back(loc);
 
   SDL_Rect add;
   add.x = x-x%16;
