@@ -15,14 +15,9 @@ Enemy header file */
 #include "Unit.h"
 
 class Enemy: public Unit{
-  friend class Patroller;
-  friend class Burster;
-  friend class Pursuer;
-  friend class Shooter;
  public:
   Enemy(double,double,double,int);
   virtual void collide(Unit* u);
-  virtual void draw();
   virtual void chase(double,double);
   void setmaxv(double);
   double getmaxv();

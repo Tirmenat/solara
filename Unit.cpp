@@ -197,7 +197,7 @@ void Unit::set_clips(int location){
 
 }
 
-void Unit::draw(SDL_Surface* screen){
+void Unit::draw(SDL_Surface* screen, int xo, int yo){
   /*if(vx > 0)
 	{
 		status = UNIT_RIGHT;  //Unit moves left
@@ -217,10 +217,10 @@ void Unit::draw(SDL_Surface* screen){
 		frame = 0;
 		}*/
 	if(status == UNIT_LEFT){
-	  apply_surface( x, y, char_left, screen, &clip_char_left[frame]);
+	  apply_surface( x + xo, y + yo, char_left, screen, &clip_char_left[frame]);
 	}
 	if(status == UNIT_RIGHT){
-	  apply_surface( x, y, char_right, screen, &clip_char_right[frame]);
+	  apply_surface( x + xo, y + yo, char_right, screen, &clip_char_right[frame]);
 	}
 }
 

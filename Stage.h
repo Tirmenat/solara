@@ -30,7 +30,11 @@ class Stage{
   void clear_screen();
   void drawTitle();
   void adjustUnits(); //keeps units in bounds
+  int getoffsetx();
+  int getoffsety();
  private:
+  int xoffset;
+  int yoffset;
   vector<int> location;
   vector<Unit*> units;
   vector<SDL_Rect> areas; //contains the areas of the stage, stored in rectangle form, 4 points at a time in a vector
@@ -41,7 +45,7 @@ class Stage{
   int size_x;
   int size_y;
   SDL_Surface *load_image( string );
-  void apply_surface( int, int, SDL_Surface*, SDL_Surface*, SDL_Rect* );
+  void apply_surface( int, int, SDL_Surface*, SDL_Surface*, SDL_Rect*, int, int );
   bool init();
   bool load_files();
   virtual void set_clips();

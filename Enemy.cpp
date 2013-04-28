@@ -20,11 +20,6 @@ void Enemy::collide(Unit* u)
   
 }
 
-void Enemy::draw()
-{
-  
-}
-
 void Enemy::setmaxv(double max)
 {
   maxv=max;

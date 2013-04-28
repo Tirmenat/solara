@@ -29,6 +29,8 @@ Stage::Stage(int x, int y)
   load_files();
   set_clips();
   addArea(SCREEN_WIDTH/10, SCREEN_HEIGHT/10, SCREEN_WIDTH*4/5, SCREEN_HEIGHT*4/5,0);
+  xoffset = 100;
+  yoffset = 100;
 }
 
 void Stage::perform(double dt)
@@ -73,7 +75,7 @@ SDL_Surface *Stage::load_image( std::string filename )
   return optimizedImage;
 }
 
-void Stage::apply_surface( int x, int y, SDL_Surface* source, SDL_Surface* destination, SDL_Rect* clip = NULL )
+void Stage::apply_surface( int x, int y, SDL_Surface* source, SDL_Surface* destination, SDL_Rect* clip = NULL, int xo = 0, int yo = 0 )
 {
   //Lazyfoo.net
 
@@ -81,8 +83,8 @@ void Stage::apply_surface( int x, int y, SDL_Surface* source, SDL_Surface* desti
   SDL_Rect offset;
 
   //Get offsets
-  offset.x = x;
-  offset.y = y;
+  offset.x = x + xo;
+  offset.y = y + yo;
 
   //Blit
   SDL_BlitSurface( source, clip , destination, &offset );
@@ -164,44 +166,44 @@ void Stage::draw(){
 	if(x == areas[i].x){ //left most column of sprites
 	  if(y == areas[i].y){ //top row of sprites
 	    //draw top left corner sprite
-	    apply_surface( x, y, background, screen, &clip_background[3+location[i]*7][1]);
+	    apply_surface( x, y, background, screen, &clip_background[3+location[i]*7][1], xoffset, yoffset);
 	  }
 	  else if(y == areas[i].y + areas[i].h - 16){
 	    //draw bottom left sprite
-	    apply_surface( x, y, background, screen, &clip_background[1+location[i]*7][4]);
+	    apply_surface( x, y, background, screen, &clip_background[1+location[i]*7][4], xoffset, yoffset);
 	  }
 	  else{
 	    //draw left edge sprite
-	    apply_surface( x, y, background, screen, &clip_background[3+location[i]*7][2]);
+	    apply_surface( x, y, background, screen, &clip_background[3+location[i]*7][2], xoffset, yoffset);
 	  }
 	}
 	else if(y == areas[i].y){//top row of sprites
 	  if(x == areas[i].x + areas[i].w - 16){
 	    //draw top right sprite
-	    apply_surface( x, y, background, screen, &clip_background[4+location[i]*7][1]);
+	    apply_surface( x, y, background, screen, &clip_background[4+location[i]*7][1], xoffset,yoffset);
 	  }
 	    else{
 	      //draw top edge sprite
-	      apply_surface( x, y, background, screen, &clip_background[2+location[i]*7][3]);
+	      apply_surface( x, y, background, screen, &clip_background[2+location[i]*7][3], xoffset, yoffset);
 	    }
 	}
 	else if(x == areas[i].x+areas[i].w-16){//right most column of sprites
 	  if(y == areas[i].y+areas[i].h-16){//bottom row of sprites
 	    //draw bottom right corner sprite
-	    apply_surface( x, y, background, screen, &clip_background[4+location[i]*7][6]);
+	    apply_surface( x, y, background, screen, &clip_background[4+location[i]*7][6], xoffset, yoffset);
 	  }
 	  else{
 	    //draw right edge sprite
-	    apply_surface( x, y, background, screen, &clip_background[4+location[i]*7][5]);
+	    apply_surface( x, y, background, screen, &clip_background[4+location[i]*7][5], xoffset, yoffset);
 	  } 
 	}
 	else if(y == areas[i].y+areas[i].h-16){
 	  //draw bottom edge sprite
-	  apply_surface( x, y, background, screen, &clip_background[5+location[i]*7][4]);
+	  apply_surface( x, y, background, screen, &clip_background[5+location[i]*7][4], xoffset, yoffset);
 	}
 	else{
 	  //draw regular sprite
-	  apply_surface( x, y, background, screen, &clip_background[2+location[i]*7][2]);
+	  apply_surface( x, y, background, screen, &clip_background[2+location[i]*7][2], xoffset, yoffset);
 	}
       }
     }
@@ -209,7 +211,7 @@ void Stage::draw(){
 
   for(int i = 0; i < units.size(); i++)
     if(isInBounds(units[i]->getx()/*minus size?*/, units[i]->gety()))
-      units[i]->draw(screen);
+      units[i]->draw(screen,xoffset,yoffset);
 
   SDL_Flip(screen);
 }
@@ -226,31 +228,6 @@ int Stage::addArea(int x, int y, int w, int h, int loc) //adds an area and check
   add.h = h-h%16;
   areas.push_back(add);
   return 1;
-/*
-  if(add == areas[areas.size()-1])
-    return true;
-  else
-  return false;*/
-  
-/*
-  //a = topleft x, b = topleft y
-  //c = botright x, d = botright y
-  areas.push_back(a-a%16); //rounds down to nearest 16 in all of them
-  areas.push_back(b-b%16);
-  areas.push_back(c-c%16);
-  areas.push_back(d-d%16);
-  // returns int, false == 0, true == 1
-  if(areas[areas.size()-1] != d)
-    return false;
-  if(areas[areas.size()-2] != c)
-    return false;
-  if(areas[areas.size()-3] != b)
-    return false;
-  if(areas[areas.size()-4] != a)
-    return false;
-  if(areas.size()%4 != 0) //there are not the right number of elements in the areas vector, so return 0
-    return false;
-    return true;*/
 }
 
 void Stage::addUnit(Unit* spr){
@@ -337,4 +314,14 @@ void Stage::adjustUnits()
 	    }
 	}
     }
+}
+
+int Stage::getoffsetx()
+{
+  return xoffset;
+}
+
+int Stage::getoffsety()
+{
+  return yoffset;
 }
