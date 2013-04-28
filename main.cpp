@@ -81,7 +81,7 @@ int main(void)
 		  break;
 		case SDLK_k:
 		  //Enter game
-		  sounds.change_music("music2");
+		  sounds.change_music("music5");
 		  sounds.play_music();
 		  quit = true;
 		  next = true;
