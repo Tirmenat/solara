@@ -102,7 +102,6 @@ int main(void)
   //In-game screen
   while( quit == false && next == true)
     {
-      cout<<"Entered while loop"<<endl;
       start = clock();
       //      int time = time();
       //If there's an event
