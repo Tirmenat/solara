@@ -23,15 +23,15 @@ int main(void)
   stage_test.addArea(150,150,250,250);
   stage_test.addArea(150,350,300,150);
 
-  Patroller patrol_test(100,100,0,0,150,20);
+  Patroller patrol_test(100,100,250,250,150,20);
   stage_test.addUnit(&patrol_test);
 
   Sound sounds;
   sounds.load_music("music1");
   sounds.play_music();
 
-  Patroller patrol_test2(250,250,0,0,100,5);
-  stage_test.addUnit(&patrol_test2);
+  //Patroller patrol_test2(250,250,100,100,100,5);
+  //stage_test.addUnit(&patrol_test2);
 
   Hero hero_test(50,50,0,0,0,0,0);
   stage_test.addUnit(&hero_test);
@@ -119,8 +119,7 @@ int main(void)
 	    }
 	}
       patrol_test.chase(hero_test.getx(),hero_test.gety());
-      patrol_test2.chase(hero_test.getx(),hero_test.gety());
-      //enemy_test2.chase(herox,heroy);
+      //      patrol_test2.chase(hero_test.getx(),hero_test.gety());
       hero_test.processEvent(dt);
       stage_test.perform(dt);
       stage_test.adjustUnits();

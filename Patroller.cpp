@@ -16,6 +16,7 @@ Patroller::Patroller(double XP1, double YP1, double XP2, double YP2, double maxv
   xp2 = XP2;
   yp2 = YP2;
   location = loc;
+  state = 1;
 }
 
 void Patroller::patrol(){
@@ -27,9 +28,9 @@ void Patroller::patrol(){
   y=gety();
   v=getmaxv();
   
-  angle = atan ((yp1-y)/(xp1-x));
 
-  if(sqrt((xp1-x)*(xp1-x)+(yp1-y)*(yp1-y))>2){
+  if(sqrt((xp1-x)*(xp1-x)+(yp1-y)*(yp1-y))>2 && state==1){
+    angle = atan ((yp1-y)/(xp1-x));
     if (x>xp1 && y>yp1){
       vy = -v * sin(angle);
       vx = -v * cos(angle);
@@ -46,10 +47,33 @@ void Patroller::patrol(){
       vx = v*cos(angle);
       vy = v*sin(angle);
     }
+    if(sqrt((xp1-x)*(xp1-x)+(yp1-y)*(yp1-y))<=5){
+      cout<<"State to 0"<<endl;
+      state = 0;
+    }
   }
-  else{
-    vx=0;
-    vy=0;
+  else if(sqrt((xp2-x)*(xp2-x)+(yp2-y)*(yp2-y))>2 && state==0){
+    angle = atan ((yp2-y)/(xp2-x));
+    if (x>xp2 && y>yp2){
+      vy = -v * sin(angle);
+      vx = -v * cos(angle);
+    }
+    else if(x>xp2 && y<yp2){
+      vx = -v*cos(angle);
+      vy = -v *sin(angle);
+    }
+    else if (x<xp2 && y>yp2){
+      vx = v*cos(angle);
+      vy = v*sin(angle);
+    }
+    else{
+      vx = v*cos(angle);
+      vy = v*sin(angle);
+    }
+    if (sqrt((xp2-x)*(xp2-x)+(yp2-y)*(yp2-y))<=5){
+      state = 1;
+    }
+    
   }
   setvx(vx);
   setvy(vy);
@@ -75,32 +99,32 @@ void Patroller::chase(double herox, double heroy)
   
   angle = atan ((heroy-y)/(herox-x));
   if(control==1){
-  if (x>herox && y>heroy){
-    vy = -v * sin(angle);
-    vx = -v * cos(angle);
-  }
-  else if(x>herox && y<heroy){
-    vx = -v * cos(angle);
-    vy = -v * sin(angle);
-  }
-  else if (x<herox && y>heroy){
-    vx = v * cos(angle);
-    vy = v * sin(angle);
-  }
-  else if (x<herox && angle==0){
-    vx = v;
-    vy = 0;
-  }
-  else if (x>herox && angle==0){
-    vx = -v;
-    vy = 0;
-  }
-  else{
-    vx = v * cos(angle);
-    vy = v * sin(angle);
-  }
-  
-  setvx(vx);
-  setvy(vy);
+    if (x>herox && y>heroy){
+      vy = -v * sin(angle);
+      vx = -v * cos(angle);
+    }
+    else if(x>herox && y<heroy){
+      vx = -v * cos(angle);
+      vy = -v * sin(angle);
+    }
+    else if (x<herox && y>heroy){
+      vx = v * cos(angle);
+      vy = v * sin(angle);
+    }
+    else if (x<herox && angle==0){
+      vx = v;
+      vy = 0;
+    }
+    else if (x>herox && angle==0){
+      vx = -v;
+      vy = 0;
+    }
+    else{
+      vx = v * cos(angle);
+      vy = v * sin(angle);
+    }
+    
+    setvx(vx);
+    setvy(vy);
   }
 }

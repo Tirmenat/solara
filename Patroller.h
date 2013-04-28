@@ -25,7 +25,7 @@ class Patroller: public Enemy{
   double xp2;
   double yp2;
   int location;
-  
+  int state;
 };
 
 #endif
