@@ -32,7 +32,6 @@ int main(void)
   sounds.load_music("music1");
   sounds.play_music();
 
-
   //Patroller patrol_test2(250,250,100,100,100,5);
   //stage_test.addUnit(&patrol_test2);
 
@@ -74,7 +73,7 @@ int main(void)
 		  break;
 		case SDLK_k:
 		  //Enter game
-		  sounds.change_music("music5");
+		  sounds.change_music("music2");
 		  sounds.play_music();
 		  quit = true;
 		  next = true;
@@ -113,16 +112,19 @@ int main(void)
 		case SDLK_q:
 		  quit=true;
 		  break;
-		case SDLK_w:
+		case SDLK_UP:
+		case SDLK_DOWN:
+		case SDLK_RIGHT:
+		case SDLK_LEFT:
 		  sounds.play_effect("gun");
 		  break;
 		case SDLK_e:
 		  sounds.play_effect("croak");
 		  break;
-		case SDLK_d:
+		case SDLK_g:
 		  sounds.play_effect("lasergun");
 		  break;
-		case SDLK_a:
+		case SDLK_f:
 		  sounds.play_effect("woah");
 		  break;
 		}
