@@ -10,9 +10,9 @@ using namespace std;
 #define ACCEL_Y_STOP 1
 #define _USE_MATH_DEFINES
 
-Enemy::Enemy(double X, double Y, int location):Unit(X,Y,0,0,0,0,location)
+Enemy::Enemy(double X, double Y, double MAXV, int location):Unit(X,Y,0,0,0,0,location)
 {
-  
+  maxv=MAXV;
 }
 
 void Enemy::collide(Unit* u)
@@ -25,12 +25,22 @@ void Enemy::draw()
   
 }
 
+void Enemy::setmaxv(double max)
+{
+  maxv=max;
+}
+
+double Enemy::getmaxv()
+{
+  return (maxv);
+}
+
 void Enemy::chase(double herox, double heroy)
 {
   double angle;
   double v;
   if(sqrt((herox-x)*(herox-x)+(heroy-y)*(heroy-y))<100)
-    v = 150;
+    v = 100;
   else
     v = 0;
   
@@ -43,11 +53,19 @@ void Enemy::chase(double herox, double heroy)
   }
   else if(x>herox && y<heroy){
     vx = -v*cos(angle);
-    vy = -v *sin(angle);
+    vy = -v*sin(angle);
   }
   else if (x<herox && y>heroy){
     vx = v*cos(angle);
     vy = v*sin(angle);
+  }
+  else if (x<herox && angle==0){
+    vx = v;
+    vy = 0;
+  }
+  else if (x>herox && angle==0){
+    vx = -v;
+    vy = 0;
   }
   else{
     vx = v*cos(angle);

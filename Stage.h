@@ -22,7 +22,7 @@ class Stage{
   Stage(int,int);
   void perform(double);
   int isInBounds(int, int);
-  int addArea(int, int, int, int); //returns 1 if area was successfully added, 0 otherwise
+  int addArea(int, int, int, int, int); //returns 1 if area was successfully added, 0 otherwise
   void draw();
   void addUnit(Unit*);
   int removeUnit(Unit*); //returns 1 if unit was successfully removed, 0 otherwise
@@ -31,7 +31,7 @@ class Stage{
   void drawTitle();
   void adjustUnits(); //keeps units in bounds
  private:
-  int location;
+  vector<int> location;
   vector<Unit*> units;
   vector<SDL_Rect> areas; //contains the areas of the stage, stored in rectangle form, 4 points at a time in a vector
   SDL_Rect clip_background[60][22];
