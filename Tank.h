@@ -8,15 +8,15 @@ Solara
 Tank header file */
 
 #ifndef TANK_H
-#define PATROLLER_H
+#define TANK_H
 
 #include <iostream>
 #include <iomanip>
 #include "Enemy.h"
 
-class Patroller: public Enemy{
+class Tank: public Enemy{
  public:
-  Patroller(double,double,double,in);
+  Tank(double,double,double,int);
   virtual void chase (double,double);
  private:
   

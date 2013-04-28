@@ -18,14 +18,8 @@ void Tank::chase(double herox,double heroy)
   double control = 1;
   x=getx();
   y=gety();
-  if(sqrt((herox-x)*(herox-x)+(heroy-y)*(heroy-y))<100){
-    v = getmaxv();
-  }
-  else {
-    patrol();
-    control=0;
-  }
-
+  v=getmaxv();
+  
   angle = atan ((heroy-y)/(herox-x));
   if(control==1){
     if (x>herox && y>heroy){
