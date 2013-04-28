@@ -1,10 +1,10 @@
-/* FCII Final Project                                                           
+/* FCII Final Project                                                          
 Spring 2013                                                                    
 Michael Powers                                                                 
 Brad Stalcup                                                                   
-Sean Murphy                                                                     
-Neal Sheehan                                                                    
-Solara                                                                          
+Sean Murphy                                                                    
+Neal Sheehan                                                                   
+Solara                                                                         
 Tank header file */
 
 #ifndef TANK_H
@@ -19,7 +19,6 @@ class Tank: public Enemy{
   Tank(double,double,double,int);
   virtual void chase (double,double);
  private:
-  
 };
 
 #endif

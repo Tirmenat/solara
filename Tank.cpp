@@ -15,13 +15,11 @@ void Tank::chase(double herox,double heroy)
   double v;
   double vx, vy;
   double x, y;
-  double control = 1;
   x=getx();
   y=gety();
   v=getmaxv();
   
   angle = atan ((heroy-y)/(herox-x));
-  if(control==1){
     if (x>herox && y>heroy){
       vy = -v * sin(angle);
       vx = -v * cos(angle);
@@ -49,7 +47,7 @@ void Tank::chase(double herox,double heroy)
 
     setvx(vx);
     setvy(vy);
-  }
+
 
 
 }

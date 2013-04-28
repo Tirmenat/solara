@@ -10,6 +10,7 @@
 #include "Enemy.h"
 #include "Sound.h"
 #include "Patroller.h"
+#include "Burster.h"
 #include "Tank.h"
 //#include "Bullet.h"
 #include <ctime>
@@ -26,7 +27,9 @@ int main(void)
   // x1, y1, x2, y2, max v, sprite location 
   Patroller patrol_test(100,100,200,200,150,20);
   Tank tank_test(50,200,30,13);
-
+  Burster burster_test(200,50,50,17);
+  
+  stage_test.addUnit(&burster_test);
   stage_test.addUnit(&tank_test);
   stage_test.addUnit(&patrol_test);
   stage_test.addArea(100,100,128,144,2);
@@ -134,6 +137,7 @@ int main(void)
 		}
 	    }
 	}
+      burster_test.chase(hero_test.getx(),hero_test.gety());
       tank_test.chase(hero_test.getx(),hero_test.gety());
       patrol_test.chase(hero_test.getx(),hero_test.gety());
       //patrol_test2.chase(hero_test.getx(),hero_test.gety());
