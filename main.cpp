@@ -25,7 +25,6 @@ int main(void)
   Patroller patrol_test(100,100,250,250,150,20);
 
   // x1, y1, x2, y2, max v, sprite location 
-  Patroller patrol_test(100,100,0,0,150,20);
   stage_test.addUnit(&patrol_test);
   stage_test.addArea(100-25,100-25,100,100,2);
 
