@@ -20,6 +20,8 @@ class Burster: public Enemy{
   virtual void chase (double,double);
  private:
   int moving;
+  double holdx;
+  double holdy;
 };
 
 
