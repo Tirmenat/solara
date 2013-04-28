@@ -6,7 +6,7 @@ using namespace std;
 
 Burster::Burster(double X, double Y, double maxv, int loc):Enemy(X,Y,maxv,loc)
 {
-
+  moving = 0;
 }
 
 void Burster::chase(double herox, double heroy)
@@ -16,30 +16,34 @@ void Burster::chase(double herox, double heroy)
   double v;
   double vx, vy;
   double x, y;
-  double control = 1;
   x=getx();
   y=gety();
   v=getmaxv();
 
-  angle = atan ((heroy-y)/(herox-x));
-  if(control==1){
-    if (x>herox && y>heroy){
+  //angle = atan ((heroy-y)/(herox-x));
+  if(moving == 1){
+    holdx=herox;
+    holdy=heroy;
+  }
+  angle = atan ((holdy-y)/(holdx-x));
+  if(moving>=0 && moving<60){
+    if (x>holdx && y>holdy){
       vy = -v * sin(angle);
       vx = -v * cos(angle);
     }
-    else if(x>herox && y<heroy){
+    else if(x>holdx && y<holdy){
       vx = -v * cos(angle);
       vy = -v * sin(angle);
     }
-    else if (x<herox && y>heroy){
+    else if (x<holdx && y>holdy){
       vx = v * cos(angle);
       vy = v * sin(angle);
     }
-    else if (x<herox && angle==0){
+    else if (x<holdx && angle==0){
       vx = v;
       vy = 0;
     }
-    else if (x>herox && angle==0){
+    else if (x>holdx && angle==0){
       vx = -v;
       vy = 0;
     }
@@ -47,8 +51,20 @@ void Burster::chase(double herox, double heroy)
       vx = v * cos(angle);
       vy = v * sin(angle);
     }
-
-    setvx(vx);
-    setvy(vy);
   }
+  else if (moving>=60 && moving < 120){
+    vx=0;
+    vy=0;
+  }
+  else if (moving==120){
+    moving=0;
+  }
+  if(sqrt((x-holdx)*(x-holdx)+(y-holdy)*(y-holdy)) <= 2) {
+    moving=60;
+    holdx=herox;
+    holdy=heroy;
+  }
+  moving++;
+  setvx(vx);
+  setvy(vy);
 }
