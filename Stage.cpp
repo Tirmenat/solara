@@ -120,8 +120,7 @@ bool Stage::load_files()
 
   //Load the surfaces
   background = load_image( "terrain.png");
-
-  title = load_image( "Solara_TitleV1.png" );
+  title = load_image( "solaratitle.png" );
 
   if( title == NULL )
     {
