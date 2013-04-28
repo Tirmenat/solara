@@ -10,6 +10,7 @@
 #include "Enemy.h"
 #include "Sound.h"
 #include "Patroller.h"
+//#include "Bullet.h"
 #include <ctime>
 #include <unistd.h>
 
@@ -22,21 +23,24 @@ int main(void)
   //stage_test.addArea(50,50,400,400,6);
 
   // x1, y1, x2, y2, max v, sprite location 
-  Patroller patrol_test(100,100,0,0,150,20);
+  Patroller patrol_test(128,128,0,0,150,20);
   stage_test.addUnit(&patrol_test);
-  stage_test.addArea(100-25,100-25,100,100,2);
+  stage_test.addArea(128-25,128-25,100,100,2);
 
   Sound sounds;
   sounds.load_music("music1");
   sounds.play_music();
 
-  Patroller patrol_test2(350,350,0,0,100,3);
+  Patroller patrol_test2(384,384,0,0,100,3);
   stage_test.addUnit(&patrol_test2);
-  stage_test.addArea(350-25,350-25,100,100,2);
+  stage_test.addArea(384-25,384-25,100,100,2);
 
   // x, y, vx, vy, ax, ay
   Hero hero_test(250,250,0,0,0,0,0);
   stage_test.addUnit(&hero_test);
+
+  //  Bullet bullet_test(&hero_test,0,0);
+  // stage_test.addUnit(&bullet_test);
 
   double dt = 1/60.0;
 

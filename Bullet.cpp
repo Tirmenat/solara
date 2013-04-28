@@ -17,6 +17,7 @@ Hero header file */
 
 
 #include "Bullet.h"
+#include "SDL/SDL.h"
 
 
 Bullet::Bullet(Unit* shooter, int direction, int typez)
@@ -58,4 +59,8 @@ Bullet::Bullet(Unit* shooter, int direction, int typez)
     }
   type = typez;
 
+}
+
+virtual void Bullet::draw(){
+  
 }

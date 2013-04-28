@@ -295,9 +295,8 @@ void Stage::drawTitle()
 
 void Stage::clear_screen()
 {
-  SDL_FillRect (screen, &screen->clip_rect,
-		SDL_MapRGB (screen->format, 0xFF, 0xFF, 0xFF));
- 
+  SDL_FillRect (screen, &screen->clip_rect, SDL_MapRGB (screen->format, 255, 255, 255));
+  SDL_Flip(screen);
 }
 
 void Stage::clean_up()
