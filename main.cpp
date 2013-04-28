@@ -18,22 +18,29 @@ using namespace std;
 int main(void)
 {
   Stage stage_test(100,100);
-  stage_test.addArea(0,0,250,250);
-  stage_test.addArea(250,0,250,250);
-  stage_test.addArea(150,150,250,250);
-  stage_test.addArea(150,350,300,150);
+  // x, y, x size, y size, sprite location
+  //stage_test.addArea(50,50,400,400,6);
 
-  Patroller patrol_test(100,100,0,0,150,20);
+
+  Patroller patrol_test(100,100,200,200,150,20);
+
+  // x1, y1, x2, y2, max v, sprite location 
   stage_test.addUnit(&patrol_test);
+  stage_test.addArea(100-25,100-25,100,100,2);
 
   Sound sounds;
   sounds.load_music("music1");
   sounds.play_music();
 
-  Patroller patrol_test2(250,250,0,0,100,5);
-  stage_test.addUnit(&patrol_test2);
 
-  Hero hero_test(50,50,0,0,0,0,0);
+  //Patroller patrol_test2(250,250,100,100,100,5);
+  //stage_test.addUnit(&patrol_test2);
+
+  stage_test.addArea(350-25,350-25,100,100,2);
+
+
+  // x, y, vx, vy, ax, ay
+  Hero hero_test(150,150,0,0,0,0,0);
   stage_test.addUnit(&hero_test);
 
   double dt = 1/60.0;
@@ -83,12 +90,12 @@ int main(void)
 	    }
 	}
     }
-
   stage_test.clear_screen();
   quit = false;
   //In-game screen
   while( quit == false && next == true)
     {
+      cout<<"Entered while loop"<<endl;
       start = clock();
       //      int time = time();
       //If there's an event
@@ -122,8 +129,7 @@ int main(void)
 	    }
 	}
       patrol_test.chase(hero_test.getx(),hero_test.gety());
-      patrol_test2.chase(hero_test.getx(),hero_test.gety());
-      //enemy_test2.chase(herox,heroy);
+      //patrol_test2.chase(hero_test.getx(),hero_test.gety());
       hero_test.processEvent(dt);
       stage_test.perform(dt);
       stage_test.adjustUnits();
