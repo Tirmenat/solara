@@ -31,7 +31,7 @@ class Stage{
   void drawTitle();
   void adjustUnits(); //keeps units in bounds
  private:
-  int location;
+  vector<int> location;
   vector<Unit*> units;
   vector<SDL_Rect> areas; //contains the areas of the stage, stored in rectangle form, 4 points at a time in a vector
   SDL_Rect clip_background[60][22];
