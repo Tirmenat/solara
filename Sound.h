@@ -31,6 +31,7 @@ private:
   Mix_Chunk *croak;
   Mix_Chunk *lasergun;
   Mix_Chunk *gun;
+  Mix_Chunk *woah;
   Mix_Music *music;
   bool init_sound();
 

@@ -115,6 +115,9 @@ int main(void)
 		case SDLK_d:
 		  sounds.play_effect("lasergun");
 		  break;
+		case SDLK_a:
+		  sounds.play_effect("woah");
+		  break;
 		}
 	    }
 	}
