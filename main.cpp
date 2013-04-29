@@ -1,3 +1,4 @@
+
 //main program
 #include <iostream>
 #include <string>
@@ -127,14 +128,26 @@ int main(void)
 		case SDLK_LEFT:
 		  sounds.play_effect("gun");
 		  break;
-		case SDLK_e:
+		case SDLK_KP0:
 		  sounds.play_effect("croak");
 		  break;
-		case SDLK_g:
+		case SDLK_KP1:
 		  sounds.play_effect("lasergun");
 		  break;
-		case SDLK_f:
+		case SDLK_KP2:
 		  sounds.play_effect("woah");
+		  break;
+		case SDLK_KP3:
+		  sounds.play_effect("playerdeath");
+		  break;
+		case SDLK_KP4:
+		  sounds.play_effect("enemydeath");
+		  break;
+		case SDLK_KP5:
+		  sounds.play_effect("ouch");
+		  break;
+		case SDLK_KP6:
+		  sounds.play_effect("boop");
 		  break;
 		}
 	    }

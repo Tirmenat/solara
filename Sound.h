@@ -32,6 +32,10 @@ private:
   Mix_Chunk *lasergun;
   Mix_Chunk *gun;
   Mix_Chunk *woah;
+  Mix_Chunk *playerdeath;
+  Mix_Chunk *enemydeath;
+  Mix_Chunk *ouch;
+  Mix_Chunk *boop;
   Mix_Music *music;
   bool init_sound();
 
