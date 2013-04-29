@@ -4,10 +4,6 @@
 
 using namespace std;
 
-#define ACCEL_X_GO 5
-#define ACCEL_Y_GO 5
-#define ACCEL_X_STOP 1
-#define ACCEL_Y_STOP 1
 #define _USE_MATH_DEFINES
 
 Patroller::Patroller(double XP1, double YP1, double XP2, double YP2, double maxv, int loc):Enemy(XP1,YP1,maxv,loc){
@@ -15,7 +11,6 @@ Patroller::Patroller(double XP1, double YP1, double XP2, double YP2, double maxv
   yp1 = YP1;
   xp2 = XP2;
   yp2 = YP2;
-  location = loc;
   state = 0;
 }
 

@@ -12,6 +12,7 @@
 #include "Sound.h"
 #include "Patroller.h"
 #include "Burster.h"
+#include "Mike.h"
 #include "Tank.h"
 //#include "Bullet.h"
 #include <ctime>
@@ -31,7 +32,9 @@ int main(void)
   Patroller patrol_test(100,100,200,200,4*BASE_VELOCITY/5,20);
   Tank tank_test(50,200,3*BASE_VELOCITY/10,13);
   Burster burster_test(200,50,BASE_VELOCITY,17);
+  Mike mike_test(25,25,200,25,BASE_VELOCITY,7);
   
+  //stage_test.addUnit(&mike_test);
   stage_test.addUnit(&burster_test);
   stage_test.addUnit(&tank_test);
   stage_test.addUnit(&patrol_test);
@@ -152,6 +155,7 @@ int main(void)
 		}
 	    }
 	}
+      mike_test.chase(hero_test.getx(),hero_test.gety());
       burster_test.chase(hero_test.getx(),hero_test.gety());
       tank_test.chase(hero_test.getx(),hero_test.gety());
       patrol_test.chase(hero_test.getx(),hero_test.gety());
