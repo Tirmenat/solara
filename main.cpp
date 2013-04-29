@@ -33,6 +33,7 @@ int main(void)
   stage_test.addUnit(&tank_test);
   stage_test.addUnit(&patrol_test);
   stage_test.addArea(100,100,128,144,2);
+  stage_test.addArea(448,416,160,32,5);
 
   Sound sounds;
   sounds.load_music("music1");
