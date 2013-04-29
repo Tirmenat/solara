@@ -60,10 +60,10 @@ int main(void)
 
   double duration;
 
-  bool next = false;
+  int next = 0;
   bool quit = false;
   SDL_Event event;
-  stage_test.drawTitle();
+  stage_test.drawTitle("title");
 
   //Title screen
   while (quit == false)
@@ -83,12 +83,10 @@ int main(void)
 		case SDLK_q:
 		  quit = true;
 		  break;
-		case SDLK_k:
+		case SDLK_SPACE:
 		  //Enter game
-		  sounds.change_music("music5");
-		  sounds.play_music();
 		  quit = true;
-		  next = true;
+		  next = 1;
 		  break;
 		}
 	    }
@@ -104,7 +102,34 @@ int main(void)
   stage_test.clear_screen();
   quit = false;
   //In-game screen
-  while( quit == false && next == true)
+
+  while( quit == false && next==1 ){
+    stage_test.drawTitle("slide1");
+    if( SDL_PollEvent( &event ) )
+      {
+	if( event.type == SDL_QUIT )
+	  {
+	    quit == true;
+	  }
+	if( event.type == SDL_KEYDOWN )
+	  {
+	    switch (event.key.keysym.sym)
+	      {
+	      case SDLK_q:
+		quit=true;
+		break;
+	      case SDLK_SPACE:
+		next=2;
+		sounds.change_music("music2");
+		sounds.play_music();
+		stage_test.clear_screen();
+	      }
+	  }
+      }
+
+  }
+
+  while( quit == false && next == 2)
     {
       start = clock();
       //      int time = time();
@@ -149,6 +174,9 @@ int main(void)
 		  break;
 		case SDLK_KP6:
 		  sounds.play_effect("boop");
+		  break;
+		case SDLK_KP7:
+		  sounds.play_effect("evillaugh");
 		  break;
 		}
 	    }

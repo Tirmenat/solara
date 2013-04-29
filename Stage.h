@@ -28,7 +28,7 @@ class Stage{
   int removeUnit(Unit*); //returns 1 if unit was successfully removed, 0 otherwise
   void clean_up();
   void clear_screen();
-  void drawTitle();
+  void drawTitle(string);
   void adjustUnits(); //keeps units in bounds
   int getoffsetx();
   int getoffsety();
@@ -41,6 +41,7 @@ class Stage{
   SDL_Rect clip_background[60][22];
   SDL_Surface *background;
   SDL_Surface *title;
+  SDL_Surface *slide1;
   SDL_Surface *screen;
   int size_x;
   int size_y;

@@ -126,6 +126,7 @@ bool Stage::load_files()
   //Load the surfaces
   background = load_image( "terrain.png");
   title = load_image( "solaratitle.png" );
+  slide1 = load_image( "Slide1.png" );
 
   if( title == NULL )
     {
@@ -262,9 +263,11 @@ int Stage::isInBounds(int x, int y){ //checks if a point is inside any of the ar
   // returns int, false == 0, true == 1
 }
 
-void Stage::drawTitle()
+void Stage::drawTitle(string pic)
 {
-  apply_surface(0,0,title,screen);
+  if(pic == "title") apply_surface(0,0,title,screen);
+  if(pic == "slide1") apply_surface(0,0,slide1,screen);
+
   if( SDL_Flip( screen ) == -1 )
     {
       return;

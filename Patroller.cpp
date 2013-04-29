@@ -1,6 +1,7 @@
 #include "Patroller.h"
 #include "SDL/SDL.h"
 #include <cmath>
+#include "Sound.h"
 
 using namespace std;
 
@@ -81,11 +82,13 @@ void Patroller::patrol(){
 
 void Patroller::chase(double herox, double heroy)
 {
+  Sound PatrollerSounds;
   double angle;
   double v;
   double vx, vy;
   double x, y;
   double control = 1;
+  int soundhelp;
   x=getx();
   y=gety();
   if(sqrt((herox-x)*(herox-x)+(heroy-y)*(heroy-y))<100){

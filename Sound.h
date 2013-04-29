@@ -36,6 +36,7 @@ private:
   Mix_Chunk *enemydeath;
   Mix_Chunk *ouch;
   Mix_Chunk *boop;
+  Mix_Chunk *evillaugh;
   Mix_Music *music;
   bool init_sound();
 
