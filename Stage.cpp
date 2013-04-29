@@ -319,50 +319,56 @@ void Stage::adjustUnits()
 	  if(isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()+SPRLENGTH))
 	    botright = 0;
 	  
-	  if(topright && botright)
+	  if(topright || botright || botleft || topleft)
 	    {
-	      units[i]->setx(units[i]->getx()-1);
+	      if(topright)
+		{
+		  if(botright)
+		    {
+		      units[i]->setx(units[i]->getx()-1);
+		    }
+		  if(topleft)
+		    {
+		      units[i]->sety(units[i]->gety()+1);
+		    }
+		  if(!botright && !topleft)
+		    {
+		      units[i]->setx(units[i]->getx()-1);
+		      units[i]->sety(units[i]->gety()+1);
+		    }
+		}
+	      else if(topleft)
+		{
+		  if(botleft)
+		    {
+		      units[i]->setx(units[i]->getx()+1); 
+		    }
+		  else
+		    {
+		      units[i]->setx(units[i]->getx()+1);
+		      units[i]->sety(units[i]->gety()+1);
+		    }
+		}
+	      else if(botright)
+		{
+		  if(botleft)
+		    {
+		      units[i]->sety(units[i]->gety()-1);
+		    }
+		  else
+		    {
+		      units[i]->sety(units[i]->gety()-1);
+		      units[i]->setx(units[i]->getx()-1);
+		    }
+		}
+	      else
+		{
+		  units[i]->sety(units[i]->gety()-1);
+		  units[i]->setx(units[i]->getx()+1);
+		}
 	    }
-	  if(topleft && botleft)
-	    {
-	      units[i]->setx(units[i]->getx()+1);
-	    }
-	  if(topright && topleft)
-	    {
-	      units[i]->sety(units[i]->gety()+1);
-	    }
-	  if(botright && botleft)
-	    {
-	      units[i]->sety(units[i]->gety()-1);
-	    }
-	  if(topright)
-	    {
-	      units[i]->sety(units[i]->gety()+1);
-	      units[i]->setx(units[i]->getx()-1);
-	    }
-	  if(topleft)
-	    {
-	      units[i]->sety(units[i]->gety()+1);
-	      units[i]->setx(units[i]->getx()+1);
-	    }
-	  if(botleft)
-	    {
-	      units[i]->sety(units[i]->gety()-1);
-	      units[i]->setx(units[i]->getx()+1);
-	    }
-	  if(botright)
-	    {
-	      units[i]->sety(units[i]->gety()-1);
-	      units[i]->setx(units[i]->getx()-1);
-	    }
-	  if(isInBounds(units[i]->getx(),units[i]->gety()))
-	    topleft = 0;
-	  if(isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()))
-	    topright = 0;
-	  if(isInBounds(units[i]->getx(),units[i]->gety()+SPRLENGTH))
-	    botleft = 0;
-	  if(isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()+SPRLENGTH))
-	    botright = 0;
+	  else
+	    break;
 	}
       
     }
