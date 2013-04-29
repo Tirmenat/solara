@@ -12,10 +12,10 @@ BULLET = Bullet
 TANK = Tank
 FLAGS = -lSDL -lSDL_image -lSDL_ttf -lSDL_mixer -lX11
 
-$(EXEC): $(MAIN).o $(UNIT).o $(STAGE).o $(HERO).o $(ENEMY).o $(SOUND).o $(PATROLLER).o $(TANK).o $(BURSTER).o
-	$(COMP) $(MAIN).o $(UNIT).o $(STAGE).o $(HERO).o $(ENEMY).o $(SOUND).o $(PATROLLER).o $(TANK).o $(BURSTER).o -o $(EXEC) $(FLAGS)
+$(EXEC): $(MAIN).o $(UNIT).o $(STAGE).o $(HERO).o $(ENEMY).o $(SOUND).o $(PATROLLER).o $(TANK).o $(BURSTER).o $(BULLET).o
+	$(COMP) $(MAIN).o $(UNIT).o $(STAGE).o $(HERO).o $(ENEMY).o $(SOUND).o $(PATROLLER).o $(TANK).o $(BURSTER).o $(BULLET).o -o $(EXEC) $(FLAGS)
 
-$(MAIN).o: $(MAIN).cpp $(UNIT).h $(STAGE).h $(HERO).h $(ENEMY).h $(SOUND).h $(PATROLLER).h $(TANK).h $(BURSTER).h
+$(MAIN).o: $(MAIN).cpp $(UNIT).h $(STAGE).h $(HERO).h $(ENEMY).h $(SOUND).h $(PATROLLER).h $(TANK).h $(BURSTER).h $(BULLET).h
 	$(COMP) -c $(MAIN).cpp
 
 $(STAGE).o: $(STAGE).h $(UNIT).h $(STAGE).cpp
@@ -43,6 +43,7 @@ $(SOUND).o: $(SOUND).h $(SOUND).cpp
 	$(COMP) -c $(SOUND).cpp
 
 $(BULLET).o: $(BULLET).h $(BULLET).cpp $(UNIT).h
+	$(COMP) -c $(BULLET).cpp
 
 clean:
 	rm -f *.o $(EXEC)

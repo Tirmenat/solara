@@ -13,7 +13,7 @@
 #include "Patroller.h"
 #include "Burster.h"
 #include "Tank.h"
-//#include "Bullet.h"
+#include "Bullet.h"
 #include <ctime>
 #include <unistd.h>
 

@@ -15,14 +15,6 @@ Unit Implementation file */
 #include "SDL/SDL_image.h"
 #include <cmath>
 
-#define SPRLENGTH 24
-#define SPRWIDTH 16
-#define UNIT_LEFT 0
-#define UNIT_RIGHT 1
-#define MAX_VX 150
-#define MAX_VY 150
-#define MAX_V 150
-
 Unit::Unit(){
   x=0;
   y=0;
@@ -168,7 +160,7 @@ bool Unit::load_files()
   char_left = load_image( "neal.png" );
   char_right = load_image( "nealflipped.png");
 
-  //If there was an error in loading the terrain
+  //If there was an error in loading the characters
   if( (char_left == NULL) || (char_right == NULL) )
     {
       return false;
