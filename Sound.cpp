@@ -52,6 +52,10 @@ void Sound::load_effects(){
   lasergun = Mix_LoadWAV( "sfx/LaserGun.wav" );
   gun = Mix_LoadWAV( "sfx/Gun.wav" );
   woah = Mix_LoadWAV( "sfx/Woah.wav" );
+  playerdeath = Mix_LoadWAV( "sfx/PlayerDeath.wav" );
+  enemydeath = Mix_LoadWAV( "sfx/EnemyDeath.wav" );
+  ouch = Mix_LoadWAV( "sfx/Ouch.wav" );
+  boop = Mix_LoadWAV( "sfx/Boop.wav" );
 
 }
 
@@ -73,6 +77,18 @@ void Sound::play_effect(std::string sound){
   }
   if(sound=="woah"){
     Mix_PlayChannel(-1, woah, 0);
+  }
+  if(sound=="playerdeath"){
+    Mix_PlayChannel(-1, playerdeath, 0);
+  }
+  if(sound=="enemydeath"){
+    Mix_PlayChannel(-1, enemydeath, 0);
+  }
+  if(sound=="ouch"){
+    Mix_PlayChannel(-1, ouch, 0);
+  }
+  if(sound=="boop"){
+    Mix_PlayChannel(-1, boop, 0);
   }
 
 }
@@ -99,6 +115,10 @@ void Sound::clean_up_sound(){
   Mix_FreeChunk( lasergun );
   Mix_FreeChunk( gun );
   Mix_FreeChunk( woah );
+  Mix_FreeChunk( playerdeath );
+  Mix_FreeChunk( enemydeath );
+  Mix_FreeChunk( ouch );
+  Mix_FreeChunk( boop );
   Mix_FreeMusic( music );
 
   Mix_CloseAudio();
