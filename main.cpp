@@ -57,6 +57,7 @@ int main(void)
   //  Bullet bullet_test(&hero_test,0,0);
   // stage_test.addUnit(&bullet_test);
   vector<Bullet*> bullets;
+  //Bullet not functioning properly yet, will work on fixing
 
   double dt = 1/60.0;
 
