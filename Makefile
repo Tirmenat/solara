@@ -40,7 +40,7 @@ $(BURSTER).o: $(BURSTER).h $(BURSTER).cpp $(ENEMY).h $(UNIT).h
 $(TANK).o: $(TANK).h $(TANK).cpp $(ENEMY).h $(UNIT).h
 	$(COMP) -c $(TANK).cpp
 
-$(MIKE).o: $(MIKE).h $(MIKE).cpp $(ENEMY).h
+$(MIKE).o: $(MIKE).h $(MIKE).cpp $(ENEMY).h $(UNIT).h
 	$(COMP) -c $(MIKE).cpp
 
 $(SOUND).o: $(SOUND).h $(SOUND).cpp

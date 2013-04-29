@@ -12,6 +12,8 @@ Mike::Mike(double XP1, double YP1, double XP2, double YP2, double maxv, int loc)
   xp2 = XP2;
   yp2 = YP2;
   state = 0;
+  count = 0;
+  statePrev = 0;
 }
 
 void Mike::patrol(){
@@ -38,12 +40,13 @@ void Mike::patrol(){
       vx = v*cos(angle);
       vy = v*sin(angle);
     }
-    else{
+    else {
       vx = v*cos(angle);
       vy = v*sin(angle);
     }
     if(sqrt((xp1-x)*(xp1-x)+(yp1-y)*(yp1-y))<=5){
-      state = 0;
+      statePrev = 1;
+      state = 2;
     }
   }
   else if(sqrt((xp2-x)*(xp2-x)+(yp2-y)*(yp2-y))>2 && state==0){
@@ -65,15 +68,27 @@ void Mike::patrol(){
       vy = v*sin(angle);
     }
     if (sqrt((xp2-x)*(xp2-x)+(yp2-y)*(yp2-y))<=5){
-      state = 1;
+      statePrev = 0;
+      state = 2;
     }
-
+  }
+  else if(state==2){
+    count++;
+    vx=0;
+    vy=0;
+    if ( count ==30){
+      if(statePrev==0){
+	state=1;
+	count=0;
+      }
+      else if(statePrev==1){
+	state=0;
+	count=0;
+      }
+    }
   }
   setvx(vx);
   setvy(vy);
 }
 
-void Mike::chase(double herox, double heroy)
-{
-  patrol();
-}
+

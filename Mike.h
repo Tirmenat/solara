@@ -17,7 +17,6 @@ Mike header file */
 class Mike: public Enemy{
  public:
   Mike(double,double,double,double,double,int);
-  virtual void chase(double,double);
   void patrol();
  private:
   double xp1;
@@ -25,6 +24,8 @@ class Mike: public Enemy{
   double xp2;
   double yp2;
   int state;
+  int statePrev;
+  int count;
 };
 
 #endif
