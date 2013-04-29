@@ -299,7 +299,6 @@ void Unit::increment(double dt){
   }
 
 }
-
 void Unit::frameShift()
 {
    if(ax>0)
@@ -334,4 +333,9 @@ void Unit::frameShift()
       moving = 0;
       frame = (frame==1) ? 0 : 1;
     }
+}
+
+bool Unit::isBullet()
+{
+  return 0;
 }

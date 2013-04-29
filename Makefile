@@ -31,13 +31,13 @@ $(HERO).o: $(HERO).h $(UNIT).h $(HERO).cpp
 $(ENEMY).o: $(ENEMY).h $(UNIT).h $(ENEMY).cpp
 	$(COMP) -c $(ENEMY).cpp
 
-$(PATROLLER).o: $(PATROLLER).h $(PATROLLER).cpp $(ENEMY).h
+$(PATROLLER).o: $(PATROLLER).h $(PATROLLER).cpp $(ENEMY).h $(UNIT).h
 	$(COMP) -c $(PATROLLER).cpp
 
-$(BURSTER).o: $(BURSTER).h $(BURSTER).cpp $(ENEMY).h
+$(BURSTER).o: $(BURSTER).h $(BURSTER).cpp $(ENEMY).h $(UNIT).h
 	$(COMP) -c $(BURSTER).cpp
 
-$(TANK).o: $(TANK).h $(TANK).cpp $(ENEMY).h
+$(TANK).o: $(TANK).h $(TANK).cpp $(ENEMY).h $(UNIT).h
 	$(COMP) -c $(TANK).cpp
 
 $(MIKE).o: $(MIKE).h $(MIKE).cpp $(ENEMY).h
@@ -45,6 +45,8 @@ $(MIKE).o: $(MIKE).h $(MIKE).cpp $(ENEMY).h
 
 $(SOUND).o: $(SOUND).h $(SOUND).cpp
 	$(COMP) -c $(SOUND).cpp
+
+$(BULLET).o: $(BULLET).h $(BULLET).cpp $(UNIT).h
 
 clean:
 	rm -f *.o $(EXEC)
