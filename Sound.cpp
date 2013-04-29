@@ -40,6 +40,9 @@ bool Sound::load_music(std::string song){
   if(song=="music5"){
     music = Mix_LoadMUS( "songs/Lavender_Town.wav" );
   }
+  if(song=="music6"){
+    music = Mix_LoadMUS( "songs/Victory_Clog.wav" );
+  }
   if (music == NULL) return false;
 
   return true;
