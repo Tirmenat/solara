@@ -25,9 +25,9 @@ int main(void)
   //stage_test.addArea(50,50,400,400,6);
 
   // x1, y1, x2, y2, max v, sprite location 
-  Patroller patrol_test(100,100,200,200,150,20);
-  Tank tank_test(50,200,30,13);
-  Burster burster_test(200,50,175,17);
+  Patroller patrol_test(100,100,200,200,75,20);
+  Tank tank_test(50,200,10,13);
+  Burster burster_test(200,50,100,17);
   
   stage_test.addUnit(&burster_test);
   stage_test.addUnit(&tank_test);
