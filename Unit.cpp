@@ -13,13 +13,15 @@ Unit Implementation file */
 #include "Unit.h"
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
+#include <cmath>
 
 #define SPRLENGTH 24
 #define SPRWIDTH 16
 #define UNIT_LEFT 0
 #define UNIT_RIGHT 1
-#define MAX_VX 300
-#define MAX_VY 300
+#define MAX_VX 150
+#define MAX_VY 150
+#define MAX_V 150
 
 Unit::Unit(){
   x=0;
@@ -261,6 +263,7 @@ bool Unit::operator==(Unit* u){ //returns 1 if u and *this are the same
 
 void Unit::increment(double dt){
   frameShift();
+  double angle;
   x=x + vx*dt;
   y=y + vy*dt;
   //  if(moving)
@@ -278,6 +281,23 @@ void Unit::increment(double dt){
     vy = -MAX_VY;
   else
   vy = vy + ay*dt;
+
+  if (sqrt(vx*vx+vy*vy) > MAX_V){
+    angle = atan(vy/vx);
+    if (vx < 0 && vy<0){
+      vx = -MAX_V*cos(angle);
+      vy = -MAX_V*sin(angle);
+    }
+    else if (vx<0 && vy>0){
+      vx = -MAX_V*cos(angle);
+      vy = -MAX_V*sin(angle);
+    }
+    else{
+      vx = MAX_V*cos(angle);
+      vy = MAX_V*sin(angle);
+    }
+  }
+
 }
 
 void Unit::frameShift()

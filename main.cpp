@@ -1,3 +1,4 @@
+
 //main program
 #include <iostream>
 #include <string>
@@ -16,6 +17,8 @@
 #include <ctime>
 #include <unistd.h>
 
+#define BASE_VELOCITY 90
+
 using namespace std;
 
 int main(void)
@@ -25,9 +28,9 @@ int main(void)
   //stage_test.addArea(50,50,400,400,6);
 
   // x1, y1, x2, y2, max v, sprite location 
-  Patroller patrol_test(100,100,200,200,150,20);
-  Tank tank_test(50,200,30,13);
-  Burster burster_test(200,50,175,17);
+  Patroller patrol_test(100,100,200,200,4*BASE_VELOCITY/5,20);
+  Tank tank_test(50,200,3*BASE_VELOCITY/10,13);
+  Burster burster_test(200,50,BASE_VELOCITY,17);
   
   stage_test.addUnit(&burster_test);
   stage_test.addUnit(&tank_test);
@@ -126,14 +129,26 @@ int main(void)
 		case SDLK_LEFT:
 		  sounds.play_effect("gun");
 		  break;
-		case SDLK_e:
+		case SDLK_KP0:
 		  sounds.play_effect("croak");
 		  break;
-		case SDLK_g:
+		case SDLK_KP1:
 		  sounds.play_effect("lasergun");
 		  break;
-		case SDLK_f:
+		case SDLK_KP2:
 		  sounds.play_effect("woah");
+		  break;
+		case SDLK_KP3:
+		  sounds.play_effect("playerdeath");
+		  break;
+		case SDLK_KP4:
+		  sounds.play_effect("enemydeath");
+		  break;
+		case SDLK_KP5:
+		  sounds.play_effect("ouch");
+		  break;
+		case SDLK_KP6:
+		  sounds.play_effect("boop");
 		  break;
 		}
 	    }
