@@ -16,6 +16,7 @@ class Bullet: public Unit{
  public:
   Bullet(Unit*,int,int);
   virtual void draw();
+  virtual bool isBullet();
  private:
   int directionl;
   int x;

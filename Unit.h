@@ -41,6 +41,7 @@ class Unit{
   virtual void draw( SDL_Surface*, int, int);
   virtual bool isEqualTo(Unit*);
   virtual void collide(Unit*) = 0;
+  virtual bool isBullet();
   void clean_up();
 
  private:

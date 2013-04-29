@@ -64,3 +64,7 @@ Bullet::Bullet(Unit* shooter, int direction, int typez)
 virtual void Bullet::draw(){
   
 }
+
+virtual bool Bullet::isBullet(){
+  return true;
+}
