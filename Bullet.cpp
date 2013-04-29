@@ -75,3 +75,7 @@ int Bullet::getColor(){
 bool Bullet::isBullet(){
   return(true);
 }
+
+virtual bool Bullet::isBullet(){
+  return true;
+}

@@ -332,6 +332,26 @@ void Stage::adjustUnits()
 	    {
 	      units[i]->sety(units[i]->gety()-1);
 	    }
+	  if(topright)
+	    {
+	      units[i]->sety(units[i]->gety()+1);
+	      units[i]->setx(units[i]->getx()-1);
+	    }
+	  if(topleft)
+	    {
+	      units[i]->sety(units[i]->gety()+1);
+	      units[i]->setx(units[i]->getx()+1);
+	    }
+	  if(botleft)
+	    {
+	      units[i]->sety(units[i]->gety()-1);
+	      units[i]->setx(units[i]->getx()+1);
+	    }
+	  if(botright)
+	    {
+	      units[i]->sety(units[i]->gety()-1);
+	      units[i]->setx(units[i]->getx()-1);
+	    }
 	  if(isInBounds(units[i]->getx(),units[i]->gety()))
 	    topleft = 0;
 	  if(isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()))

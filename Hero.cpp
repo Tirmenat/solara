@@ -15,6 +15,16 @@ Hero::Hero(double X, double Y, double VX, double VY, double AX, double AY, int l
 
 void Hero::collide(Unit* u)
 {
+  if(u->isBullet())
+    {
+      //do damage
+      //apply effects based on color
+    }
+  else
+    {
+      //do damage
+      //knock back?
+    }
 }
 
 void Hero::processEvent(double dt)
