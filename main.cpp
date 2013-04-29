@@ -56,6 +56,7 @@ int main(void)
 
   //  Bullet bullet_test(&hero_test,0,0);
   // stage_test.addUnit(&bullet_test);
+  vector<Bullet*> bullets;
 
   double dt = 1/60.0;
 
@@ -152,10 +153,29 @@ int main(void)
 		  quit=true;
 		  break;
 		case SDLK_UP:
+		  {
+		    Bullet bullet_up(&hero_test,0,1,0,0);
+		    stage_test.addUnit(&bullet_up);
+		  }
+		  break;
 		case SDLK_DOWN:
-		case SDLK_RIGHT:
+		  {
+		    Bullet bullet_down(&hero_test,1,0,1,0);
+		    stage_test.addUnit(&bullet_down);
+		  }
+		  break;
 		case SDLK_LEFT:
-		  sounds.play_effect("gun");
+		  {
+		    Bullet bullet_left(&hero_test,2,0,0,1);
+		    stage_test.addUnit(&bullet_left);
+		  }
+		  //		  sounds.play_effect("gun");
+		  break;
+		case SDLK_RIGHT:
+		  {
+		    Bullet bullet_right(&hero_test,3,1,1,1);
+		    stage_test.addUnit(&bullet_right);
+		  }
 		  break;
 		case SDLK_KP0:
 		  sounds.play_effect("croak");

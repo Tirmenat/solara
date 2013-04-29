@@ -11,6 +11,15 @@ Hero header file */
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
 
+Bullet::Bullet()
+{
+  red = 0;
+  green = 0;
+  blue = 0;
+  bullet = NULL;
+  load_files();
+  set_clips();
+}
 
 Bullet::Bullet(Unit* shooter, int direction, int r, int g, int b)
 {
@@ -52,20 +61,30 @@ Bullet::Bullet(Unit* shooter, int direction, int r, int g, int b)
   red = r;
   green = g;
   blue = b;
+  bullet = NULL;
+  load_files();
+  set_clips();
 }
 
-void Bullet::draw(SDL_Surface* screen, int xo, int yo){
+void Bullet::collide(Unit*)
+{
+
+}
+
+void Bullet::draw(SDL_Surface* screen, int xo, int yo)
+{
   apply_surface( getx()+xo, gety()+yo, bullet, screen, &clip_bullet[getColor()]);
 }
 
-void Bullet::set_clips(){
+void Bullet::set_clips()
+{
   //Clip range for bullet forms
   for(int i=0; i<BULLETNUM; ++i)
     {
       clip_bullet[i].x = 10*i;
       clip_bullet[i].y = 0;
-      clip_bullet[i].w = SPRWIDTH;
-      clip_bullet[i].h = SPRLENGTH;
+      clip_bullet[i].w = BULLETWIDTH;
+      clip_bullet[i].h = BULLETLENGTH;
     }
 }
 
