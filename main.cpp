@@ -12,6 +12,7 @@
 #include "Sound.h"
 #include "Patroller.h"
 #include "Burster.h"
+#include "Mike.h"
 #include "Tank.h"
 #include "Bullet.h"
 #include <ctime>
@@ -31,7 +32,9 @@ int main(void)
   Patroller patrol_test(100,100,200,200,4*BASE_VELOCITY/5,20);
   Tank tank_test(50,200,3*BASE_VELOCITY/10,13);
   Burster burster_test(200,50,BASE_VELOCITY,17);
+  Mike mike_test(50,50,200,55,BASE_VELOCITY,7);
   
+  stage_test.addUnit(&mike_test);
   stage_test.addUnit(&burster_test);
   stage_test.addUnit(&tank_test);
   stage_test.addUnit(&patrol_test);
@@ -60,10 +63,10 @@ int main(void)
 
   double duration;
 
-  bool next = false;
+  int next = 0;
   bool quit = false;
   SDL_Event event;
-  stage_test.drawTitle();
+  stage_test.drawTitle("title");
 
   //Title screen
   while (quit == false)
@@ -83,12 +86,10 @@ int main(void)
 		case SDLK_q:
 		  quit = true;
 		  break;
-		case SDLK_k:
+		case SDLK_SPACE:
 		  //Enter game
-		  sounds.change_music("music5");
-		  sounds.play_music();
 		  quit = true;
-		  next = true;
+		  next = 1;
 		  break;
 		}
 	    }
@@ -104,7 +105,34 @@ int main(void)
   stage_test.clear_screen();
   quit = false;
   //In-game screen
-  while( quit == false && next == true)
+
+  while( quit == false && next==1 ){
+    stage_test.drawTitle("slide1");
+    if( SDL_PollEvent( &event ) )
+      {
+	if( event.type == SDL_QUIT )
+	  {
+	    quit == true;
+	  }
+	if( event.type == SDL_KEYDOWN )
+	  {
+	    switch (event.key.keysym.sym)
+	      {
+	      case SDLK_q:
+		quit=true;
+		break;
+	      case SDLK_SPACE:
+		next=2;
+		sounds.change_music("music2");
+		sounds.play_music();
+		stage_test.clear_screen();
+	      }
+	  }
+      }
+
+  }
+
+  while( quit == false && next == 2)
     {
       start = clock();
       //      int time = time();
@@ -150,9 +178,13 @@ int main(void)
 		case SDLK_KP6:
 		  sounds.play_effect("boop");
 		  break;
+		case SDLK_KP7:
+		  sounds.play_effect("evillaugh");
+		  break;
 		}
 	    }
 	}
+      mike_test.patrol();
       burster_test.chase(hero_test.getx(),hero_test.gety());
       tank_test.chase(hero_test.getx(),hero_test.gety());
       patrol_test.chase(hero_test.getx(),hero_test.gety());

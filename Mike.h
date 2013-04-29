@@ -3,29 +3,29 @@ Spring 2013
 Michael Powers                                                                 
 Brad Stalcup                                                                   
 Sean Murphy                                                                    
-Neal Sheehan                                                                  
+Neal Sheehan                                                                   
 Solara                                                                         
-Burster header file */
+Mike header file */
 
-#ifndef BURSTER_H
-#define BURSTER_H
+#ifndef MIKE_H
+#define MIKE_H
 
 #include <iostream>
 #include <iomanip>
 #include "Enemy.h"
 
-class Burster: public Enemy{
+class Mike: public Enemy{
  public:
-  Burster(double,double,double,int);
-  virtual void chase (double,double);
-  string sound(int);
+  Mike(double,double,double,double,double,int);
+  void patrol();
  private:
-  int moving;
-  double holdx;
-  double holdy;
+  double xp1;
+  double yp1;
+  double xp2;
+  double yp2;
+  int state;
+  int statePrev;
+  int count;
 };
-
-
-
 
 #endif
