@@ -22,8 +22,8 @@ Hero header file */
 
 class Bullet: public Unit{
  public:
-  Bullet(Unit*,int,int);
-  virtual void draw();
+  Bullet(Unit*,int,int,int,int);
+  virtual void draw(SDL_Surface*,int,int);
   int getColor();
   virtual bool isBullet();
  private:
@@ -32,8 +32,12 @@ class Bullet: public Unit{
   int green;
   int blue;
   SDL_Rect clip_bullet[BULLETNUM];
-  virtual void set_clips(int);
-}
+  SDL_Surface *bullet;
+  virtual void set_clips();
+  virtual bool load_files();
+  virtual SDL_Surface *load_image( string );
+  virtual void apply_surface(int, int, SDL_Surface*, SDL_Surface*, SDL_Rect*);
+};
 
 
 

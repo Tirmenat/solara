@@ -9,6 +9,13 @@ Unit header file */
 
 #ifndef UNIT_H
 #define UNIT_H
+#define SPRLENGTH 24
+#define SPRWIDTH 16
+#define UNIT_LEFT 0
+#define UNIT_RIGHT 1
+#define MAX_VX 150
+#define MAX_VY 150
+#define MAX_V 150
 
 #include <iostream>
 #include <iomanip>
@@ -38,7 +45,7 @@ class Unit{
   //  virtual double getv();
   //  virtual SDL_Rect getrect();
   virtual void increment(double);
-  virtual void draw( SDL_Surface*, int, int);
+  virtual void draw(SDL_Surface*, int, int);
   virtual bool isEqualTo(Unit*);
   virtual void collide(Unit*) = 0;
   virtual bool isBullet();
@@ -60,7 +67,7 @@ class Unit{
   SDL_Surface *char_left;
   SDL_Surface *char_right;
   virtual bool load_files();
-  virtual void apply_surface( int, int, SDL_Surface*, SDL_Surface*, SDL_Rect*);
+  virtual void apply_surface(int, int, SDL_Surface*, SDL_Surface*, SDL_Rect*);
   virtual void set_clips(int);
   virtual void frameShift();
 };

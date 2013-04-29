@@ -10,15 +10,13 @@ Stage Implementation file */
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
 #include "Stage.h"
-#include "Hero.h"
+#include "Unit.h"
 #include <cmath>
 //DOES THIS WORK???
 
-const int SCREEN_WIDTH = 500;
-const int SCREEN_HEIGHT = 500;
-const int SCREEN_BPP = 32;
-const int SPRWIDTH = 16;
-const int SPRLENGTH = 24;
+#define SCREEN_WIDTH 500
+#define SCREEN_HEIGHT 500
+#define SCREEN_BPP 32
 
 Stage::Stage(int x, int y)
 {	
@@ -297,6 +295,11 @@ void Stage::adjustUnits()
 
   for(int i = 0; i<units.size(); i++)
     {
+      if(units[i]->isBullet())
+	{
+	}
+      else
+	{
       topleft = topright = botleft = botright = 1;
       //if topleft is in bounds
       //if top right is in bounds
@@ -369,6 +372,7 @@ void Stage::adjustUnits()
 	    }
 	  else
 	    break;
+	}
 	}
       
     }
