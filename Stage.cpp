@@ -303,7 +303,8 @@ void Stage::adjustUnits()
       //if bottom left is in bounds
       //if bottom right is in bounds
       
-      while(!isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()+SPRLENGTH) || !isInBounds(units[i]->getx(),units[i]->gety()+SPRLENGTH) || !isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()) || !isInBounds(units[i]->getx(),units[i]->gety()))
+      //while(!isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()+SPRLENGTH) || !isInBounds(units[i]->getx(),units[i]->gety()+SPRLENGTH) || !isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()) || !isInBounds(units[i]->getx(),units[i]->gety()))
+      for(int j =0; j<sqrt(((units[i]->getx()*units[i]->getx())+(units[i]->gety()*units[i]->gety())));j++)
 	{
 	  //	      units[i]->setx(units[i]->getx()+botleft*.5+topleft*.5-botright*.5-topright*(units[i]->getvx()/(sqrt(units[i]->getvx()*units[i]->getvx() + units[i]->getvy() * units[i]->getvy()))));
 	  //units[i]->sety(units[i]->gety()+botleft*.5+topleft*.5-botright*.5-topright*(units[i]->getvy()/(sqrt(units[i]->getvx()*units[i]->getvx() + units[i]->getvy() * units[i]->getvy()))));
@@ -333,6 +334,26 @@ void Stage::adjustUnits()
 	  if(botright && botleft)
 	    {
 	      units[i]->sety(units[i]->gety()-1);
+	    }
+	  if(topright)
+	    {
+	      units[i]->sety(units[i]->gety()+1);
+	      units[i]->setx(units[i]->getx()-1);
+	    }
+	  if(topleft)
+	    {
+	      units[i]->sety(units[i]->gety()+1);
+	      units[i]->setx(units[i]->getx()+1);
+	    }
+	  if(botleft)
+	    {
+	      units[i]->sety(units[i]->gety()-1);
+	      units[i]->setx(units[i]->getx()+1);
+	    }
+	  if(botright)
+	    {
+	      units[i]->sety(units[i]->gety()-1);
+	      units[i]->setx(units[i]->getx()-1);
 	    }
 	  if(isInBounds(units[i]->getx(),units[i]->gety()))
 	    topleft = 0;
