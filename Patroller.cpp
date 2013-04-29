@@ -26,7 +26,7 @@ void Patroller::patrol(){
   double v;
   x=getx();
   y=gety();
-  v=getmaxv()/2;
+  v=3*getmaxv()/4;
   
 
   if(sqrt((xp1-x)*(xp1-x)+(yp1-y)*(yp1-y))>2 && state==1){
