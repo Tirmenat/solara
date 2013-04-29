@@ -11,6 +11,7 @@ Stage Implementation file */
 #include "SDL/SDL_image.h"
 #include "Stage.h"
 #include "Hero.h"
+#include <cmath>
 //DOES THIS WORK???
 
 const int SCREEN_WIDTH = 500;
@@ -294,27 +295,52 @@ void Stage::adjustUnits()
   for(int i = 0; i<units.size(); i++)
     {
       topleft = topright = botleft = botright = 1;
-      if(isInBounds(units[i]->getx(),units[i]->gety()))
-	topleft = 0;
-      if(isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()))
-	topright = 0;
-      if(isInBounds(units[i]->getx(),units[i]->gety()+SPRLENGTH))
-	botleft = 0;
-      if(isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()+SPRLENGTH))
-	botright = 0;
       //if topleft is in bounds
       //if top right is in bounds
       //if bottom left is in bounds
       //if bottom right is in bounds
-      if(topleft || topright || botleft || botright)
+      
+      while(!isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()+SPRLENGTH) || !isInBounds(units[i]->getx(),units[i]->gety()+SPRLENGTH) || !isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()) || !isInBounds(units[i]->getx(),units[i]->gety()))
 	{
+	  //	      units[i]->setx(units[i]->getx()+botleft*.5+topleft*.5-botright*.5-topright*(units[i]->getvx()/(sqrt(units[i]->getvx()*units[i]->getvx() + units[i]->getvy() * units[i]->getvy()))));
+	  //units[i]->sety(units[i]->gety()+botleft*.5+topleft*.5-botright*.5-topright*(units[i]->getvy()/(sqrt(units[i]->getvx()*units[i]->getvx() + units[i]->getvy() * units[i]->getvy()))));
+	  //	       units[i]->setx(units[i]->getx()-botleft*.5+topleft*.5-botright*.5+topright*.5);
+	  //  units[i]->sety(units[i]->gety()-botleft*.5+topleft*.5-botright*.5+topright*.5);
+	  if(isInBounds(units[i]->getx(),units[i]->gety()))
+	    topleft = 0;
+	  if(isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()))
+	    topright = 0;
+	  if(isInBounds(units[i]->getx(),units[i]->gety()+SPRLENGTH))
+	    botleft = 0;
+	  if(isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()+SPRLENGTH))
+	    botright = 0;
 	  
-	  while(!isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()+SPRLENGTH) || !isInBounds(units[i]->getx(),units[i]->gety()+SPRLENGTH) || !isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()) || !isInBounds(units[i]->getx(),units[i]->gety()))
+	  if(topright && botright)
 	    {
-	  units[i]->setx(units[i]->getx()+botleft*.5+topleft*.5-botright*.5-topright*.5);
-	  units[i]->sety(units[i]->gety()-botleft*.5+topleft*.5-botright*.5+topright*.5);
+	      units[i]->setx(units[i]->getx()-1);
 	    }
+	  if(topleft && botleft)
+	    {
+	      units[i]->setx(units[i]->getx()+1);
+	    }
+	  if(topright && topleft)
+	    {
+	      units[i]->sety(units[i]->gety()+1);
+	    }
+	  if(botright && botleft)
+	    {
+	      units[i]->sety(units[i]->gety()-1);
+	    }
+	  if(isInBounds(units[i]->getx(),units[i]->gety()))
+	    topleft = 0;
+	  if(isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()))
+	    topright = 0;
+	  if(isInBounds(units[i]->getx(),units[i]->gety()+SPRLENGTH))
+	    botleft = 0;
+	  if(isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()+SPRLENGTH))
+	    botright = 0;
 	}
+      
     }
 }
 

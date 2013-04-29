@@ -38,7 +38,7 @@ bool Sound::load_music(std::string song){
     music = Mix_LoadMUS( "songs/Luigis_Mansion.wav" );
   }
   if(song=="music5"){
-    music = Mix_LoadMUS( "songs/Lavender_Town_Dubstep.wav" );
+    music = Mix_LoadMUS( "songs/Lavender_Town.wav" );
   }
   if (music == NULL) return false;
 
