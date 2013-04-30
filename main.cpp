@@ -74,7 +74,7 @@ int main(void)
 
 
   // x, y, vx, vy, ax, ay
-  Hero hero_test(350,350,0,0,0,0,0);
+  Hero hero_test(350,350,200,0,0,0);
   stage_test.addUnit(&hero_test);
   //  Bullet bullet_test(&hero_test,0,0);
   // stage_test.addUnit(&bullet_test);

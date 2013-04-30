@@ -9,8 +9,9 @@ using namespace std;
 #define ACCEL_X_STOP 600
 #define ACCEL_Y_STOP 600
 
-Hero::Hero(double X, double Y, double VX, double VY, double AX, double AY, int location):Unit(X,Y,VX,VY,AX,AY,location)
+Hero::Hero(double X, double Y, double MAXV, double AX, double AY, int location):Unit(X,Y,MAXV,AX,AY,location)
 {
+  
 }
 
 void Hero::collide(Unit* u)

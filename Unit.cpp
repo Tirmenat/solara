@@ -31,13 +31,14 @@ Unit::Unit(){
   frame = 0;
 }
 
-Unit::Unit(double X, double Y, double VX, double VY, double AX, double AY, int location){
+Unit::Unit(double X, double Y, double MAXV, double AX, double AY, int location){
   x=X;
   y=Y;
-  vx = VX;
-  vy = VY;
+  vx = 0;
+  vy = 0;
   ax = AX;
   ay = AY;
+  maxv=MAXV;
   char_left = NULL;
   char_right = NULL;
   load_files();
@@ -95,6 +96,14 @@ double Unit::getvx(){
 
 double Unit::getvy(){
   return(vy);
+}
+
+void Unit::setmaxv(double max){
+  maxv=max;
+}
+
+double Unit::getmaxv(){
+  return maxv;
 }
 
 /*SDL_Rect Unit::getrect(){
@@ -260,33 +269,33 @@ void Unit::increment(double dt){
   y=y + vy*dt;
   //  if(moving)
   // horizontal velocity
-  if( (vx + ax*dt) >= MAX_VX)
-    vx = MAX_VX;
-  else if( (vx + ax*dt) <= -MAX_VX)
-    vx = -MAX_VX;
+  if( (vx + ax*dt) >= maxv)
+    vx = maxv;
+  else if( (vx + ax*dt) <= -maxv)
+    vx = -maxv;
   else
     vx = vx + ax*dt;
   // vertical velocity
-  if( (vy + ay*dt) >= MAX_VY)
-    vy = MAX_VY;
-  else if( (vy + ay*dt) <= -MAX_VY)
-    vy = -MAX_VY;
+  if( (vy + ay*dt) >= maxv)
+    vy = maxv;
+  else if( (vy + ay*dt) <= -maxv)
+    vy = -maxv;
   else
   vy = vy + ay*dt;
 
-  if (sqrt(vx*vx+vy*vy) > MAX_V){
+  if (sqrt(vx*vx+vy*vy) > maxv){
     angle = atan(vy/vx);
     if (vx < 0 && vy<0){
-      vx = -MAX_V*cos(angle);
-      vy = -MAX_V*sin(angle);
+      vx = -maxv*cos(angle);
+      vy = -maxv*sin(angle);
     }
     else if (vx<0 && vy>0){
-      vx = -MAX_V*cos(angle);
-      vy = -MAX_V*sin(angle);
+      vx = -maxv*cos(angle);
+      vy = -maxv*sin(angle);
     }
     else{
-      vx = MAX_V*cos(angle);
-      vy = MAX_V*sin(angle);
+      vx = maxv*cos(angle);
+      vy = maxv*sin(angle);
     }
   }
 

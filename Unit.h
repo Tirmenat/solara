@@ -13,9 +13,6 @@ Unit header file */
 #define SPRWIDTH 16
 #define UNIT_LEFT 0
 #define UNIT_RIGHT 1
-#define MAX_VX 150
-#define MAX_VY 150
-#define MAX_V 150
 
 #include <iostream>
 #include <iomanip>
@@ -28,7 +25,7 @@ class Unit{
   friend class Hero;
  public:
   Unit();
-  Unit(double,double,double,double,double,double,int);
+  Unit(double,double,double,double,double,int);
   virtual void setx(double);
   virtual void sety(double);
   virtual void setax(double);
@@ -50,12 +47,15 @@ class Unit{
   virtual void collide(Unit*) = 0;
   virtual bool isBullet();
   void clean_up();
+  double getmaxv();
+  void setmaxv(double);
 
  private:
   SDL_Rect clip_char_left[11];
   SDL_Rect clip_char_right[11];
   double x;
   double y;
+  double maxv;
   double vx;
   double vy;
   double ax;
