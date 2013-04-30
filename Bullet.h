@@ -17,6 +17,10 @@ Hero header file */
 #define BULLETLENGTH 9
 #define BULLETWIDTH 9
 #define BULLETNUM 8
+//#define MAX_VX 300
+//#define MAX_VY 300
+//#define MAX_V 300
+
 
 #include "Unit.h"
 

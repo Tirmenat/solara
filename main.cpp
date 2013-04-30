@@ -19,11 +19,32 @@
 #include <unistd.h>
 
 #define BASE_VELOCITY 90
+#define NUM_BULLETS 5
+
 
 using namespace std;
 
+void fire(Bullet** bullets, Stage* stage, Unit* hero, int dir, int color)
+{
+  for(int i = 0; i<NUM_BULLETS; i++)
+    {
+      if(bullets[i] != NULL)
+	cout << bullets[i] << endl;
+      else
+	{
+	  bullets[i] = new Bullet(hero, dir, color%2, (color/2)%2, (color/4)%2);
+	  stage->addUnit(bullets[i]);
+	  return;
+	}
+      
+      
+    }
+}
+
+
 int main(void)
 {
+  
   Stage stage_test(100,100);
   // x, y, x size, y size, sprite location
   //stage_test.addArea(50,50,400,400,6);
@@ -41,10 +62,12 @@ int main(void)
   stage_test.addArea(100,100,128,144,2);
   stage_test.addArea(448,416,160,32,5);
 
+  //Bullet bullet;
   Sound sounds;
   sounds.load_music("music1");
   sounds.play_music();
 
+  //Bullet* bullets[NUM_BULLETS] = {NULL};
   //Patroller patrol_test2(250,250,100,100,100,5);
   //stage_test.addUnit(&patrol_test2);
   //stage_test.addArea(350-25,350-25,100,100,2);
@@ -53,10 +76,9 @@ int main(void)
   // x, y, vx, vy, ax, ay
   Hero hero_test(350,350,0,0,0,0,0);
   stage_test.addUnit(&hero_test);
-
   //  Bullet bullet_test(&hero_test,0,0);
   // stage_test.addUnit(&bullet_test);
-  vector<Bullet*> bullets;
+  //vector<Bullet*> bullets;
   //Bullet not functioning properly yet, will work on fixing
 
   double dt = 1/60.0;
@@ -69,7 +91,7 @@ int main(void)
   bool quit = false;
   SDL_Event event;
   stage_test.drawTitle("title");
-
+  //  Bullet bullets;
   //Title screen
   while (quit == false)
     {
@@ -154,29 +176,23 @@ int main(void)
 		  quit=true;
 		  break;
 		case SDLK_UP:
-		  {
-		    Bullet bullet_up(&hero_test,0,1,0,0);
-		    stage_test.addUnit(&bullet_up);
-		  }
+		  stage_test.addUnit(new Bullet(&hero_test,0,1,0,0));
+		  //		  fire(bullets, &stage_test, &hero_test, 0, 1);
+		  //		  bullets = new Bullet(&hero_test, 0,1,0,0);
+		  //		  stage_test.addUnit(bullets);
+	      
+	      //		  stage_test.addUnit(new Bullet(&hero_test,0,1,0,0));
+		  //		  cout << "shots fired" <<endl;
 		  break;
-		case SDLK_DOWN:
-		  {
-		    Bullet bullet_down(&hero_test,1,0,1,0);
-		    stage_test.addUnit(&bullet_down);
-		  }
+		case SDLK_DOWN:		  
+		  stage_test.addUnit(new Bullet(&hero_test,1,0,1,0));
 		  break;
 		case SDLK_LEFT:
-		  {
-		    Bullet bullet_left(&hero_test,2,0,0,1);
-		    stage_test.addUnit(&bullet_left);
-		  }
+		  stage_test.addUnit(new Bullet(&hero_test,2,0,0,1));
 		  //		  sounds.play_effect("gun");
 		  break;
 		case SDLK_RIGHT:
-		  {
-		    Bullet bullet_right(&hero_test,3,1,1,1);
-		    stage_test.addUnit(&bullet_right);
-		  }
+		  stage_test.addUnit(new Bullet(&hero_test,3,1,1,1));
 		  break;
 		case SDLK_KP0:
 		  sounds.play_effect("croak");

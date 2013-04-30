@@ -236,12 +236,14 @@ void Stage::addUnit(Unit* spr){
   units.push_back(spr);
 }
 
-int Stage::removeUnit(Unit* spr){
+int Stage::removeUnit(Unit* unit){
   for(int i = 0; i<units.size(); i++)
     {
-      if(units[i]->isEqualTo(spr)){
-	delete units[i];
+      if(units[i] == unit){
+	delete unit;
+	/*	delete spr;*/
 	units.erase(units.begin()+i);
+	cout << "unit removed" << endl;
 	return 1;
       }
     }
@@ -292,89 +294,94 @@ void Stage::clean_up()
 void Stage::adjustUnits()
 {
   bool topleft,topright,botleft,botright;
-
+  
   for(int i = 0; i<units.size(); i++)
     {
       if(units[i]->isBullet())
 	{
+	  if(!isInBounds(units[i]->getx(), units[i]->gety()))
+	    {
+	      cout << "about to remove bullet at " << units[i]->getx() << ", " << units[i]->gety() << endl;
+	      removeUnit(units[i]);
+	      continue;
+	    }
 	}
       else
 	{
-      topleft = topright = botleft = botright = 1;
-      //if topleft is in bounds
-      //if top right is in bounds
-      //if bottom left is in bounds
-      //if bottom right is in bounds
-      
-      //while(!isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()+SPRLENGTH) || !isInBounds(units[i]->getx(),units[i]->gety()+SPRLENGTH) || !isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()) || !isInBounds(units[i]->getx(),units[i]->gety()))
-      for(int j =0; j<sqrt(((units[i]->getx()*units[i]->getx())+(units[i]->gety()*units[i]->gety())));j++)
-	{
-	  //	      units[i]->setx(units[i]->getx()+botleft*.5+topleft*.5-botright*.5-topright*(units[i]->getvx()/(sqrt(units[i]->getvx()*units[i]->getvx() + units[i]->getvy() * units[i]->getvy()))));
-	  //units[i]->sety(units[i]->gety()+botleft*.5+topleft*.5-botright*.5-topright*(units[i]->getvy()/(sqrt(units[i]->getvx()*units[i]->getvx() + units[i]->getvy() * units[i]->getvy()))));
-	  //	       units[i]->setx(units[i]->getx()-botleft*.5+topleft*.5-botright*.5+topright*.5);
-	  //  units[i]->sety(units[i]->gety()-botleft*.5+topleft*.5-botright*.5+topright*.5);
-	  if(isInBounds(units[i]->getx(),units[i]->gety()))
-	    topleft = 0;
-	  if(isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()))
-	    topright = 0;
-	  if(isInBounds(units[i]->getx(),units[i]->gety()+SPRLENGTH))
-	    botleft = 0;
-	  if(isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()+SPRLENGTH))
-	    botright = 0;
+	  topleft = topright = botleft = botright = 1;
+	  //if topleft is in bounds
+	  //if top right is in bounds
+	  //if bottom left is in bounds
+	  //if bottom right is in bounds
 	  
-	  if(topright || botright || botleft || topleft)
+	  //while(!isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()+SPRLENGTH) || !isInBounds(units[i]->getx(),units[i]->gety()+SPRLENGTH) || !isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()) || !isInBounds(units[i]->getx(),units[i]->gety()))
+	  for(int j =0; j<sqrt(((units[i]->getx()*units[i]->getx())+(units[i]->gety()*units[i]->gety())));j++)
 	    {
-	      if(topright)
+	      //	      units[i]->setx(units[i]->getx()+botleft*.5+topleft*.5-botright*.5-topright*(units[i]->getvx()/(sqrt(units[i]->getvx()*units[i]->getvx() + units[i]->getvy() * units[i]->getvy()))));
+	      //units[i]->sety(units[i]->gety()+botleft*.5+topleft*.5-botright*.5-topright*(units[i]->getvy()/(sqrt(units[i]->getvx()*units[i]->getvx() + units[i]->getvy() * units[i]->getvy()))));
+	      //	       units[i]->setx(units[i]->getx()-botleft*.5+topleft*.5-botright*.5+topright*.5);
+	      //  units[i]->sety(units[i]->gety()-botleft*.5+topleft*.5-botright*.5+topright*.5);
+	      if(isInBounds(units[i]->getx(),units[i]->gety()))
+		topleft = 0;
+	      if(isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()))
+		topright = 0;
+	      if(isInBounds(units[i]->getx(),units[i]->gety()+SPRLENGTH))
+		botleft = 0;
+	      if(isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()+SPRLENGTH))
+		botright = 0;
+	      
+	      if(topright || botright || botleft || topleft)
 		{
-		  if(botright)
+		  if(topright)
 		    {
-		      units[i]->setx(units[i]->getx()-1);
+		      if(botright)
+			{
+			  units[i]->setx(units[i]->getx()-1);
+			}
+		      if(topleft)
+			{
+			  units[i]->sety(units[i]->gety()+1);
+			}
+		      if(!botright && !topleft)
+			{
+			  units[i]->setx(units[i]->getx()-1);
+			  units[i]->sety(units[i]->gety()+1);
+			}
 		    }
-		  if(topleft)
+		  else if(topleft)
 		    {
-		      units[i]->sety(units[i]->gety()+1);
+		      if(botleft)
+			{
+			  units[i]->setx(units[i]->getx()+1); 
+			}
+		      else
+			{
+			  units[i]->setx(units[i]->getx()+1);
+			  units[i]->sety(units[i]->gety()+1);
+			}
 		    }
-		  if(!botright && !topleft)
+		  else if(botright)
 		    {
-		      units[i]->setx(units[i]->getx()-1);
-		      units[i]->sety(units[i]->gety()+1);
-		    }
-		}
-	      else if(topleft)
-		{
-		  if(botleft)
-		    {
-		      units[i]->setx(units[i]->getx()+1); 
+		      if(botleft)
+			{
+			  units[i]->sety(units[i]->gety()-1);
+			}
+		      else
+			{
+			  units[i]->sety(units[i]->gety()-1);
+			  units[i]->setx(units[i]->getx()-1);
+			}
 		    }
 		  else
 		    {
+		      units[i]->sety(units[i]->gety()-1);
 		      units[i]->setx(units[i]->getx()+1);
-		      units[i]->sety(units[i]->gety()+1);
-		    }
-		}
-	      else if(botright)
-		{
-		  if(botleft)
-		    {
-		      units[i]->sety(units[i]->gety()-1);
-		    }
-		  else
-		    {
-		      units[i]->sety(units[i]->gety()-1);
-		      units[i]->setx(units[i]->getx()-1);
 		    }
 		}
 	      else
-		{
-		  units[i]->sety(units[i]->gety()-1);
-		  units[i]->setx(units[i]->getx()+1);
-		}
+		break;
 	    }
-	  else
-	    break;
-	}
-	}
-      
+	}      
     }
 }
 
