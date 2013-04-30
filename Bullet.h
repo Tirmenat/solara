@@ -27,12 +27,14 @@ Hero header file */
 class Bullet: public Unit{
  public:
   Bullet();
-  Bullet(Unit*,int,int,int,int);
+  Bullet(Unit*,int,int,int,int,bool);
   virtual void draw(SDL_Surface*,int,int);
   int getColor();
   virtual bool isBullet();
   virtual void collide(Unit*);
+  virtual bool isFromHero();
  private:
+  bool fromHero;
   int direction;
   int red;
   int green;

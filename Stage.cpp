@@ -301,7 +301,8 @@ void Stage::adjustUnits(int* numbullets)
 	{
 	  if(!isInBounds(units[i]->getx(), units[i]->gety()))
 	    {
-	      *numbullets = *numbullets-1;
+	      if(units[i]->isFromHero())
+		*numbullets = *numbullets-1;
 	      removeUnit(units[i]);
 	      continue;
 	    }
@@ -314,13 +315,9 @@ void Stage::adjustUnits(int* numbullets)
 	  //if bottom left is in bounds
 	  //if bottom right is in bounds
 	  
-	  //while(!isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()+SPRLENGTH) || !isInBounds(units[i]->getx(),units[i]->gety()+SPRLENGTH) || !isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()) || !isInBounds(units[i]->getx(),units[i]->gety()))
 	  for(int j =0; j<sqrt(((units[i]->getx()*units[i]->getx())+(units[i]->gety()*units[i]->gety())));j++)
 	    {
-	      //	      units[i]->setx(units[i]->getx()+botleft*.5+topleft*.5-botright*.5-topright*(units[i]->getvx()/(sqrt(units[i]->getvx()*units[i]->getvx() + units[i]->getvy() * units[i]->getvy()))));
-	      //units[i]->sety(units[i]->gety()+botleft*.5+topleft*.5-botright*.5-topright*(units[i]->getvy()/(sqrt(units[i]->getvx()*units[i]->getvx() + units[i]->getvy() * units[i]->getvy()))));
-	      //	       units[i]->setx(units[i]->getx()-botleft*.5+topleft*.5-botright*.5+topright*.5);
-	      //  units[i]->sety(units[i]->gety()-botleft*.5+topleft*.5-botright*.5+topright*.5);
+	     
 	      if(isInBounds(units[i]->getx(),units[i]->gety()))
 		topleft = 0;
 	      if(isInBounds(units[i]->getx()+SPRWIDTH,units[i]->gety()))

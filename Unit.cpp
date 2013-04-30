@@ -340,3 +340,8 @@ bool Unit::isBullet()
 {
   return 0;
 }
+
+bool Unit::isFromHero()
+{
+  return 0;
+}

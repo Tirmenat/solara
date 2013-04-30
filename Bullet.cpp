@@ -21,7 +21,7 @@ Bullet::Bullet()
   set_clips();
 }
 
-Bullet::Bullet(Unit* shooter, int direction, int r, int g, int b)
+Bullet::Bullet(Unit* shooter, int direction, int r, int g, int b, bool hero)
 {
   switch(direction)
     {
@@ -50,6 +50,7 @@ Bullet::Bullet(Unit* shooter, int direction, int r, int g, int b)
       setvy(shooter->getvy());
       break;
     }
+  fromHero = hero;
   setax(0);
   setay(0);
   setmaxv(BULLETV);
@@ -159,4 +160,9 @@ void Bullet::apply_surface( int x, int y, SDL_Surface* source, SDL_Surface* dest
 
   //Blit
   SDL_BlitSurface( source, clip , destination, &offset );
+}
+
+bool Bullet::isFromHero()
+{
+  return fromHero;
 }

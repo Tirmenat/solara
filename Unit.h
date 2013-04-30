@@ -46,6 +46,7 @@ class Unit{
   virtual bool isEqualTo(Unit*);
   virtual void collide(Unit*) = 0;
   virtual bool isBullet();
+  virtual bool isFromHero();
   void clean_up();
   double getmaxv();
   void setmaxv(double);

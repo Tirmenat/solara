@@ -179,21 +179,21 @@ int main(void)
 		case SDLK_UP:
 		  if(curr_bullets<NUM_BULLETS)
 		    {
-		      stage_test.addUnit(new Bullet(&hero_test,0,1,0,0));
+		      stage_test.addUnit(new Bullet(&hero_test,0,1,0,0,true));
 		      curr_bullets++;
 		    }
 		  break;
 		case SDLK_DOWN:		  
 		  if(curr_bullets<NUM_BULLETS)
 		    {
-		      stage_test.addUnit(new Bullet(&hero_test,1,0,1,0));
+		      stage_test.addUnit(new Bullet(&hero_test,1,0,1,0,true));
 		      curr_bullets++;
 		    }
 		  break;
 		case SDLK_LEFT:
 		  if(curr_bullets<NUM_BULLETS)
 		    {
-		      stage_test.addUnit(new Bullet(&hero_test,2,0,0,1));
+		      stage_test.addUnit(new Bullet(&hero_test,2,0,0,1,true));
 		      curr_bullets++;
 		    }
 		  //		  sounds.play_effect("gun");
@@ -201,7 +201,7 @@ int main(void)
 		case SDLK_RIGHT:
 		  if(curr_bullets<NUM_BULLETS)
 		    {
-		      stage_test.addUnit(new Bullet(&hero_test,3,1,1,1));
+		      stage_test.addUnit(new Bullet(&hero_test,3,1,1,1,true));
 		      curr_bullets++;
 		    }
 		  break;
