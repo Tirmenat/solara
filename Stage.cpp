@@ -131,6 +131,9 @@ bool Stage::load_files()
   background = load_image( "terrain.png");
   title = load_image( "solaratitle.png" );
   slide1 = load_image( "Slide_1.png" );
+  slide2 = load_image( "Slide_2.png" );
+  slide3 = load_image( "Slide3.png" ); 
+  slide4 = load_image( "Slide4.png" );
 
   if( title == NULL )
     {
@@ -272,6 +275,9 @@ void Stage::drawTitle(string pic)
 {
   if(pic == "title") apply_surface(0,0,title,screen);
   if(pic == "slide1") apply_surface(0,0,slide1,screen);
+  if(pic == "slide2") apply_surface(0,0,slide2,screen);
+  if(pic == "slide3") apply_surface(0,0,slide3,screen);
+  if(pic == "slide4") apply_surface(0,0,slide4,screen);
 
   if( SDL_Flip( screen ) == -1 )
     {

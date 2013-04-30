@@ -26,7 +26,7 @@ void Burster::chase(double herox, double heroy)
   if(moving == 1){
     holdx=herox;
     holdy=heroy;
-    BursterSounds.play_effect("croak");
+    //BursterSounds.play_effect("croak");
   }
   angle = atan ((holdy-y)/(holdx-x));
   if(moving>=0 && moving<60){

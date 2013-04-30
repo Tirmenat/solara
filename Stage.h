@@ -42,6 +42,9 @@ class Stage{
   SDL_Surface *background;
   SDL_Surface *title;
   SDL_Surface *slide1;
+  SDL_Surface *slide2;
+  SDL_Surface *slide3;
+  SDL_Surface *slide4;
   SDL_Surface *screen;
   int size_x;
   int size_y;

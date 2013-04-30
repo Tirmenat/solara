@@ -150,6 +150,78 @@ int main(void)
 		break;
 	      case SDLK_SPACE:
 		next=2;
+		stage_test.clear_screen();
+	      }
+	  }
+      }
+
+  }
+
+  while( quit == false && next==2 ){
+    stage_test.drawTitle("slide2");
+    if( SDL_PollEvent( &event ) )
+      {
+	if( event.type == SDL_QUIT )
+	  {
+	    quit == true;
+	  }
+	if( event.type == SDL_KEYDOWN )
+	  {
+	    switch (event.key.keysym.sym)
+	      {
+	      case SDLK_q:
+		quit=true;
+		break;
+	      case SDLK_SPACE:
+		next=3;
+		stage_test.clear_screen();
+	      }
+	  }
+      }
+
+  }
+
+  while( quit ==false && next == 3){
+    stage_test.drawTitle("slide3");
+    if( SDL_PollEvent( &event ) )
+      {
+	if( event.type == SDL_QUIT )
+	  {
+	    quit == true;
+	  }
+	if( event.type == SDL_KEYDOWN )
+	  {
+	    switch (event.key.keysym.sym)
+	      {
+	      case SDLK_q:
+		quit=true;
+		break;
+	      case SDLK_SPACE:
+		next=4;
+		stage_test.clear_screen();
+	      }
+	  }
+      }
+
+  }
+
+  while( quit ==false && next == 4){
+    stage_test.drawTitle("slide4");
+    if( SDL_PollEvent( &event ) )
+      {
+	if( event.type == SDL_QUIT )
+	  {
+	    quit == true;
+	  }
+	if( event.type == SDL_KEYDOWN )
+	  {
+	    switch (event.key.keysym.sym)
+	      {
+	      case SDLK_q:
+		quit=true;
+		break;
+	      case SDLK_SPACE:
+		next=5;
 		sounds.change_music("music2");
 		sounds.play_music();
 		stage_test.clear_screen();
@@ -159,7 +231,7 @@ int main(void)
 
   }
 
-  while( quit == false && next == 2)
+  while( quit == false && next == 5)
     {
       start = clock();
       //      int time = time();
@@ -198,7 +270,6 @@ int main(void)
 		      stage_test.addUnit(new Bullet(&hero_test,M_PI,1,0,1,true));
 		      curr_bullets++;
 		    }
-		  //		  sounds.play_effect("gun");
 		  break;
 		case SDLK_RIGHT:
 		  if(curr_bullets<NUM_BULLETS)
