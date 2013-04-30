@@ -52,10 +52,10 @@ int main(void)
   //stage_test.addArea(50,50,400,400,6);
 
   // x1, y1, x2, y2, max v, sprite location 
-  Patroller patrol_test(100,100,200,200,4*BASE_VELOCITY/5,20);
+  Patroller patrol_test(100,100,100,200,4*BASE_VELOCITY/5,20);
   Tank tank_test(50,200,3*BASE_VELOCITY/10,13);
   Burster burster_test(200,50,BASE_VELOCITY,17);
-  Mike mike_test(50,50,200,55,BASE_VELOCITY,7,&stage_test);
+  Mike mike_test(50,50,200,50,BASE_VELOCITY,7,&stage_test);
   int curr_bullets = 0;
   
   stage_test.addUnit(&mike_test);
@@ -181,21 +181,21 @@ int main(void)
 		case SDLK_UP:
 		  if(curr_bullets<NUM_BULLETS)
 		    {
-		      stage_test.addUnit(new Bullet(&hero_test,M_PI/2,1,0,0,true));
+		      stage_test.addUnit(new Bullet(&hero_test,M_PI/2,1,1,0,true));
 		      curr_bullets++;
 		    }
 		  break;
 		case SDLK_DOWN:		  
 		  if(curr_bullets<NUM_BULLETS)
 		    {
-		      stage_test.addUnit(new Bullet(&hero_test,3*M_PI/2,0,1,0,true));
+		      stage_test.addUnit(new Bullet(&hero_test,3*M_PI/2,0,1,1,true));
 		      curr_bullets++;
 		    }
 		  break;
 		case SDLK_LEFT:
 		  if(curr_bullets<NUM_BULLETS)
 		    {
-		      stage_test.addUnit(new Bullet(&hero_test,M_PI,0,0,1,true));
+		      stage_test.addUnit(new Bullet(&hero_test,M_PI,1,0,1,true));
 		      curr_bullets++;
 		    }
 		  //		  sounds.play_effect("gun");
@@ -203,7 +203,7 @@ int main(void)
 		case SDLK_RIGHT:
 		  if(curr_bullets<NUM_BULLETS)
 		    {
-		      stage_test.addUnit(new Bullet(&hero_test,0,1,1,1,true));
+		      stage_test.addUnit(new Bullet(&hero_test,0,0,0,0,true));
 		      curr_bullets++;
 		    }
 		  break;
