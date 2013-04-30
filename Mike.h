@@ -13,10 +13,11 @@ Mike header file */
 #include <iostream>
 #include <iomanip>
 #include "Enemy.h"
+#include "Stage.h"
 
 class Mike: public Enemy{
  public:
-  Mike(double,double,double,double,double,int);
+  Mike(double,double,double,double,double,int,Stage*);
   void patrol();
  private:
   double xp1;
@@ -26,6 +27,7 @@ class Mike: public Enemy{
   int state;
   int statePrev;
   int count;
+  Stage* stage;
 };
 
 #endif
