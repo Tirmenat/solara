@@ -76,7 +76,7 @@ void Mike::patrol(){
   }
   else if(state==2){
     if (count==1){
-      stage->addUnit(new Bullet(this,1,0,0,0));
+      stage->addUnit(new Bullet(this,1.0,0,0,0,false));
     }
     count++;
     vx=0;

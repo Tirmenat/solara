@@ -27,7 +27,7 @@ Hero header file */
 class Bullet: public Unit{
  public:
   Bullet();
-  Bullet(Unit*,int,int,int,int,bool);
+  Bullet(Unit*,double,int,int,int,bool);
   virtual void draw(SDL_Surface*,int,int);
   int getColor();
   virtual bool isBullet();

@@ -36,7 +36,12 @@ void Stage::perform(double dt, Unit* hero)
 {
 
   for(int i = 0; i < units.size(); i++)
-    units[i]->increment(dt);
+    {
+      //if health <= 0
+      // removeUnit(units[i])
+      // i--
+      units[i]->increment(dt);
+    }
   xoffset = -hero->getx() + SCREEN_WIDTH/2;
   yoffset = -hero->gety() + SCREEN_HEIGHT/2;
 }

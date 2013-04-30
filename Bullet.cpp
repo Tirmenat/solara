@@ -10,6 +10,7 @@ Hero header file */
 #include "Bullet.h"
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
+#include <cmath>
 
 Bullet::Bullet()
 {
@@ -21,10 +22,17 @@ Bullet::Bullet()
   set_clips();
 }
 
-Bullet::Bullet(Unit* shooter, int direction, int r, int g, int b, bool hero)
+Bullet::Bullet(Unit* shooter, double direction, int r, int g, int b, bool hero)
 {
-  switch(direction)
+  setx(shooter->getx()+SPRWIDTH/2-BULLETWIDTH/2);
+  sety(shooter->gety()+SPRLENGTH/2-BULLETLENGTH/2);
+  setvx(shooter->getvx()/2 + BULLETV*cos(direction));
+  setvy(shooter->getvy()/2 - BULLETV*sin(direction));
+  /*  switch(direction)
     {
+      
+
+      
     case UP:
       setx(shooter->getx()+SPRWIDTH/2-BULLETWIDTH/2);
       sety(shooter->gety()-BULLETLENGTH);
@@ -49,7 +57,8 @@ Bullet::Bullet(Unit* shooter, int direction, int r, int g, int b, bool hero)
       setvx(shooter->getvx() + BULLETV);
       setvy(shooter->getvy());
       break;
-    }
+      }*/
+  
   fromHero = hero;
   setax(0);
   setay(0);
