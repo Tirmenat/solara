@@ -30,34 +30,29 @@ Bullet::Bullet(Unit* shooter, int direction, int r, int g, int b)
       sety(shooter->gety()-BULLETLENGTH);
       setvx(shooter->getvx());
       setvy(shooter->getvy() - BULLETV);
-      setax(0);
-      setay(0);
       break;
     case DOWN:
       setx(shooter->getx()+SPRWIDTH-BULLETWIDTH/2);
       sety(shooter->gety()+SPRLENGTH);
       setvx(shooter->getvx());
       setvy(shooter->getvy() + BULLETV);
-      setax(0);
-      setay(0);
       break;
     case LEFT:
       setx(shooter->getx()-BULLETWIDTH);
       sety(shooter->gety()+SPRLENGTH/2-BULLETLENGTH/2);
       setvx(shooter->getvx() - BULLETV);
       setvy(shooter->getvy());
-      setax(0);
-      setay(0);
       break;
     case RIGHT:
       setx(shooter->getx()+SPRWIDTH);
       sety(shooter->gety()+SPRLENGTH/2-BULLETLENGTH/2);
       setvx(shooter->getvx() + BULLETV);
       setvy(shooter->getvy());
-      setax(0);
-      setay(0);
       break;
     }
+  setax(0);
+  setay(0);
+  setmaxv(BULLETV);
   red = r;
   green = g;
   blue = b;

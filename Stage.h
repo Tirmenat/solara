@@ -29,7 +29,7 @@ class Stage{
   void clean_up();
   void clear_screen();
   void drawTitle(string);
-  void adjustUnits(); //keeps units in bounds
+  void adjustUnits(int*); //keeps units in bounds
   int getoffsetx();
   int getoffsety();
  private:

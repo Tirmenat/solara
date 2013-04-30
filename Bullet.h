@@ -13,7 +13,7 @@ Hero header file */
 #define DOWN 1
 #define LEFT 2
 #define RIGHT 3
-#define BULLETV 600
+#define BULLETV 300
 #define BULLETLENGTH 9
 #define BULLETWIDTH 9
 #define BULLETNUM 8

@@ -244,7 +244,6 @@ int Stage::removeUnit(Unit* unit){
 	delete unit;
 	/*	delete spr;*/
 	units.erase(units.begin()+i);
-	cout << "unit removed" << endl;
 	return 1;
       }
     }
@@ -292,7 +291,7 @@ void Stage::clean_up()
   SDL_Quit();
 }
 
-void Stage::adjustUnits()
+void Stage::adjustUnits(int* numbullets)
 {
   bool topleft,topright,botleft,botright;
   
@@ -302,7 +301,7 @@ void Stage::adjustUnits()
 	{
 	  if(!isInBounds(units[i]->getx(), units[i]->gety()))
 	    {
-	      cout << "about to remove bullet at " << units[i]->getx() << ", " << units[i]->gety() << endl;
+	      *numbullets = *numbullets-1;
 	      removeUnit(units[i]);
 	      continue;
 	    }

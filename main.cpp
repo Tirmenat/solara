@@ -24,7 +24,7 @@
 
 using namespace std;
 
-void fire(Bullet** bullets, Stage* stage, Unit* hero, int dir, int color)
+/*void fire(Bullet** bullets, Stage* stage, Unit* hero, int dir, int color)
 {
   for(int i = 0; i<NUM_BULLETS; i++)
     {
@@ -39,7 +39,7 @@ void fire(Bullet** bullets, Stage* stage, Unit* hero, int dir, int color)
       
       
     }
-}
+}*/
 
 
 int main(void)
@@ -54,6 +54,7 @@ int main(void)
   Tank tank_test(50,200,3*BASE_VELOCITY/10,13);
   Burster burster_test(200,50,BASE_VELOCITY,17);
   Mike mike_test(50,50,200,55,BASE_VELOCITY,7);
+  int curr_bullets = 0;
   
   stage_test.addUnit(&mike_test);
   stage_test.addUnit(&burster_test);
@@ -176,23 +177,33 @@ int main(void)
 		  quit=true;
 		  break;
 		case SDLK_UP:
-		  stage_test.addUnit(new Bullet(&hero_test,0,1,0,0));
-		  //		  fire(bullets, &stage_test, &hero_test, 0, 1);
-		  //		  bullets = new Bullet(&hero_test, 0,1,0,0);
-		  //		  stage_test.addUnit(bullets);
-	      
-	      //		  stage_test.addUnit(new Bullet(&hero_test,0,1,0,0));
-		  //		  cout << "shots fired" <<endl;
+		  if(curr_bullets<NUM_BULLETS)
+		    {
+		      stage_test.addUnit(new Bullet(&hero_test,0,1,0,0));
+		      curr_bullets++;
+		    }
 		  break;
 		case SDLK_DOWN:		  
-		  stage_test.addUnit(new Bullet(&hero_test,1,0,1,0));
+		  if(curr_bullets<NUM_BULLETS)
+		    {
+		      stage_test.addUnit(new Bullet(&hero_test,1,0,1,0));
+		      curr_bullets++;
+		    }
 		  break;
 		case SDLK_LEFT:
-		  stage_test.addUnit(new Bullet(&hero_test,2,0,0,1));
+		  if(curr_bullets<NUM_BULLETS)
+		    {
+		      stage_test.addUnit(new Bullet(&hero_test,2,0,0,1));
+		      curr_bullets++;
+		    }
 		  //		  sounds.play_effect("gun");
 		  break;
 		case SDLK_RIGHT:
-		  stage_test.addUnit(new Bullet(&hero_test,3,1,1,1));
+		  if(curr_bullets<NUM_BULLETS)
+		    {
+		      stage_test.addUnit(new Bullet(&hero_test,3,1,1,1));
+		      curr_bullets++;
+		    }
 		  break;
 		case SDLK_KP0:
 		  sounds.play_effect("croak");
@@ -228,7 +239,7 @@ int main(void)
       //patrol_test2.chase(hero_test.getx(),hero_test.gety());
       hero_test.processEvent(dt);
       stage_test.perform(dt, &hero_test);
-      stage_test.adjustUnits();
+      stage_test.adjustUnits(&curr_bullets);
       stage_test.draw();
       duration = (clock() - start)/((double)CLOCKS_PER_SEC);
      
