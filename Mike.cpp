@@ -30,15 +30,15 @@ void Mike::patrol(){
 
   if(sqrt((xp1-x)*(xp1-x)+(yp1-y)*(yp1-y))>2 && state==1){
     angle = atan ((yp1-y)/(xp1-x));
-    if (x>xp1 && y>yp1){
+    if (x>=xp1 && y>=yp1){
       vy = -v * sin(angle);
       vx = -v * cos(angle);
     }
-    else if(x>xp1 && y<yp1){
+    else if(x>=xp1 && y<=yp1){
       vx = -v*cos(angle);
       vy = -v *sin(angle);
     }
-    else if (x<xp1 && y>yp1){
+    else if (x<=xp1 && y>=yp1){
       vx = v*cos(angle);
       vy = v*sin(angle);
     }
@@ -53,15 +53,15 @@ void Mike::patrol(){
   }
   else if(sqrt((xp2-x)*(xp2-x)+(yp2-y)*(yp2-y))>2 && state==0){
     angle = atan ((yp2-y)/(xp2-x));
-    if (x>xp2 && y>yp2){
+    if (x>=xp2 && y>=yp2){
       vy = -v * sin(angle);
       vx = -v * cos(angle);
     }
-    else if(x>xp2 && y<yp2){
+    else if(x>=xp2 && y<=yp2){
       vx = -v*cos(angle);
       vy = -v *sin(angle);
     }
-    else if (x<xp2 && y>yp2){
+    else if (x<=xp2 && y>=yp2){
       vx = v*cos(angle);
       vy = v*sin(angle);
     }
