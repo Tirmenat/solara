@@ -75,8 +75,21 @@ void Mike::patrol(){
     }
   }
   else if(state==2){
-    if (count==1){
+    if (count==5){
+      stage->addUnit(new Bullet(this,5*M_PI/4,0,0,0,false));
+    }
+    else if(count==10){
+      stage->addUnit(new Bullet(this,22*M_PI/16,0,0,0,false));
+    }
+
+    else if(count==15){
       stage->addUnit(new Bullet(this,3*M_PI/2,0,0,0,false));
+    }
+    else if (count==20){
+      stage->addUnit(new Bullet(this,26*M_PI/16,0,0,0,false));
+    }
+    else if(count==25){
+      stage->addUnit(new Bullet(this,7*M_PI/4,0,0,0,false));
     }
     count++;
     vx=0;
