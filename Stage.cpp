@@ -134,6 +134,7 @@ bool Stage::load_files()
   slide2 = load_image( "Slide_2.png" );
   slide3 = load_image( "Slide3.png" ); 
   slide4 = load_image( "Slide4.png" );
+  slide5 = load_image( "Slide5.png" );
 
   if( title == NULL )
     {
@@ -278,6 +279,7 @@ void Stage::drawTitle(string pic)
   if(pic == "slide2") apply_surface(0,0,slide2,screen);
   if(pic == "slide3") apply_surface(0,0,slide3,screen);
   if(pic == "slide4") apply_surface(0,0,slide4,screen);
+  if(pic == "slide5") apply_surface(0,0,slide5,screen);
 
   if( SDL_Flip( screen ) == -1 )
     {

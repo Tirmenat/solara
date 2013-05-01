@@ -70,6 +70,10 @@ int main(void)
   sounds.load_music("music1");
   sounds.play_music();
 
+  int already_west=0;
+  int already_south=0;
+  int already_east=0;
+
   //Bullet* bullets[NUM_BULLETS] = {NULL};
   //Patroller patrol_test2(250,250,100,100,100,5);
   //stage_test.addUnit(&patrol_test2);
@@ -222,8 +226,6 @@ int main(void)
 		break;
 	      case SDLK_SPACE:
 		next=5;
-		sounds.change_music("music2");
-		sounds.play_music();
 		stage_test.clear_screen();
 	      }
 	  }
@@ -231,7 +233,51 @@ int main(void)
 
   }
 
-  while( quit == false && next == 5)
+  while( quit ==false && next == 5){
+    stage_test.drawTitle("slide5");
+    if( SDL_PollEvent( &event ) )
+      {
+	if( event.type == SDL_QUIT )
+	  {
+	    quit == true;
+	  }
+	if( event.type == SDL_KEYDOWN )
+	  {
+	    switch (event.key.keysym.sym)
+	      {
+	      case SDLK_q:
+		quit=true;
+		break;
+	      case SDLK_1:
+		next=6;
+		if(already_west==1) next=5;
+		sounds.change_music("music2");
+		sounds.play_music();
+		stage_test.clear_screen();
+		break;
+	      case SDLK_2:
+		next=7;
+		if(already_south==1) next=5;
+		sounds.change_music("music3");
+		sounds.play_music();
+		stage_test.clear_screen();
+		break;
+	      case SDLK_3:
+		next=8;
+		if(already_east==1) next=5;
+		sounds.change_music("music4");
+		sounds.play_music();
+		stage_test.clear_screen();
+		break;
+	      }
+	  }
+      }
+  }
+
+
+
+  //WEST ISLAND
+  while( quit == false && next == 6)
     {
       start = clock();
       //      int time = time();
@@ -278,33 +324,10 @@ int main(void)
 		      curr_bullets++;
 		    }
 		  break;
-		case SDLK_KP0:
-		  sounds.play_effect("croak");
-		  break;
-		case SDLK_KP1:
-		  sounds.play_effect("lasergun");
-		  break;
-		case SDLK_KP2:
-		  sounds.play_effect("woah");
-		  break;
-		case SDLK_KP3:
-		  sounds.play_effect("playerdeath");
-		  break;
-		case SDLK_KP4:
-		  sounds.play_effect("enemydeath");
-		  break;
-		case SDLK_KP5:
-		  sounds.play_effect("ouch");
-		  break;
-		case SDLK_KP6:
-		  sounds.play_effect("boop");
-		  break;
-		case SDLK_KP7:
-		  sounds.play_effect("evillaugh");
-		  break;
 		}
 	    }
 	}
+
       mike_test.patrol();
       burster_test.chase(hero_test.getx(),hero_test.gety());
       tank_test.chase(hero_test.getx(),hero_test.gety());
@@ -320,7 +343,151 @@ int main(void)
 	duration=.016;
       }
       usleep((.017-duration)*1000000);
+  
     }
+
+
+      //SOUTH ISLAND
+  while( quit == false && next == 7)
+    {
+      start = clock();
+      //      int time = time();
+      //If there's an event
+      if( SDL_PollEvent( &event ) )
+	{
+	  //If user X's out of windows
+	  if( event.type == SDL_QUIT )
+	    {
+	      quit = true;
+	    }
+	  if( event.type == SDL_KEYDOWN )
+	    {
+	      switch (event.key.keysym.sym)
+		{
+		case SDLK_q:
+		  quit=true;
+		  break;
+		case SDLK_UP:
+		  if(curr_bullets<NUM_BULLETS)
+		    {
+		      stage_test.addUnit(new Bullet(&hero_test,M_PI/2,1,1,0,true));
+		      curr_bullets++;
+		    }
+		  break;
+		case SDLK_DOWN:		  
+		  if(curr_bullets<NUM_BULLETS)
+		    {
+		      stage_test.addUnit(new Bullet(&hero_test,3*M_PI/2,0,1,1,true));
+		      curr_bullets++;
+		    }
+		  break;
+		case SDLK_LEFT:
+		  if(curr_bullets<NUM_BULLETS)
+		    {
+		      stage_test.addUnit(new Bullet(&hero_test,M_PI,1,0,1,true));
+		      curr_bullets++;
+		    }
+		  break;
+		case SDLK_RIGHT:
+		  if(curr_bullets<NUM_BULLETS)
+		    {
+		      stage_test.addUnit(new Bullet(&hero_test,0,0,0,0,true));
+		      curr_bullets++;
+		    }
+		  break;
+		}
+	    }
+	}
+
+      mike_test.patrol();
+      burster_test.chase(hero_test.getx(),hero_test.gety());
+      tank_test.chase(hero_test.getx(),hero_test.gety());
+      patrol_test.chase(hero_test.getx(),hero_test.gety());
+      //patrol_test2.chase(hero_test.getx(),hero_test.gety());
+      hero_test.processEvent(dt);
+      stage_test.perform(dt, &hero_test);
+      stage_test.adjustUnits(&curr_bullets);
+      stage_test.draw();
+      duration = (clock() - start)/((double)CLOCKS_PER_SEC);
+      
+      if (duration>.016){
+	duration=.016;
+      }
+      usleep((.017-duration)*1000000);
+    }
+
+
+
+  //EAST ISLAND
+  while( quit == false && next == 8)
+    {
+      start = clock();
+      //      int time = time();
+      //If there's an event
+      if( SDL_PollEvent( &event ) )
+	{
+	  //If user X's out of windows
+	  if( event.type == SDL_QUIT )
+	    {
+	      quit = true;
+	    }
+	  if( event.type == SDL_KEYDOWN )
+	    {
+	      switch (event.key.keysym.sym)
+		{
+		case SDLK_q:
+		  quit=true;
+		  break;
+		case SDLK_UP:
+		  if(curr_bullets<NUM_BULLETS)
+		    {
+		      stage_test.addUnit(new Bullet(&hero_test,M_PI/2,1,1,0,true));
+		      curr_bullets++;
+		    }
+		  break;
+		case SDLK_DOWN:		  
+		  if(curr_bullets<NUM_BULLETS)
+		    {
+		      stage_test.addUnit(new Bullet(&hero_test,3*M_PI/2,0,1,1,true));
+		      curr_bullets++;
+		    }
+		  break;
+		case SDLK_LEFT:
+		  if(curr_bullets<NUM_BULLETS)
+		    {
+		      stage_test.addUnit(new Bullet(&hero_test,M_PI,1,0,1,true));
+		      curr_bullets++;
+		    }
+		  break;
+		case SDLK_RIGHT:
+		  if(curr_bullets<NUM_BULLETS)
+		    {
+		      stage_test.addUnit(new Bullet(&hero_test,0,0,0,0,true));
+		      curr_bullets++;
+		    }
+		  break;
+		}
+	    }
+	}
+
+      mike_test.patrol();
+      burster_test.chase(hero_test.getx(),hero_test.gety());
+      tank_test.chase(hero_test.getx(),hero_test.gety());
+      patrol_test.chase(hero_test.getx(),hero_test.gety());
+      //patrol_test2.chase(hero_test.getx(),hero_test.gety());
+      hero_test.processEvent(dt);
+      stage_test.perform(dt, &hero_test);
+      stage_test.adjustUnits(&curr_bullets);
+      stage_test.draw();
+      duration = (clock() - start)/((double)CLOCKS_PER_SEC);
+      
+      if (duration>.016){
+	duration=.016;
+      }
+      usleep((.017-duration)*1000000);
+    }
+
+
   sounds.stop_music();
   sounds.clean_up_sound();
   stage_test.clean_up();

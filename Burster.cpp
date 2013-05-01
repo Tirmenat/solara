@@ -13,7 +13,6 @@ Burster::Burster(double X, double Y, double maxv, int loc):Enemy(X,Y,maxv,loc)
 void Burster::chase(double herox, double heroy)
 {
 
-  Sound BursterSounds;
   double angle;
   double v;
   double vx, vy;
@@ -26,7 +25,6 @@ void Burster::chase(double herox, double heroy)
   if(moving == 1){
     holdx=herox;
     holdy=heroy;
-    //BursterSounds.play_effect("croak");
   }
   angle = atan ((holdy-y)/(holdx-x));
   if(moving>=0 && moving<60){

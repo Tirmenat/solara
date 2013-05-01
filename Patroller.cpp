@@ -77,7 +77,6 @@ void Patroller::patrol(){
 
 void Patroller::chase(double herox, double heroy)
 {
-  Sound PatrollerSounds;
   double angle;
   double v;
   double vx, vy;
