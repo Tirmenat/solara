@@ -17,7 +17,7 @@ Patroller header file */
 
 class Patroller: public Enemy{
  public:
-  Patroller(double,double,double,double,double,int,int,Hero*);
+  Patroller(double,double,double,double,double,int,Hero*);
   virtual void chase(double,double);
   void patrol();
  private:
