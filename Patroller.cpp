@@ -41,6 +41,15 @@ void Patroller::patrol(){
       vx = v*cos(angle);
       vy = v*sin(angle);
     }
+    else if (x<xp1 && angle==0){
+      vx=v;
+      vy=0;
+
+    }
+    else if(x>xp1 && angle==0){
+      vx = -v;
+      vy=0;
+    }
     else{
       vx = v*cos(angle);
       vy = v*sin(angle);
@@ -64,7 +73,16 @@ void Patroller::patrol(){
       vx = v*cos(angle);
       vy = v*sin(angle);
     }
-    else{
+    else if (x<xp2 && angle==0){
+      vx=v;
+      vy=0;
+      
+    }
+    else if(x>xp2 && angle==0){
+      vx = -v;
+      vy=0;
+    }
+    else {
       vx = v*cos(angle);
       vy = v*sin(angle);
     }
