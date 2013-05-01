@@ -266,6 +266,17 @@ int main(void)
 	break;
 
       case 7:
+	hero = new Hero(250,750,200,0,0,0,100);
+	island[1].addUnit(new Patroller(100,100,100,200,4*BASE_VELOCITY/5, 20,15,hero));
+	island[1].addArea(0,0,1000,1000,2);
+	island[1].addArea(1000, 0, 2000, 150,3);
+	island[1].addArea(2750, -500, 100, 500,1);
+	island[1].addArea(2400, -1500, 800, 1000, 4);
+	island[1].addUnit(hero);
+
+
+
+				      
 	p2s=1;
 	currentstage=1;
 	break;
@@ -310,7 +321,7 @@ int main(void)
 			    sounds.play_effect("gun");
 			  }
 			break;
-		      case SDLK_DOWN:
+		      case SDLK_DOWN:		  
 			if(island[currentstage].canFire())
 			  {
 			    island[currentstage].addUnit(new Bullet(hero,3*M_PI/2,0,1,1,true));

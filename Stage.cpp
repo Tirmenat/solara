@@ -62,6 +62,7 @@ void Stage::perform(double dt, Unit* hero)
       //checkCollisions(units[i],dt);
       units[i]->increment(dt);
     }
+  adjustUnits();
   xoffset = -hero->getx() + SCREEN_WIDTH/2;
   yoffset = -hero->gety() + SCREEN_HEIGHT/2;
 }
@@ -252,7 +253,7 @@ void Stage::draw(){
     //if(isInBounds(units[i]->getx()/*minus size?*/, units[i]->gety()))
     {
       units[i]->draw(screen,xoffset,yoffset);
-      cout << "drawing unit at " << units[i]->getx() << ", " << units[i]->gety() << endl;
+      //      cout << "drawing unit at " << units[i]->getx() << ", " << units[i]->gety() << endl;
     }
 
   SDL_Flip(screen);
@@ -273,7 +274,7 @@ int Stage::addArea(int x, int y, int w, int h, int loc) //adds an area and check
 }
 
 void Stage::addUnit(Unit* spr){
-  if(spr->isBullet() && spr->isFromHero())
+  if(spr->isBullet() && spr->isFromHero() && canFire())
     {
       currBullets++;
     }
@@ -345,22 +346,20 @@ void Stage::clean_up()
   SDL_Quit();
 }
 
-void Stage::adjustUnits(int* numbullets)
+void Stage::adjustUnits()
 {
   bool topleft,topright,botleft,botright;
   
   for(int i = 0; i<units.size(); i++)
     {
-      cout << "Needing to adjust unit" << endl;
+      //      cout << "Needing to adjust unit" << endl;
       if(units[i]->isBullet())
 	{
 	  if(!isInBounds(units[i]->getx(), units[i]->gety()))
 	    {
-	      if(units[i]->isFromHero())
-		{
-		  *numbullets = *numbullets-1;
+
+		  
 		  //		  cout << "subtracting from hero's current bullets" << endl;
-		}
 	      units[i]->setHealth(0);
 	      continue;
 	    }
