@@ -54,13 +54,23 @@ void Stage::perform(double dt, Unit* hero)
 
   for(int i = 0; i < units.size(); i++)
     {
+      if(!isOffScreen(units[i]))
+	{
+	  units[i]->increment(dt);
+	}
+      else
+	{
+	  if(units[i]->isBullet())
+	    {
+	      units[i]->setHealth(0);
+	    }
+	}
       if (units[i]->getHealth() <= 0)
 	{
 	  removeUnit(units[i]);
 	  i--;
 	}
       checkCollisions(units[i]);
-      units[i]->increment(dt);
     }
   adjustUnits();
   xoffset = -hero->getx() + SCREEN_WIDTH/2;
@@ -452,4 +462,17 @@ void Stage::adjustUnits()
 bool Stage::canFire()
 {
   return (currBullets<maxBullets);
+}
+
+bool Stage::isOffScreen(Unit* unit)
+{
+  if(unit->getx() < -xoffset-50)
+    return true;
+  if(unit->getx() > -xoffset+SCREEN_WIDTH+50)
+    return true;
+  if(unit->gety() < -yoffset-50)
+    return true;
+  if(unit->gety() > -yoffset+SCREEN_HEIGHT+50)
+    return true;
+  return false;
 }
