@@ -23,6 +23,10 @@ void Burster::chase(double herox, double heroy)
   y=gety();
   v=getmaxv();
   //angle = atan ((heroy-y)/(herox-x));
+
+  // moving value goes between 1 and 120
+  // state 1 is moving
+  // state 2 is holding
   if(moving == 1){
     holdx=herox;
     holdy=heroy;

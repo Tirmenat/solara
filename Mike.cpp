@@ -27,7 +27,7 @@ void Mike::patrol(){
   y=gety();
   v=getmaxv();
 
-
+  //patrols to point 1
   if(sqrt((xp1-x)*(xp1-x)+(yp1-y)*(yp1-y))>2 && state==1){
     angle = atan ((yp1-y)/(xp1-x));
     if (x>=xp1 && y>=yp1){
@@ -51,6 +51,7 @@ void Mike::patrol(){
       state = 2;
     }
   }
+  //patrols to point 2
   else if(sqrt((xp2-x)*(xp2-x)+(yp2-y)*(yp2-y))>2 && state==0){
     angle = atan ((yp2-y)/(xp2-x));
     if (x>=xp2 && y>=yp2){
@@ -74,6 +75,8 @@ void Mike::patrol(){
       state = 2;
     }
   }
+  // shooting state
+  // 5 bullets in a 90 degree arc
   else if(state==2){
     if (count==5){
       stage->addUnit(new Bullet(this,5*M_PI/4,0,0,0,false));
