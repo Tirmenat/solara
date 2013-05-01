@@ -21,6 +21,7 @@ class Burster: public Enemy{
   virtual void chase (double,double);
   string sound(int);
  private:
+  int state;
   int moving;
   double holdx;
   double holdy;

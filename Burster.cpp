@@ -9,6 +9,7 @@ using namespace std;
 Burster::Burster(double X, double Y, double maxv, int loc, int h, Hero* hero):Enemy(X,Y,maxv,loc,h,hero)
 {
   moving = 1;
+  state=1;
 }
 
 void Burster::chase(double herox, double heroy)
@@ -28,7 +29,7 @@ void Burster::chase(double herox, double heroy)
     holdy=heroy;
   }
   angle = atan ((holdy-y)/(holdx-x));
-  if(moving>=0 && moving<60){
+  if(state==1){
     if (x>holdx && y>holdy){
       vy = -v * sin(angle);
       vx = -v * cos(angle);
@@ -54,15 +55,20 @@ void Burster::chase(double herox, double heroy)
       vy = v * sin(angle);
     }
   }
-  else if (moving>=60 && moving < 120){
+  else if (state==2){
     vx=0;
     vy=0;
   }
-  else if (moving>=120){
+  if (moving==60){
+    state=2;
+  }
+  else if(moving==120){
     moving=0;
+    state=1;
   }
   if(sqrt((x-holdx)*(x-holdx)+(y-holdy)*(y-holdy)) <= 2) {
-    moving=60;
+    moving=61;
+    state=2;
     holdx=herox;
     holdy=heroy;
   }
