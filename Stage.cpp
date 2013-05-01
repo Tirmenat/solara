@@ -130,11 +130,11 @@ bool Stage::load_files()
   //Load the surfaces
   background = load_image( "terrain.png");
   title = load_image( "solaratitle.png" );
-  slide1 = load_image( "Slide_1.png" );
-  slide2 = load_image( "Slide_2.png" );
-  slide3 = load_image( "Slide3.png" ); 
-  slide4 = load_image( "Slide4.png" );
-  slide5 = load_image( "Slide5.png" );
+  slide1 = load_image( "images/Slide1.png" );
+  slide2 = load_image( "images/Slide2.png" );
+  slide3 = load_image( "images/Slide3.png" ); 
+  slide4 = load_image( "images/Slide4.png" );
+  slide5 = load_image( "images/Slide5.png" );
 
   if( title == NULL )
     {
