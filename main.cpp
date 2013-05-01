@@ -15,6 +15,7 @@
 #include "Mike.h"
 #include "Tank.h"
 #include "Bullet.h"
+#include "Shooter.h"
 #include <ctime>
 #include <unistd.h>
 #include <cmath>
@@ -57,7 +58,9 @@ int main(void)
   Burster burster_test(200,50,BASE_VELOCITY,17);
   Mike mike_test(50,50,200,50,BASE_VELOCITY,7,&stage_test);
   int curr_bullets = 0;
-  
+  Shooter shooter_test(200,200,9,&stage_test);
+
+  stage_test.addUnit(&shooter_test);
   stage_test.addUnit(&mike_test);
   stage_test.addUnit(&burster_test);
   stage_test.addUnit(&tank_test);
@@ -327,7 +330,7 @@ int main(void)
 		}
 	    }
 	}
-
+      shooter_test.chase(hero_test.getx(),hero_test.gety());
       mike_test.patrol();
       burster_test.chase(hero_test.getx(),hero_test.gety());
       tank_test.chase(hero_test.getx(),hero_test.gety());
@@ -339,10 +342,10 @@ int main(void)
       stage_test.draw();
       duration = (clock() - start)/((double)CLOCKS_PER_SEC);
      
-      if (duration>.016){
-	duration=.016;
+      if (duration>dt){
+	duration=dt;
       }
-      usleep((.017-duration)*1000000);
+      usleep((dt-duration)*1000000);
   
     }
 
@@ -481,8 +484,8 @@ int main(void)
       stage_test.draw();
       duration = (clock() - start)/((double)CLOCKS_PER_SEC);
       
-      if (duration>.016){
-	duration=.016;
+      if (duration>.017){
+	duration=.017;
       }
       usleep((.017-duration)*1000000);
     }
