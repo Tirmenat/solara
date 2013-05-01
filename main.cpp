@@ -27,24 +27,6 @@
 
 using namespace std;
 
-/*void fire(Bullet** bullets, Stage* stage, Unit* hero, int dir, int color)
-{
-  for(int i = 0; i<NUM_BULLETS; i++)
-    {
-      if(bullets[i] != NULL)
-	cout << bullets[i] << endl;
-      else
-	{
-	  bullets[i] = new Bullet(hero, dir, color%2, (color/2)%2, (color/4)%2);
-	  stage->addUnit(bullets[i]);
-	  return;
-	}
-      
-      
-    }
-}*/
-
-
 int main(void)
 {
   
@@ -106,7 +88,6 @@ int main(void)
   //Title screen
   while (quit == false)
     {
-
       //While there's an event to handle
       while (SDL_PollEvent (&event))
 	{
@@ -301,32 +282,20 @@ int main(void)
 		  quit=true;
 		  break;
 		case SDLK_UP:
-		  if(curr_bullets<NUM_BULLETS)
-		    {
-		      stage_test.addUnit(new Bullet(&hero_test,M_PI/2,1,1,0,true));
-		      curr_bullets++;
-		    }
+		  if(stage_test.canFire())
+		    stage_test.addUnit(new Bullet(&hero_test,M_PI/2,1,1,0,true));
 		  break;
 		case SDLK_DOWN:		  
-		  if(curr_bullets<NUM_BULLETS)
-		    {
-		      stage_test.addUnit(new Bullet(&hero_test,3*M_PI/2,0,1,1,true));
-		      curr_bullets++;
-		    }
+		  if(stage_test.canFire())
+		    stage_test.addUnit(new Bullet(&hero_test,3*M_PI/2,0,1,1,true));
 		  break;
 		case SDLK_LEFT:
-		  if(curr_bullets<NUM_BULLETS)
-		    {
-		      stage_test.addUnit(new Bullet(&hero_test,M_PI,1,0,1,true));
-		      curr_bullets++;
-		    }
+		  if(stage_test.canFire())
+		    stage_test.addUnit(new Bullet(&hero_test,M_PI,1,0,1,true));
 		  break;
 		case SDLK_RIGHT:
-		  if(curr_bullets<NUM_BULLETS)
-		    {
-		      stage_test.addUnit(new Bullet(&hero_test,0,0,0,0,true));
-		      curr_bullets++;
-		    }
+		  if(stage_test.canFire())
+		    stage_test.addUnit(new Bullet(&hero_test,0,0,0,0,true));
 		  break;
 		}
 	    }
@@ -486,10 +455,10 @@ int main(void)
       stage_test.draw();
       duration = (clock() - start)/((double)CLOCKS_PER_SEC);
       
-      if (duration>.017){
-	duration=.017;
+      if (duration>dt){
+	duration=dt;
       }
-      usleep((.017-duration)*1000000);
+      usleep((dt-duration)*1000000);
     }
 
 

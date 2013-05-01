@@ -16,7 +16,10 @@ Hero::Hero(double X, double Y, double MAXV, double AX, double AY, int location, 
 
 void Hero::collide(Unit* u)
 {
-  cout << "collision detected" << endl;
+  if(u->isFromHero())
+    {
+    }
+  //  cout << "collision detected" << endl;
   /*
   if(u->isBullet())
     {
@@ -157,4 +160,9 @@ void Hero::processEvent(double dt)
           ax=0;
           break;
       }*/
+}
+
+bool Hero::isFromHero()
+{
+  return 1;
 }
