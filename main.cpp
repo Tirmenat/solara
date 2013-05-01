@@ -70,6 +70,8 @@ int main(void)
   stage_test.addUnit(&patrol_test);
   stage_test.addArea(100,100,128,144,2);
   stage_test.addArea(448,416,160,32,5);
+  stage_test.addArea(550,200,40,600,4);
+  stage_test.addArea(550,200,10000,100,6);
 
   //Bullet bullet;
   Sound sounds;
@@ -88,7 +90,6 @@ int main(void)
 
   // x, y, vx, vy, ax, ay
   Hero hero_test(350,350,200,0,0,0,500);
-  hero_test.setHealth(350);
   stage_test.addUnit(&hero_test);
   //  Bullet bullet_test(&hero_test,0,0);
   // stage_test.addUnit(&bullet_test);
