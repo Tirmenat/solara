@@ -30,6 +30,7 @@ Unit::Unit(){
   status = UNIT_RIGHT;
   moving = 0;
   frame = 0;
+  invulnerable = 0;
 }
 
 Unit::Unit(double X, double Y, double MAXV, double AX, double AY, int location, int h){
@@ -49,6 +50,7 @@ Unit::Unit(double X, double Y, double MAXV, double AX, double AY, int location, 
   frame = 0;
   setHealth(h);
   setMaxHealth(h);
+  invulnerable = 0;
 }
 
 // Set Functions
@@ -241,6 +243,7 @@ bool Unit::operator==(Unit* u){ //returns 1 if u and *this are the same
 void Unit::increment(double dt){
   
   frameShift();
+  tickInvulnerable();
   double angle;
   x=x + vx*dt;
   y=y + vy*dt;
@@ -401,4 +404,20 @@ int Unit::getMaxHealth()
 void Unit::setMaxHealth(int h)
 {
   maxHealth = h;
+}
+
+bool Unit::isInvulnerable()
+{
+  return (invulnerable>0);
+}
+
+void Unit::makeInvulnerable()
+{
+  invulnerable = 30;
+}
+
+void Unit::tickInvulnerable()
+{
+  if(isInvulnerable())
+    invulnerable--;
 }

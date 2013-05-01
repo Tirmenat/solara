@@ -18,6 +18,7 @@ void Hero::collide(Unit* u, double dt)
 {
   if(u->isFromHero())
     {
+      return;
     }
   //  cout << "collision detected" << endl;
   if(u->isBullet())
@@ -29,7 +30,8 @@ void Hero::collide(Unit* u, double dt)
     }
   else
     {
-      setHealth(getHealth()-1);
+      setHealth(getHealth()-10);
+      makeInvulnerable();
       //if(vx>0)
       //	setx(getx()-maxv*dt);
       //else
