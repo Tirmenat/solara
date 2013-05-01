@@ -19,7 +19,6 @@ class Brad: public Enemy{
  public:
   Brad(double,double,double,double,double,int,int,Hero*);
   virtual void chase (double,double);
-  string sound(int);
  private:
   int state;
   int moving;

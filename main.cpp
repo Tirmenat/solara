@@ -258,7 +258,7 @@ int main(void)
        
       case 6:
 	hero = new Hero(350,350,200,0,0,0,100);
-	island[0].addUnit(new Brad(20,40,50,125,BASE_VELOCITY,18,10,hero));
+	island[0].addUnit(new Brad(20,40,50,125,BASE_VELOCITY,18,100,hero));
 	island[0].addUnit(new Mike(50,50,200,50,BASE_VELOCITY,7,&island[0],30,hero));
 	island[0].addUnit(new Burster(200,50,BASE_VELOCITY,17,10,hero));
 	island[0].addUnit(new Tank(50, 200, 3*BASE_VELOCITY/10,13,100,hero));
@@ -350,7 +350,6 @@ int main(void)
 	    //tank1.chase(hero.getx(),hero.gety());
 	    //patrol1.chase(hero_test.getx(),hero_test.gety());
 	    //patrol_test2.chase(hero_test.getx(),hero_test.gety());
-	    //	    cout << "no here" << endl;
 	    hero->processEvent(dt);
 	    //	    cout << "here" << endl;
 	    island[currentstage].perform(dt, hero);

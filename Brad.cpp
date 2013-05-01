@@ -1,6 +1,5 @@
 #include "Brad.h"
 #include "SDL/SDL.h"
-#include "Sound.h"
 #include <cmath>
 #include "Hero.h"
 
