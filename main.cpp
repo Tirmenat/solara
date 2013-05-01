@@ -286,7 +286,7 @@ int main(void)
       if(p2s)
 	{
 	  bossdead = false;
-	  while(bossdead==false){
+	  while(bossdead==false && quit ==false){
 	    start = clock();
 	    //	    cout << "part 2" << endl;
 	    //      int time = time();

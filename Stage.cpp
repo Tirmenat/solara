@@ -39,7 +39,6 @@ bool Stage::checkCollisions(Unit* unit, double dt)
 <<<<<<< HEAD
   bool collide=false;
   for(int i = 0; i<units.size(); i++)
-=======
   /*  for(int i = 0; i<units.size(); i++)
 >>>>>>> 20f9b4a9604044d41a8574184eb4d354babc28ca
     {
@@ -58,7 +57,6 @@ bool Stage::checkCollisions(Unit* unit, double dt)
   return(collide);
 =======
 	}*/
->>>>>>> 20f9b4a9604044d41a8574184eb4d354babc28ca
 }
 void Stage::perform(double dt, Unit* hero)
 {
