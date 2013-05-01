@@ -15,6 +15,7 @@ Unit Implementation file */
 #include "SDL/SDL_image.h"
 #include <cmath>
 
+
 Unit::Unit(){
   x=0;
   y=0;
@@ -337,6 +338,66 @@ void Unit::frameShift()
       frame = (frame==1) ? 0 : 1;
     }
 }
+
+bool Unit::isCollided(Unit* unit)
+{
+  int BULLETSIZE = 9;
+  if(unit->isBullet())
+    {
+      if(isBullet())
+	{
+	  if(x < unit->getx()-BULLETSIZE) //this is too far to the left
+	    return false;
+	  if(x > unit->getx()+BULLETSIZE) //this is too far to the right
+	    return false; 
+	  if(y < unit->gety()-BULLETSIZE) //this is too far up
+	    return false;
+	  if(y > unit->gety()+BULLETSIZE) //this is too far down
+	    return false;
+	  return true;
+	}
+      else
+	{
+	  if(x < unit->getx()-SPRWIDTH)
+	    return false;
+	  if(x > unit->getx()+BULLETSIZE)
+	    return false;
+	  if(y < unit->gety()-SPRLENGTH)
+	    return false;
+	  if(y > unit->gety()+BULLETSIZE)
+	    return false;
+	  return true;
+	}
+    }
+  else
+    {
+      if(isBullet())
+	{
+	  if(x < unit->getx()-BULLETSIZE)
+	    return false;
+	  if(x > unit->getx()+SPRWIDTH)
+	    return false;
+	  if(y < unit->gety()-BULLETSIZE)
+	    return false;
+	  if(y > unit->gety()+SPRLENGTH)
+	    return false;
+	  return true;
+	}
+      else
+	{
+	  if(x < unit->getx()-SPRWIDTH)
+	    return false;
+	  if(x > unit->getx()+SPRWIDTH)
+	    return false;
+	  if(y < unit->gety()-SPRLENGTH)
+	    return false;
+	  if(y > unit->gety()+SPRLENGTH)
+	    return false;
+	  return true;
+	}
+    }
+  return false;
+}  
 
 bool Unit::isBullet()
 {

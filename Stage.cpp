@@ -32,6 +32,19 @@ Stage::Stage(int x, int y)
   yoffset = 100;
 }
 
+void Stage::checkCollisions(Unit* unit)
+{
+  for(int i = 0; i<units.size(); i++)
+    {
+      if(units[i] == unit)
+	continue;
+      else
+	{
+	  if(unit->isCollided(units[i]))
+	    unit->collide(units[i]);
+	}
+    }
+}
 void Stage::perform(double dt, Unit* hero)
 {
 
