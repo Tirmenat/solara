@@ -23,12 +23,12 @@ class Stage{
   void perform(double, Unit*);
   int isInBounds(int, int);
   int addArea(int, int, int, int, int); //returns 1 if area was successfully added, 0 otherwise
-  void draw();
+  void draw(int,int,int,int,int,int);
   void addUnit(Unit*);
   int removeUnit(Unit*); //returns 1 if unit was successfully removed, 0 otherwise
   void clean_up();
   void clear_screen();
-  void drawTitle(string);
+  void drawTitle(string,int,int,int);
   void adjustUnits(); //keeps units in bounds
   int getoffsetx();
   int getoffsety();

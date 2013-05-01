@@ -231,7 +231,7 @@ void Stage::set_clips()
     }
 }
 
-void Stage::draw(){
+void Stage::draw(int r, int g, int b, int rIs, int gIs, int bIs){
   //Fill the screen blue
   //SDL_FillRect( screen, &screen->clip_rect, SDL_MapRGB(screen->format, 102, 178, 255) );
   //Make the ocean
@@ -309,56 +309,131 @@ void Stage::draw(){
 
 
   //drawing powerups
-  int color;
-  for(int i = 0; i < units.size(); ++i)
-    {
-      if(units[i]->isBullet()){
-	color=units[i]->getColor();
-      }
-    }
-  SDL_Rect border,inside,cross1,cross2;
+  int color=r*1+g*2+b*4;
+  SDL_Rect border,inside,line1,line2;
   for(int i = 0; i < 4; ++i)
     {
       border.x = SCREEN_WIDTH/4 + i*SCREEN_WIDTH/8;
       border.y = SCREEN_HEIGHT*7/8;
       border.w = SCREEN_WIDTH/16;
       border.h = SCREEN_HEIGHT/16;
-      inside.x = border.x + 1;
-      inside.y = border.y + 1;
-      inside.w = border.w - 2;
-      inside.h = border.h - 2;
-      cross1.x = border.x + SCREEN_WIDTH/16;
-      cross1.y = border.y;
-
-      cross2.y = border.y;
-      //draw borders and plus/equals
-      SDL_FillRect( screen, &border, SDL_MapRGB( screen->format,0,0,0) );
-
+      inside.x = border.x + 2;
+      inside.y = border.y + 2;
+      inside.w = border.w - 4;
+      inside.h = border.h - 4;
       //determine colors
-      if((color==4 || color==5 || color==6 || color==7)&& i==0)
-	SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,0,0,255) );
-      else if((color==1 || color==3 || color==5 || color==7)&& i==1)
-	SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,255,0,0) );
-      else if((color==2 || color==3 || color==6 || color==7)&& i==2)
-	SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,0,255,0) );
-      else if (i==3)
+      //powerup 1
+      if(i==0){
+	//powerup not available
+	if(!bIs){
+	  SDL_FillRect( screen, &border, SDL_MapRGB( screen->format,255,255,255) );
+	  SDL_FillRect( screen,&inside, SDL_MapRGB( screen->format,0,0,0) );
+	}
+	//powerup on
+	else if(b==1){
+	  SDL_FillRect( screen, &border, SDL_MapRGB( screen->format,0,0,0) );
+	  SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,100,100,255) );
+	}
+	//powerup off
+	else{
+	  SDL_FillRect( screen, &border, SDL_MapRGB( screen->format,100,100,255) );
+	  SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,0,0,0) );
+	}
+	//plus sign
+	line1.x=border.x+border.w+border.w/4+2;
+	line1.y=border.y+border.h/2;
+	line1.w=border.w/2;
+	line1.h=2;
+	line2.x=border.x+border.w+border.w/2;
+	line2.y=border.y+border.h/4+1;
+	line2.w=2;
+	line2.h=border.h/2;
+	SDL_FillRect( screen, &line1, SDL_MapRGB( screen->format,0,0,0) );
+	SDL_FillRect( screen, &line2, SDL_MapRGB( screen->format,0,0,0) );
+      }
+      //powerup 2
+      else if(i==1){
+	//powerup not available
+	if(!rIs){
+	  SDL_FillRect( screen, &border, SDL_MapRGB( screen->format,255,255,255) );
+	  SDL_FillRect( screen,&inside, SDL_MapRGB( screen->format,0,0,0) );
+	}
+	//powerup on
+	else if(r==1){
+	  SDL_FillRect( screen, &border, SDL_MapRGB( screen->format,0,0,0) );
+	  SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,255,0,0) );
+	}
+	//powerup off
+	else{
+	  SDL_FillRect( screen, &border, SDL_MapRGB( screen->format,255,0,0) );
+	  SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,0,0,0) );
+	}
+	//plus sign
+	line1.x=border.x+border.w+border.w/4+2;
+	line1.y=border.y+border.h/2;
+	line1.w=border.w/2;
+	line1.h=2;
+	line2.x=border.x+border.w+border.w/2;
+	line2.y=border.y+border.h/4+1;
+	line2.w=2;
+	line2.h=border.h/2;
+	SDL_FillRect( screen, &line1, SDL_MapRGB( screen->format,0,0,0) );
+	SDL_FillRect( screen, &line2, SDL_MapRGB( screen->format,0,0,0) );
+      }
+      //powerup 3
+      else if(i==2){
+	//powerup not available
+	if(!gIs){
+	  SDL_FillRect( screen, &border, SDL_MapRGB( screen->format,255,255,255) );
+	  SDL_FillRect( screen,&inside, SDL_MapRGB( screen->format,0,0,0) );
+	}
+	//powerup on
+	else if(g==1){
+	  SDL_FillRect( screen, &border, SDL_MapRGB( screen->format,0,0,0) );
+	  SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,0,255,0) );
+	}
+	//powerup off
+	else{
+	  SDL_FillRect( screen, &border, SDL_MapRGB( screen->format,0,255,0) );
+	  SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,0,0,0) );
+	}
+	//equals sign
+	line1.x=border.x+border.w+border.w/4+2;
+	line1.y=border.y+border.h/3+1;
+	line1.w=border.w/2;
+	line1.h=2;
+	line2.x=border.x+border.w+border.w/4+2;
+	line2.y=border.y+2*border.h/3-1;
+	line2.w=border.w/2;
+	line2.h=2;
+	SDL_FillRect( screen, &line1, SDL_MapRGB( screen->format,0,0,0) );
+	SDL_FillRect( screen, &line2, SDL_MapRGB( screen->format,0,0,0) );
+      }
+      //powerups total
+      else if (i==3){
+	SDL_FillRect( screen, &border, SDL_MapRGB( screen->format,0,0,0) );
+	/*inside.x=border.x;
+	inside.y=border.y;
+	inside.w=border.w;
+	inside.h=border.h;*/
 	switch(color){
 	case 0: SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,0,0,0) ); break;
 	case 1: SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,255,0,0) ); break;
 	case 2: SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,0,255,0) ); break;
 	case 3: SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,255,255,0) ); break;
-	case 4: SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,0,0,255) ); break;
+	case 4: SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,100,100,255) ); break;
 	case 5: SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,255,0,255) ); break;
 	case 6: SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,0,255,255) ); break;
 	case 7: SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,255,0,0) );
-	  inside.x++; inside.y++; inside.w-=2; inside.h-=2;
+	  inside.x+=2; inside.y+=2; inside.w-=4; inside.h-=4;
 	  SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,0,255,0) );
-	  inside.x++; inside.y++; inside.w-=2; inside.h-=2;
+	  inside.x+=2; inside.y+=2; inside.w-=4; inside.h-=4;
 	  SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,0,0,255) );
-	  inside.x++; inside.y++; inside.w-=2; inside.h-=2;
+	  inside.x+=2; inside.y+=2; inside.w-=4; inside.h-=4;
 	  SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,255,255,255) );
 	  break;
 	  }
+      }
     }
 
   SDL_Flip(screen);
@@ -414,15 +489,72 @@ int Stage::isInBounds(int x, int y){ //checks if a point is inside any of the ar
   // returns int, false == 0, true == 1
 }
 
-void Stage::drawTitle(string pic)
+void Stage::drawTitle(string pic, int isWest, int isSouth, int isEast)
 {
   if(pic == "title") apply_surface(0,0,title,screen);
   if(pic == "slide1") apply_surface(0,0,slide1,screen);
   if(pic == "slide2") apply_surface(0,0,slide2,screen);
   if(pic == "slide3") apply_surface(0,0,slide3,screen);
   if(pic == "slide4") apply_surface(0,0,slide4,screen);
-  if(pic == "slide5") apply_surface(0,0,slide5,screen);
-  if(pic == "slide6") apply_surface(0,0,slide6,screen);
+  if(pic == "slide5"){
+    apply_surface(0,0,slide5,screen);
+    SDL_Rect crossOut1,crossOut2;
+    if(isWest){
+      crossOut1.x=40;
+      crossOut1.y=200;
+      crossOut1.w=130;
+      crossOut1.h=5;
+      crossOut2.x=40;
+      crossOut2.y=228;
+      crossOut2.w=130;
+      crossOut2.h=5;
+      SDL_FillRect(screen, &crossOut1, SDL_MapRGB( screen->format,0,0,0));
+      SDL_FillRect(screen, &crossOut2, SDL_MapRGB( screen->format,0,0,0));
+    }
+    if(isSouth){
+      crossOut1.x=195;
+      crossOut1.y=278;
+      crossOut1.w=130;
+      crossOut1.h=5;
+      crossOut2.x=195;
+      crossOut2.y=302;
+      crossOut2.w=130;
+      crossOut2.h=5;
+      SDL_FillRect(screen, &crossOut1, SDL_MapRGB( screen->format,0,0,0));
+      SDL_FillRect(screen, &crossOut2, SDL_MapRGB( screen->format,0,0,0));
+    }
+    if(isEast){
+      crossOut1.x=330;
+      crossOut1.y=200;
+      crossOut1.w=130;
+      crossOut1.h=5;
+      crossOut2.x=330;
+      crossOut2.y=225;
+      crossOut2.w=130;
+      crossOut2.h=5;
+      SDL_FillRect(screen, &crossOut1, SDL_MapRGB( screen->format,0,0,0));
+      SDL_FillRect(screen, &crossOut2, SDL_MapRGB( screen->format,0,0,0));
+    }
+  }
+  if(pic == "slide6"){
+    apply_surface(0,0,slide6,screen);
+    SDL_Rect crossOut1;
+      crossOut1.x=40;
+      crossOut1.y=200;
+      crossOut1.w=130;
+      crossOut1.h=5;
+      SDL_FillRect(screen, &crossOut1, SDL_MapRGB( screen->format,0,0,0));
+      crossOut1.x=195;
+      crossOut1.y=278;
+      crossOut1.w=130;
+      crossOut1.h=5;
+      SDL_FillRect(screen, &crossOut1, SDL_MapRGB( screen->format,0,0,0));
+      crossOut1.x=330;
+      crossOut1.y=200;
+      crossOut1.w=130;
+      crossOut1.h=5;
+      SDL_FillRect(screen, &crossOut1, SDL_MapRGB( screen->format,0,0,0));
+  }
 
   if( SDL_Flip( screen ) == -1 )
     {

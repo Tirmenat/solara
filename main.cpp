@@ -99,7 +99,6 @@ int main(void)
   int next = 0;
   bool quit = false;
   SDL_Event event;
-  Stageless.drawTitle("title");
   //  Bullet bullets;
   //Title screen
   while (quit == false)
@@ -107,22 +106,24 @@ int main(void)
       switch(next)
 	{
 	case 0:  //Title Screen
-	  Stageless.drawTitle("title");
+	  Stageless.drawTitle("title",0,0,0);
 	  p2s=0;
 	  //While there's an event to handle
 	  while (SDL_PollEvent (&event))
 	    {
-	      if (event.type == SDL_KEYDOWN)
+	      if (event.type == SDL_QUIT)
+		{
+		  //Quit the program
+		  quit = true;
+		  break;
+		}
+	      else if (event.type == SDL_KEYDOWN)
 		{
 		  //Set the proper message surface
 		  switch (event.key.keysym.sym)
 		    {
-		      //Quit game
-		    case SDLK_q:
-		      quit = true;
-		      Stageless.init();
-		      break;
 		    case SDLK_ESCAPE:
+		      //Quit game
 		      quit = true;
 		      Stageless.init();
 		      break;
@@ -132,93 +133,102 @@ int main(void)
 		      Stageless.clear_screen();
 		      break;
 		    case SDLK_f:
+		      //alternate between fullscreen
 		      if(screen_state==0)
 			{
 			  Stageless.init_fullscreen();
-			  Stageless.drawTitle("title");
+			  Stageless.drawTitle("title",0,0,0);
 			  screen_state=1;
 			}
 		      else
 			{
 			  Stageless.init();
-			  Stageless.drawTitle("title");
+			  Stageless.drawTitle("title",0,0,0);
 			  screen_state=0;
 			}
 		      break;
 		    }
-		}
-	      //If the user has Xed out the window
-	      else if (event.type == SDL_QUIT)
-		{
-		  //Quit the program
-		  quit = true;
 		}
 	    }  
 	  break;
 	  
 	case 1: //Slide 1
 	  p2s=0;
-	  Stageless.drawTitle("slide1");
+	  Stageless.drawTitle("slide1",0,0,0);
 	  if( SDL_PollEvent( &event ) )
 	    {
 	      if( event.type == SDL_QUIT )
 		{
 		  quit == true;
-		}
-	      if( event.type == SDL_KEYDOWN )
-		{
-		switch (event.key.keysym.sym)
-		  {
-		  case SDLK_q:
-		    quit=true;
-		    Stageless.init();
-		    break;
-		  case SDLK_ESCAPE:
-		    quit = true;
-		    Stageless.init();
-		    break;
-		  case SDLK_SPACE:
-		    next=2;
-		    Stageless.clear_screen();
-		    break;
-		case SDLK_f:
-		  if(screen_state==0)
-		    {
-		      Stageless.init_fullscreen();
-		      Stageless.drawTitle("slide1");
-		      screen_state=1;
-		    }
-		  else
-		    {
-		      Stageless.init();
-		      Stageless.drawTitle("slide1");
-		      screen_state=0;
-		    }
 		  break;
-		  }
+		}
+	      else if( event.type == SDL_KEYDOWN )
+		{
+		  switch (event.key.keysym.sym)
+		    {
+		    case SDLK_ESCAPE:
+		      quit = true;
+		      Stageless.init();
+		      break;
+		    case SDLK_SPACE:
+		      next=2;
+		      Stageless.clear_screen();
+		      break;
+		    case SDLK_f:
+		      if(screen_state==0)
+			{
+			  Stageless.init_fullscreen();
+			  Stageless.drawTitle("slide1",0,0,0);
+			  screen_state=1;
+			}
+		      else
+			{
+			  Stageless.init();
+			  Stageless.drawTitle("slide1",0,0,0);
+			  screen_state=0;
+			}
+		      break;
+		    }
 		}
 	    }
 	  break;
 	  
 	case 2:  //Slide 2
 	  p2s=0;
-	  Stageless.drawTitle("slide2");
+	  Stageless.drawTitle("slide2",0,0,0);
 	  if( SDL_PollEvent( &event ) )
 	    {
 	      if( event.type == SDL_QUIT )
 		{
 		  quit == true;
+		  break;
 		}
-	      if( event.type == SDL_KEYDOWN )
+	      else if( event.type == SDL_KEYDOWN )
 		{
 		  switch (event.key.keysym.sym)
 		    {
-		    case SDLK_q:
-		      quit=true;
+		    case SDLK_ESCAPE:
+		      quit = true;
+		      Stageless.init();
 		      break;
 		    case SDLK_SPACE:
 		      next=3;
 		      Stageless.clear_screen();
+		      break;
+		    case SDLK_f:
+		      if(screen_state==0)
+			{
+			  Stageless.init_fullscreen();
+			  Stageless.drawTitle("slide1",0,0,0);
+			  screen_state=1;
+			}
+		      else
+			{
+			  Stageless.init();
+			  Stageless.drawTitle("slide1",0,0,0);
+			  screen_state=0;
+			}
+		      break;
 		    }
 		}
 	    }
@@ -226,107 +236,99 @@ int main(void)
 	  
 	case 3: //Slide 3
 	  p2s=0;
-	  Stageless.drawTitle("slide3");
+	  Stageless.drawTitle("slide3",0,0,0);
 	  if( SDL_PollEvent( &event ) )
 	    {	      
-	    quit == true;
-	  }
-	if( event.type == SDL_KEYDOWN )
-	  {
-	    switch (event.key.keysym.sym)
-	      {
-	      case SDLK_q:
-		quit=true;
-		Stageless.init();
-		break;
-	      case SDLK_ESCAPE:
-		quit = true;
-		Stageless.init();
-		break;
-	      case SDLK_SPACE:
-		next=4;
-		Stageless.clear_screen();
-		break;
-	      case SDLK_f:
-		if(screen_state==0)
-		  {
-		    Stageless.init_fullscreen();
-		    Stageless.drawTitle("slide3");
-		    screen_state=1;
-		  }
-		else
-		  {
-		    Stageless.init();
-		    Stageless.drawTitle("slide3");
-		    screen_state=0;
-		  }
-		break;
-	      }
-	  }
-	break;
+	      quit == true;
+	      break;
+	    }
+	  else if( event.type == SDL_KEYDOWN )
+	    {
+	      switch (event.key.keysym.sym)
+		{
+		case SDLK_ESCAPE:
+		  quit = true;
+		  Stageless.init();
+		  break;
+		case SDLK_SPACE:
+		  next=4;
+		  Stageless.clear_screen();
+		  break;
+		case SDLK_f:
+		  if(screen_state==0)
+		    {
+		      Stageless.init_fullscreen();
+		      Stageless.drawTitle("slide3",0,0,0);
+		      screen_state=1;
+		    }
+		  else
+		    {
+		      Stageless.init();
+		      Stageless.drawTitle("slide3",0,0,0);
+		      screen_state=0;
+		    }
+		  break;
+		}
+	    }
+	  break;
+
 	case 4: //Slide 4
 	  p2s=0;
-	  Stageless.drawTitle("slide4");
+	  Stageless.drawTitle("slide4",0,0,0);
 	  if( SDL_PollEvent( &event ) )
 	    {
 	      if( event.type == SDL_QUIT )
 		{
 		  quit == true;
+		  break;
 		}
-	    if( event.type == SDL_KEYDOWN )
-	      {
-		switch (event.key.keysym.sym)
-		  {
-		  case SDLK_q:
-		    quit=true;
-		    Stageless.init();
-		    break;
-		  case SDLK_ESCAPE:
-		    quit = true;
-		    Stageless.init();
-		    break;
-		  case SDLK_SPACE:
-		    next=5;
-		    Stageless.clear_screen();
-		    break;
-		  case SDLK_f:
-		    if(screen_state==0)
-		      {
-			Stageless.init_fullscreen();
-			Stageless.drawTitle("slide4");
-			screen_state=1;
-		      }
-		    else
-		      {
-			Stageless.init();
-			Stageless.drawTitle("slide4");
-			screen_state=0;
-		      }
-		    break;
-		  }
-	      }
+	      else if( event.type == SDL_KEYDOWN )
+		{
+		  switch (event.key.keysym.sym)
+		    {
+		    case SDLK_ESCAPE:
+		      quit = true;
+		      Stageless.init();
+		      break;
+		    case SDLK_SPACE:
+		      next=5;
+		      Stageless.clear_screen();
+		      break;
+		    case SDLK_f:
+		      if(screen_state==0)
+			{
+			  Stageless.init_fullscreen();
+			  Stageless.drawTitle("slide4",0,0,0);
+			  screen_state=1;
+			}
+		      else
+			{
+			  Stageless.init();
+			  Stageless.drawTitle("slide4",0,0,0);
+			  screen_state=0;
+			}
+		      break;
+		    }
+		}
 	    }	
-	break;
+	  break;
 	  
       case 5: //Slide 5 - The decision maker
 	p2s=0;
 	if(already_west && already_east && already_south) //Pre North Island
 	  {
-	    Stageless.drawTitle("slide6");
+	    Stageless.drawTitle("slide6",0,0,0);
 	    if( SDL_PollEvent( &event ) )
 	      {
 		if (event.type == SDL_QUIT )
 		  {
 		    quit == true;
+		    break;
 		  }
-		if (event.type == SDL_KEYDOWN )
+		else if (event.type == SDL_KEYDOWN )
 		  {
 		    switch (event.key.keysym.sym)
 		      {
-		      case SDLK_q:
-			quit == true;
-			Stageless.init();
-			break;
 		      case SDLK_ESCAPE:
 			quit = true;
 			Stageless.init();
@@ -341,13 +343,13 @@ int main(void)
 			if(screen_state==0)
 			  {
 			    Stageless.init_fullscreen();
-			    Stageless.drawTitle("slide5");
+			    Stageless.drawTitle("slide6",0,0,0);
 			    screen_state=1;
 			  }
 			else
 			  {
 			    Stageless.init();
-			    Stageless.drawTitle("slide5");
+			    Stageless.drawTitle("slide6",0,0,0);
 			    screen_state=0;
 			  }
 			break;
@@ -357,21 +359,18 @@ int main(void)
 	  }
 	else      //Pre Other Islands
 	  {
-	    Stageless.drawTitle("slide5");
+	    Stageless.drawTitle("slide5",already_west,already_south,already_east);
 	    if( SDL_PollEvent( &event ) )
 	      {
 		if( event.type == SDL_QUIT )
 		  {
 		    quit == true;
+		    break;
 		  }
 		    if( event.type == SDL_KEYDOWN )
 		      {
 			switch (event.key.keysym.sym)
 			  {
-			  case SDLK_q:
-			    quit=true;
-			    Stageless.init();
-			    break;
 			  case SDLK_ESCAPE:
 			    quit = true;
 			    Stageless.init();
@@ -401,35 +400,43 @@ int main(void)
 			    if(screen_state==0)
 			      {
 				Stageless.init_fullscreen();
-				Stageless.drawTitle("slide5");
+				Stageless.drawTitle("slide5",already_west,already_south,already_east);
 				screen_state=1;
 			      }
 			    else
 			      {
 				Stageless.init();
-				Stageless.drawTitle("slide5");
+				Stageless.drawTitle("slide5",already_west,already_south,already_east);
 				screen_state=0;
 			      }
 			    break;
 			  }
 		      }
-		  }
-	      }	
-      break;
-      
-      
+	      }
+	  }	
+	break;
+	
     case 6:
       hero = new Hero(25,25,200,0,0,0,5000);
-      mike = new Mike(1100,375,1225,375,2*BASE_VELOCITY,30,&island[0],hero);
+      mike = new Mike(1100,375,1225,375,2*BASE_VELOCITY,150,&island[0],hero);
       island[0].addUnit(hero);
       island[0].addUnit(mike);
       island[0].addUnit(new Shooter(1100,400,&island[0],hero));
       island[0].addUnit(new Shooter(1225,400,&island[0],hero));
-      island[0].addUnit(new Patroller(700,350 ,400,350,6*BASE_VELOCITY/5,40,hero));
-      island[0].addUnit(new Patroller(400,450,700,450,7*BASE_VELOCITY/5,40,hero));
-      island[0].addUnit(new Patroller(400,550,700,1000,7*BASE_VELOCITY/5,40,hero));
-      island[0].addUnit(new Patroller(700,550,400,1000,7*BASE_VELOCITY/5,40,hero));
-      island[0].addUnit(new Patroller(550,550,550,1000,7*BASE_VELOCITY/5,40,hero));
+      island[0].addUnit(new Patroller(700,350 ,400,350,6*BASE_VELOCITY/5,80,hero));
+      island[0].addUnit(new Patroller(400,450,700,450,7*BASE_VELOCITY/5,80,hero));
+      island[0].addUnit(new Patroller(400,550,700,1000,7*BASE_VELOCITY/5,80,hero));
+      island[0].addUnit(new Patroller(700,550,400,1000,7*BASE_VELOCITY/5,80,hero));
+      island[0].addUnit(new Patroller(550,550,550,1000,7*BASE_VELOCITY/5,80,hero));
+      island[0].addUnit(new Burster(400,900,3*BASE_VELOCITY,50,hero));
+      island[0].addUnit(new Burster(600,900,3*BASE_VELOCITY,50,hero));
+      island[0].addUnit(new Burster(550,1100,3*BASE_VELOCITY,50,hero));
+      island[0].addUnit(new Shooter(400,1100,&island[0],hero));
+      island[0].addUnit(new Shooter(600,1100,&island[0],hero));
+      island[0].addUnit(new Tank(800, 1050,3*BASE_VELOCITY/10,200,hero));
+      island[0].addUnit(new Tank(800, 1150,3*BASE_VELOCITY/10,200,hero));
+      island[0].addUnit(new Shooter(1000,1050,&island[0],hero));
+      island[0].addUnit(new Shooter(1100,1150,&island[0],hero));
       island[0].addArea(0,0,300,300,3);
       island[0].addArea(300,200,500,1000, 5);
       island[0].addArea(400,300,200,300, 1);
@@ -446,17 +453,17 @@ int main(void)
 	brad = new Brad(650,-800,750,-800,BASE_VELOCITY*3,100,&island[1],hero);
 	island[1].addUnit(hero);
 	island[1].addUnit(brad);
-	island[1].addUnit(new Patroller(100,100,400,400,4*BASE_VELOCITY/5,40,hero));
-	island[1].addUnit(new Tank(400, 50, 3*BASE_VELOCITY/10,100,hero));
-	island[1].addUnit(new Tank(450, 100, 3*BASE_VELOCITY/10,100,hero));
+	island[1].addUnit(new Patroller(100,100,400,400,4*BASE_VELOCITY/5,80,hero));
+	island[1].addUnit(new Tank(400, 50, 3*BASE_VELOCITY/10,200,hero));
+	island[1].addUnit(new Tank(450, 100, 3*BASE_VELOCITY/10,200,hero));
 	island[1].addUnit(new Shooter(1000, 25, &island[1],hero));
 	island[1].addUnit(new Shooter(1000, 100, &island[1],hero));
-	island[1].addUnit(new Burster(800, 50, BASE_VELOCITY,10,hero));
-	island[1].addUnit(new Burster(800, 100, BASE_VELOCITY,10,hero));
-	island[1].addUnit(new Tank(800, -200, 6*BASE_VELOCITY/10,100,hero));
-	island[1].addUnit(new Tank(800, -150, 6*BASE_VELOCITY/10,100,hero));
-	island[1].addUnit(new Tank(1000, -200, 6*BASE_VELOCITY/10,100,hero));
-	island[1].addUnit(new Tank(1000, -150, 6*BASE_VELOCITY/10,100,hero));
+	island[1].addUnit(new Burster(800, 50, 3*BASE_VELOCITY,50,hero));
+	island[1].addUnit(new Burster(800, 100, 3*BASE_VELOCITY,50,hero));
+	island[1].addUnit(new Tank(800, -200, 6*BASE_VELOCITY/10,200,hero));
+	island[1].addUnit(new Tank(800, -150, 6*BASE_VELOCITY/10,200,hero));
+	island[1].addUnit(new Tank(1000, -200, 6*BASE_VELOCITY/10,200,hero));
+	island[1].addUnit(new Tank(1000, -150, 6*BASE_VELOCITY/10,200,hero));
 	island[1].addArea(0,0,500,500,5);
 	island[1].addArea(50,50,150,150,3);
 	island[1].addArea(500, 0, 600, 150,3);
@@ -505,10 +512,6 @@ int main(void)
 		  {
 		    switch (event.key.keysym.sym)
 		      {
-		      case SDLK_q:
-			quit=true;
-			Stageless.init();
-			break;
 		      case SDLK_ESCAPE:
 			quit = true;
 			Stageless.init();
@@ -549,13 +552,13 @@ int main(void)
 		      case SDLK_f:
 			if(screen_state==0)
 			  {
-			  island[currentstage].init_fullscreen();
-			  screen_state=1;
+			    island[currentstage].init_fullscreen();
+			    screen_state=1;
 			  }
 			else
 			  {
-			  island[currentstage].init();
-			  screen_state=0;
+			    island[currentstage].init();
+			    screen_state=0;
 			  }
 			break;
 		      case SDLK_1: //bullet color control
@@ -627,7 +630,7 @@ int main(void)
 		{
 		  island[currentstage].perform(dt, hero);
 		  hero->processEvent(dt);
-		  island[currentstage].draw();
+		  island[currentstage].draw(r,g,b,already_south,already_east,already_west);
 		  duration = (clock() - start)/((double)CLOCKS_PER_SEC);
 		  
 		  if (duration>dt)
