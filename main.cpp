@@ -57,7 +57,9 @@ int main(void)
   Tank tank_test(50,200,3*BASE_VELOCITY/10,13,100);
   tank_test.setHealth(30);
   Burster burster_test(200,50,BASE_VELOCITY,17,50);
+  burster_test.setHealth(49);
   Mike mike_test(50,50,200,50,BASE_VELOCITY,7,&stage_test,250);
+  mike_test.setHealth(1);
   int curr_bullets = 0;
   Shooter shooter_test(200,200,9,&stage_test);
 
@@ -86,6 +88,7 @@ int main(void)
 
   // x, y, vx, vy, ax, ay
   Hero hero_test(350,350,200,0,0,0,500);
+  hero_test.setHealth(350);
   stage_test.addUnit(&hero_test);
   //  Bullet bullet_test(&hero_test,0,0);
   // stage_test.addUnit(&bullet_test);
