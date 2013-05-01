@@ -250,8 +250,8 @@ void Unit::draw(SDL_Surface* screen, int xo, int yo){
   inside.w = currentHealth;
   missing.w = totalHealth;
   inside.h = missing.h = SPRLENGTH/6-2;
-  SDL_FillRect( screen, &missing, SDL_MapRGB( screen->format,204,0,0) );
-  SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,0,128,0) );
+  SDL_FillRect( screen, &missing, SDL_MapRGB( screen->format,255,0,0) );
+  SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,0,128,255) );
 }
 
 bool Unit::isEqualTo(Unit* u)
