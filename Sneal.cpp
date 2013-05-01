@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Sneal::Sneal(double XP1, double YP1, double XP2, double YP2, double maxv, int loc, int h, Stage* STAGE, Hero* hero):Enemy(XP1,YP1,maxv,loc,h,hero)
+Sneal::Sneal(double XP1, double YP1, double XP2, double YP2, double maxv, int h, Stage* STAGE, Hero* hero):Enemy(XP1,YP1,maxv,4,h,hero)
 {
   xp1=XP1;
   yp1=YP1;

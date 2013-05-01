@@ -18,7 +18,7 @@ Sean header file */
 
 class Sean: public Enemy{
  public:
-  Sean(double,double,double,double,double,double,double,double,double,int,int,Stage*,Hero*);
+  Sean(double,double,double,double,double,double,double,double,double,int,Stage*,Hero*);
   virtual void chase(double,double);
  private:
   Stage* stage;

@@ -420,7 +420,7 @@ int main(void)
       
     case 6:
       hero = new Hero(25,25,200,0,0,0,5000);
-      mike = new Mike(1100,375,1225,375,2*BASE_VELOCITY,7,&island[0],30,hero);
+      mike = new Mike(1100,375,1225,375,2*BASE_VELOCITY,30,&island[0],hero);
       island[0].addUnit(hero);
       island[0].addUnit(mike);
       island[0].addUnit(new Shooter(1100,400,9,&island[0],hero));
@@ -438,7 +438,7 @@ int main(void)
       
       case 7:
 	hero = new Hero(75,385,200,0,0,0,5000);
-	brad = new Brad(650,-800,750,-800,BASE_VELOCITY*3,18,100,&island[1],hero);
+	brad = new Brad(650,-800,750,-800,BASE_VELOCITY*3,100,&island[1],hero);
 	island[1].addUnit(hero);
 	island[1].addUnit(brad);
 	island[1].addUnit(new Patroller(100,100,400,400,4*BASE_VELOCITY/5, 20,15,hero));
@@ -466,10 +466,10 @@ int main(void)
 
       case 8:
 	hero = new Hero(250,250,200,0,0,0,5000);
-	sean = new Sean(100,200,150,250,200,200,150,150,BASE_VELOCITY,12,100,&island[2],hero);
+	sean = new Sean(100,200,150,250,200,200,150,150,BASE_VELOCITY,100,&island[2],hero);
 	island[2].addUnit(hero);
 	island[2].addUnit(sean);
-	island[2].addUnit(new Sneal(100,100,200,200,BASE_VELOCITY*3,4,100,&island[2],hero));
+	island[2].addUnit(new Sneal(100,100,200,200,BASE_VELOCITY*3,100,&island[2],hero));
 	island[2].addArea(0,0,500,500,1);
 	p2s=1;
 	currentstage=2;
