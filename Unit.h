@@ -27,7 +27,7 @@ class Unit{
   friend class Hero;
  public:
   Unit();
-  Unit(double,double,double,double,double,int);
+  Unit(double,double,double,double,double,int,int);
   virtual void setx(double);
   virtual void sety(double);
   virtual void setax(double);
