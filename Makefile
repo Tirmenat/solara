@@ -13,13 +13,14 @@ BULLET = Bullet
 MIKE = Mike
 TANK = Tank
 BRAD = Brad
+SNEAL=Sneal
 SEAN = Sean
 FLAGS = -lSDL -lSDL_image -lSDL_ttf -lSDL_mixer -lX11
 
-$(EXEC): $(MAIN).o $(UNIT).o $(STAGE).o $(HERO).o $(ENEMY).o $(SOUND).o $(PATROLLER).o $(TANK).o $(BURSTER).o $(BULLET).o $(MIKE).o $(SHOOTER).o $(BRAD).o $(SEAN).o
-	$(COMP) $(MAIN).o $(UNIT).o $(STAGE).o $(HERO).o $(ENEMY).o $(SOUND).o $(PATROLLER).o $(TANK).o $(BURSTER).o $(BULLET).o  $(MIKE).o $(SHOOTER).o $(BRAD).o $(SEAN).o -o $(EXEC) $(FLAGS)
+$(EXEC): $(MAIN).o $(UNIT).o $(STAGE).o $(HERO).o $(ENEMY).o $(SOUND).o $(PATROLLER).o $(TANK).o $(BURSTER).o $(BULLET).o $(MIKE).o $(SHOOTER).o $(BRAD).o $(SEAN).o $(SNEAL).o
+	$(COMP) $(MAIN).o $(UNIT).o $(STAGE).o $(HERO).o $(ENEMY).o $(SOUND).o $(PATROLLER).o $(TANK).o $(BURSTER).o $(BULLET).o  $(MIKE).o $(SHOOTER).o $(BRAD).o $(SEAN).o $(SNEAL).o -o $(EXEC) $(FLAGS)
 
-$(MAIN).o: $(MAIN).cpp $(UNIT).h $(STAGE).h $(HERO).h $(ENEMY).h $(SOUND).h $(PATROLLER).h $(TANK).h $(BURSTER).h $(BULLET).h $(MIKE).h $(SHOOTER).h $(BRAD).h $(SEAN).h
+$(MAIN).o: $(MAIN).cpp $(UNIT).h $(STAGE).h $(HERO).h $(ENEMY).h $(SOUND).h $(PATROLLER).h $(TANK).h $(BURSTER).h $(BULLET).h $(MIKE).h $(SHOOTER).h $(BRAD).h $(SEAN).h $(SNEAL).h
 	$(COMP) -c $(MAIN).cpp
 
 $(STAGE).o: $(STAGE).h $(UNIT).h $(STAGE).cpp
@@ -54,6 +55,9 @@ $(BRAD).o: $(BRAD).h $(BRAD).cpp $(ENEMY).h $(UNIT).h
 
 $(SEAN).o: $(SEAN).h $(SEAN).cpp $(ENEMY).h $(UNIT).h
 	$(COMP) -c $(SEAN).cpp
+
+$(SNEAL).o: $(SNEAL).h $(SNEAL).cpp $(ENEMY).h $(UNIT).h
+	$(COMP) -c $(SNEAL).cpp
 
 $(SOUND).o: $(SOUND).h $(SOUND).cpp
 	$(COMP) -c $(SOUND).cpp

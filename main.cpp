@@ -18,6 +18,7 @@
 #include "Shooter.h"
 #include "Brad.h"
 #include "Sean.h"
+#include "Sneal.h"
 #include <ctime>
 #include <unistd.h>
 #include <cmath>
@@ -470,6 +471,7 @@ int main(void)
 	sean = new Sean(100,200,150,250,200,200,150,150,BASE_VELOCITY,12,100,&island[2],hero);
 	island[2].addUnit(hero);
 	island[2].addUnit(sean);
+	island[2].addUnit(new Sneal(100,100,200,200,BASE_VELOCITY*3,4,100,&island[2],hero));
 	island[2].addArea(0,0,500,500,1);
 	p2s=1;
 	currentstage=2;
