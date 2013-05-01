@@ -102,7 +102,6 @@ int main(void)
 		  break;
 		case SDLK_SPACE:
 		  //Enter game
-		  quit = true;
 		  next = 1;
 		  Stageless.clear_screen();
 		  break;
@@ -116,7 +115,6 @@ int main(void)
 		quit = true;
 	      }
 	  }      
-      quit = false;
       break;
 
       case 1: //Slide 1
@@ -310,7 +308,7 @@ int main(void)
 			break;
 			
 		      case SDLK_UP:
-			if(curr_bullets<NUM_BULLETS)
+			if(island[currentstage].canFire())
 			  {
 			    island[currentstage].addUnit(new Bullet(hero,M_PI/2,1,1,0,true));
 			    curr_bullets++;
@@ -318,7 +316,7 @@ int main(void)
 			  }
 			break;
 		      case SDLK_DOWN:		  
-			if(curr_bullets<NUM_BULLETS)
+			if(island[currentstage].canFire())
 			  {
 			    island[currentstage].addUnit(new Bullet(hero,3*M_PI/2,0,1,1,true));
 			    curr_bullets++;
@@ -326,7 +324,7 @@ int main(void)
 			  }
 			break;
 		      case SDLK_LEFT:
-			if(curr_bullets<NUM_BULLETS)
+			if(island[currentstage].canFire())
 			  {
 			    island[currentstage].addUnit(new Bullet(hero,M_PI,1,0,1,true));
 			    curr_bullets++;
@@ -334,7 +332,7 @@ int main(void)
 			  }
 			break;
 		      case SDLK_RIGHT:
-			if(curr_bullets<NUM_BULLETS)
+			if(island[currentstage].canFire())
 			  {
 			    island[currentstage].addUnit(new Bullet(hero,0,0,0,0,true));
 			    curr_bullets++;
@@ -353,9 +351,6 @@ int main(void)
 	    hero->processEvent(dt);
 	    //	    	    cout << "here" << endl;
 	    island[currentstage].perform(dt, hero);
-	    cout<<"Here 1"<<endl;
-	    island[currentstage].adjustUnits(&curr_bullets);
-	    cout<<"Here 2"<<endl;
 	    island[currentstage].draw();
 	    duration = (clock() - start)/((double)CLOCKS_PER_SEC);
 	    

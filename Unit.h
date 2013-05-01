@@ -57,10 +57,14 @@ class Unit{
   virtual int getMaxHealth();
   virtual void setMaxHealth(int);
   bool isCollided(Unit*);
+  bool isInvulnerable();
+  void makeInvulnerable();
+  void tickInvulnerable();
 
  private:
   SDL_Rect clip_char_left[11];
   SDL_Rect clip_char_right[11];
+  int invulnerable;
   int health;
   int maxHealth;
   double x;
