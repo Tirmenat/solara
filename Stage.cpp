@@ -340,7 +340,12 @@ void Stage::clean_up()
       removeUnit(units[0]);
       }*/
   SDL_FreeSurface( background );
-  
+  SDL_FreeSurface(title);
+  SDL_FreeSurface(slide1);
+  SDL_FreeSurface(slide2);
+  SDL_FreeSurface(slide3);
+  SDL_FreeSurface(slide4);
+  SDL_FreeSurface(slide5);
 
   //Quit SDL
   SDL_Quit();
@@ -360,6 +365,11 @@ void Stage::adjustUnits()
 
 		  
 		  //		  cout << "subtracting from hero's current bullets" << endl;
+	      units[i]->setHealth(0);
+	      continue;
+	    }
+	  else if(isOffScreen(units[i]))
+	    {
 	      units[i]->setHealth(0);
 	      continue;
 	    }
@@ -452,4 +462,9 @@ void Stage::adjustUnits()
 bool Stage::canFire()
 {
   return (currBullets<maxBullets);
+}
+
+bool Stage::isOffScreen(Unit* u)
+{
+  return false;
 }

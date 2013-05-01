@@ -34,6 +34,7 @@ class Stage{
   int getoffsety();
   bool checkCollisions(Unit*);
   bool canFire();
+  bool isOffScreen(Unit*);
  private:
   int xoffset;
   int yoffset;
