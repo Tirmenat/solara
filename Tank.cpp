@@ -20,6 +20,7 @@ void Tank::chase(double herox,double heroy)
   y=gety();
   v=getmaxv();
   
+  // consistently moving towards Hero
   angle = atan ((heroy-y)/(herox-x));
     if (x>herox && y>heroy){
       vy = -v * sin(angle);

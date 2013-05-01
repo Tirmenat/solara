@@ -23,8 +23,8 @@ void Shooter::chase(double herox, double heroy){
   y=gety();
   //  herox=herox+8;
   //heroy=heroy+12;
+  //consistently shoots in the direction of the Hero
   angle=atan((heroy-y)/(herox-x));
-
   if(x>herox){
     angle = -angle + M_PI;
   }
