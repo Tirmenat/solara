@@ -50,7 +50,7 @@ void Patroller::patrol(){
     }
   }
   //patrol at point 2
-  else if(sqrt((xp2-x)*(xp2-x)+(yp2-y)*(yp2-y))>2 && state==0){
+  if(sqrt((xp2-x)*(xp2-x)+(yp2-y)*(yp2-y))>2 && state==0){
     angle = atan ((yp2-y)/(xp2-x));
     if (x>xp2 && y>yp2){
       vy = -v * sin(angle);
