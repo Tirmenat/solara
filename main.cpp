@@ -332,7 +332,7 @@ int main(void)
 	    }
 	}
       shooter_test.chase(hero_test.getx(),hero_test.gety());
-      mike_test.patrol();
+      mike_test.chase(hero_test.getx(),hero_test.gety());
       burster_test.chase(hero_test.getx(),hero_test.gety());
       tank_test.chase(hero_test.getx(),hero_test.gety());
       patrol_test.chase(hero_test.getx(),hero_test.gety());
@@ -404,7 +404,7 @@ int main(void)
 	    }
 	}
 
-      mike_test.patrol();
+      mike_test.chase(hero_test.getx(),hero_test.gety());
       burster_test.chase(hero_test.getx(),hero_test.gety());
       tank_test.chase(hero_test.getx(),hero_test.gety());
       patrol_test.chase(hero_test.getx(),hero_test.gety());
@@ -475,7 +475,7 @@ int main(void)
 	    }
 	}
 
-      mike_test.patrol();
+      mike_test.chase(hero_test.getx(),hero_test.gety());
       burster_test.chase(hero_test.getx(),hero_test.gety());
       tank_test.chase(hero_test.getx(),hero_test.gety());
       patrol_test.chase(hero_test.getx(),hero_test.gety());
