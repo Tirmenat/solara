@@ -14,7 +14,7 @@ Hero::Hero(double X, double Y, double MAXV, double AX, double AY, int location, 
   
 }
 
-void Hero::collide(Unit* u)
+void Hero::collide(Unit* u, double dt)
 {
   if(u->isFromHero())
     {
@@ -22,26 +22,34 @@ void Hero::collide(Unit* u)
   //  cout << "collision detected" << endl;
   if(u->isBullet())
     {
-      this->setHealth(getHealth()-1);
+      setHealth(getHealth()-1);
       u->setHealth(0);
       //do damage
       //apply effects based on color
     }
   else
     {
-      this->setHealth(getHealth()-10);
-      //this->setx(this->getx()-this->getvx()/4);
-      //this->sety(this->gety()-this->getvy()/4);
-      this->setvx(-this->getvx()*2);
-      this->setvy(-this->getvy()*2);
+      setHealth(getHealth()-1);
+      //if(vx>0)
+      //	setx(getx()-maxv*dt);
+      //else
+      //	setx(getx()+getvx()*dt);
+      //if(vy>0)
+      //	sety(gety()-getvy()*dt);
+      //else
+      //	sety(gety()-getvy()*dt);
+      //this->setvx(-this->getvx()*2);
+      //this->setvy(-this->getvy()*2);
       //this->setax(0);
       //this->setay(0);
-      //u->setx(u->getx()-u->getvx()/4);
-      //u->sety(u->gety()-u->getvy()/4);
-      u->setvx(-u->getvx()*2);
-      u->setvy(-u->getvy()*2);
-      u->setax(0);
-      u->setay(0);
+      //u->setx(u->getx()+u->getvx()*dt);
+      //u->sety(u->gety()+u->getvy()*dt);
+      //u->setx(u->getx()-u->getvx()/10);
+      //u->sety(u->gety()-u->getvy()/10);
+      //u->setvx(-u->getvx()*2);
+      //u->setvy(-u->getvy()*2);
+      //u->setax(0);
+      //u->setay(0);
 
       //do damage
       //knock back?

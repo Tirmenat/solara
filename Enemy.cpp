@@ -16,7 +16,7 @@ Enemy::Enemy(double X, double Y, double MAXV, int location, int h,Hero* HERO):Un
   maxv=MAXV;
 }
 
-void Enemy::collide(Unit* u)
+void Enemy::collide(Unit* u, double dt)
 {
   
 }

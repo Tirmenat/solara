@@ -34,8 +34,9 @@ Stage::Stage(int x, int y)
   currBullets = 0;
 }
 
-void Stage::checkCollisions(Unit* unit)
+bool Stage::checkCollisions(Unit* unit, double dt)
 {
+  bool collide=false;
   for(int i = 0; i<units.size(); i++)
     {
       if(units[i] == unit)
@@ -43,9 +44,13 @@ void Stage::checkCollisions(Unit* unit)
       else
 	{
 	  if(unit->isCollided(units[i]))
-	    unit->collide(units[i]);
+	    {
+	    unit->collide(units[i],dt);
+	    collide=true;
+	    }
 	}
     }
+  return(collide);
 }
 void Stage::perform(double dt, Unit* hero)
 {
@@ -57,9 +62,8 @@ void Stage::perform(double dt, Unit* hero)
 	  removeUnit(units[i]);
 	  i--;
 	}
-      // removeUnit(units[i])
-      // i--
-      units[i]->increment(dt);
+      if(checkCollisions(units[i],dt));
+      else units[i]->increment(dt);
     }
   xoffset = -hero->getx() + SCREEN_WIDTH/2;
   yoffset = -hero->gety() + SCREEN_HEIGHT/2;

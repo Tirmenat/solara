@@ -307,7 +307,7 @@ int main(void)
       hero_test.processEvent(dt);
       stage_test.perform(dt, &hero_test);
       stage_test.adjustUnits(&curr_bullets);
-      stage_test.checkCollisions(&hero_test);
+      //stage_test.checkCollisions(&hero_test,dt);
       stage_test.draw();
       duration = (clock() - start)/((double)CLOCKS_PER_SEC);
      

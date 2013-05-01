@@ -73,7 +73,7 @@ Bullet::Bullet(Unit* shooter, double direction, int r, int g, int b, bool hero)
   set_clips();
 }
 
-void Bullet::collide(Unit*)
+void Bullet::collide(Unit* u, double dt)
 {
 
 }
