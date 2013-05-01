@@ -42,8 +42,8 @@ int main(void)
   Patroller patrol_test(100,100,100,200,4*BASE_VELOCITY/5,20,50,&hero_test);
   Tank tank_test(50,200,3*BASE_VELOCITY/10,13,100,&hero_test);
   tank_test.setHealth(30);
-  //Burster burster_test(200,50,BASE_VELOCITY,17,50,&hero_test);
-  //burster_test.setHealth(49);
+  Burster burster_test(200,50,BASE_VELOCITY,17,50,&hero_test);
+  burster_test.setHealth(49);
   Mike mike_test(50,50,200,50,BASE_VELOCITY,7,&stage_test,250,&hero_test);
   mike_test.setHealth(1);
   int curr_bullets = 0;
@@ -51,7 +51,7 @@ int main(void)
 
   stage_test.addUnit(&shooter_test);
   stage_test.addUnit(&mike_test);
-  //stage_test.addUnit(&burster_test);
+  stage_test.addUnit(&burster_test);
   stage_test.addUnit(&tank_test);
   stage_test.addUnit(&patrol_test);
   stage_test.addArea(100,100,128,144,2);
