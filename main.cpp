@@ -103,6 +103,7 @@ int main(void)
 		  //Enter game
 		  quit = true;
 		  next = 1;
+		  Stageless.clear_screen();
 		  break;
 		}
 	      }
@@ -114,7 +115,6 @@ int main(void)
 		quit = true;
 	      }
 	  }      
-      Stageless.clear_screen();
       quit = false;
       break;
 
