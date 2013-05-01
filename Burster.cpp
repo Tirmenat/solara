@@ -78,5 +78,4 @@ void Burster::chase(double herox, double heroy)
   moving++;
   setvx(vx);
   setvy(vy);
-  cout<<vx<<" "<<vy<<endl;
 }

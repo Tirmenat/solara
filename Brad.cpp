@@ -29,7 +29,8 @@ void Brad::chase(double herox, double heroy)
     holdy=heroy;
     moving=2;
   }
-  if(state==2 && moving==2){
+  //cout<<holdx<<" "<<holdy<<" "<<x<<" "<<y<<" "<<vx<<" "<<vy<<endl;
+  if(state==1 && moving==2){
     angle = atan ((holdy-y)/(holdx-x));
     if (x>holdx && y>holdy){
       vy = -v * sin(angle);
@@ -55,10 +56,9 @@ void Brad::chase(double herox, double heroy)
       vx = v * cos(angle);
       vy = v * sin(angle);
     }
-
   }
-  if(state==3){
-    angle=atan ((xp2-y)/(xp2-x));
+  else if(state==2){
+    angle=atan ((yp2-y)/(xp2-x));
     if (x>xp2 && y>yp2){
       vy = -v * sin(angle);
       vx = -v * cos(angle);
@@ -83,8 +83,84 @@ void Brad::chase(double herox, double heroy)
       vx = v * cos(angle);
       vy = v * sin(angle);
     }
+    moving=1;
   }
-  if(sqrt((x-holdx)*(x-holdx)+(y-holdy)*(y-holdy)) <= 2) {
+  if(state==3 && moving==1){
+    holdx=herox;
+    holdy=heroy;
+    moving=2;
+  }
+  if(state==3 && moving==2){
+    angle = atan ((holdy-y)/(holdx-x));
+    if (x>holdx && y>holdy){
+      vy = -v * sin(angle);
+      vx = -v * cos(angle);
+    }
+    else if(x>holdx && y<holdy){
+      vx = -v * cos(angle);
+      vy = -v * sin(angle);
+    }
+    else if (x<holdx && y>holdy){
+      vx = v * cos(angle);
+      vy = v * sin(angle);
+    }
+    else if (x<holdx && angle==0){
+      vx = v;
+      vy = 0;
+    }
+    else if (x>holdx && angle==0){
+      vx = -v;
+      vy = 0;
+    }
+    else{
+      vx = v * cos(angle);
+      vy = v * sin(angle);
+    }
+  }
+  if(state==4){
+    angle=atan ((yp1-y)/(xp1-x));
+    if (x>xp1 && y>yp1){
+      vy = -v * sin(angle);
+      vx = -v * cos(angle);
+    }
+    else if(x>xp1 && y<yp1){
+      vx = -v * cos(angle);
+      vy = -v * sin(angle);
+    }
+    else if (x<xp1 && y>yp1){
+      vx = v * cos(angle);
+      vy = v * sin(angle);
+    }
+    else if (x<holdx && angle==0){
+      vx = v;
+      vy = 0;
+    }
+    else if (x>holdx && angle==0){
+      vx = -v;
+      vy = 0;
+    }
+    else{
+      vx = v * cos(angle);
+      vy = v * sin(angle);
+    }
+  }
+  if(sqrt((x-xp2)*(x-xp2)+(y-yp2)*(y-yp2)) <= 5){
     state=3;
+    moving=1;
   }
+  if(sqrt((x-holdx)*(x-holdx)+(y-holdy)*(y-holdy)) <= 5) {
+    if(state==1){
+      state=2;
+    }
+    else if(state==3){
+      state=4;
+    }
+  }
+  if(sqrt((x-xp1)*(x-xp1)+(y-yp1)*(y-yp1)) <= 5){
+    state=1;
+    moving=1;
+  }
+  cout<<state<<endl;
+  setvx(vx);
+  setvy(vy);
 }
