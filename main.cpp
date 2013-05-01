@@ -29,7 +29,10 @@ using namespace std;
 
 int main(void)
 {
-  
+  //Screen alternations
+  int screen_state=0;
+
+  //Class instantiation
   Stage Stageless;
   Stage island[4];
   Hero *hero;
@@ -62,9 +65,6 @@ int main(void)
   int r=0;
   int g=0;
   int b=0;
-
-  //Screen alternations
-  int screen_state=1;
 
   //Bullet* bullets[NUM_BULLETS] = {NULL};
   //Patroller patrol_test2(250,250,100,100,100,5);

@@ -24,7 +24,7 @@ Stage::Stage()
   screen = NULL;
   background = NULL;
   title = NULL;
-  init_fullscreen();
+  init();
   load_files();
   set_clips();
   addArea(SCREEN_WIDTH/10, SCREEN_HEIGHT/10, SCREEN_WIDTH*4/5, SCREEN_HEIGHT*4/5,0);
