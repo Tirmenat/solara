@@ -36,29 +36,26 @@ Stage::Stage()
 
 bool Stage::checkCollisions(Unit* unit, double dt)
 {
-<<<<<<< HEAD
+  /*
   bool collide=false;
   for(int i = 0; i<units.size(); i++)
-=======
-  /*  for(int i = 0; i<units.size(); i++)
->>>>>>> 20f9b4a9604044d41a8574184eb4d354babc28ca
     {
-      if(units[i] == unit)
-	continue;
-      else
-	{
+      /*  for(int i = 0; i<units.size(); i++)
+	  {
+	  if(units[i] == unit)
+	  continue;
+	  else
+	  {
 	  if(unit->isCollided(units[i]))
-	    {
-	    unit->collide(units[i],dt);
-	    collide=true;
-	    }
-	}
-<<<<<<< HEAD
-    }
-  return(collide);
-=======
-	}*/
->>>>>>> 20f9b4a9604044d41a8574184eb4d354babc28ca
+	  {
+	  unit->collide(units[i],dt);
+	  collide=true;
+	  }
+	  }
+	  }
+	  return(collide);
+	  }*/
+  return false;
 }
 void Stage::perform(double dt, Unit* hero)
 {
