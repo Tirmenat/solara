@@ -44,7 +44,7 @@ class Unit{
   //  virtual double getv();
   //  virtual SDL_Rect getrect();
   virtual void increment(double);
-  virtual void draw(SDL_Surface*, int, int);
+  virtual void draw(SDL_Surface*, int, int) = 0;
   virtual bool isEqualTo(Unit*);
   virtual void collide(Unit*) = 0;
   virtual bool isBullet();

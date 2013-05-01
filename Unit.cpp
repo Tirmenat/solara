@@ -203,58 +203,6 @@ void Unit::set_clips(int location){
 
 }
 
-void Unit::draw(SDL_Surface* screen, int xo, int yo){
-  /*if(vx > 0)
-	{
-		status = UNIT_RIGHT;  //Unit moves left
-		frame++; //animation continues
-	}
-	if(vx < 0)
-	{
-		status = UNIT_LEFT; //Unit moves right
-		frame++; //animation continues
-	}
-	else
-	{
-		frame = 0; //Animation stops at neutral position
-	}
-	if(frame >= 3)
-	{
-		frame = 0;
-		}*/
-
-  // Character and direction
-  if(status == UNIT_LEFT)
-    {
-      apply_surface( x+xo, y+yo, char_left, screen, &clip_char_left[frame]);
-    }
-  if(status == UNIT_RIGHT)
-    {
-      apply_surface( x+xo, y+yo, char_right, screen, &clip_char_right[frame]);
-    }
-
-  //Unit health
-  // border = black outline
-  SDL_Rect border, inside, missing;
-  border.x = x+xo;
-  border.y = y+yo-SPRLENGTH/6-1;
-  border.w = SPRWIDTH;
-  border.h = SPRLENGTH/6;
-  SDL_FillRect( screen, &border, SDL_MapRGB( screen->format,0,0,0) );
-  // missing = missing health in red
-  // inside = green health bar
-  inside.x = missing.x = x+xo+1;
-  inside.y = missing.y = y+yo-SPRLENGTH/6;
-  int currentHealth;
-  int totalHealth=SPRWIDTH-2;
-  currentHealth= totalHealth*getHealth()/getMaxHealth();
-  inside.w = currentHealth;
-  missing.w = totalHealth;
-  inside.h = missing.h = SPRLENGTH/6-2;
-  SDL_FillRect( screen, &missing, SDL_MapRGB( screen->format,255,0,0) );
-  SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,0,128,255) );
-}
-
 bool Unit::isEqualTo(Unit* u)
 {
   	if(u->getx() != x)
