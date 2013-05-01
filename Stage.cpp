@@ -37,7 +37,11 @@ void Stage::perform(double dt, Unit* hero)
 
   for(int i = 0; i < units.size(); i++)
     {
-      //if health <= 0
+      if (units[i]->getHealth() <= 0)
+	{
+	  removeUnit(units[i]);
+	  i--;
+	}
       // removeUnit(units[i])
       // i--
       units[i]->increment(dt);
@@ -315,8 +319,11 @@ void Stage::adjustUnits(int* numbullets)
 	  if(!isInBounds(units[i]->getx(), units[i]->gety()))
 	    {
 	      if(units[i]->isFromHero())
-		*numbullets = *numbullets-1;
-	      removeUnit(units[i]);
+		{
+		  *numbullets = *numbullets-1;
+		  //		  cout << "subtracting from hero's current bullets" << endl;
+		}
+	      units[i]->setHealth(0);
 	      continue;
 	    }
 	}

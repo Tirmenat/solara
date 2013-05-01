@@ -46,6 +46,8 @@ Unit::Unit(double X, double Y, double MAXV, double AX, double AY, int location){
   status = UNIT_RIGHT;
   moving = 0;
   frame = 0;
+  health = 1;
+  maxHealth = 2;
 }
 
 // Set Functions
@@ -344,4 +346,24 @@ bool Unit::isBullet()
 bool Unit::isFromHero()
 {
   return 0;
+}
+
+int Unit::getHealth()
+{
+  return health;
+}
+
+void Unit::setHealth(int h)
+{
+  health = h;
+}
+
+int Unit::getMaxHealth()
+{
+  return maxHealth;
+}
+
+void Unit::setMaxHealth(int h)
+{
+  maxHealth = h;
 }
