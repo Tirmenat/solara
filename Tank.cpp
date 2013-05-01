@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Tank::Tank(double X, double Y, double maxv, int loc, int h,Hero* hero):Enemy(X,Y,maxv,loc,h,hero)
+Tank::Tank(double X, double Y, double maxv, int h,Hero* hero):Enemy(X,Y,maxv,13,h,hero)
 {
 
 }

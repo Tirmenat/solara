@@ -8,7 +8,7 @@ using namespace std;
 #define DETECT_RADIUS 150
 #define _USE_MATH_DEFINES
 
-Patroller::Patroller(double XP1, double YP1, double XP2, double YP2, double maxv, int loc, int h, Hero* hero):Enemy(XP1,YP1,maxv,loc,h,hero){
+Patroller::Patroller(double XP1, double YP1, double XP2, double YP2, double maxv, int h, Hero* hero):Enemy(XP1,YP1,maxv,19,h,hero){
   xp1 = XP1;
   yp1 = YP1;
   xp2 = XP2;
@@ -41,6 +41,15 @@ void Patroller::patrol(){
       vx = v*cos(angle);
       vy = v*sin(angle);
     }
+    else if (x<xp1 && angle==0){
+      vx=v;
+      vy=0;
+
+    }
+    else if(x>xp1 && angle==0){
+      vx = -v;
+      vy=0;
+    }
     else{
       vx = v*cos(angle);
       vy = v*sin(angle);
@@ -50,7 +59,7 @@ void Patroller::patrol(){
     }
   }
   //patrol at point 2
-  else if(sqrt((xp2-x)*(xp2-x)+(yp2-y)*(yp2-y))>2 && state==0){
+  if(sqrt((xp2-x)*(xp2-x)+(yp2-y)*(yp2-y))>2 && state==0){
     angle = atan ((yp2-y)/(xp2-x));
     if (x>xp2 && y>yp2){
       vy = -v * sin(angle);
@@ -64,7 +73,16 @@ void Patroller::patrol(){
       vx = v*cos(angle);
       vy = v*sin(angle);
     }
-    else{
+    else if (x<xp2 && angle==0){
+      vx=v;
+      vy=0;
+      
+    }
+    else if(x>xp2 && angle==0){
+      vx = -v;
+      vy=0;
+    }
+    else {
       vx = v*cos(angle);
       vy = v*sin(angle);
     }

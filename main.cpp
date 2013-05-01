@@ -420,11 +420,16 @@ int main(void)
       
     case 6:
       hero = new Hero(25,25,200,0,0,0,5000);
-      mike = new Mike(1100,375,1225,375,2*BASE_VELOCITY,7,&island[0],30,hero);
+      mike = new Mike(1100,375,1225,375,2*BASE_VELOCITY,30,&island[0],hero);
       island[0].addUnit(hero);
       island[0].addUnit(mike);
-      island[0].addUnit(new Shooter(1100,400,9,&island[0],hero));
-      island[0].addUnit(new Shooter(1225,400,9,&island[0],hero));
+      island[0].addUnit(new Shooter(1100,400,&island[0],hero));
+      island[0].addUnit(new Shooter(1225,400,&island[0],hero));
+      island[0].addUnit(new Patroller(700,350 ,400,350,6*BASE_VELOCITY/5,40,hero));
+      island[0].addUnit(new Patroller(400,450,700,450,7*BASE_VELOCITY/5,40,hero));
+      island[0].addUnit(new Patroller(400,550,700,1000,7*BASE_VELOCITY/5,40,hero));
+      island[0].addUnit(new Patroller(700,550,400,1000,7*BASE_VELOCITY/5,40,hero));
+      island[0].addUnit(new Patroller(550,550,550,1000,7*BASE_VELOCITY/5,40,hero));
       island[0].addArea(0,0,300,300,3);
       island[0].addArea(300,200,500,1000, 5);
       island[0].addArea(400,300,200,300, 1);
@@ -438,20 +443,20 @@ int main(void)
       
       case 7:
 	hero = new Hero(75,385,200,0,0,0,5000);
-	brad = new Brad(650,-800,750,-800,BASE_VELOCITY*3,18,100,&island[1],hero);
+	brad = new Brad(650,-800,750,-800,BASE_VELOCITY*3,100,&island[1],hero);
 	island[1].addUnit(hero);
 	island[1].addUnit(brad);
-	island[1].addUnit(new Patroller(100,100,400,400,4*BASE_VELOCITY/5, 20,15,hero));
-	island[1].addUnit(new Tank(400, 50, 3*BASE_VELOCITY/10,13,100,hero));
-	island[1].addUnit(new Tank(450, 100, 3*BASE_VELOCITY/10,13,100,hero));
-	island[1].addUnit(new Shooter(1000, 25, 9,&island[1],hero));
-	island[1].addUnit(new Shooter(1000, 100, 9, &island[1],hero));
-	island[1].addUnit(new Burster(800, 50, BASE_VELOCITY,17,10,hero));
-	island[1].addUnit(new Burster(800, 100, BASE_VELOCITY,17,10,hero));
-	island[1].addUnit(new Tank(800, -200, 6*BASE_VELOCITY/10,13,100,hero));
-	island[1].addUnit(new Tank(800, -150, 6*BASE_VELOCITY/10,13,100,hero));
-	island[1].addUnit(new Tank(1000, -200, 6*BASE_VELOCITY/10,13,100,hero));
-	island[1].addUnit(new Tank(1000, -150, 6*BASE_VELOCITY/10,13,100,hero));
+	island[1].addUnit(new Patroller(100,100,400,400,4*BASE_VELOCITY/5,40,hero));
+	island[1].addUnit(new Tank(400, 50, 3*BASE_VELOCITY/10,100,hero));
+	island[1].addUnit(new Tank(450, 100, 3*BASE_VELOCITY/10,100,hero));
+	island[1].addUnit(new Shooter(1000, 25, &island[1],hero));
+	island[1].addUnit(new Shooter(1000, 100, &island[1],hero));
+	island[1].addUnit(new Burster(800, 50, BASE_VELOCITY,10,hero));
+	island[1].addUnit(new Burster(800, 100, BASE_VELOCITY,10,hero));
+	island[1].addUnit(new Tank(800, -200, 6*BASE_VELOCITY/10,100,hero));
+	island[1].addUnit(new Tank(800, -150, 6*BASE_VELOCITY/10,100,hero));
+	island[1].addUnit(new Tank(1000, -200, 6*BASE_VELOCITY/10,100,hero));
+	island[1].addUnit(new Tank(1000, -150, 6*BASE_VELOCITY/10,100,hero));
 	island[1].addArea(0,0,500,500,5);
 	island[1].addArea(50,50,150,150,3);
 	island[1].addArea(500, 0, 600, 150,3);
@@ -466,10 +471,10 @@ int main(void)
 
       case 8:
 	hero = new Hero(250,250,200,0,0,0,5000);
-	sean = new Sean(100,200,150,250,200,200,150,150,BASE_VELOCITY,12,100,&island[2],hero);
+	sean = new Sean(100,200,150,250,200,200,150,150,BASE_VELOCITY,100,&island[2],hero);
 	island[2].addUnit(hero);
 	island[2].addUnit(sean);
-	island[2].addUnit(new Sneal(100,100,200,200,BASE_VELOCITY*3,4,100,&island[2],hero));
+	island[2].addUnit(new Sneal(100,100,200,200,BASE_VELOCITY*3,100,&island[2],hero));
 	island[2].addArea(0,0,500,500,1);
 	p2s=1;
 	currentstage=2;
@@ -586,6 +591,7 @@ int main(void)
 		case 0:
 		  if(mike->getHealth()<=0)
 		    {
+		      sounds.play_effect("enemydeath");
 		      next=5;
 		      bossdead=true;
 		      island[currentstage].clear_screen();
@@ -593,8 +599,9 @@ int main(void)
 		  else help=1;
 		  break;
 		case 1:
-		  if(brad->getHealth()<=1)
+		  if(brad->getHealth()<=0)
 		    {
+		      sounds.play_effect("enemydeath");
 		      next=5;
 		      bossdead=true;
 		      island[currentstage].clear_screen();
@@ -602,8 +609,9 @@ int main(void)
 		  else help=1;
 		  break;
 		case 2:
-		  if(sean->getHealth()<=2)
+		  if(sean->getHealth()<=0)
 		    {
+		      sounds.play_effect("enemydeath");
 		      next=5;
 		      bossdead=true;
 		      island[currentstage].clear_screen();
