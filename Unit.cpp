@@ -168,8 +168,8 @@ bool Unit::load_files()
   //Lazyfoo.net 
 
   //Load the surfaces
-  char_left = load_image( "neal.png" );
-  char_right = load_image( "nealflipped.png");
+  char_left = load_image( "images/neal.png" );
+  char_right = load_image( "images/nealflipped.png");
 
   //If there was an error in loading the characters
   if( (char_left == NULL) || (char_right == NULL) )

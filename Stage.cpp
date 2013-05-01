@@ -132,8 +132,8 @@ bool Stage::load_files()
   //Lazyfoo.net 
 
   //Load the surfaces
-  background = load_image( "terrain.png");
-  title = load_image( "solaratitle.png" );
+  background = load_image( "images/terrain.png");
+  title = load_image( "images/solaratitle.png" );
   slide1 = load_image( "images/Slide1.png" );
   slide2 = load_image( "images/Slide2.png" );
   slide3 = load_image( "images/Slide3.png" ); 

@@ -110,7 +110,7 @@ bool Bullet::load_files()
   //Lazyfoo.net
 
   //Load the surfaces
-  bullet = load_image( "bullet.png" );
+  bullet = load_image( "images/bullet.png" );
 
   //If error in loading bullets
   if( bullet == NULL)
