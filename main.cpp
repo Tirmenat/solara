@@ -256,6 +256,7 @@ int main(void)
        
       case 6:
 	hero = new Hero(350,350,200,0,0,0,500);
+	island[0].addUnit(hero);
 	island[0].addUnit(new Mike(50,50,200,50,BASE_VELOCITY,7,&island[0],30,hero));
 	island[0].addUnit(new Burster(200,50,BASE_VELOCITY,17,10,hero));
 	island[0].addUnit(new Tank(50, 200, 3*BASE_VELOCITY/10,13,100,hero));
@@ -266,7 +267,6 @@ int main(void)
 	island[0].addArea(448,416,160,32,5);
 	p2s=1;
 	currentstage=0;
-	island[0].addUnit(hero);
 	break;
 
       case 7:
