@@ -592,7 +592,7 @@ int main(void)
 
       case 7:
 	hero = new Hero(75,385,200,0,0,0,100);
-	brad = new Brad(120,140,100,350,BASE_VELOCITY*3,18,100,&island[0],hero);
+	brad = new Brad(120,140,100,350,BASE_VELOCITY*3,18,100,&island[1],hero);
 	island[1].addUnit(hero);
 	island[1].addUnit(brad);
 	island[1].addUnit(new Patroller(100,100,100,350,4*BASE_VELOCITY/5, 20,15,hero));

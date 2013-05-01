@@ -164,6 +164,7 @@ void Brad::chase(double herox, double heroy)
     bullet->setvx(bullet->getvx()-vx/2);
     bullet->setvy(bullet->getvy()-vy/2);
     stage->addUnit(bullet);
+    cout<<"Add bullet"<<endl;
     //stage->addUnit(new Bullet(this,angle2,0,0,0,false));
     
     if(state==1){
