@@ -33,7 +33,6 @@ void Brad::chase(double herox, double heroy)
     holdy=heroy;
     moving=2;
   }
-  //cout<<holdx<<" "<<holdy<<" "<<x<<" "<<y<<" "<<vx<<" "<<vy<<endl;
   if(state==1 && moving==2){
     angle = atan ((holdy-y)/(holdx-x));
     if (x>holdx && y>holdy){

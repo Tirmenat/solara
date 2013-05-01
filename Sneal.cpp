@@ -160,7 +160,7 @@ void Sneal::chase(double herox, double heroy)
       frame++;
       for(double i=3;i<20;i++){
 	if(frame==i){
-	  stage->addUnit(new Bullet(this,(i-3)*M_PI/8,1,0,0,false));
+	  stage->addUnit(new Bullet(this,(i-3)*M_PI/8,1,1,1,false));
 	}
       }
       if(state==1 && frame==30){
