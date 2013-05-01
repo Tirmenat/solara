@@ -37,7 +37,11 @@ void Stage::perform(double dt, Unit* hero)
 
   for(int i = 0; i < units.size(); i++)
     {
-      //if health <= 0
+      if (units[i]->getHealth() <= 0)
+	{
+	  removeUnit(units[i]);
+	  i--;
+	}
       // removeUnit(units[i])
       // i--
       units[i]->increment(dt);
@@ -128,14 +132,15 @@ bool Stage::load_files()
   //Lazyfoo.net 
 
   //Load the surfaces
-  background = load_image( "terrain.png");
-  title = load_image( "solaratitle.png" );
+  background = load_image( "images/terrain.png");
+  title = load_image( "images/solaratitle.png" );
   slide1 = load_image( "images/Slide1.png" );
   slide2 = load_image( "images/Slide2.png" );
   slide3 = load_image( "images/Slide3.png" ); 
   slide4 = load_image( "images/Slide4.png" );
   slide5 = load_image( "images/Slide5.png" );
 
+  //Error in loading title
   if( title == NULL )
     {
       return false;
@@ -143,6 +148,12 @@ bool Stage::load_files()
 
   //If there was an error in loading the terrain
   if( background == NULL )
+    {
+      return false;
+    }
+
+  //Error in loading slides
+  if( slide1==NULL || slide2==NULL || slide3==NULL || slide4==NULL || slide5==NULL)
     {
       return false;
     }
@@ -315,8 +326,11 @@ void Stage::adjustUnits(int* numbullets)
 	  if(!isInBounds(units[i]->getx(), units[i]->gety()))
 	    {
 	      if(units[i]->isFromHero())
-		*numbullets = *numbullets-1;
-	      removeUnit(units[i]);
+		{
+		  *numbullets = *numbullets-1;
+		  //		  cout << "subtracting from hero's current bullets" << endl;
+		}
+	      units[i]->setHealth(0);
 	      continue;
 	    }
 	}
