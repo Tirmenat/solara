@@ -27,7 +27,6 @@ Stage::Stage()
   init();
   load_files();
   set_clips();
-  addArea(SCREEN_WIDTH/10, SCREEN_HEIGHT/10, SCREEN_WIDTH*4/5, SCREEN_HEIGHT*4/5,0);
   xoffset = 100;
   yoffset = 100;
   maxBullets = 5;

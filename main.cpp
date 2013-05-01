@@ -44,11 +44,6 @@ int main(void)
   int *bosshealth;
 
   //Screens strings
-  screens[0]="title";
-  screens[1]="slide1";
-  screens[2]="slide2";
-  screens[3]="slide3";
-  screens[4]="slide4";
 
   //disable mouse cursor
   SDL_ShowCursor(SDL_DISABLE);
@@ -425,20 +420,23 @@ int main(void)
       
       
     case 6:
-      hero = new Hero(350,350,200,0,0,0,5000);
-	    mike = new Mike(200,50,300,50,BASE_VELOCITY,7,&island[0],30,hero);
-	    island[0].addUnit(hero);
-	    island[0].addUnit(mike);
-	    island[0].addUnit(new Burster(200,50,BASE_VELOCITY,17,10,hero));
-	    island[0].addUnit(new Tank(50, 200, 3*BASE_VELOCITY/10,13,100,hero));
-	    island[0].addUnit(new Patroller(100,100,100,200,BASE_VELOCITY*1.25,20,15,hero));
-	    island[0].addUnit(new Shooter(200,200,9,&island[0],hero));
-	island[0].addArea(100,100,128,144,2);
-	island[0].addArea(448,416,160,32,5);
-	p2s=1;
-	currentstage=0;
-	break;
-
+      hero = new Hero(25,25,200,0,0,0,5000);
+      mike = new Mike(1100,375,1225,375,2*BASE_VELOCITY,7,&island[0],30,hero);
+      island[0].addUnit(hero);
+      island[0].addUnit(mike);
+      island[0].addUnit(new Shooter(1100,400,9,&island[0],hero));
+      island[0].addUnit(new Shooter(1225,400,9,&island[0],hero));
+      island[0].addArea(0,0,300,300,3);
+      island[0].addArea(300,200,500,1000, 5);
+      island[0].addArea(400,300,200,300, 1);
+      island[0].addArea(500,800,200,300, 1);
+      island[0].addArea(780,1000, 500, 200, 3);
+      island[0].addArea(1080,360,200,650, 2);
+      
+      p2s=1;
+      currentstage=0;
+      break;
+      
       case 7:
 	hero = new Hero(75,385,200,0,0,0,5000);
 	brad = new Brad(650,-800,750,-800,BASE_VELOCITY*3,18,100,&island[1],hero);
@@ -455,7 +453,7 @@ int main(void)
 	island[1].addUnit(new Tank(800, -150, 6*BASE_VELOCITY/10,13,100,hero));
 	island[1].addUnit(new Tank(1000, -200, 6*BASE_VELOCITY/10,13,100,hero));
 	island[1].addUnit(new Tank(1000, -150, 6*BASE_VELOCITY/10,13,100,hero));
-	island[1].addArea(0,0,500,500,2);
+	island[1].addArea(0,0,500,500,5);
 	island[1].addArea(50,50,150,150,3);
 	island[1].addArea(500, 0, 600, 150,3);
 	island[1].addArea(1000, -100, 100, 100,1);
