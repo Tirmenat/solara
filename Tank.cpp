@@ -1,10 +1,11 @@
 #include "Tank.h"
 #include "SDL/SDL.h"
 #include <cmath>
+#include "Hero.h"
 
 using namespace std;
 
-Tank::Tank(double X, double Y, double maxv, int loc, int h):Enemy(X,Y,maxv,loc,h)
+Tank::Tank(double X, double Y, double maxv, int loc, int h,Hero* hero):Enemy(X,Y,maxv,loc,h,hero)
 {
 
 }

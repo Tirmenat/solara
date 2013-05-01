@@ -7,7 +7,7 @@ using namespace std;
 
 #define _USE_MATH_DEFINES
 
-Patroller::Patroller(double XP1, double YP1, double XP2, double YP2, double maxv, int loc, int h):Enemy(XP1,YP1,maxv,loc,h){
+Patroller::Patroller(double XP1, double YP1, double XP2, double YP2, double maxv, int loc, int h, Hero* hero):Enemy(XP1,YP1,maxv,loc,h,hero){
   xp1 = XP1;
   yp1 = YP1;
   xp2 = XP2;
