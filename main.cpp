@@ -258,6 +258,7 @@ int main(void)
        
       case 6:
 	hero = new Hero(350,350,200,0,0,0,100);
+	island[0].addUnit(new Brad(20,40,50,125,BASE_VELOCITY,18,10,hero));
 	island[0].addUnit(new Mike(50,50,200,50,BASE_VELOCITY,7,&island[0],30,hero));
 	island[0].addUnit(new Burster(200,50,BASE_VELOCITY,17,10,hero));
 	island[0].addUnit(new Tank(50, 200, 3*BASE_VELOCITY/10,13,100,hero));
