@@ -193,6 +193,7 @@ bool Stage::load_files()
   slide3 = load_image( "images/Slide3.png" ); 
   slide4 = load_image( "images/Slide4.png" );
   slide5 = load_image( "images/Slide5.png" );
+  slide6 = load_image( "images/Slide6.png" );
 
   //Error in loading title
   if( title == NULL )
@@ -354,6 +355,7 @@ void Stage::drawTitle(string pic)
   if(pic == "slide3") apply_surface(0,0,slide3,screen);
   if(pic == "slide4") apply_surface(0,0,slide4,screen);
   if(pic == "slide5") apply_surface(0,0,slide5,screen);
+  if(pic == "slide6") apply_surface(0,0,slide6,screen);
 
   if( SDL_Flip( screen ) == -1 )
     {
@@ -383,6 +385,7 @@ void Stage::clean_up()
   SDL_FreeSurface(slide3);
   SDL_FreeSurface(slide4);
   SDL_FreeSurface(slide5);
+  SDL_FreeSurface(slide6);
 
   //Quit SDL
   SDL_Quit();
