@@ -140,7 +140,33 @@ bool Stage::init()
     }
 
   //Set up the screen
-  screen = SDL_SetVideoMode( SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE );
+  screen = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE);
+
+  //If there was an error in setting up the screen
+  if( screen == NULL )
+    {
+      return false;
+    }
+
+  //Set the window caption
+  SDL_WM_SetCaption( "Solara", NULL );
+
+  //If everything initialized fine
+  return true;
+}
+
+bool Stage::init_fullscreen()
+{
+  //Lazyfoo.net 
+
+  //Initialize all SDL subsystems
+  if( SDL_Init( SDL_INIT_EVERYTHING ) == -1 )
+    {
+      return false;
+    }
+
+  //Set up the screen
+  screen = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_FULLSCREEN);
 
   //If there was an error in setting up the screen
   if( screen == NULL )
