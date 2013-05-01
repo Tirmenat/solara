@@ -425,7 +425,8 @@ int main(void)
       island[0].addUnit(mike);
       island[0].addUnit(new Shooter(1100,400,&island[0],hero));
       island[0].addUnit(new Shooter(1225,400,&island[0],hero));
-      //island[0].addUnit(new Patroller(700, 
+      island[0].addUnit(new Patroller(700,350 ,400,350,4*BASE_VELOCITY/5,40,hero));
+      island[0].addUnit(new Patroller(400,450,700,450,4*BASE_VELOCITY/5,40,hero));
       island[0].addArea(0,0,300,300,3);
       island[0].addArea(300,200,500,1000, 5);
       island[0].addArea(400,300,200,300, 1);
@@ -442,7 +443,7 @@ int main(void)
 	brad = new Brad(650,-800,750,-800,BASE_VELOCITY*3,100,&island[1],hero);
 	island[1].addUnit(hero);
 	island[1].addUnit(brad);
-	island[1].addUnit(new Patroller(100,100,400,400,4*BASE_VELOCITY/5,15,hero));
+	island[1].addUnit(new Patroller(100,100,400,400,4*BASE_VELOCITY/5,40,hero));
 	island[1].addUnit(new Tank(400, 50, 3*BASE_VELOCITY/10,100,hero));
 	island[1].addUnit(new Tank(450, 100, 3*BASE_VELOCITY/10,100,hero));
 	island[1].addUnit(new Shooter(1000, 25, &island[1],hero));
