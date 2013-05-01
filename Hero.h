@@ -21,6 +21,7 @@ class Hero: public Unit{
   void processEvent(double);
   virtual bool isFromHero();
   virtual void draw(SDL_Surface*, int, int);
+  int isDead();
 
 };
 
