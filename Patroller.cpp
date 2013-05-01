@@ -25,6 +25,7 @@ void Patroller::patrol(){
   v=3*getmaxv()/4;
   
 
+  //patrol at point 1
   if(sqrt((xp1-x)*(xp1-x)+(yp1-y)*(yp1-y))>2 && state==1){
     angle = atan ((yp1-y)/(xp1-x));
     if (x>xp1 && y>yp1){
@@ -47,6 +48,7 @@ void Patroller::patrol(){
       state = 0;
     }
   }
+  //patrol at point 2
   else if(sqrt((xp2-x)*(xp2-x)+(yp2-y)*(yp2-y))>2 && state==0){
     angle = atan ((yp2-y)/(xp2-x));
     if (x>xp2 && y>yp2){
@@ -93,6 +95,7 @@ void Patroller::chase(double herox, double heroy)
     control=0;
   }
   
+  //chase when hero comes nearby
   angle = atan ((heroy-y)/(herox-x));
   if(control==1){
     if (x>herox && y>heroy){

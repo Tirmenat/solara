@@ -16,6 +16,7 @@
 #include "Tank.h"
 #include "Bullet.h"
 #include "Shooter.h"
+#include "Brad.h"
 #include <ctime>
 #include <unistd.h>
 #include <cmath>
@@ -252,30 +253,30 @@ int main(void)
 	break;
        
       case 6:
-	hero = new Hero(350,350,200,0,0,0,100);
+	hero = new Hero(350,350,200,0,0,0,500);
+	island[0].addUnit(hero);
 	island[0].addUnit(new Mike(50,50,200,50,BASE_VELOCITY,7,&island[0],30,hero));
 	island[0].addUnit(new Burster(200,50,BASE_VELOCITY,17,10,hero));
 	island[0].addUnit(new Tank(50, 200, 3*BASE_VELOCITY/10,13,100,hero));
 	island[0].addUnit(new Patroller(100,100,100,200,4*BASE_VELOCITY/5,20,15,hero));
 	island[0].addUnit(new Shooter(200,200,9,&island[0],hero));
+	island[0].addUnit(new Brad(120,140,100,350,BASE_VELOCITY*3,18,100,hero));
 	island[0].addArea(100,100,128,144,2);
 	island[0].addArea(448,416,160,32,5);
 	p2s=1;
 	currentstage=0;
-	island[0].addUnit(hero);
 	break;
 
       case 7:
-	hero = new Hero(250,750,200,0,0,0,100);
-	island[1].addUnit(new Patroller(100,100,100,200,4*BASE_VELOCITY/5, 20,15,hero));
-	island[1].addArea(0,0,1000,1000,2);
-	island[1].addArea(1000, 0, 2000, 150,3);
-	island[1].addArea(2750, -500, 100, 500,1);
-	island[1].addArea(2400, -1500, 800, 1000, 4);
+	hero = new Hero(75,385,200,0,0,0,100);
 	island[1].addUnit(hero);
-
-
-
+	island[1].addUnit(new Patroller(100,100,100,350,4*BASE_VELOCITY/5, 20,15,hero));
+	island[1].addArea(0,0,500,500,2);
+	island[1].addArea(50,50,150,150,3);
+	island[1].addArea(500, 0, 600, 150,3);
+	island[1].addArea(1000, -100, 100, 100,1);
+	island[1].addArea(750,-250, 400, 150, 4);
+	island[1].addArea(750,-350,100,100,1);
 				      
 	p2s=1;
 	currentstage=1;
@@ -290,6 +291,9 @@ int main(void)
 	p2s=1;
 	currentstage=3;
 	break;
+      case 666:
+	p2s=0;
+	quit=true;
       }
       if(p2s)
 	{
@@ -342,33 +346,48 @@ int main(void)
 			    sounds.play_effect("gun");
 			  }
 			break;
+		      case SDLK_f:
+			next = 5;
+			bossdead=true;
+			island[currentstage].clear_screen();
+			break;
 		      }
 		  }
 	      }
-	    
+
 	    //mike.patrol();
 	    //burster1.chase(hero.getx(),hero.gety());
 	    //tank1.chase(hero.getx(),hero.gety());
 	    //patrol1.chase(hero_test.getx(),hero_test.gety());
 	    //patrol_test2.chase(hero_test.getx(),hero_test.gety());
 	    //	    cout << "no here" << endl;
-	    hero->processEvent(dt);
 	    //	    cout << "here" << endl;
+	    island[currentstage].checkCollisions(hero);
+	    if(hero->isDead())
+	      {
+	        return 0;
+	      }
+	    if(!(hero->isDead()))
+	      {
 	    island[currentstage].perform(dt, hero);
+	    hero->processEvent(dt);
 	    island[currentstage].draw();
 	    duration = (clock() - start)/((double)CLOCKS_PER_SEC);
-	    
+	      
 	    if (duration>dt){
 	      duration=dt;
 	    }
 	    usleep((dt-duration)*1000000);
+	      }
 	  } //End stage loop   
 	  
 	  if(currentstage==0) already_west = 1;
+	  if(currentstage==1) already_south = 1;
+	  if(currentstage==2) already_east = 1;
 	} 
 
     } //End main while loop
     sounds.stop_music();
     sounds.clean_up_sound();
-    island[currentstage].clean_up();
+    //island[currentstage].clean_up();
 }

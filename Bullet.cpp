@@ -24,12 +24,17 @@ Bullet::Bullet()
 
 Bullet::Bullet(Unit* shooter, double direction, int r, int g, int b, bool hero)
 {
+  //set location of bullet
   setx(shooter->getx()+SPRWIDTH/2-BULLETWIDTH/2);
   sety(shooter->gety()+SPRLENGTH/2-BULLETLENGTH/2);
+  //set velocity of bullet
   setvx(shooter->getvx()/2 + BULLETV*cos(direction));
   setvy(shooter->getvy()/2 - BULLETV*sin(direction));
+  //health of bullet
+  //1=bullet on screen
+  //0=bullet gone
   setHealth(1);
-  setMaxHealth(2);
+  setMaxHealth(1);
   /*  switch(direction)
     {
       
@@ -73,7 +78,7 @@ Bullet::Bullet(Unit* shooter, double direction, int r, int g, int b, bool hero)
   set_clips();
 }
 
-void Bullet::collide(Unit* u, double dt)
+void Bullet::collide(Unit* u)
 {
 
 }

@@ -17,10 +17,11 @@ Hero header file */
 class Hero: public Unit{
  public:
   Hero(double, double, double, double, double, int, int);
-  virtual void collide(Unit*,double);
+  virtual void collide(Unit*);
   void processEvent(double);
   virtual bool isFromHero();
   virtual void draw(SDL_Surface*, int, int);
+  int isDead();
 
 };
 
