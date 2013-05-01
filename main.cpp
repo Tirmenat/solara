@@ -124,7 +124,7 @@ int main(void)
 		case SDLK_SPACE:
 		  //Enter game
 		  quit = true;
-		  ++next;
+		  next = 1;
 		  break;
 		}
 	    }
@@ -157,7 +157,7 @@ int main(void)
 		quit=true;
 		break;
 	      case SDLK_SPACE:
-		++next;
+		next=2;
 		stage_test.clear_screen();
 	      }
 	  }
@@ -181,7 +181,7 @@ int main(void)
 		quit=true;
 		break;
 	      case SDLK_SPACE:
-		++next;
+		next=3;
 		stage_test.clear_screen();
 	      }
 	  }
@@ -205,7 +205,7 @@ int main(void)
 		quit=true;
 		break;
 	      case SDLK_SPACE:
-		++next;
+		next=4;
 		stage_test.clear_screen();
 	      }
 	  }
@@ -229,7 +229,7 @@ int main(void)
 		quit=true;
 		break;
 	      case SDLK_SPACE:
-		++next;
+		next=5;
 		stage_test.clear_screen();
 	      }
 	  }
