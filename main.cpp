@@ -37,6 +37,9 @@ int main(void)
   Stage island[4];
   Hero *hero;
 
+  //disable mouse cursor
+  SDL_ShowCursor(SDL_DISABLE);
+
   // x, y, x size, y size, sprite location
   //stage_test.addArea(50,50,400,400,6);
   // x1, y1, x2, y2, max v, sprite location 
@@ -107,6 +110,10 @@ int main(void)
 		  quit = true;
 		  Stageless.init();
 		  break;
+		case SDLK_ESCAPE:
+		  quit = true;
+		  Stageless.init();
+		  break;
 		case SDLK_SPACE:
 		  //Enter game
 		  next = 1;
@@ -155,6 +162,10 @@ int main(void)
 		    quit=true;
 		    Stageless.init();
 		    break;
+		  case SDLK_ESCAPE:
+		    quit = true;
+		    Stageless.init();
+		    break;
 		  case SDLK_SPACE:
 		    next=2;
 		    Stageless.clear_screen();
@@ -193,6 +204,10 @@ int main(void)
 		{
 		case SDLK_q:
 		  quit=true;
+		  Stageless.init();
+		  break;
+		case SDLK_ESCAPE:
+		  quit = true;
 		  Stageless.init();
 		  break;
 		case SDLK_SPACE:
@@ -235,6 +250,10 @@ int main(void)
 		quit=true;
 		Stageless.init();
 		break;
+	      case SDLK_ESCAPE:
+		quit = true;
+		Stageless.init();
+		break;
 	      case SDLK_SPACE:
 		next=4;
 		Stageless.clear_screen();
@@ -272,6 +291,10 @@ int main(void)
 		  {
 		  case SDLK_q:
 		    quit=true;
+		    Stageless.init();
+		    break;
+		  case SDLK_ESCAPE:
+		    quit = true;
 		    Stageless.init();
 		    break;
 		  case SDLK_SPACE:
@@ -312,6 +335,10 @@ int main(void)
 		  {
 		  case SDLK_q:
 		    quit=true;
+		    Stageless.init();
+		    break;
+		  case SDLK_ESCAPE:
+		    quit = true;
 		    Stageless.init();
 		    break;
 		  case SDLK_1:
@@ -418,6 +445,10 @@ int main(void)
 		      {
 		      case SDLK_q:
 			quit=true;
+			Stageless.init();
+			break;
+		      case SDLK_ESCAPE:
+			quit = true;
 			Stageless.init();
 			break;
 		      case SDLK_UP:
