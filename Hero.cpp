@@ -239,3 +239,9 @@ void Hero::draw(SDL_Surface* screen, int xo, int yo){
   else
     SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,0,255,0) );
 }
+
+int Hero::isDead()
+{
+  if(getHealth()<=0) return 1;
+  else return 0;
+}

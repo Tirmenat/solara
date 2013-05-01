@@ -70,6 +70,7 @@ void Stage::perform(double dt, Unit* hero)
 	  removeUnit(units[i]);
 	  i--;
 	}
+      //checkCollisions(units[i],dt);
       checkCollisions(units[i]);
     }
   adjustUnits();
