@@ -58,6 +58,11 @@ int main(void)
   int p2s;
   bool bossdead = false;
 
+  //Bullet constraints
+  int r=0;
+  int g=0;
+  int b=0;
+
   //Bullet* bullets[NUM_BULLETS] = {NULL};
   //Patroller patrol_test2(250,250,100,100,100,5);
   //stage_test.addUnit(&patrol_test2);
@@ -253,14 +258,14 @@ int main(void)
 	break;
        
       case 6:
-	hero = new Hero(350,350,200,0,0,0,500);
+	hero = new Hero(350,350,200,0,0,0,500000);
 	island[0].addUnit(hero);
 	island[0].addUnit(new Mike(50,50,200,50,BASE_VELOCITY,7,&island[0],30,hero));
 	island[0].addUnit(new Burster(200,50,BASE_VELOCITY,17,10,hero));
 	island[0].addUnit(new Tank(50, 200, 3*BASE_VELOCITY/10,13,100,hero));
 	island[0].addUnit(new Patroller(100,100,100,200,4*BASE_VELOCITY/5,20,15,hero));
 	island[0].addUnit(new Shooter(200,200,9,&island[0],hero));
-	island[0].addUnit(new Brad(120,140,100,350,BASE_VELOCITY*3,18,100,hero));
+	island[0].addUnit(new Brad(120,140,100,350,BASE_VELOCITY*3,18,100,&island[0],hero));
 	island[0].addArea(100,100,128,144,2);
 	island[0].addArea(448,416,160,32,5);
 	p2s=1;
@@ -317,32 +322,31 @@ int main(void)
 		      case SDLK_q:
 			quit=true;
 			break;
-			
 		      case SDLK_UP:
 			if(island[currentstage].canFire())
-			  { 
-			    island[currentstage].addUnit(new Bullet(hero,M_PI/2,1,1,0,true));
+			  {
+			    island[currentstage].addUnit(new Bullet(hero,M_PI/2,r,g,b,true));
 			    sounds.play_effect("gun");
 			  }
 			break;
 		      case SDLK_DOWN:		  
 			if(island[currentstage].canFire())
 			  {
-			    island[currentstage].addUnit(new Bullet(hero,3*M_PI/2,0,1,1,true));
+			    island[currentstage].addUnit(new Bullet(hero,3*M_PI/2,r,g,b,true));
 			    sounds.play_effect("gun");
 			  }
 			break;
 		      case SDLK_LEFT:
 			if(island[currentstage].canFire())
 			  {
-			  island[currentstage].addUnit(new Bullet(hero,M_PI,1,0,1,true));
-			  sounds.play_effect("gun");			  
+			    sounds.play_effect("gun");			  
+			    island[currentstage].addUnit(new Bullet(hero,M_PI,r,g,b,true));		    
 			  }
 			break;
 		      case SDLK_RIGHT:
 			if(island[currentstage].canFire())
 			  {
-			    island[currentstage].addUnit(new Bullet(hero,0,0,0,0,true));
+			    island[currentstage].addUnit(new Bullet(hero,0,r,g,b,true));
 			    sounds.play_effect("gun");
 			  }
 			break;
@@ -350,6 +354,21 @@ int main(void)
 			next = 5;
 			bossdead=true;
 			island[currentstage].clear_screen();
+			break;
+		      case SDLK_1: //bullet color control
+			//if(already_west)
+			  if(r==0) r=1;
+			  else r=0;
+			break;
+		      case SDLK_2:
+			//if(already_south)
+			  if(g==0) g=1;
+			  else g=0;
+			break;
+		      case SDLK_3:
+			//if(already_east)
+			  if(b==0) b=1;
+			  else b=0;
 			break;
 		      }
 		  }
