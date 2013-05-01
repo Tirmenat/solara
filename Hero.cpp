@@ -9,7 +9,7 @@ using namespace std;
 #define ACCEL_X_STOP 600
 #define ACCEL_Y_STOP 600
 
-Hero::Hero(double X, double Y, double MAXV, double AX, double AY, int location):Unit(X,Y,MAXV,AX,AY,location)
+Hero::Hero(double X, double Y, double MAXV, double AX, double AY, int location, int h):Unit(X,Y,MAXV,AX,AY,location,h)
 {
   
 }

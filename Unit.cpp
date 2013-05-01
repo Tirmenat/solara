@@ -31,7 +31,7 @@ Unit::Unit(){
   frame = 0;
 }
 
-Unit::Unit(double X, double Y, double MAXV, double AX, double AY, int location){
+Unit::Unit(double X, double Y, double MAXV, double AX, double AY, int location, int h){
   x=X;
   y=Y;
   vx = 0;
@@ -46,8 +46,8 @@ Unit::Unit(double X, double Y, double MAXV, double AX, double AY, int location){
   status = UNIT_RIGHT;
   moving = 0;
   frame = 0;
-  health = 1;
-  maxHealth = 2;
+  setHealth(h);
+  setMaxHealth(h);
 }
 
 // Set Functions
@@ -221,12 +221,37 @@ void Unit::draw(SDL_Surface* screen, int xo, int yo){
 	{
 		frame = 0;
 		}*/
-	if(status == UNIT_LEFT){
-	  apply_surface( x + xo, y + yo, char_left, screen, &clip_char_left[frame]);
-	}
-	if(status == UNIT_RIGHT){
-	  apply_surface( x + xo, y + yo, char_right, screen, &clip_char_right[frame]);
-	}
+
+  // Character and direction
+  if(status == UNIT_LEFT)
+    {
+      apply_surface( x+xo, y+yo, char_left, screen, &clip_char_left[frame]);
+    }
+  if(status == UNIT_RIGHT)
+    {
+      apply_surface( x+xo, y+yo, char_right, screen, &clip_char_right[frame]);
+    }
+
+  //Unit health
+  // border = black outline
+  SDL_Rect border, inside, missing;
+  border.x = x+xo;
+  border.y = y+yo-SPRLENGTH/6-1;
+  border.w = SPRWIDTH;
+  border.h = SPRLENGTH/6;
+  SDL_FillRect( screen, &border, SDL_MapRGB( screen->format,0,0,0) );
+  // missing = missing health in red
+  // inside = green health bar
+  inside.x = missing.x = x+xo+1;
+  inside.y = missing.y = y+yo-SPRLENGTH/6;
+  int currentHealth;
+  int totalHealth=SPRWIDTH-2;
+  currentHealth= totalHealth*getHealth()/getMaxHealth();
+  inside.w = currentHealth;
+  missing.w = totalHealth;
+  inside.h = missing.h = SPRLENGTH/6-2;
+  SDL_FillRect( screen, &missing, SDL_MapRGB( screen->format,204,0,0) );
+  SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,0,128,0) );
 }
 
 bool Unit::isEqualTo(Unit* u)

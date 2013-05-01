@@ -16,7 +16,7 @@ Tank header file */
 
 class Tank: public Enemy{
  public:
-  Tank(double,double,double,int);
+  Tank(double,double,double,int,int);
   virtual void chase (double,double);
  private:
 };

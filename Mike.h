@@ -17,7 +17,7 @@ Mike header file */
 
 class Mike: public Enemy{
  public:
-  Mike(double,double,double,double,double,int,Stage*);
+  Mike(double,double,double,double,double,int,Stage*,int);
   void patrol();
  private:
   double xp1;

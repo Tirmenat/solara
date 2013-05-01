@@ -10,7 +10,7 @@ using namespace std;
 #define ACCEL_Y_STOP 1
 #define _USE_MATH_DEFINES
 
-Enemy::Enemy(double X, double Y, double MAXV, int location):Unit(X,Y,MAXV,0,0,location)
+Enemy::Enemy(double X, double Y, double MAXV, int location, int h):Unit(X,Y,MAXV,0,0,location,h)
 {
   maxv=MAXV;
 }
