@@ -27,7 +27,7 @@ Stage::Stage()
   init();
   load_files();
   set_clips();
-  addArea(SCREEN_WIDTH/10, SCREEN_HEIGHT/10, SCREEN_WIDTH*4/5, SCREEN_HEIGHT*4/5,0);
+  addArea(SCREEN_WIDTH/10, SCREEN_HEIGHT/10, SCREEN_WIDTH*4/5, SCREEN_HEIGHT*4/5,1);
   xoffset = 100;
   yoffset = 100;
   maxBullets = 5;
@@ -228,12 +228,12 @@ void Stage::set_clips()
 	clip_background[i][j].w = 16;
 	clip_background[i][j].h = 16;
       }
-  }
+    }
 }
 
 void Stage::draw(){
   //Fill the screen black
-  SDL_FillRect( screen, &screen->clip_rect, SDL_MapRGB( screen->format, 32, 32, 32 ) );
+  SDL_FillRect( screen, &screen->clip_rect, SDL_MapRGB(screen->format, 102, 178, 255) );
 
   //drawing the terrain sprites
   for(int i = 0; i<areas.size(); i++){
