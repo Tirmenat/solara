@@ -29,10 +29,10 @@ class Bullet: public Unit{
   Bullet();
   Bullet(Unit*,double,int,int,int,bool);
   virtual void draw(SDL_Surface*,int,int);
-  int getColor();
   virtual bool isBullet();
   virtual void collide(Unit*);
   virtual bool isFromHero();
+  virtual int getColor();
  private:
   bool fromHero;
   int direction;

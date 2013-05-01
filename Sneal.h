@@ -18,7 +18,7 @@ Sneal header file */
 
 class Sneal: public Enemy{
  public:
-  Sneal(double,double,double,double,double,int,int,Stage*,Hero*);
+  Sneal(double,double,double,double,double,int,Stage*,Hero*);
   virtual void chase(double,double);
  private:
   int frame;

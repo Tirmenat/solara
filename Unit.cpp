@@ -426,3 +426,8 @@ void Unit::tickInvulnerable()
   if(isInvulnerable())
     invulnerable--;
 }
+
+int Unit::getColor()
+{
+  return(0);
+}

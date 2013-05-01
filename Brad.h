@@ -18,7 +18,7 @@ Brad header file */
 
 class Brad: public Enemy{
  public:
-  Brad(double,double,double,double,double,int,int,Stage*,Hero*);
+  Brad(double,double,double,double,double,int,Stage*,Hero*);
   virtual void chase (double,double);
  private:
   int state;

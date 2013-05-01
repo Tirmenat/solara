@@ -61,7 +61,7 @@ class Unit{
   void makeInvulnerable();
   void tickInvulnerable();
   int getInvulnerable();
-
+  virtual int getColor();
  private:
   SDL_Rect clip_char_left[11];
   SDL_Rect clip_char_right[11];
