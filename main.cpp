@@ -30,48 +30,40 @@ using namespace std;
 int main(void)
 {
   
-  Stage stage_test(100,100);
+  Stage Stageless;
+  Stage island[4];
+  Hero *hero;
+
   // x, y, x size, y size, sprite location
   //stage_test.addArea(50,50,400,400,6);
+  // x1, y1, x2, y2, max v, sprite location 
+ 
 
-  // x, y, vx, vy, ax, ay, health
-  Hero hero_test(350,350,200,0,0,0,500);
-  stage_test.addUnit(&hero_test);
-
-  // x1, y1, x2, y2, max v, sprite location, health
-  Patroller patrol_test(100,100,100,200,4*BASE_VELOCITY/5,20,50,&hero_test);
-  Tank tank_test(50,200,3*BASE_VELOCITY/10,13,100,&hero_test);
-  tank_test.setHealth(30);
-  Burster burster_test(200,50,BASE_VELOCITY,17,50,&hero_test);
-  burster_test.setHealth(49);
-  Mike mike_test(50,50,200,50,BASE_VELOCITY,7,&stage_test,250,&hero_test);
-  mike_test.setHealth(1);
-  int curr_bullets = 0;
-  Shooter shooter_test(200,200,9,&stage_test,&hero_test);
-
-  stage_test.addUnit(&shooter_test);
-  stage_test.addUnit(&mike_test);
-  stage_test.addUnit(&burster_test);
-  stage_test.addUnit(&tank_test);
-  stage_test.addUnit(&patrol_test);
-  stage_test.addArea(100,100,128,144,2);
-  stage_test.addArea(448,416,160,32,5);
-  stage_test.addArea(550,200,40,600,4);
-  stage_test.addArea(550,200,10000,100,6);
-
+  //WEST LEVEL DESIGN
+  //Patroller patrol00(100,100,100,200,4*BASE_VELOCITY/5,20);
+  //Tank tank00(50,200,3*BASE_VELOCITY/10,13);
+  //Burster burster00(200,50,BASE_VELOCITY,17);
+  //Mike mike(50,50,200,50,BASE_VELOCITY,7,&stage_test);
+ 
   //Bullet bullet;
   Sound sounds;
   sounds.load_music("music1");
   sounds.play_music();
 
+  //Game Constants
+  int currentstage;
+  int curr_bullets =0;
   int already_west=0;
   int already_south=0;
   int already_east=0;
+  int p2s;
+  bool bossdead = false;
 
   //Bullet* bullets[NUM_BULLETS] = {NULL};
   //Patroller patrol_test2(250,250,100,100,100,5);
   //stage_test.addUnit(&patrol_test2);
   //stage_test.addArea(350-25,350-25,100,100,2);
+
 
   //  Bullet bullet_test(&hero_test,0,0);
   // stage_test.addUnit(&bullet_test);
@@ -87,20 +79,21 @@ int main(void)
   int next = 0;
   bool quit = false;
   SDL_Event event;
-  stage_test.drawTitle("title");
+  Stageless.drawTitle("title");
   //  Bullet bullets;
   //Title screen
   while (quit == false)
     {
-      //While there's an event to handle
-      while (SDL_PollEvent (&event))
-	{
-
-
-	  if (event.type == SDL_KEYDOWN)
-	    {
-	      //Set the proper message surface
-	      switch (event.key.keysym.sym)
+      switch(next){
+      case 0:  //Title Screen
+	p2s=0;
+	//While there's an event to handle
+	while (SDL_PollEvent (&event))
+	  {
+	    if (event.type == SDL_KEYDOWN)
+	      {
+		//Set the proper message surface
+		switch (event.key.keysym.sym)
 		{
 		  //Quit game
 		case SDLK_q:
@@ -112,74 +105,74 @@ int main(void)
 		  next = 1;
 		  break;
 		}
-	    }
+	      }
+	    
+	    //If the user has Xed out the window
+	    else if (event.type == SDL_QUIT)
+	      {
+		//Quit the program
+		quit = true;
+	      }
+	  }      
+      Stageless.clear_screen();
+      quit = false;
+      break;
 
-	  //If the user has Xed out the window
-	  else if (event.type == SDL_QUIT)
+      case 1: //Slide 1
+	p2s=0;
+	Stageless.drawTitle("slide1");
+	if( SDL_PollEvent( &event ) )
+	  {
+	    if( event.type == SDL_QUIT )
+	      {
+		quit == true;
+	      }
+	    if( event.type == SDL_KEYDOWN )
+	      {
+		switch (event.key.keysym.sym)
+		  {
+		  case SDLK_q:
+		    quit=true;
+		    break;
+		  case SDLK_SPACE:
+		    next=2;
+		    Stageless.clear_screen();
+		  }
+	      }
+	  }
+	break;
+
+    case 2:  //Slide 2
+      p2s=0;
+      Stageless.drawTitle("slide2");
+      if( SDL_PollEvent( &event ) )
+	{
+	  if( event.type == SDL_QUIT )
 	    {
-	      //Quit the program
-	      quit = true;
+	      quit == true;
 	    }
-	}
-    }
-  stage_test.clear_screen();
-  quit = false;
-  //In-game screen
+	  if( event.type == SDL_KEYDOWN )
+	    {
+	      switch (event.key.keysym.sym)
+		{
+		case SDLK_q:
+		  quit=true;
+		  break;
+		case SDLK_SPACE:
+		  next=3;
+		  Stageless.clear_screen();
+		}
+	    }
+	}      
+      break;
 
-  while( quit == false && next==1 ){
-    stage_test.drawTitle("slide1");
-    if( SDL_PollEvent( &event ) )
-      {
-	if( event.type == SDL_QUIT )
-	  {
-	    quit == true;
-	  }
-	if( event.type == SDL_KEYDOWN )
-	  {
-	    switch (event.key.keysym.sym)
-	      {
-	      case SDLK_q:
-		quit=true;
-		break;
-	      case SDLK_SPACE:
-		next=2;
-		stage_test.clear_screen();
-	      }
-	  }
-      }
-
-  }
-
-  while( quit == false && next==2 ){
-    stage_test.drawTitle("slide2");
-    if( SDL_PollEvent( &event ) )
-      {
-	if( event.type == SDL_QUIT )
-	  {
-	    quit == true;
-	  }
-	if( event.type == SDL_KEYDOWN )
-	  {
-	    switch (event.key.keysym.sym)
-	      {
-	      case SDLK_q:
-		quit=true;
-		break;
-	      case SDLK_SPACE:
-		next=3;
-		stage_test.clear_screen();
-	      }
-	  }
-      }
-
-  }
-
-  while( quit ==false && next == 3){
-    stage_test.drawTitle("slide3");
-    if( SDL_PollEvent( &event ) )
-      {
-	if( event.type == SDL_QUIT )
-	  {
+    case 3: //Slide 3
+      p2s=0;
+      Stageless.drawTitle("slide3");
+      if( SDL_PollEvent( &event ) )
+	{
+	  if( event.type == SDL_QUIT )
+	    {
 	    quit == true;
 	  }
 	if( event.type == SDL_KEYDOWN )
@@ -191,265 +184,188 @@ int main(void)
 		break;
 	      case SDLK_SPACE:
 		next=4;
-		stage_test.clear_screen();
+		Stageless.clear_screen();
 	      }
 	  }
-      }
-
-  }
-
-  while( quit ==false && next == 4){
-    stage_test.drawTitle("slide4");
-    if( SDL_PollEvent( &event ) )
-      {
-	if( event.type == SDL_QUIT )
+	}
+      break;
+      case 4: //Slide 4
+	p2s=0;
+	Stageless.drawTitle("slide4");
+	if( SDL_PollEvent( &event ) )
 	  {
-	    quit == true;
-	  }
-	if( event.type == SDL_KEYDOWN )
-	  {
-	    switch (event.key.keysym.sym)
+	    if( event.type == SDL_QUIT )
 	      {
-	      case SDLK_q:
-		quit=true;
-		break;
-	      case SDLK_SPACE:
-		next=5;
-		stage_test.clear_screen();
+		quit == true;
 	      }
-	  }
-      }
-
-  }
-
-  while( quit ==false && next == 5){
-    stage_test.drawTitle("slide5");
-    if( SDL_PollEvent( &event ) )
-      {
-	if( event.type == SDL_QUIT )
-	  {
-	    quit == true;
-	  }
-	if( event.type == SDL_KEYDOWN )
-	  {
-	    switch (event.key.keysym.sym)
+	    if( event.type == SDL_KEYDOWN )
 	      {
-	      case SDLK_q:
-		quit=true;
-		break;
-	      case SDLK_1:
-		next=6;
-		if(already_west==1) next=5;
-		sounds.change_music("music2");
-		sounds.play_music();
-		stage_test.clear_screen();
-		break;
-	      case SDLK_2:
-		next=7;
-		if(already_south==1) next=5;
-		sounds.change_music("music3");
-		sounds.play_music();
-		stage_test.clear_screen();
-		break;
-	      case SDLK_3:
-		next=8;
-		if(already_east==1) next=5;
-		sounds.change_music("music4");
-		sounds.play_music();
-		stage_test.clear_screen();
-		break;
+		switch (event.key.keysym.sym)
+		  {
+		  case SDLK_q:
+		    quit=true;
+		    break;
+		  case SDLK_SPACE:
+		    next=5;
+		    Stageless.clear_screen();
+		  }
+	      }
+	  }	
+	break;
+
+      case 5: //Slide 5 - The decision maker
+	p2s=0;
+	Stageless.drawTitle("slide5");
+	if( SDL_PollEvent( &event ) )
+	  {
+	    if( event.type == SDL_QUIT )
+	      {
+		quit == true;
+	      }
+	    if( event.type == SDL_KEYDOWN )
+	      {
+		switch (event.key.keysym.sym)
+		  {
+		  case SDLK_q:
+		    quit=true;
+		    break;
+		  case SDLK_1:
+		    next=6;
+		    if(already_west==1) next=5;
+		    sounds.change_music("music2");
+		    sounds.play_music();
+		    Stageless.clear_screen();
+		    break;
+		  case SDLK_2:
+		    next=7;
+		    if(already_south==1) next=5;
+		    sounds.change_music("music3");
+		    sounds.play_music();
+		    Stageless.clear_screen();
+		    break;
+		  case SDLK_3:
+		    next=8;
+		    if(already_east==1) next=5;
+		    sounds.change_music("music4");
+		    sounds.play_music();
+		    Stageless.clear_screen();
+		    break;
+		  }
 	      }
 	  }
+	break;
+       
+      case 6:
+	hero = new Hero(350,350,200,0,0,0,100);
+	island[0].addUnit(new Mike(50,50,200,50,BASE_VELOCITY,7,&island[0],30,hero));
+	island[0].addUnit(new Burster(200,50,BASE_VELOCITY,17,10,hero));
+	island[0].addUnit(new Tank(50, 200, 3*BASE_VELOCITY/10,13,100,hero));
+	island[0].addUnit(new Patroller(100,100,100,200,4*BASE_VELOCITY/5,20,15,hero));
+	island[0].addArea(100,100,128,144,2);
+	island[0].addArea(448,416,160,32,5);
+	p2s=1;
+	currentstage=0;
+	island[0].addUnit(hero);
+	break;
+
+      case 7:
+	p2s=1;
+	currentstage=1;
+	break;
+
+      case 8:
+	p2s=1;
+	currentstage=2;
+	break;
+
+      case 9:
+	p2s=1;
+	currentstage=3;
+	break;
       }
-  }
-
-
-
-  //WEST ISLAND
-  while( quit == false && next == 6)
-    {
-      start = clock();
-      //      int time = time();
-      //If there's an event
-      if( SDL_PollEvent( &event ) )
+      if(p2s)
 	{
-	  //If user X's out of windows
-	  if( event.type == SDL_QUIT )
-	    {
-	      quit = true;
+	  bossdead = false;
+	  while(bossdead==false){
+	    start = clock();
+	    //	    cout << "part 2" << endl;
+	    //      int time = time();
+	    //If there's an event
+	    if( SDL_PollEvent( &event ) )
+	      {
+		//If user X's out of windows
+		if( event.type == SDL_QUIT )
+		  {
+		    quit = true;
+		  }
+		if( event.type == SDL_KEYDOWN )
+		  {
+		    switch (event.key.keysym.sym)
+		      {
+		      case SDLK_q:
+			quit=true;
+			break;
+			
+		      case SDLK_UP:
+			if(curr_bullets<NUM_BULLETS)
+			  {
+			    island[currentstage].addUnit(new Bullet(hero,M_PI/2,1,1,0,true));
+			    curr_bullets++;
+			    sounds.play_effect("gun");
+			  }
+			break;
+		      case SDLK_DOWN:		  
+			if(curr_bullets<NUM_BULLETS)
+			  {
+			    island[currentstage].addUnit(new Bullet(hero,3*M_PI/2,0,1,1,true));
+			    curr_bullets++;
+			    sounds.play_effect("gun");
+			  }
+			break;
+		      case SDLK_LEFT:
+			if(curr_bullets<NUM_BULLETS)
+			  {
+			    island[currentstage].addUnit(new Bullet(hero,M_PI,1,0,1,true));
+			    curr_bullets++;
+			    sounds.play_effect("gun");
+			  }
+			break;
+		      case SDLK_RIGHT:
+			if(curr_bullets<NUM_BULLETS)
+			  {
+			    island[currentstage].addUnit(new Bullet(hero,0,0,0,0,true));
+			    curr_bullets++;
+			    sounds.play_effect("gun");
+			  }
+			break;
+		      }
+		  }
+	      }
+	    
+	    //mike.patrol();
+	    //burster1.chase(hero.getx(),hero.gety());
+	    //tank1.chase(hero.getx(),hero.gety());
+	    //patrol1.chase(hero_test.getx(),hero_test.gety());
+	    //patrol_test2.chase(hero_test.getx(),hero_test.gety());
+	    //	    cout << "no here" << endl;
+	    hero->processEvent(dt);
+	    //	    cout << "here" << endl;
+	    island[currentstage].perform(dt, hero);
+	    island[currentstage].adjustUnits(&curr_bullets);
+	    island[currentstage].draw();
+	    duration = (clock() - start)/((double)CLOCKS_PER_SEC);
+	    
+	    if (duration>dt){
+	      duration=dt;
 	    }
-	  if( event.type == SDL_KEYDOWN )
-	    {
-	      switch (event.key.keysym.sym)
-		{
-		case SDLK_q:
-		  quit=true;
-		  break;
-		case SDLK_UP:
-		  if(stage_test.canFire())
-		    stage_test.addUnit(new Bullet(&hero_test,M_PI/2,1,1,0,true));
-		  break;
-		case SDLK_DOWN:		  
-		  if(stage_test.canFire())
-		    stage_test.addUnit(new Bullet(&hero_test,3*M_PI/2,0,1,1,true));
-		  break;
-		case SDLK_LEFT:
-		  if(stage_test.canFire())
-		    stage_test.addUnit(new Bullet(&hero_test,M_PI,1,0,1,true));
-		  break;
-		case SDLK_RIGHT:
-		  if(stage_test.canFire())
-		    stage_test.addUnit(new Bullet(&hero_test,0,0,0,0,true));
-		  break;
-		}
-	    }
-	}
-      hero_test.processEvent(dt);
-      stage_test.perform(dt, &hero_test);
-      stage_test.adjustUnits(&curr_bullets);
-      stage_test.checkCollisions(&hero_test);
-      stage_test.draw();
-      duration = (clock() - start)/((double)CLOCKS_PER_SEC);
-     
-      if (duration>dt){
-	duration=dt;
-      }
-      usleep((dt-duration)*1000000);
-  
-    }
+	    usleep((dt-duration)*1000000);
+	  } //End stage loop   
+	  
+	  if(currentstage==0) already_west = 1;
+	} 
 
-
-      //SOUTH ISLAND
-  while( quit == false && next == 7)
-    {
-      start = clock();
-      //      int time = time();
-      //If there's an event
-      if( SDL_PollEvent( &event ) )
-	{
-	  //If user X's out of windows
-	  if( event.type == SDL_QUIT )
-	    {
-	      quit = true;
-	    }
-	  if( event.type == SDL_KEYDOWN )
-	    {
-	      switch (event.key.keysym.sym)
-		{
-		case SDLK_q:
-		  quit=true;
-		  break;
-		case SDLK_UP:
-		  if(curr_bullets<NUM_BULLETS)
-		    {
-		      stage_test.addUnit(new Bullet(&hero_test,M_PI/2,1,1,0,true));
-		      curr_bullets++;
-		    }
-		  break;
-		case SDLK_DOWN:		  
-		  if(curr_bullets<NUM_BULLETS)
-		    {
-		      stage_test.addUnit(new Bullet(&hero_test,3*M_PI/2,0,1,1,true));
-		      curr_bullets++;
-		    }
-		  break;
-		case SDLK_LEFT:
-		  if(curr_bullets<NUM_BULLETS)
-		    {
-		      stage_test.addUnit(new Bullet(&hero_test,M_PI,1,0,1,true));
-		      curr_bullets++;
-		    }
-		  break;
-		case SDLK_RIGHT:
-		  if(curr_bullets<NUM_BULLETS)
-		    {
-		      stage_test.addUnit(new Bullet(&hero_test,0,0,0,0,true));
-		      curr_bullets++;
-		    }
-		  break;
-		}
-	    }
-	}
-      hero_test.processEvent(dt);
-      stage_test.perform(dt, &hero_test);
-      stage_test.adjustUnits(&curr_bullets);
-      stage_test.draw();
-      duration = (clock() - start)/((double)CLOCKS_PER_SEC);
-      
-      if (duration>.016){
-	duration=.016;
-      }
-      usleep((.017-duration)*1000000);
-    }
-
-
-
-  //EAST ISLAND
-  while( quit == false && next == 8)
-    {
-      start = clock();
-      //      int time = time();
-      //If there's an event
-      if( SDL_PollEvent( &event ) )
-	{
-	  //If user X's out of windows
-	  if( event.type == SDL_QUIT )
-	    {
-	      quit = true;
-	    }
-	  if( event.type == SDL_KEYDOWN )
-	    {
-	      switch (event.key.keysym.sym)
-		{
-		case SDLK_q:
-		  quit=true;
-		  break;
-		case SDLK_UP:
-		  if(curr_bullets<NUM_BULLETS)
-		    {
-		      stage_test.addUnit(new Bullet(&hero_test,M_PI/2,1,1,0,true));
-		      curr_bullets++;
-		    }
-		  break;
-		case SDLK_DOWN:		  
-		  if(curr_bullets<NUM_BULLETS)
-		    {
-		      stage_test.addUnit(new Bullet(&hero_test,3*M_PI/2,0,1,1,true));
-		      curr_bullets++;
-		    }
-		  break;
-		case SDLK_LEFT:
-		  if(curr_bullets<NUM_BULLETS)
-		    {
-		      stage_test.addUnit(new Bullet(&hero_test,M_PI,1,0,1,true));
-		      curr_bullets++;
-		    }
-		  break;
-		case SDLK_RIGHT:
-		  if(curr_bullets<NUM_BULLETS)
-		    {
-		      stage_test.addUnit(new Bullet(&hero_test,0,0,0,0,true));
-		      curr_bullets++;
-		    }
-		  break;
-		}
-	    }
-	}
-
-      hero_test.processEvent(dt);
-      stage_test.perform(dt, &hero_test);
-      stage_test.adjustUnits(&curr_bullets);
-      stage_test.draw();
-      duration = (clock() - start)/((double)CLOCKS_PER_SEC);
-      
-      if (duration>dt){
-	duration=dt;
-      }
-      usleep((dt-duration)*1000000);
-    }
-
-
-  sounds.stop_music();
-  sounds.clean_up_sound();
-  stage_test.clean_up();
+    } //End main while loop
+    sounds.stop_music();
+    sounds.clean_up_sound();
+    island[currentstage].clean_up();
 }

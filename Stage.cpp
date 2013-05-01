@@ -18,7 +18,7 @@ Stage Implementation file */
 #define SCREEN_HEIGHT 500
 #define SCREEN_BPP 32
 
-Stage::Stage(int x, int y)
+Stage::Stage()
 {	
   //units.push_back(new Hero(x,y,0,0,0,0,0));
   screen = NULL;
@@ -36,7 +36,7 @@ Stage::Stage(int x, int y)
 
 void Stage::checkCollisions(Unit* unit)
 {
-  for(int i = 0; i<units.size(); i++)
+  /*  for(int i = 0; i<units.size(); i++)
     {
       if(units[i] == unit)
 	continue;
@@ -45,7 +45,7 @@ void Stage::checkCollisions(Unit* unit)
 	  if(unit->isCollided(units[i]))
 	    unit->collide(units[i]);
 	}
-    }
+	}*/
 }
 void Stage::perform(double dt, Unit* hero)
 {
@@ -248,8 +248,11 @@ void Stage::draw(){
   }
 
   for(int i = 0; i < units.size(); i++)
-    if(isInBounds(units[i]->getx()/*minus size?*/, units[i]->gety()))
+    //if(isInBounds(units[i]->getx()/*minus size?*/, units[i]->gety()))
+    {
       units[i]->draw(screen,xoffset,yoffset);
+      cout << "drawing unit at " << units[i]->getx() << ", " << units[i]->gety() << endl;
+    }
 
   SDL_Flip(screen);
 }
@@ -347,6 +350,7 @@ void Stage::adjustUnits(int* numbullets)
   
   for(int i = 0; i<units.size(); i++)
     {
+      cout << "Needing to adjust unit" << endl;
       if(units[i]->isBullet())
 	{
 	  if(!isInBounds(units[i]->getx(), units[i]->gety()))
