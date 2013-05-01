@@ -28,7 +28,7 @@ class Stage{
   int removeUnit(Unit*); //returns 1 if unit was successfully removed, 0 otherwise
   void clean_up();
   void clear_screen();
-  void drawTitle(string);
+  void drawTitle(string,int,int,int);
   void adjustUnits(); //keeps units in bounds
   int getoffsetx();
   int getoffsety();
