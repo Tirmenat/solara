@@ -4,6 +4,8 @@
 #include "Hero.h"
 #include "Bullet.h"
 
+#define _USE_MATH_DEFINES
+
 using namespace std;
 
 Sean::Sean(double XP1, double YP1, double XP2, double YP2, double XP3, double YP3, double XP4, double YP4, double maxv, int loc, int h, Stage* STAGE, Hero* hero):Enemy(XP1,YP1,maxv,loc,h,hero)
@@ -141,20 +143,34 @@ void Sean::chase(double herox, double heroy)
     }
   }
 
-  if(sqrt((x-xp2)*(x-xp2)+(y-yp2)*(y-yp2)) <= 2 && state==1){
+  if(sqrt((x-xp2)*(x-xp2)+(y-yp2)*(y-yp2)) <= 4 && state==1){
     state=2;
   }
-  if(sqrt((x-xp3)*(x-xp3)+(y-yp3)*(y-yp3)) <= 2 && state==3){
+  if(sqrt((x-xp3)*(x-xp3)+(y-yp3)*(y-yp3)) <= 4 && state==3){
     state=4;
   }
-  if(sqrt((x-xp4)*(x-xp4)+(y-yp4)*(y-yp4)) <= 2 && state==5){
+  if(sqrt((x-xp4)*(x-xp4)+(y-yp4)*(y-yp4)) <= 4 && state==5){
     state=6;
   }
-  if(sqrt((x-xp1)*(x-xp1)+(y-yp1)*(y-yp1)) <= 2 && state==7){
+  if(sqrt((x-xp1)*(x-xp1)+(y-yp1)*(y-yp1)) <= 4 && state==7){
     state=8;
   }
   if(state==2 || state==4 || state==6 || state==8){
     moving++;
+    
+    for(double i=3;i<20;i++){
+      if (moving==i){
+	stage->addUnit(new Bullet(this,(i-3)*M_PI/8,1,0,0,false));
+      }
+    }
+
+
+    /*if(moving==10){
+      for(double i=0;i<2*M_PI;i+=M_PI/8){
+	cout<<"ABORT MISSION "<<i<<endl;
+	stage->addUnit(new Bullet(this,i,1,0,0,false));
+      }
+      }*/
     if(state==2){
       if(moving==30){
 	state=3;
