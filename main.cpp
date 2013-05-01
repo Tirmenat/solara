@@ -39,6 +39,7 @@ int main(void)
   Hero *hero;
   Mike *mike;
   Brad *brad;
+  Sean *sean;
   int *bosshealth;
 
   //disable mouse cursor
@@ -372,7 +373,6 @@ int main(void)
 	island[0].addUnit(new Tank(50, 200, 3*BASE_VELOCITY/10,13,100,hero));
 	island[0].addUnit(new Patroller(100,100,100,200,BASE_VELOCITY*1.25,20,15,hero));
 	island[0].addUnit(new Shooter(200,200,9,&island[0],hero));
-	island[0].addUnit(new Sean(100,200,150,250,200,200,150,150,BASE_VELOCITY,12,100,&island[0],hero));
 	island[0].addArea(100,100,128,144,2);
 	island[0].addArea(448,416,160,32,5);
 	p2s=1;
@@ -408,6 +408,11 @@ int main(void)
 	break;
 
       case 8:
+	hero = new Hero(250,250,200,0,0,0,5000);
+	sean = new Sean(100,200,150,250,200,200,150,150,BASE_VELOCITY,12,100,&island[2],hero);
+	island[2].addUnit(hero);
+	island[2].addUnit(sean);
+	island[2].addArea(0,0,500,500,1);
 	p2s=1;
 	currentstage=2;
 	break;
@@ -416,6 +421,8 @@ int main(void)
 	p2s=1;
 	currentstage=3;
 	break;
+	
+
       case 666:
 	p2s=0;
 	quit=true;
@@ -540,6 +547,14 @@ int main(void)
 		    }
 		  else help=1;
 		  break;
+		case 2:
+		  if(sean->getHealth()<=2)
+		    {
+		      next=5;
+		      bossdead=true;
+		      island[currentstage].clear_screen();
+		    }
+		  else help=1;
 		}
 	      if(hero->isDead())
 		{
