@@ -46,7 +46,7 @@ class Unit{
   virtual void increment(double);
   virtual void draw(SDL_Surface*, int, int) = 0;
   virtual bool isEqualTo(Unit*);
-  virtual void collide(Unit*,double) = 0;
+  virtual void collide(Unit*) = 0;
   virtual bool isBullet();
   virtual bool isFromHero();
   void clean_up();
@@ -60,6 +60,7 @@ class Unit{
   bool isInvulnerable();
   void makeInvulnerable();
   void tickInvulnerable();
+  int getInvulnerable();
 
  private:
   SDL_Rect clip_char_left[11];
