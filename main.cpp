@@ -22,7 +22,6 @@
 
 
 #define BASE_VELOCITY 90
-#define NUM_BULLETS 5
 
 
 using namespace std;
@@ -52,7 +51,6 @@ int main(void)
 
   //Game Constants
   int currentstage;
-  int curr_bullets =0;
   int already_west=0;
   int already_south=0;
   int already_east=0;
@@ -306,34 +304,30 @@ int main(void)
 			break;
 			
 		      case SDLK_UP:
-			if(curr_bullets<NUM_BULLETS)
-			  {
+			if(island[currentstage].canFire())
+			  { 
 			    island[currentstage].addUnit(new Bullet(hero,M_PI/2,1,1,0,true));
-			    curr_bullets++;
 			    sounds.play_effect("gun");
 			  }
 			break;
-		      case SDLK_DOWN:		  
-			if(curr_bullets<NUM_BULLETS)
+		      case SDLK_DOWN:
+			if(island[currentstage].canFire())
 			  {
 			    island[currentstage].addUnit(new Bullet(hero,3*M_PI/2,0,1,1,true));
-			    curr_bullets++;
 			    sounds.play_effect("gun");
 			  }
 			break;
 		      case SDLK_LEFT:
-			if(curr_bullets<NUM_BULLETS)
+			if(island[currentstage].canFire())
 			  {
-			    island[currentstage].addUnit(new Bullet(hero,M_PI,1,0,1,true));
-			    curr_bullets++;
-			    sounds.play_effect("gun");
+			  island[currentstage].addUnit(new Bullet(hero,M_PI,1,0,1,true));
+			  sounds.play_effect("gun");			  
 			  }
 			break;
 		      case SDLK_RIGHT:
-			if(curr_bullets<NUM_BULLETS)
+			if(island[currentstage].canFire())
 			  {
 			    island[currentstage].addUnit(new Bullet(hero,0,0,0,0,true));
-			    curr_bullets++;
 			    sounds.play_effect("gun");
 			  }
 			break;
@@ -350,7 +344,6 @@ int main(void)
 	    hero->processEvent(dt);
 	    //	    cout << "here" << endl;
 	    island[currentstage].perform(dt, hero);
-	    island[currentstage].adjustUnits(&curr_bullets);
 	    island[currentstage].draw();
 	    duration = (clock() - start)/((double)CLOCKS_PER_SEC);
 	    
