@@ -22,7 +22,6 @@ void Burster::chase(double herox, double heroy)
   x=getx();
   y=gety();
   v=getmaxv();
-
   //angle = atan ((heroy-y)/(herox-x));
 
   // moving value goes between 1 and 120
