@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Burster::Burster(double X, double Y, double maxv, int loc):Enemy(X,Y,maxv,loc)
+Burster::Burster(double X, double Y, double maxv, int loc, int h):Enemy(X,Y,maxv,loc,h)
 {
   moving = 0;
 }

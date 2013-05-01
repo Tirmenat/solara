@@ -51,11 +51,12 @@ int main(void)
   // x, y, x size, y size, sprite location
   //stage_test.addArea(50,50,400,400,6);
 
-  // x1, y1, x2, y2, max v, sprite location 
-  Patroller patrol_test(100,100,100,200,4*BASE_VELOCITY/5,20);
-  Tank tank_test(50,200,3*BASE_VELOCITY/10,13);
-  Burster burster_test(200,50,BASE_VELOCITY,17);
-  Mike mike_test(50,50,200,50,BASE_VELOCITY,7,&stage_test);
+  // x1, y1, x2, y2, max v, sprite location, health
+  Patroller patrol_test(100,100,100,200,4*BASE_VELOCITY/5,20,50);
+  Tank tank_test(50,200,3*BASE_VELOCITY/10,13,100);
+  tank_test.setHealth(30);
+  Burster burster_test(200,50,BASE_VELOCITY,17,50);
+  Mike mike_test(50,50,200,50,BASE_VELOCITY,7,&stage_test,250);
   int curr_bullets = 0;
   
   stage_test.addUnit(&mike_test);
@@ -81,7 +82,7 @@ int main(void)
 
 
   // x, y, vx, vy, ax, ay
-  Hero hero_test(350,350,200,0,0,0);
+  Hero hero_test(350,350,200,0,0,0,500);
   stage_test.addUnit(&hero_test);
   //  Bullet bullet_test(&hero_test,0,0);
   // stage_test.addUnit(&bullet_test);

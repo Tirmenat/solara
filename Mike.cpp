@@ -7,7 +7,7 @@ using namespace std;
 
 #define _USE_MATH_DEFINES
 
-Mike::Mike(double XP1, double YP1, double XP2, double YP2, double maxv, int loc,Stage* STAGE):Enemy(XP1,YP1,maxv,loc){
+Mike::Mike(double XP1, double YP1, double XP2, double YP2, double maxv, int loc,Stage* STAGE, int h):Enemy(XP1,YP1,maxv,loc,h){
   xp1 = XP1;
   yp1 = YP1;
   xp2 = XP2;
