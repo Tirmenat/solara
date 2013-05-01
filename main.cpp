@@ -39,6 +39,7 @@ int main(void)
   Hero *hero;
   Mike *mike;
   Brad *brad;
+  Sean *sean;
   int *bosshealth;
 
   //disable mouse cursor
@@ -222,218 +223,7 @@ int main(void)
 	  p2s=0;
 	  Stageless.drawTitle("slide3");
 	  if( SDL_PollEvent( &event ) )
-	    {
-	      /*
-	      if( event.type == SDL_QUIT )
-		{
-		  quit == true;
-		}
-	      if( event.type == SDL_KEYDOWN )
-		{
-		  switch (event.key.keysym.sym)
-		    {
-
-		    case SDLK_SPACE:
-		      next=4;
-		      Stageless.clear_screen();
-		    }
-		case SDLK_q:
-		  quit=true;
-		  Stageless.init();
-		  break;
-		case SDLK_ESCAPE:
-		  quit = true;
-		  Stageless.init();
-		  break;
-		case SDLK_SPACE:
-		  next=3;
-		  Stageless.clear_screen();
-		  break;
-		case SDLK_f:
-		  if(screen_state==0)
-		    {
-		      Stageless.init_fullscreen();
-		      Stageless.drawTitle("slide2");
-		      screen_state=1;
-		    }
-		  else
-		    {
-		      Stageless.init();
-		      Stageless.drawTitle("slide2");
-		      screen_state=0;
-		    }
-		  break;
-		}
-	    }
-	  break;
-	  /*
-	case 4: //Slide 4
-	  p2s=0;
-	  Stageless.drawTitle("slide4");
-	  if( SDL_PollEvent( &event ) )
-	    {
-	      if( event.type == SDL_QUIT )
-		
-		{
-		  quit == true;
-		}
-	      if( event.type == SDL_KEYDOWN )
-		{
-		  switch (event.key.keysym.sym)
-		    {
-		    case SDLK_q:
-		      quit=true;
-		      break;
-		    case SDLK_SPACE:
-		      next=5;
-		      Stageless.clear_screen();
-		    }
-		}
-	    }
-	  break;
-	  
-	case 5: //Slide 5 - The decision maker
-	  p2s=0;
-	  Stageless.drawTitle("slide5");
-	  if( SDL_PollEvent( &event ) )
-	    {
-	      if( event.type == SDL_QUIT )
-		{
-		  quit == true;
-		}
-	      if( event.type == SDL_KEYDOWN )
-		{
-		  switch (event.key.keysym.sym)
-		    {
-		    case SDLK_q:
-		      quit=true;
-		      break;
-		    case SDLK_1:
-		      next=6;
-		      if(already_west==1) next=5;
-		      sounds.change_music("music2");
-		      sounds.play_music();
-		      Stageless.clear_screen();
-		      break;
-		    case SDLK_2:
-		      next=7;
-		      if(already_south==1) next=5;
-		      sounds.change_music("music3");
-		      sounds.play_music();
-		      Stageless.clear_screen();
-		      break;
-		    case SDLK_3:
-		      next=8;
-		      if(already_east==1) next=5;
-		      sounds.change_music("music4");
-		      sounds.play_music();
-		      Stageless.clear_screen();
-		      break;
-		    }
-		}
-	    }
-	  break;
-	  
-	case 6:
-	  hero = new Hero(350,350,200,0,0,0,500000);
-	  mike = new Mike(50,50,200,50,BASE_VELOCITY,7,&island[0],30,hero);
-	  island[0].addUnit(hero);
-	  island[0].addUnit(mike);
-	  island[0].addUnit(new Burster(200,50,BASE_VELOCITY,17,10,hero));
-	  island[0].addUnit(new Tank(50, 200, 3*BASE_VELOCITY/10,13,100,hero));
-	  island[0].addUnit(new Patroller(100,100,100,200,4*BASE_VELOCITY/5,20,15,hero));
-	  island[0].addUnit(new Shooter(200,200,9,&island[0],hero));
-	  island[0].addArea(100,100,128,144,2);
-	  island[0].addArea(448,416,160,32,5);
-	  p2s=1;
-	  currentstage=0;
-	  break;
-	  
-	case 7:
-	  hero = new Hero(75,385,200,0,0,0,500000);
-	  brad = new Brad(120,140,100,350,BASE_VELOCITY*3,18,100,&island[1],hero);
-	  island[1].addUnit(hero);
-	  island[1].addUnit(brad);
-	  island[1].addUnit(new Patroller(100,100,100,350,4*BASE_VELOCITY/5, 20,200,hero));
-	  island[1].addArea(0,0,500,500,2);
-	  island[1].addArea(50,50,150,150,3);
-	  island[1].addArea(500, 0, 600, 150,3);
-	  island[1].addArea(1000, -100, 100, 100,1);
-	  island[1].addArea(750,-250, 400, 150, 4);
-	  island[1].addArea(750,-350,100,100,1);				      
-	  p2s=1;
-	  currentstage=1;
-	  break;
-	  
-	case 8:
-	  p2s=1;
-	  currentstage=2;
-	  break;
-	  
-	case 9:
-	  p2s=1;
-	  currentstage=3;
-	  break;
-	}
-      if(p2s)
-	{
-	  bossdead = false;
-	  while(bossdead == false && quit == false)
-	    {
-	      start = clock();
-	      //	    cout << "part 2" << endl;
-	      //      int time = time();
-	      //If there's an event
-	      if( SDL_PollEvent( &event ) )
-		{
-		  //If user X's out of windows
-		  if( event.type == SDL_QUIT )
-		    {
-		      quit = true;
-		    }
-		  if( event.type == SDL_KEYDOWN )
-		    {
-		      switch (event.key.keysym.sym)
-			{
-			case SDLK_q:
-			  quit=true;
-			  break;
-			case SDLK_UP:
-			  if(island[currentstage].canFire())
-			    {
-			      island[currentstage].addUnit(new Bullet(hero,M_PI/2,r,g,b,true));
-			      //sounds.play_effect("gun");
-			    }
-			  break;
-			case SDLK_DOWN:		  
-			  if(island[currentstage].canFire())
-			    {
-			      island[currentstage].addUnit(new Bullet(hero,3*M_PI/2,r,g,b,true));
-			      //sounds.play_effect("gun");
-			    }
-			  break;
-			case SDLK_LEFT:
-			  if(island[currentstage].canFire())
-			    {
-			      sounds.play_effect("gun");			  
-			      island[currentstage].addUnit(new Bullet(hero,M_PI,r,g,b,true));		    
-			    }
-			  break;
-			case SDLK_RIGHT:
-			  if(island[currentstage].canFire())
-			    {
-			      island[currentstage].addUnit(new Bullet(hero,0,r,g,b,true));
-			      sounds.play_effect("gun");
-			    }
-			  break;
-			case SDLK_f:
-			  next = 5;
-			  bossdead=true;
-			  island[currentstage].clear_screen();
-			  break;
-			case SDLK_1: //bullet color control
-			  //if(already_west)
-=======*/
+	    {	      
 	    quit == true;
 	  }
 	if( event.type == SDL_KEYDOWN )
@@ -575,7 +365,7 @@ int main(void)
 	break;
        
       case 6:
-	hero = new Hero(350,350,200,0,0,0,500000);
+	hero = new Hero(350,350,200,0,0,0,5000);
 	mike = new Mike(200,50,300,50,BASE_VELOCITY,7,&island[0],30,hero);
 	island[0].addUnit(hero);
 	island[0].addUnit(mike);
@@ -583,7 +373,6 @@ int main(void)
 	island[0].addUnit(new Tank(50, 200, 3*BASE_VELOCITY/10,13,100,hero));
 	island[0].addUnit(new Patroller(100,100,100,200,BASE_VELOCITY*1.25,20,15,hero));
 	island[0].addUnit(new Shooter(200,200,9,&island[0],hero));
-	island[0].addUnit(new Sean(100,200,150,250,200,200,150,150,BASE_VELOCITY*2,12,100,&island[0],hero));
 	island[0].addArea(100,100,128,144,2);
 	island[0].addArea(448,416,160,32,5);
 	p2s=1;
@@ -591,23 +380,39 @@ int main(void)
 	break;
 
       case 7:
-	hero = new Hero(75,385,200,0,0,0,100);
-	brad = new Brad(120,140,100,350,BASE_VELOCITY*3,18,100,&island[1],hero);
+	hero = new Hero(75,385,200,0,0,0,5000);
+	brad = new Brad(650,-800,750,-800,BASE_VELOCITY*3,18,100,&island[1],hero);
 	island[1].addUnit(hero);
 	island[1].addUnit(brad);
-	island[1].addUnit(new Patroller(100,100,100,350,4*BASE_VELOCITY/5, 20,15,hero));
+	island[1].addUnit(new Patroller(100,100,400,400,4*BASE_VELOCITY/5, 20,15,hero));
+	island[1].addUnit(new Tank(400, 50, 3*BASE_VELOCITY/10,13,100,hero));
+	island[1].addUnit(new Tank(450, 100, 3*BASE_VELOCITY/10,13,100,hero));
+	island[1].addUnit(new Shooter(1000, 25, 9,&island[1],hero));
+	island[1].addUnit(new Shooter(1000, 100, 9, &island[1],hero));
+	island[1].addUnit(new Burster(800, 50, BASE_VELOCITY,17,10,hero));
+	island[1].addUnit(new Burster(800, 100, BASE_VELOCITY,17,10,hero));
+	island[1].addUnit(new Tank(800, -200, 6*BASE_VELOCITY/10,13,100,hero));
+	island[1].addUnit(new Tank(800, -150, 6*BASE_VELOCITY/10,13,100,hero));
+	island[1].addUnit(new Tank(1000, -200, 6*BASE_VELOCITY/10,13,100,hero));
+	island[1].addUnit(new Tank(1000, -150, 6*BASE_VELOCITY/10,13,100,hero));
 	island[1].addArea(0,0,500,500,2);
 	island[1].addArea(50,50,150,150,3);
 	island[1].addArea(500, 0, 600, 150,3);
 	island[1].addArea(1000, -100, 100, 100,1);
 	island[1].addArea(750,-250, 400, 150, 4);
 	island[1].addArea(750,-350,100,100,1);
+	island[1].addArea(600,-900,300,660,2);
 				      
 	p2s=1;
 	currentstage=1;
 	break;
 
       case 8:
+	hero = new Hero(250,250,200,0,0,0,5000);
+	sean = new Sean(100,200,150,250,200,200,150,150,BASE_VELOCITY,12,100,&island[2],hero);
+	island[2].addUnit(hero);
+	island[2].addUnit(sean);
+	island[2].addArea(0,0,500,500,1);
 	p2s=1;
 	currentstage=2;
 	break;
@@ -616,6 +421,8 @@ int main(void)
 	p2s=1;
 	currentstage=3;
 	break;
+	
+
       case 666:
 	p2s=0;
 	quit=true;
@@ -693,23 +500,23 @@ int main(void)
 			  }
 			break;
 		      case SDLK_1: //bullet color control
-			//if(already_west)
+			if(already_west)
 			  if(r==0) r=1;
 			  else r=0;
-			  break;
-			case SDLK_2:
-			  //if(already_south)
+			break;
+		      case SDLK_2:
+			if(already_south)
 			  if(g==0) g=1;
 			  else g=0;
-			  break;
-			case SDLK_3:
-			  //if(already_east)
+			break;
+		      case SDLK_3:
+			if(already_east)
 			  if(b==0) b=1;
 			  else b=0;
-			  break;
-			}
-		    }
-		}
+			break;
+		      }
+		  }
+	      }
 		
 	      //mike.patrol();
 	      //burster1.chase(hero.getx(),hero.gety());
@@ -740,9 +547,18 @@ int main(void)
 		    }
 		  else help=1;
 		  break;
+		case 2:
+		  if(sean->getHealth()<=2)
+		    {
+		      next=5;
+		      bossdead=true;
+		      island[currentstage].clear_screen();
+		    }
+		  else help=1;
 		}
 	      if(hero->isDead())
 		{
+		  island[currentstage].init();
 		  return 0;
 		}
 	      if(!(hero->isDead()) && (help==1))
