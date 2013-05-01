@@ -8,7 +8,7 @@ using namespace std;
 #define DETECT_RADIUS 150
 #define _USE_MATH_DEFINES
 
-Patroller::Patroller(double XP1, double YP1, double XP2, double YP2, double maxv, int h, Hero* hero):Enemy(XP1,YP1,maxv,15,h,hero){
+Patroller::Patroller(double XP1, double YP1, double XP2, double YP2, double maxv, int h, Hero* hero):Enemy(XP1,YP1,maxv,19,h,hero){
   xp1 = XP1;
   yp1 = YP1;
   xp2 = XP2;
