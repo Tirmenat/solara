@@ -17,6 +17,7 @@
 #include "Bullet.h"
 #include "Shooter.h"
 #include "Brad.h"
+#include "Sean.h"
 #include <ctime>
 #include <unistd.h>
 #include <cmath>
@@ -260,12 +261,13 @@ int main(void)
       case 6:
 	hero = new Hero(350,350,200,0,0,0,500000);
 	island[0].addUnit(hero);
-	island[0].addUnit(new Mike(50,50,200,50,BASE_VELOCITY,7,&island[0],30,hero));
+	island[0].addUnit(new Mike(200,50,300,50,BASE_VELOCITY,7,&island[0],30,hero));
 	island[0].addUnit(new Burster(200,50,BASE_VELOCITY,17,10,hero));
 	island[0].addUnit(new Tank(50, 200, 3*BASE_VELOCITY/10,13,100,hero));
-	island[0].addUnit(new Patroller(100,100,100,200,4*BASE_VELOCITY/5,20,15,hero));
+	island[0].addUnit(new Patroller(100,100,100,200,BASE_VELOCITY*1.25,20,15,hero));
 	island[0].addUnit(new Shooter(200,200,9,&island[0],hero));
 	island[0].addUnit(new Brad(120,140,100,350,BASE_VELOCITY*3,18,100,&island[0],hero));
+	island[0].addUnit(new Sean(100,200,150,250,200,200,150,150,BASE_VELOCITY,12,100,&island[0],hero));
 	island[0].addArea(100,100,128,144,2);
 	island[0].addArea(448,416,160,32,5);
 	p2s=1;

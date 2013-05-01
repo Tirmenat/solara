@@ -78,7 +78,12 @@ void Mike::patrol(){
   // shooting state
   // 5 bullets in a 90 degree arc
   else if(state==2){
-    if (count==5){
+    for(int i=0;i<=15;i++){
+      if(count==i*2){
+	stage->addUnit(new Bullet(this,i*M_PI/16+M_PI,0,0,1,false));
+      }
+    }
+    /*if (count==5){
       stage->addUnit(new Bullet(this,5*M_PI/4,0,0,1,false));
     }
     else if(count==10){
@@ -93,7 +98,7 @@ void Mike::patrol(){
     }
     else if(count==25){
       stage->addUnit(new Bullet(this,7*M_PI/4,0,0,1,false));
-    }
+      }*/
     count++;
     vx=0;
     vy=0;
