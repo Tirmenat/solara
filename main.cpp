@@ -51,7 +51,7 @@ int main(void)
   sounds.play_music();
 
   //Game Constants
-  int currentstage;
+  int currentstage=0;
   int already_west=0;
   int already_south=0;
   int already_east=0;
@@ -62,6 +62,9 @@ int main(void)
   int r=0;
   int g=0;
   int b=0;
+
+  //Screen alternations
+  int screen_state=1;
 
   //Bullet* bullets[NUM_BULLETS] = {NULL};
   //Patroller patrol_test2(250,250,100,100,100,5);
@@ -102,11 +105,26 @@ int main(void)
 		  //Quit game
 		case SDLK_q:
 		  quit = true;
+		  Stageless.init();
 		  break;
 		case SDLK_SPACE:
 		  //Enter game
 		  next = 1;
 		  Stageless.clear_screen();
+		  break;
+		case SDLK_f:
+		  if(screen_state==0)
+		    {
+		      Stageless.init_fullscreen();
+		      Stageless.drawTitle("title");
+		      screen_state=1;
+		    }
+		  else
+		    {
+		      Stageless.init();
+		      Stageless.drawTitle("title");
+		      screen_state=0;
+		    }
 		  break;
 		}
 	      }
@@ -135,10 +153,26 @@ int main(void)
 		  {
 		  case SDLK_q:
 		    quit=true;
+		    Stageless.init();
 		    break;
 		  case SDLK_SPACE:
 		    next=2;
 		    Stageless.clear_screen();
+		    break;
+		case SDLK_f:
+		  if(screen_state==0)
+		    {
+		      Stageless.init_fullscreen();
+		      Stageless.drawTitle("slide1");
+		      screen_state=1;
+		    }
+		  else
+		    {
+		      Stageless.init();
+		      Stageless.drawTitle("slide1");
+		      screen_state=0;
+		    }
+		  break;
 		  }
 	      }
 	  }
@@ -159,10 +193,26 @@ int main(void)
 		{
 		case SDLK_q:
 		  quit=true;
+		  Stageless.init();
 		  break;
 		case SDLK_SPACE:
 		  next=3;
 		  Stageless.clear_screen();
+		  break;
+		case SDLK_f:
+		  if(screen_state==0)
+		    {
+		      Stageless.init_fullscreen();
+		      Stageless.drawTitle("slide2");
+		      screen_state=1;
+		    }
+		  else
+		    {
+		      Stageless.init();
+		      Stageless.drawTitle("slide2");
+		      screen_state=0;
+		    }
+		  break;
 		}
 	    }
 	} 
@@ -183,10 +233,26 @@ int main(void)
 	      {
 	      case SDLK_q:
 		quit=true;
+		Stageless.init();
 		break;
 	      case SDLK_SPACE:
 		next=4;
 		Stageless.clear_screen();
+		break;
+	      case SDLK_f:
+		if(screen_state==0)
+		  {
+		    Stageless.init_fullscreen();
+		    Stageless.drawTitle("slide3");
+		    screen_state=1;
+		  }
+		else
+		  {
+		    Stageless.init();
+		    Stageless.drawTitle("slide3");
+		    screen_state=0;
+		  }
+		break;
 	      }
 	  }
 	}
@@ -206,10 +272,26 @@ int main(void)
 		  {
 		  case SDLK_q:
 		    quit=true;
+		    Stageless.init();
 		    break;
 		  case SDLK_SPACE:
 		    next=5;
 		    Stageless.clear_screen();
+		    break;
+		  case SDLK_f:
+		    if(screen_state==0)
+		      {
+			Stageless.init_fullscreen();
+			Stageless.drawTitle("slide4");
+			screen_state=1;
+		      }
+		    else
+		      {
+			Stageless.init();
+			Stageless.drawTitle("slide4");
+			screen_state=0;
+		      }
+		    break;
 		  }
 	      }
 	  }	
@@ -230,6 +312,7 @@ int main(void)
 		  {
 		  case SDLK_q:
 		    quit=true;
+		    Stageless.init();
 		    break;
 		  case SDLK_1:
 		    next=6;
@@ -251,6 +334,20 @@ int main(void)
 		    sounds.change_music("music4");
 		    sounds.play_music();
 		    Stageless.clear_screen();
+		    break;
+		  case SDLK_f:
+		    if(screen_state==0)
+		      {
+			Stageless.init_fullscreen();
+			Stageless.drawTitle("slide5");
+			screen_state=1;
+		      }
+		    else
+		      {
+			Stageless.init();
+			Stageless.drawTitle("slide5");
+			screen_state=0;
+		      }
 		    break;
 		  }
 	      }
@@ -321,6 +418,7 @@ int main(void)
 		      {
 		      case SDLK_q:
 			quit=true;
+			Stageless.init();
 			break;
 		      case SDLK_UP:
 			if(island[currentstage].canFire())
@@ -350,10 +448,22 @@ int main(void)
 			    sounds.play_effect("gun");
 			  }
 			break;
-		      case SDLK_f:
+		      case SDLK_e:
 			next = 5;
 			bossdead=true;
 			island[currentstage].clear_screen();
+			break;
+		      case SDLK_f:
+			if(screen_state==0)
+			  {
+			  island[currentstage].init_fullscreen();
+			  screen_state=1;
+			  }
+			else
+			  {
+			  island[currentstage].init();
+			  screen_state=0;
+			  }
 			break;
 		      case SDLK_1: //bullet color control
 			//if(already_west)
