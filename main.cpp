@@ -499,19 +499,19 @@ int main(void)
 			  }
 			break;
 		      case SDLK_1: //bullet color control
+			if(already_west)
+			  if(b==0) b=1;
+			  else b=0;
+			break;
+		      case SDLK_2:
 			if(already_south)
 			  if(r==0) r=1;
 			  else r=0;
 			break;
-		      case SDLK_2:
+		      case SDLK_3:
 			if(already_east)
 			  if(g==0) g=1;
 			  else g=0;
-			break;
-		      case SDLK_3:
-			if(already_west)
-			  if(b==0) b=1;
-			  else b=0;
 			break;
 		      }
 		  }

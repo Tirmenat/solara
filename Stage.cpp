@@ -232,10 +232,21 @@ void Stage::set_clips()
 }
 
 void Stage::draw(){
-  //Fill the screen black
-  SDL_FillRect( screen, &screen->clip_rect, SDL_MapRGB(screen->format, 102, 178, 255) );
+  //Fill the screen blue
+  //SDL_FillRect( screen, &screen->clip_rect, SDL_MapRGB(screen->format, 102, 178, 255) );
+  //Make the ocean
+  int xMin=0,xMax=0,yMin=0,yMax=0;
+  for(int i = 0; i<areas.size(); i++) {
+    if(areas[i].x < xMin) xMin = areas[i].x;
+    if(areas[i].x+areas[i].w > xMax) xMax = areas[i].x+areas[i].w;
+    if(areas[i].y < yMin) yMin = areas[i].y;
+    if(areas[i].y+areas[i].h > yMax) yMax = areas[i].y+areas[i].h;
+  }
+  for(int i = xMin-SCREEN_WIDTH/2; i < xMax+SCREEN_WIDTH/2; i+=16)
+    for(int j = yMin-SCREEN_HEIGHT/2; j < yMax+SCREEN_HEIGHT/2; j+=16)
+      apply_surface(i, j, background, screen, &clip_background[20][16],xoffset,yoffset);
 
-  //drawing the terrain sprites
+  //drawing the terrain sprites based on addArea function
   for(int i = 0; i<areas.size(); i++){
     for(int x = areas[i].x; x<areas[i].x+areas[i].w; x+=16){
       for(int y = areas[i].y; y<areas[i].y+areas[i].h; y+=16){
@@ -286,11 +297,68 @@ void Stage::draw(){
     }
   }
 
+  //drawing the units
   for(int i = 0; i < units.size(); i++)
     //if(isInBounds(units[i]->getx()/*minus size?*/, units[i]->gety()))
     {
       units[i]->draw(screen,xoffset,yoffset);
       //      cout << "drawing unit at " << units[i]->getx() << ", " << units[i]->gety() << endl;
+    }
+
+  //drawing terrain filler
+
+
+  //drawing powerups
+  int color;
+  for(int i = 0; i < units.size(); ++i)
+    {
+      if(units[i]->isBullet()){
+	color=units[i]->getColor();
+      }
+    }
+  SDL_Rect border,inside,cross1,cross2;
+  for(int i = 0; i < 4; ++i)
+    {
+      border.x = SCREEN_WIDTH/4 + i*SCREEN_WIDTH/8;
+      border.y = SCREEN_HEIGHT*7/8;
+      border.w = SCREEN_WIDTH/16;
+      border.h = SCREEN_HEIGHT/16;
+      inside.x = border.x + 1;
+      inside.y = border.y + 1;
+      inside.w = border.w - 2;
+      inside.h = border.h - 2;
+      cross1.x = border.x + SCREEN_WIDTH/16;
+      cross1.y = border.y;
+
+      cross2.y = border.y;
+      //draw borders and plus/equals
+      SDL_FillRect( screen, &border, SDL_MapRGB( screen->format,0,0,0) );
+
+      //determine colors
+      if((color==4 || color==5 || color==6 || color==7)&& i==0)
+	SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,0,0,255) );
+      else if((color==1 || color==3 || color==5 || color==7)&& i==1)
+	SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,255,0,0) );
+      else if((color==2 || color==3 || color==6 || color==7)&& i==2)
+	SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,0,255,0) );
+      else if (i==3)
+	switch(color){
+	case 0: SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,0,0,0) ); break;
+	case 1: SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,255,0,0) ); break;
+	case 2: SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,0,255,0) ); break;
+	case 3: SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,255,255,0) ); break;
+	case 4: SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,0,0,255) ); break;
+	case 5: SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,255,0,255) ); break;
+	case 6: SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,0,255,255) ); break;
+	case 7: SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,255,0,0) );
+	  inside.x++; inside.y++; inside.w-=2; inside.h-=2;
+	  SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,0,255,0) );
+	  inside.x++; inside.y++; inside.w-=2; inside.h-=2;
+	  SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,0,0,255) );
+	  inside.x++; inside.y++; inside.w-=2; inside.h-=2;
+	  SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,255,255,255) );
+	  break;
+	  }
     }
 
   SDL_Flip(screen);
