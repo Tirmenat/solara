@@ -160,7 +160,6 @@ void Brad::chase(double herox, double heroy)
     state=1;
     moving=1;
   }
-  cout<<state<<endl;
   setvx(vx);
   setvy(vy);
 }
