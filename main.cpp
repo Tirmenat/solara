@@ -101,7 +101,6 @@ int main(void)
 		  break;
 		case SDLK_SPACE:
 		  //Enter game
-		  quit = true;
 		  next = 1;
 		  Stageless.clear_screen();
 		  break;
@@ -115,7 +114,6 @@ int main(void)
 		quit = true;
 	      }
 	  }      
-      quit = false;
       break;
 
       case 1: //Slide 1
