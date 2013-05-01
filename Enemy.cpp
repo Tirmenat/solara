@@ -32,46 +32,7 @@ double Enemy::getmaxv()
 
 void Enemy::chase(double herox, double heroy)
 {
-  double angle;
-  double v;
-  if(sqrt((herox-x)*(herox-x)+(heroy-y)*(heroy-y))<100)
-    v = 100;
-  else
-    v = 0;
-  
-  angle = atan ((heroy-y)/(herox-x));
-  
-  
-  if (x>herox && y>heroy){
-    vy = -v * sin(angle);
-    vx = -v * cos(angle);
-  }
-  else if(x>herox && y<heroy){
-    vx = -v*cos(angle);
-    vy = -v*sin(angle);
-  }
-  else if (x<herox && y>heroy){
-    vx = v*cos(angle);
-    vy = v*sin(angle);
-  }
-  else if (x<herox && angle==0){
-    vx = v;
-    vy = 0;
-  }
-  else if (x>herox && angle==0){
-    vx = -v;
-    vy = 0;
-  }
-  else{
-    vx = v*cos(angle);
-    vy = v*sin(angle);
-  }
-  
-  
-  
-  //    vy = -v * sin(angle);
-  //vx = -v * cos(angle);
-  
+
 }
 
 void Enemy::draw(SDL_Surface* screen, int xo, int yo){

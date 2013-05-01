@@ -239,6 +239,7 @@ bool Unit::operator==(Unit* u){ //returns 1 if u and *this are the same
 	}*/
 
 void Unit::increment(double dt){
+  
   frameShift();
   double angle;
   x=x + vx*dt;
