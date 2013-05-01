@@ -282,7 +282,7 @@ int main(void)
 	  brad = new Brad(120,140,100,350,BASE_VELOCITY*3,18,100,&island[1],hero);
 	  island[1].addUnit(hero);
 	  island[1].addUnit(brad);
-	  island[1].addUnit(new Patroller(100,100,100,350,4*BASE_VELOCITY/5, 20,15,hero));
+	  island[1].addUnit(new Patroller(100,100,100,350,4*BASE_VELOCITY/5, 20,200,hero));
 	  island[1].addArea(0,0,500,500,2);
 	  island[1].addArea(50,50,150,150,3);
 	  island[1].addArea(500, 0, 600, 150,3);
@@ -330,14 +330,14 @@ int main(void)
 			  if(island[currentstage].canFire())
 			    {
 			      island[currentstage].addUnit(new Bullet(hero,M_PI/2,r,g,b,true));
-			      sounds.play_effect("gun");
+			      //sounds.play_effect("gun");
 			    }
 			  break;
 			case SDLK_DOWN:		  
 			  if(island[currentstage].canFire())
 			    {
 			      island[currentstage].addUnit(new Bullet(hero,3*M_PI/2,r,g,b,true));
-			      sounds.play_effect("gun");
+			      //sounds.play_effect("gun");
 			    }
 			  break;
 			case SDLK_LEFT:
@@ -427,6 +427,8 @@ int main(void)
 		}
 	    } //End stage loop   
 	  
+	  sounds.change_music("music1");
+	  sounds.play_music();
 	  
 	  if(currentstage==0) already_west = 1;
 	  if(currentstage==1) already_south = 1;
