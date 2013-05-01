@@ -136,6 +136,7 @@ bool Stage::load_files()
   slide4 = load_image( "Slide4.png" );
   slide5 = load_image( "Slide5.png" );
 
+  //Error in loading title
   if( title == NULL )
     {
       return false;
@@ -143,6 +144,12 @@ bool Stage::load_files()
 
   //If there was an error in loading the terrain
   if( background == NULL )
+    {
+      return false;
+    }
+
+  //Error in loading slides
+  if( slide1==NULL || slide2==NULL || slide3==NULL || slide4==NULL || slide5==NULL)
     {
       return false;
     }
