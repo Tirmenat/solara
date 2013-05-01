@@ -22,7 +22,6 @@ void Burster::chase(double herox, double heroy)
   x=getx();
   y=gety();
   v=getmaxv();
-
   //angle = atan ((heroy-y)/(herox-x));
   if(moving == 1){
     holdx=herox;
@@ -75,4 +74,5 @@ void Burster::chase(double herox, double heroy)
   moving++;
   setvx(vx);
   setvy(vy);
+  cout<<vx<<" "<<vy<<endl;
 }

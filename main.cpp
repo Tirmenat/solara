@@ -258,12 +258,12 @@ int main(void)
        
       case 6:
 	hero = new Hero(350,350,200,0,0,0,100);
-	island[0].addUnit(new Brad(20,40,50,125,BASE_VELOCITY,18,100,hero));
 	island[0].addUnit(new Mike(50,50,200,50,BASE_VELOCITY,7,&island[0],30,hero));
 	island[0].addUnit(new Burster(200,50,BASE_VELOCITY,17,10,hero));
 	island[0].addUnit(new Tank(50, 200, 3*BASE_VELOCITY/10,13,100,hero));
 	island[0].addUnit(new Patroller(100,100,100,200,4*BASE_VELOCITY/5,20,15,hero));
 	island[0].addUnit(new Shooter(200,200,9,&island[0],hero));
+	island[0].addUnit(new Brad(20,40,50,125,BASE_VELOCITY,18,100,hero));
 	island[0].addArea(100,100,128,144,2);
 	island[0].addArea(448,416,160,32,5);
 	p2s=1;
@@ -344,16 +344,18 @@ int main(void)
 		      }
 		  }
 	      }
-	    
+
 	    //mike.patrol();
 	    //burster1.chase(hero.getx(),hero.gety());
 	    //tank1.chase(hero.getx(),hero.gety());
 	    //patrol1.chase(hero_test.getx(),hero_test.gety());
 	    //patrol_test2.chase(hero_test.getx(),hero_test.gety());
 	    hero->processEvent(dt);
-	    //	    cout << "here" << endl;
+	    //	    	    cout << "here" << endl;
 	    island[currentstage].perform(dt, hero);
+	    cout<<"Here 1"<<endl;
 	    island[currentstage].adjustUnits(&curr_bullets);
+	    cout<<"Here 2"<<endl;
 	    island[currentstage].draw();
 	    duration = (clock() - start)/((double)CLOCKS_PER_SEC);
 	    
