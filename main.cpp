@@ -16,6 +16,7 @@
 #include "Tank.h"
 #include "Bullet.h"
 #include "Shooter.h"
+#include "Brad.h"
 #include <ctime>
 #include <unistd.h>
 #include <cmath>
