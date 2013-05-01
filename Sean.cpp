@@ -4,6 +4,8 @@
 #include "Hero.h"
 #include "Bullet.h"
 
+#define _USE_MATH_DEFINES
+
 using namespace std;
 
 Sean::Sean(double XP1, double YP1, double XP2, double YP2, double XP3, double YP3, double XP4, double YP4, double maxv, int loc, int h, Stage* STAGE, Hero* hero):Enemy(XP1,YP1,maxv,loc,h,hero)
@@ -155,6 +157,20 @@ void Sean::chase(double herox, double heroy)
   }
   if(state==2 || state==4 || state==6 || state==8){
     moving++;
+    
+    for(double i=3;i<20;i++){
+      if (moving==i){
+	stage->addUnit(new Bullet(this,(i-3)*M_PI/8,1,0,0,false));
+      }
+    }
+
+
+    /*if(moving==10){
+      for(double i=0;i<2*M_PI;i+=M_PI/8){
+	cout<<"ABORT MISSION "<<i<<endl;
+	stage->addUnit(new Bullet(this,i,1,0,0,false));
+      }
+      }*/
     if(state==2){
       if(moving==30){
 	state=3;
