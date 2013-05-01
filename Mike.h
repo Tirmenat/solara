@@ -14,10 +14,11 @@ Mike header file */
 #include <iomanip>
 #include "Enemy.h"
 #include "Stage.h"
+#include "Hero.h"
 
 class Mike: public Enemy{
  public:
-  Mike(double,double,double,double,double,int,Stage*,int);
+  Mike(double,double,double,double,double,int,Stage*,int,Hero*);
   void chase(double,double);
   void patrol();
  private:
