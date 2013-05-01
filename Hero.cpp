@@ -202,11 +202,13 @@ void Hero::draw(SDL_Surface* screen, int xo, int yo){
   // Character and direction
   if(status == UNIT_LEFT)
     {
-      apply_surface( x+xo, y+yo, char_left, screen, &clip_char_left[frame]);
+      if(getInvulnerable()%2 == 0)
+	apply_surface( x+xo, y+yo, char_left, screen, &clip_char_left[frame]);
     }
   if(status == UNIT_RIGHT)
     {
-      apply_surface( x+xo, y+yo, char_right, screen, &clip_char_right[frame]);
+      if(getInvulnerable()%2 == 0)
+	apply_surface( x+xo, y+yo, char_right, screen, &clip_char_right[frame]);
     }
 
   //Unit health
