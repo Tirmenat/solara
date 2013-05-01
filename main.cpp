@@ -101,8 +101,8 @@ int main(void)
 		  break;
 		case SDLK_SPACE:
 		  //Enter game
-		  quit = true;
 		  next = 1;
+		  Stageless.clear_screen();
 		  break;
 		}
 	      }
@@ -114,8 +114,6 @@ int main(void)
 		quit = true;
 	      }
 	  }      
-      Stageless.clear_screen();
-      quit = false;
       break;
 
       case 1: //Slide 1
@@ -261,6 +259,7 @@ int main(void)
 	island[0].addUnit(new Burster(200,50,BASE_VELOCITY,17,10,hero));
 	island[0].addUnit(new Tank(50, 200, 3*BASE_VELOCITY/10,13,100,hero));
 	island[0].addUnit(new Patroller(100,100,100,200,4*BASE_VELOCITY/5,20,15,hero));
+	island[0].addUnit(new Shooter(200,200,9,&island[0],hero));
 	island[0].addArea(100,100,128,144,2);
 	island[0].addArea(448,416,160,32,5);
 	p2s=1;
@@ -286,7 +285,7 @@ int main(void)
       if(p2s)
 	{
 	  bossdead = false;
-	  while(bossdead==false){
+	  while(bossdead==false && quit ==false){
 	    start = clock();
 	    //	    cout << "part 2" << endl;
 	    //      int time = time();
@@ -307,7 +306,7 @@ int main(void)
 			break;
 			
 		      case SDLK_UP:
-			if(curr_bullets<NUM_BULLETS)
+			if(island[currentstage].canFire())
 			  {
 			    island[currentstage].addUnit(new Bullet(hero,M_PI/2,1,1,0,true));
 			    curr_bullets++;
@@ -315,7 +314,7 @@ int main(void)
 			  }
 			break;
 		      case SDLK_DOWN:		  
-			if(curr_bullets<NUM_BULLETS)
+			if(island[currentstage].canFire())
 			  {
 			    island[currentstage].addUnit(new Bullet(hero,3*M_PI/2,0,1,1,true));
 			    curr_bullets++;
@@ -323,7 +322,7 @@ int main(void)
 			  }
 			break;
 		      case SDLK_LEFT:
-			if(curr_bullets<NUM_BULLETS)
+			if(island[currentstage].canFire())
 			  {
 			    island[currentstage].addUnit(new Bullet(hero,M_PI,1,0,1,true));
 			    curr_bullets++;
@@ -331,7 +330,7 @@ int main(void)
 			  }
 			break;
 		      case SDLK_RIGHT:
-			if(curr_bullets<NUM_BULLETS)
+			if(island[currentstage].canFire())
 			  {
 			    island[currentstage].addUnit(new Bullet(hero,0,0,0,0,true));
 			    curr_bullets++;
@@ -351,7 +350,7 @@ int main(void)
 	    hero->processEvent(dt);
 	    //	    cout << "here" << endl;
 	    island[currentstage].perform(dt, hero);
-	    island[currentstage].adjustUnits(&curr_bullets);
+
 	    island[currentstage].draw();
 	    duration = (clock() - start)/((double)CLOCKS_PER_SEC);
 	    
