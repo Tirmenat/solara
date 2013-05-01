@@ -341,17 +341,20 @@ int main(void)
 			    sounds.play_effect("gun");
 			  }
 			break;
-		      case SDLK_1:
-			if(r=0) r=1;
-			else r=0;
+		      case SDLK_1: //bullet color control
+			//if(already_west)
+			  if(r==0) r=1;
+			  else r=0;
 			break;
 		      case SDLK_2:
-			if(g=0) g=1;
-			else g=0;
+			//if(already_south)
+			  if(g==0) g=1;
+			  else g=0;
 			break;
 		      case SDLK_3:
-			if(b=0) b=1;
-			else b=0;
+			//if(already_east)
+			  if(b==0) b=1;
+			  else b=0;
 			break;
 		      }
 		  }
