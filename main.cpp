@@ -15,6 +15,7 @@
 #include "Mike.h"
 #include "Tank.h"
 #include "Bullet.h"
+#include "Shooter.h"
 #include <ctime>
 #include <unistd.h>
 #include <cmath>
@@ -53,7 +54,6 @@ int main(void)
 
   // x, y, x size, y size, sprite location
   //stage_test.addArea(50,50,400,400,6);
-
   // x1, y1, x2, y2, max v, sprite location 
   
 
@@ -63,13 +63,7 @@ int main(void)
   //Burster burster00(200,50,BASE_VELOCITY,17);
   //Mike mike(50,50,200,50,BASE_VELOCITY,7,&stage_test);
  
-  island[0].addUnit(new Hero(350,350,200,0,0,0));
-  island[0].addUnit(new Mike(50,50,200,50,BASE_VELOCITY,7,&island[0]));
-  island[0].addUnit(new Burster(200,50,BASE_VELOCITY,17));
-  island[0].addUnit(new Tank(50, 200, 3*BASE_VELOCITY/10,13));
-  island[0].addUnit(new Patroller(100,100,100,200,4*BASE_VELOCITY/5,20));
-  island[0].addArea(100,100,128,144,2);
-  island[0].addArea(448,416,160,32,5);
+
 
   //SOUTH LEVEL DESIGN
   //South.addUnit(&sean)
@@ -95,7 +89,6 @@ int main(void)
 
 
   // x, y, vx, vy, ax, ay
-  //Hero hero(350,350,200,0,0,0);
   //  Bullet bullet_test(&hero_test,0,0);
   // stage_test.addUnit(&bullet_test);
   //vector<Bullet*> bullets;
@@ -220,8 +213,6 @@ int main(void)
 	  }
 	}
       break;
-  
-
       case 4: //Slide 4
 	p2s=0;
 	Stageless.drawTitle("slide4");
@@ -287,10 +278,18 @@ int main(void)
 	      }
 	  }
 	break;
-	
+       
       case 6:
+	hero = new Hero(350,350,200,0,0,0,100);
+	island[0].addUnit(new Mike(50,50,200,50,BASE_VELOCITY,7,&island[0],30));
+	island[0].addUnit(new Burster(200,50,BASE_VELOCITY,17,10));
+	island[0].addUnit(new Tank(50, 200, 3*BASE_VELOCITY/10,13,100));
+	island[0].addUnit(new Patroller(100,100,100,200,4*BASE_VELOCITY/5,20,15));
+	island[0].addArea(100,100,128,144,2);
+	island[0].addArea(448,416,160,32,5);
 	p2s=1;
 	currentstage=0;
+	island[0].addUnit(hero);
 	break;
 
       case 7:
@@ -310,8 +309,10 @@ int main(void)
       }
       if(p2s)
 	{
+	  bossdead = false;
 	  while(bossdead==false){
 	    start = clock();
+	    //	    cout << "part 2" << endl;
 	    //      int time = time();
 	    //If there's an event
 	    if( SDL_PollEvent( &event ) )
@@ -370,17 +371,20 @@ int main(void)
 	    //tank1.chase(hero.getx(),hero.gety());
 	    //patrol1.chase(hero_test.getx(),hero_test.gety());
 	    //patrol_test2.chase(hero_test.getx(),hero_test.gety());
+	    //	    cout << "no here" << endl;
 	    hero->processEvent(dt);
+	    //	    cout << "here" << endl;
 	    island[currentstage].perform(dt, hero);
 	    island[currentstage].adjustUnits(&curr_bullets);
 	    island[currentstage].draw();
 	    duration = (clock() - start)/((double)CLOCKS_PER_SEC);
 	    
-	    if (duration>.016){
-	      duration=.016;
+	    if (duration>dt){
+	      duration=dt;
 	    }
-	    usleep((.017-duration)*1000000);
+	    usleep((dt-duration)*1000000);
 	  } //End stage loop   
+	  
 	  if(currentstage==0) already_west = 1;
 	} 
 

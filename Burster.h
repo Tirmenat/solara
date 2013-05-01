@@ -16,7 +16,7 @@ Burster header file */
 
 class Burster: public Enemy{
  public:
-  Burster(double,double,double,int);
+  Burster(double,double,double,int,int);
   virtual void chase (double,double);
   string sound(int);
  private:

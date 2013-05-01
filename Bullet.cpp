@@ -28,6 +28,8 @@ Bullet::Bullet(Unit* shooter, double direction, int r, int g, int b, bool hero)
   sety(shooter->gety()+SPRLENGTH/2-BULLETLENGTH/2);
   setvx(shooter->getvx()/2 + BULLETV*cos(direction));
   setvy(shooter->getvy()/2 - BULLETV*sin(direction));
+  setHealth(1);
+  setMaxHealth(2);
   /*  switch(direction)
     {
       

@@ -32,12 +32,29 @@ Stage::Stage()
   yoffset = 100;
 }
 
+void Stage::checkCollisions(Unit* unit)
+{
+  /*  for(int i = 0; i<units.size(); i++)
+    {
+      if(units[i] == unit)
+	continue;
+      else
+	{
+	  if(unit->isCollided(units[i]))
+	    unit->collide(units[i]);
+	}
+	}*/
+}
 void Stage::perform(double dt, Unit* hero)
 {
 
   for(int i = 0; i < units.size(); i++)
     {
-      //if health <= 0
+      if (units[i]->getHealth() <= 0)
+	{
+	  removeUnit(units[i]);
+	  i--;
+	}
       // removeUnit(units[i])
       // i--
       units[i]->increment(dt);
@@ -136,6 +153,7 @@ bool Stage::load_files()
   slide4 = load_image( "images/Slide4.png" );
   slide5 = load_image( "images/Slide5.png" );
 
+  //Error in loading title
   if( title == NULL )
     {
       return false;
@@ -143,6 +161,12 @@ bool Stage::load_files()
 
   //If there was an error in loading the terrain
   if( background == NULL )
+    {
+      return false;
+    }
+
+  //Error in loading slides
+  if( slide1==NULL || slide2==NULL || slide3==NULL || slide4==NULL || slide5==NULL)
     {
       return false;
     }
@@ -222,8 +246,11 @@ void Stage::draw(){
   }
 
   for(int i = 0; i < units.size(); i++)
-    if(isInBounds(units[i]->getx()/*minus size?*/, units[i]->gety()))
+    //if(isInBounds(units[i]->getx()/*minus size?*/, units[i]->gety()))
+    {
       units[i]->draw(screen,xoffset,yoffset);
+      cout << "drawing unit at " << units[i]->getx() << ", " << units[i]->gety() << endl;
+    }
 
   SDL_Flip(screen);
 }
@@ -310,13 +337,17 @@ void Stage::adjustUnits(int* numbullets)
   
   for(int i = 0; i<units.size(); i++)
     {
+      cout << "Needing to adjust unit" << endl;
       if(units[i]->isBullet())
 	{
 	  if(!isInBounds(units[i]->getx(), units[i]->gety()))
 	    {
 	      if(units[i]->isFromHero())
-		*numbullets = *numbullets-1;
-	      removeUnit(units[i]);
+		{
+		  *numbullets = *numbullets-1;
+		  //		  cout << "subtracting from hero's current bullets" << endl;
+		}
+	      units[i]->setHealth(0);
 	      continue;
 	    }
 	}

@@ -9,6 +9,8 @@ Unit header file */
 
 #ifndef UNIT_H
 #define UNIT_H
+
+
 #define SPRLENGTH 24
 #define SPRWIDTH 16
 #define UNIT_LEFT 0
@@ -25,7 +27,7 @@ class Unit{
   friend class Hero;
  public:
   Unit();
-  Unit(double,double,double,double,double,int);
+  Unit(double,double,double,double,double,int,int);
   virtual void setx(double);
   virtual void sety(double);
   virtual void setax(double);
@@ -42,7 +44,7 @@ class Unit{
   //  virtual double getv();
   //  virtual SDL_Rect getrect();
   virtual void increment(double);
-  virtual void draw(SDL_Surface*, int, int);
+  virtual void draw(SDL_Surface*, int, int) = 0;
   virtual bool isEqualTo(Unit*);
   virtual void collide(Unit*) = 0;
   virtual bool isBullet();
@@ -50,10 +52,17 @@ class Unit{
   void clean_up();
   double getmaxv();
   void setmaxv(double);
+  virtual int getHealth();
+  virtual void setHealth(int);
+  virtual int getMaxHealth();
+  virtual void setMaxHealth(int);
+  bool isCollided(Unit*);
 
  private:
   SDL_Rect clip_char_left[11];
   SDL_Rect clip_char_right[11];
+  int health;
+  int maxHealth;
   double x;
   double y;
   double maxv;
@@ -71,6 +80,7 @@ class Unit{
   virtual void apply_surface(int, int, SDL_Surface*, SDL_Surface*, SDL_Rect*);
   virtual void set_clips(int);
   virtual void frameShift();
+  
 };
 
 

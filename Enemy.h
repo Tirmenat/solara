@@ -16,12 +16,12 @@ Enemy header file */
 
 class Enemy: public Unit{
  public:
-  Enemy(double,double,double,int);
+  Enemy(double,double,double,int,int);
   virtual void collide(Unit* u);
   virtual void chase(double,double);
   void setmaxv(double);
   double getmaxv();
-
+  void draw(SDL_Surface* screen, int xo, int yo);
  private:
   double maxv;
 };
