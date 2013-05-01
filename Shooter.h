@@ -17,7 +17,7 @@ Shooter header file */
 
 class Shooter: public Enemy{
  public:
-  Shooter(double,double,int,Stage*);
+  Shooter(double,double,int,Stage*,Hero*);
   void chase(double,double);
  private:
   double x1;

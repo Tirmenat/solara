@@ -27,24 +27,6 @@
 
 using namespace std;
 
-/*void fire(Bullet** bullets, Stage* stage, Unit* hero, int dir, int color)
-{
-  for(int i = 0; i<NUM_BULLETS; i++)
-    {
-      if(bullets[i] != NULL)
-	cout << bullets[i] << endl;
-      else
-	{
-	  bullets[i] = new Bullet(hero, dir, color%2, (color/2)%2, (color/4)%2);
-	  stage->addUnit(bullets[i]);
-	  return;
-	}
-      
-      
-    }
-}*/
-
-
 int main(void)
 {
   
@@ -52,20 +34,24 @@ int main(void)
   // x, y, x size, y size, sprite location
   //stage_test.addArea(50,50,400,400,6);
 
+  // x, y, vx, vy, ax, ay, health
+  Hero hero_test(350,350,200,0,0,0,500);
+  stage_test.addUnit(&hero_test);
+
   // x1, y1, x2, y2, max v, sprite location, health
-  Patroller patrol_test(100,100,100,200,4*BASE_VELOCITY/5,20,50);
-  Tank tank_test(50,200,3*BASE_VELOCITY/10,13,100);
+  Patroller patrol_test(100,100,100,200,4*BASE_VELOCITY/5,20,50,&hero_test);
+  Tank tank_test(50,200,3*BASE_VELOCITY/10,13,100,&hero_test);
   tank_test.setHealth(30);
-  Burster burster_test(200,50,BASE_VELOCITY,17,50);
-  burster_test.setHealth(49);
-  Mike mike_test(50,50,200,50,BASE_VELOCITY,7,&stage_test,250);
+  //Burster burster_test(200,50,BASE_VELOCITY,17,50,&hero_test);
+  //burster_test.setHealth(49);
+  Mike mike_test(50,50,200,50,BASE_VELOCITY,7,&stage_test,250,&hero_test);
   mike_test.setHealth(1);
   int curr_bullets = 0;
-  Shooter shooter_test(200,200,9,&stage_test);
+  Shooter shooter_test(200,200,9,&stage_test,&hero_test);
 
   stage_test.addUnit(&shooter_test);
   stage_test.addUnit(&mike_test);
-  stage_test.addUnit(&burster_test);
+  //stage_test.addUnit(&burster_test);
   stage_test.addUnit(&tank_test);
   stage_test.addUnit(&patrol_test);
   stage_test.addArea(100,100,128,144,2);
@@ -87,10 +73,6 @@ int main(void)
   //stage_test.addUnit(&patrol_test2);
   //stage_test.addArea(350-25,350-25,100,100,2);
 
-
-  // x, y, vx, vy, ax, ay
-  Hero hero_test(350,350,200,0,0,0,500);
-  stage_test.addUnit(&hero_test);
   //  Bullet bullet_test(&hero_test,0,0);
   // stage_test.addUnit(&bullet_test);
   //vector<Bullet*> bullets;
@@ -110,7 +92,6 @@ int main(void)
   //Title screen
   while (quit == false)
     {
-
       //While there's an event to handle
       while (SDL_PollEvent (&event))
 	{
@@ -305,42 +286,24 @@ int main(void)
 		  quit=true;
 		  break;
 		case SDLK_UP:
-		  if(curr_bullets<NUM_BULLETS)
-		    {
-		      stage_test.addUnit(new Bullet(&hero_test,M_PI/2,1,1,0,true));
-		      curr_bullets++;
-		    }
+		  if(stage_test.canFire())
+		    stage_test.addUnit(new Bullet(&hero_test,M_PI/2,1,1,0,true));
 		  break;
 		case SDLK_DOWN:		  
-		  if(curr_bullets<NUM_BULLETS)
-		    {
-		      stage_test.addUnit(new Bullet(&hero_test,3*M_PI/2,0,1,1,true));
-		      curr_bullets++;
-		    }
+		  if(stage_test.canFire())
+		    stage_test.addUnit(new Bullet(&hero_test,3*M_PI/2,0,1,1,true));
 		  break;
 		case SDLK_LEFT:
-		  if(curr_bullets<NUM_BULLETS)
-		    {
-		      stage_test.addUnit(new Bullet(&hero_test,M_PI,1,0,1,true));
-		      curr_bullets++;
-		    }
+		  if(stage_test.canFire())
+		    stage_test.addUnit(new Bullet(&hero_test,M_PI,1,0,1,true));
 		  break;
 		case SDLK_RIGHT:
-		  if(curr_bullets<NUM_BULLETS)
-		    {
-		      stage_test.addUnit(new Bullet(&hero_test,0,0,0,0,true));
-		      curr_bullets++;
-		    }
+		  if(stage_test.canFire())
+		    stage_test.addUnit(new Bullet(&hero_test,0,0,0,0,true));
 		  break;
 		}
 	    }
 	}
-      shooter_test.chase(hero_test.getx(),hero_test.gety());
-      mike_test.chase(hero_test.getx(),hero_test.gety());
-      burster_test.chase(hero_test.getx(),hero_test.gety());
-      tank_test.chase(hero_test.getx(),hero_test.gety());
-      patrol_test.chase(hero_test.getx(),hero_test.gety());
-      //patrol_test2.chase(hero_test.getx(),hero_test.gety());
       hero_test.processEvent(dt);
       stage_test.perform(dt, &hero_test);
       stage_test.adjustUnits(&curr_bullets);
@@ -407,12 +370,6 @@ int main(void)
 		}
 	    }
 	}
-
-      mike_test.chase(hero_test.getx(),hero_test.gety());
-      burster_test.chase(hero_test.getx(),hero_test.gety());
-      tank_test.chase(hero_test.getx(),hero_test.gety());
-      patrol_test.chase(hero_test.getx(),hero_test.gety());
-      //patrol_test2.chase(hero_test.getx(),hero_test.gety());
       hero_test.processEvent(dt);
       stage_test.perform(dt, &hero_test);
       stage_test.adjustUnits(&curr_bullets);
@@ -479,21 +436,16 @@ int main(void)
 	    }
 	}
 
-      mike_test.chase(hero_test.getx(),hero_test.gety());
-      burster_test.chase(hero_test.getx(),hero_test.gety());
-      tank_test.chase(hero_test.getx(),hero_test.gety());
-      patrol_test.chase(hero_test.getx(),hero_test.gety());
-      //patrol_test2.chase(hero_test.getx(),hero_test.gety());
       hero_test.processEvent(dt);
       stage_test.perform(dt, &hero_test);
       stage_test.adjustUnits(&curr_bullets);
       stage_test.draw();
       duration = (clock() - start)/((double)CLOCKS_PER_SEC);
       
-      if (duration>.017){
-	duration=.017;
+      if (duration>dt){
+	duration=dt;
       }
-      usleep((.017-duration)*1000000);
+      usleep((dt-duration)*1000000);
     }
 
 

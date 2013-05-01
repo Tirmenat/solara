@@ -10,8 +10,9 @@ using namespace std;
 #define ACCEL_Y_STOP 1
 #define _USE_MATH_DEFINES
 
-Enemy::Enemy(double X, double Y, double MAXV, int location, int h):Unit(X,Y,MAXV,0,0,location,h)
+Enemy::Enemy(double X, double Y, double MAXV, int location, int h,Hero* HERO):Unit(X,Y,MAXV,0,0,location,h)
 {
+  hero=HERO;
   maxv=MAXV;
 }
 
@@ -70,4 +71,76 @@ void Enemy::draw(SDL_Surface* screen, int xo, int yo){
   inside.h = missing.h = SPRLENGTH/6-2;
   //SDL_FillRect( screen, &missing, SDL_MapRGB(screen->format,0,128,255) );
   SDL_FillRect( screen, &inside, SDL_MapRGB(screen->format,255,0,0) );
+}
+
+void Enemy::increment(double dt){
+  chase(hero->getx(),hero->gety());
+  frameShift();
+  double angle;
+  x=x + vx*dt;
+  y=y + vy*dt;
+  //  if(moving)                                                                 
+  // horizontal velocity                                                         
+  if( (vx + ax*dt) >= maxv)
+    vx = maxv;
+  else if( (vx + ax*dt) <= -maxv)
+    vx = -maxv;
+  else
+    vx = vx + ax*dt;
+  // vertical velocity                                                           
+  if( (vy + ay*dt) >= maxv)
+    vy = maxv;
+  else if( (vy + ay*dt) <= -maxv)
+    vy = -maxv;
+  else
+    vy = vy + ay*dt;
+
+  if (sqrt(vx*vx+vy*vy) > maxv){
+    angle = atan(vy/vx);
+    if (vx < 0 && vy<0){
+      vx = -maxv*cos(angle);
+      vy = -maxv*sin(angle);
+    }
+    else if (vx<0 && vy>0){
+      vx = -maxv*cos(angle);
+      vy = -maxv*sin(angle);
+    }
+    else{
+      frameShift();
+      double angle;
+      x=x + vx*dt;
+      y=y + vy*dt;
+      //  if(moving)                                                           
+                                                                             
+      // horizontal velocity 
+      if( (vx + ax*dt) >= maxv)
+        vx = maxv;
+      else if( (vx + ax*dt) <= -maxv)
+        vx = -maxv;
+      else
+        vx = vx + ax*dt;
+      // vertical velocity                                             
+                                                                              
+      if( (vy + ay*dt) >= maxv)
+        vy = maxv;
+      else if( (vy + ay*dt) <= -maxv)
+        vy = -maxv;
+      else
+        vy = vy + ay*dt;
+
+      if (sqrt(vx*vx+vy*vy) > maxv){
+        angle = atan(vy/vx);
+        if (vx < 0 && vy<0){
+          vx = -maxv*cos(angle);
+          vy = -maxv*sin(angle);
+        }
+        else if (vx<0 && vy>0){
+          vx = -maxv*cos(angle);
+          vy = -maxv*sin(angle);
+        }      vx = maxv*cos(angle);
+	vy = maxv*sin(angle);
+      }
+    }
+
+  }
 }

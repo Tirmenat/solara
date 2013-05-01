@@ -16,7 +16,10 @@ Hero::Hero(double X, double Y, double MAXV, double AX, double AY, int location, 
 
 void Hero::collide(Unit* u)
 {
-  cout << "collision detected" << endl;
+  if(u->isFromHero())
+    {
+    }
+  //  cout << "collision detected" << endl;
   if(u->isBullet())
     {
       this->setHealth(getHealth()-1);
@@ -173,6 +176,13 @@ void Hero::processEvent(double dt)
           break;
       }*/
 }
+
+
+bool Hero::isFromHero()
+{
+  return 1;
+}
+
 
 void Hero::draw(SDL_Surface* screen, int xo, int yo){
   // Character and direction
