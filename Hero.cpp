@@ -16,6 +16,8 @@ Hero::Hero(double X, double Y, double MAXV, double AX, double AY, int location, 
 
 void Hero::collide(Unit* u)
 {
+  cout << "collision detected" << endl;
+  /*
   if(u->isBullet())
     {
       //do damage
@@ -25,7 +27,7 @@ void Hero::collide(Unit* u)
     {
       //do damage
       //knock back?
-    }
+      }*/
 }
 
 void Hero::processEvent(double dt)

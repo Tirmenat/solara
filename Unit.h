@@ -56,6 +56,7 @@ class Unit{
   virtual void setHealth(int);
   virtual int getMaxHealth();
   virtual void setMaxHealth(int);
+  bool isCollided(Unit*);
 
  private:
   SDL_Rect clip_char_left[11];
