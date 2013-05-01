@@ -109,4 +109,6 @@ void Mike::patrol(){
   setvy(vy);
 }
 
-
+void Mike::chase(double herox, double heroy){
+  patrol();
+}
