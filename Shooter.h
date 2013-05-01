@@ -13,6 +13,7 @@ Shooter header file */
 #include <iostream>
 #include <iomanip>
 #include "Enemy.h"
+#include "Hero.h"
 #include "Stage.h"
 
 class Shooter: public Enemy{

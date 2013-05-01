@@ -14,10 +14,11 @@ Brad header file */
 #include <iomanip>
 #include "Enemy.h"
 #include "Hero.h"
+#include "Stage.h"
 
 class Brad: public Enemy{
  public:
-  Brad(double,double,double,double,double,int,int,Hero*);
+  Brad(double,double,double,double,double,int,int,Stage*,Hero*);
   virtual void chase (double,double);
  private:
   int state;
@@ -28,6 +29,7 @@ class Brad: public Enemy{
   double yp1;
   double xp2;
   double yp2;
+  Stage* stage;
 };
 
 
