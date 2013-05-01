@@ -5,6 +5,7 @@
 
 using namespace std;
 
+#define DETECT_RADIUS 150
 #define _USE_MATH_DEFINES
 
 Patroller::Patroller(double XP1, double YP1, double XP2, double YP2, double maxv, int loc, int h, Hero* hero):Enemy(XP1,YP1,maxv,loc,h,hero){
@@ -87,7 +88,7 @@ void Patroller::chase(double herox, double heroy)
   int soundhelp;
   x=getx();
   y=gety();
-  if(sqrt((herox-x)*(herox-x)+(heroy-y)*(heroy-y))<100){
+  if(sqrt((herox-x)*(herox-x)+(heroy-y)*(heroy-y))<DETECT_RADIUS){
     v = getmaxv();
   }
   else {

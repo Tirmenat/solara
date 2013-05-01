@@ -35,6 +35,8 @@ class Stage{
   bool checkCollisions(Unit*);
   bool canFire();
   bool isOffScreen(Unit*);
+  bool init();
+  bool init_fullscreen();
  private:
   int xoffset;
   int yoffset;
@@ -56,7 +58,6 @@ class Stage{
   int size_y;
   SDL_Surface *load_image( string );
   void apply_surface( int, int, SDL_Surface*, SDL_Surface*, SDL_Rect*, int, int );
-  bool init();
   bool load_files();
   virtual void set_clips();
   

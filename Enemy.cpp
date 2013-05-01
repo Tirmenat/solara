@@ -21,6 +21,7 @@ void Enemy::collide(Unit* u)
   if(u->isBullet() && u->isFromHero())
     {
       setHealth(getHealth()-10);
+      if(getHealth()<0) setHealth(0);
       u->setHealth(0);
     }
 }
