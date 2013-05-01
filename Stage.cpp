@@ -54,6 +54,17 @@ void Stage::perform(double dt, Unit* hero)
 
   for(int i = 0; i < units.size(); i++)
     {
+      if(!isOffScreen(units[i]))
+	{
+	  units[i]->increment(dt);
+	}
+      else
+	{
+	  if(units[i]->isBullet())
+	    {
+	      units[i]->setHealth(0);
+	    }
+	}
       if (units[i]->getHealth() <= 0)
 	{
 	  removeUnit(units[i]);
@@ -61,7 +72,6 @@ void Stage::perform(double dt, Unit* hero)
 	}
       //checkCollisions(units[i],dt);
       checkCollisions(units[i]);
-      units[i]->increment(dt);
     }
   adjustUnits();
   xoffset = -hero->getx() + SCREEN_WIDTH/2;
@@ -341,7 +351,12 @@ void Stage::clean_up()
       removeUnit(units[0]);
       }*/
   SDL_FreeSurface( background );
-  
+  SDL_FreeSurface(title);
+  SDL_FreeSurface(slide1);
+  SDL_FreeSurface(slide2);
+  SDL_FreeSurface(slide3);
+  SDL_FreeSurface(slide4);
+  SDL_FreeSurface(slide5);
 
   //Quit SDL
   SDL_Quit();
@@ -361,6 +376,11 @@ void Stage::adjustUnits()
 
 		  
 		  //		  cout << "subtracting from hero's current bullets" << endl;
+	      units[i]->setHealth(0);
+	      continue;
+	    }
+	  else if(isOffScreen(units[i]))
+	    {
 	      units[i]->setHealth(0);
 	      continue;
 	    }
@@ -453,4 +473,19 @@ void Stage::adjustUnits()
 bool Stage::canFire()
 {
   return (currBullets<maxBullets);
+}
+
+bool Stage::isOffScreen(Unit* unit)
+{
+  if(unit->getx() < -xoffset-50)
+    return true;
+  else if(unit->getx() > -xoffset+SCREEN_WIDTH+50)
+    return true;
+  else if(unit->gety() < -yoffset-50)
+    return true;
+  else if(unit->gety() > -yoffset+SCREEN_HEIGHT+50)
+    return true;
+
+  //not off screen
+  return false;
 }
