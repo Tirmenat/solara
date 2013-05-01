@@ -13,10 +13,11 @@ Burster header file */
 #include <iostream>
 #include <iomanip>
 #include "Enemy.h"
+#include "Hero.h"
 
 class Burster: public Enemy{
  public:
-  Burster(double,double,double,int,int);
+  Burster(double,double,double,int,int,Hero*);
   virtual void chase (double,double);
   string sound(int);
  private:

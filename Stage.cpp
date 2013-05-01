@@ -30,6 +30,8 @@ Stage::Stage()
   addArea(SCREEN_WIDTH/10, SCREEN_HEIGHT/10, SCREEN_WIDTH*4/5, SCREEN_HEIGHT*4/5,0);
   xoffset = 100;
   yoffset = 100;
+  maxBullets = 5;
+  currBullets = 0;
 }
 
 void Stage::checkCollisions(Unit* unit)
@@ -270,6 +272,10 @@ int Stage::addArea(int x, int y, int w, int h, int loc) //adds an area and check
 }
 
 void Stage::addUnit(Unit* spr){
+  if(spr->isBullet() && spr->isFromHero())
+    {
+      currBullets++;
+    }
   units.push_back(spr);
 }
 
@@ -277,10 +283,12 @@ int Stage::removeUnit(Unit* unit){
   for(int i = 0; i<units.size(); i++)
     {
       if(units[i] == unit){
+	if(unit->isBullet() && unit->isFromHero())
+	  currBullets--;
 	delete unit;
 	/*	delete spr;*/
 	units.erase(units.begin()+i);
-	return 1;
+
       }
     }
   return 0;
@@ -325,7 +333,12 @@ void Stage::clear_screen()
 void Stage::clean_up()
 {
   //Free the surfaces
+  /* while(units.size())
+    {
+      removeUnit(units[0]);
+      }*/
   SDL_FreeSurface( background );
+  
 
   //Quit SDL
   SDL_Quit();
@@ -425,13 +438,18 @@ void Stage::adjustUnits(int* numbullets)
 	}      
     }
 }
-
-int Stage::getoffsetx()
+ 
+ int Stage::getoffsetx()
+ {
+   return xoffset;
+ }
+ 
+ int Stage::getoffsety()
+ {
+   return yoffset;
+ }
+ 
+bool Stage::canFire()
 {
-  return xoffset;
-}
-
-int Stage::getoffsety()
-{
-  return yoffset;
+  return (currBullets<maxBullets);
 }

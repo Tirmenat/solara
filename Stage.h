@@ -33,9 +33,12 @@ class Stage{
   int getoffsetx();
   int getoffsety();
   void checkCollisions(Unit* unit);
+  bool canFire();
  private:
   int xoffset;
   int yoffset;
+  int maxBullets;
+  int currBullets;
   vector<int> location;
   vector<Unit*> units;
   vector<SDL_Rect> areas; //contains the areas of the stage, stored in rectangle form, 4 points at a time in a vector
@@ -55,6 +58,7 @@ class Stage{
   bool init();
   bool load_files();
   virtual void set_clips();
+  
 };
 
 	#endif

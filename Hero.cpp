@@ -16,18 +16,36 @@ Hero::Hero(double X, double Y, double MAXV, double AX, double AY, int location, 
 
 void Hero::collide(Unit* u)
 {
-  cout << "collision detected" << endl;
-  /*
+  if(u->isFromHero())
+    {
+    }
+  //  cout << "collision detected" << endl;
   if(u->isBullet())
     {
+      this->setHealth(getHealth()-1);
+      u->setHealth(0);
       //do damage
       //apply effects based on color
     }
   else
     {
+      this->setHealth(getHealth()-10);
+      //this->setx(this->getx()-this->getvx()/4);
+      //this->sety(this->gety()-this->getvy()/4);
+      this->setvx(-this->getvx()*2);
+      this->setvy(-this->getvy()*2);
+      //this->setax(0);
+      //this->setay(0);
+      //u->setx(u->getx()-u->getvx()/4);
+      //u->sety(u->gety()-u->getvy()/4);
+      u->setvx(-u->getvx()*2);
+      u->setvy(-u->getvy()*2);
+      u->setax(0);
+      u->setay(0);
+
       //do damage
       //knock back?
-      }*/
+    }
 }
 
 void Hero::processEvent(double dt)
@@ -158,6 +176,13 @@ void Hero::processEvent(double dt)
           break;
       }*/
 }
+
+
+bool Hero::isFromHero()
+{
+  return 1;
+}
+
 
 void Hero::draw(SDL_Surface* screen, int xo, int yo){
   // Character and direction

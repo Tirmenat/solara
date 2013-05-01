@@ -2,12 +2,13 @@
 #include "SDL/SDL.h"
 #include "Sound.h"
 #include <cmath>
+#include "Hero.h"
 
 using namespace std;
 
-Burster::Burster(double X, double Y, double maxv, int loc, int h):Enemy(X,Y,maxv,loc,h)
+Burster::Burster(double X, double Y, double maxv, int loc, int h, Hero* hero):Enemy(X,Y,maxv,loc,h,hero)
 {
-  moving = 0;
+  moving = 1;
 }
 
 void Burster::chase(double herox, double heroy)
@@ -57,7 +58,7 @@ void Burster::chase(double herox, double heroy)
     vx=0;
     vy=0;
   }
-  else if (moving==120){
+  else if (moving>=120){
     moving=0;
   }
   if(sqrt((x-holdx)*(x-holdx)+(y-holdy)*(y-holdy)) <= 2) {

@@ -27,24 +27,6 @@
 
 using namespace std;
 
-/*void fire(Bullet** bullets, Stage* stage, Unit* hero, int dir, int color)
-  {
-  for(int i = 0; i<NUM_BULLETS; i++)
-  {
-  if(bullets[i] != NULL)
-  cout << bullets[i] << endl;
-  else
-  {
-  bullets[i] = new Bullet(hero, dir, color%2, (color/2)%2, (color/4)%2);
-  stage->addUnit(bullets[i]);
-  return;
-  }
-      
-      
-  }
-  }*/
-
-
 int main(void)
 {
   
@@ -63,11 +45,6 @@ int main(void)
   //Burster burster00(200,50,BASE_VELOCITY,17);
   //Mike mike(50,50,200,50,BASE_VELOCITY,7,&stage_test);
  
-
-
-  //SOUTH LEVEL DESIGN
-  //South.addUnit(&sean)
-
   //Bullet bullet;
   Sound sounds;
   sounds.load_music("music1");
@@ -88,7 +65,6 @@ int main(void)
   //stage_test.addArea(350-25,350-25,100,100,2);
 
 
-  // x, y, vx, vy, ax, ay
   //  Bullet bullet_test(&hero_test,0,0);
   // stage_test.addUnit(&bullet_test);
   //vector<Bullet*> bullets;
@@ -281,10 +257,10 @@ int main(void)
        
       case 6:
 	hero = new Hero(350,350,200,0,0,0,100);
-	island[0].addUnit(new Mike(50,50,200,50,BASE_VELOCITY,7,&island[0],30));
-	island[0].addUnit(new Burster(200,50,BASE_VELOCITY,17,10));
-	island[0].addUnit(new Tank(50, 200, 3*BASE_VELOCITY/10,13,100));
-	island[0].addUnit(new Patroller(100,100,100,200,4*BASE_VELOCITY/5,20,15));
+	island[0].addUnit(new Mike(50,50,200,50,BASE_VELOCITY,7,&island[0],30,hero));
+	island[0].addUnit(new Burster(200,50,BASE_VELOCITY,17,10,hero));
+	island[0].addUnit(new Tank(50, 200, 3*BASE_VELOCITY/10,13,100,hero));
+	island[0].addUnit(new Patroller(100,100,100,200,4*BASE_VELOCITY/5,20,15,hero));
 	island[0].addArea(100,100,128,144,2);
 	island[0].addArea(448,416,160,32,5);
 	p2s=1;
@@ -392,5 +368,4 @@ int main(void)
     sounds.stop_music();
     sounds.clean_up_sound();
     island[currentstage].clean_up();
-    
 }

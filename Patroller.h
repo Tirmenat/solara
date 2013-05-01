@@ -13,10 +13,11 @@ Patroller header file */
 #include <iostream>
 #include <iomanip>
 #include "Enemy.h"
+#include "Hero.h"
 
 class Patroller: public Enemy{
  public:
-  Patroller(double,double,double,double,double,int,int);
+  Patroller(double,double,double,double,double,int,int,Hero*);
   virtual void chase(double,double);
   void patrol();
  private:

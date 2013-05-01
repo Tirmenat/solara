@@ -8,7 +8,7 @@ using namespace std;
 
 #define _USE_MATH_DEFINES
 
-Shooter::Shooter(double X, double Y, int loc,Stage* STAGE):Enemy (X,Y,0,loc,50){
+Shooter::Shooter(double X, double Y, int loc,Stage* STAGE,Hero* hero):Enemy (X,Y,0,loc,50,hero){
   x1=X;
   y1=Y;
   count=0;
