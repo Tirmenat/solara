@@ -34,7 +34,7 @@ Stage::Stage()
   currBullets = 0;
 }
 
-bool Stage::checkCollisions(Unit* unit, double dt)
+bool Stage::checkCollisions(Unit* unit)
 {
   bool collide=false;
   for(int i = 0; i<units.size(); i++)
@@ -43,7 +43,7 @@ bool Stage::checkCollisions(Unit* unit, double dt)
 	continue;
       else if(unit->isCollided(units[i]))
 	{
-	  unit->collide(units[i],dt);
+	  unit->collide(units[i]);
 	  collide=true;
 	}
     }
@@ -59,7 +59,7 @@ void Stage::perform(double dt, Unit* hero)
 	  removeUnit(units[i]);
 	  i--;
 	}
-      checkCollisions(units[i],dt);
+      checkCollisions(units[i]);
       units[i]->increment(dt);
     }
   adjustUnits();

@@ -416,6 +416,11 @@ void Unit::makeInvulnerable()
   invulnerable = 30;
 }
 
+int Unit::getInvulnerable()
+{
+  return invulnerable;
+}
+
 void Unit::tickInvulnerable()
 {
   if(isInvulnerable())

@@ -18,7 +18,7 @@ Enemy header file */
 class Enemy: public Unit{
  public:
   Enemy(double,double,double,int,int,Hero*);
-  virtual void collide(Unit*,double);
+  virtual void collide(Unit*);
   virtual void chase(double,double);
   void setmaxv(double);
   double getmaxv();
