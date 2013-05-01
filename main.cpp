@@ -619,7 +619,7 @@ int main(void)
 		{
 		  island[currentstage].perform(dt, hero);
 		  hero->processEvent(dt);
-		  island[currentstage].draw();
+		  island[currentstage].draw(r,g,b,already_south,already_east,already_west);
 		  duration = (clock() - start)/((double)CLOCKS_PER_SEC);
 		  
 		  if (duration>dt)
