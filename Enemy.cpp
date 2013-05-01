@@ -16,9 +16,13 @@ Enemy::Enemy(double X, double Y, double MAXV, int location, int h,Hero* HERO):Un
   maxv=MAXV;
 }
 
-void Enemy::collide(Unit* u, double dt)
+void Enemy::collide(Unit* u)
 {
-  
+  if(u->isBullet() && u->isFromHero())
+    {
+      setHealth(getHealth()-10);
+      u->setHealth(0);
+    }
 }
 
 void Enemy::setmaxv(double max)

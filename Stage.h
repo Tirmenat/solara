@@ -32,7 +32,7 @@ class Stage{
   void adjustUnits(); //keeps units in bounds
   int getoffsetx();
   int getoffsety();
-  bool checkCollisions(Unit*,double);
+  bool checkCollisions(Unit*);
   bool canFire();
  private:
   int xoffset;

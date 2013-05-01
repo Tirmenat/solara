@@ -14,7 +14,7 @@ Hero::Hero(double X, double Y, double MAXV, double AX, double AY, int location, 
   
 }
 
-void Hero::collide(Unit* u, double dt)
+void Hero::collide(Unit* u)
 {
   if(u->isFromHero())
     {
@@ -23,14 +23,18 @@ void Hero::collide(Unit* u, double dt)
   //  cout << "collision detected" << endl;
   if(u->isBullet())
     {
-      setHealth(getHealth()-1);
+      
+      if(!isInvulnerable())
+	setHealth(getHealth()-100);
       u->setHealth(0);
+      makeInvulnerable();
       //do damage
       //apply effects based on color
     }
   else
     {
-      setHealth(getHealth()-10);
+      if(!isInvulnerable())
+	setHealth(getHealth()-100);
       makeInvulnerable();
       //if(vx>0)
       //	setx(getx()-maxv*dt);
@@ -228,5 +232,10 @@ void Hero::draw(SDL_Surface* screen, int xo, int yo){
   missing.w = totalHealth;
   inside.h = missing.h = SPRLENGTH/6-2;
   //SDL_FillRect( screen, &missing, SDL_MapRGB( screen->format,0,128,255) );
-  SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,0,255,0) );
+  if(isInvulnerable())
+    {
+      SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,0,255-(255/30)*getInvulnerable(),(255/30)*getInvulnerable()) );
+    }
+  else
+    SDL_FillRect( screen, &inside, SDL_MapRGB( screen->format,0,255,0) );
 }

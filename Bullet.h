@@ -31,7 +31,7 @@ class Bullet: public Unit{
   virtual void draw(SDL_Surface*,int,int);
   int getColor();
   virtual bool isBullet();
-  virtual void collide(Unit*,double);
+  virtual void collide(Unit*);
   virtual bool isFromHero();
  private:
   bool fromHero;

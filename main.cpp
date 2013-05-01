@@ -254,7 +254,7 @@ int main(void)
 	break;
        
       case 6:
-	hero = new Hero(350,350,200,0,0,0,100);
+	hero = new Hero(350,350,200,0,0,0,500);
 	island[0].addUnit(new Mike(50,50,200,50,BASE_VELOCITY,7,&island[0],30,hero));
 	island[0].addUnit(new Burster(200,50,BASE_VELOCITY,17,10,hero));
 	island[0].addUnit(new Tank(50, 200, 3*BASE_VELOCITY/10,13,100,hero));
@@ -347,10 +347,15 @@ int main(void)
 	    //patrol1.chase(hero_test.getx(),hero_test.gety());
 	    //patrol_test2.chase(hero_test.getx(),hero_test.gety());
 	    //	    cout << "no here" << endl;
-	    hero->processEvent(dt);
 	    //	    cout << "here" << endl;
+	    island[currentstage].checkCollisions(hero);
+	    if(hero->getHealth()<=0)
+	      {
+		cout << "ur ded lol" << endl;
+		break;
+	      }
 	    island[currentstage].perform(dt, hero);
-
+	    hero->processEvent(dt);
 	    island[currentstage].draw();
 	    duration = (clock() - start)/((double)CLOCKS_PER_SEC);
 	    
@@ -366,5 +371,5 @@ int main(void)
     } //End main while loop
     sounds.stop_music();
     sounds.clean_up_sound();
-    island[currentstage].clean_up();
+    //island[currentstage].clean_up();
 }
