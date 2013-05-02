@@ -527,11 +527,28 @@ int main(void)
 
       case 9:
 	hero= new Hero(200,-50,200,0,0,0,5000);
-	sneal = new Sneal(50,-100,150,-100,BASE_VELOCITY*3,250,&island[3],hero);
+	sneal = new Sneal(100,-3500,300,-3500,BASE_VELOCITY*3,250,&island[3],hero);
 	island[3].addUnit(hero);
 	island[3].addUnit(sneal);
-	island[3].addArea(0,-400,400,400,3);
-	
+	island[3].addUnit(new Shooter(0,-3700,&island[3],hero));
+	island[3].addUnit(new Shooter(400,-3700,&island[3],hero));
+	island[3].addUnit(new Shooter(0,-3300,&island[3],hero));
+	island[3].addUnit(new Shooter(400,-3300,&island[3],hero));
+
+	island[3].addUnit(new Sean(50,-2750,350,-2750,350,-2350,50,-2350,3*BASE_VELOCITY,150, &island[3],hero));
+	island[3].addUnit(new Tank(200, -2600, BASE_VELOCITY,200,hero));
+	island[3].addUnit(new Tank(75, -2600, BASE_VELOCITY,200,hero));
+	island[3].addUnit(new Tank(325, -2600, BASE_VELOCITY,200,hero));
+	island[3].addArea(0,-400,400,400,6); //Opening
+	island[3].addArea(150,-800,100,400,6);
+	island[3].addArea(0,-1200,400,400,6); //Boss 1
+	island[3].addArea(150,-1600,100,400,6);
+	island[3].addArea(0,-2000,400,400,6); //Boss 2
+	island[3].addArea(150,-2400,100,400,6);
+	island[3].addArea(0,-2800,400,400,6);  //Boss 3
+	island[3].addArea(150,-3200,100,400,6);
+	island[3].addArea(-100,-3800,600,600,6); //Sneal Boss
+	island[3].addArea(0,-3700,400,400,6);
 
 	p2s=1;
 	currentstage=3;
