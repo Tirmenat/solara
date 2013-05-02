@@ -193,6 +193,11 @@ bool Stage::load_files()
   slide4 = load_image( "images/Slide4.png" );
   slide5 = load_image( "images/Slide5.png" );
   slide6 = load_image( "images/Slide6.png" );
+  slidemike = load_image( "images/SlideMike.png" );
+  slidebrad = load_image( "images/SlideBrad.png" );
+  slidesean = load_image( "images/SlideSean.png" );
+  slidesneal = load_image( "images/SlideSneal.png" );
+  youwin = load_image( "images/YouWin.png" );
 
   //Error in loading title
   if( title == NULL )
@@ -496,6 +501,10 @@ void Stage::drawTitle(string pic, int isWest, int isSouth, int isEast)
   if(pic == "slide2") apply_surface(0,0,slide2,screen);
   if(pic == "slide3") apply_surface(0,0,slide3,screen);
   if(pic == "slide4") apply_surface(0,0,slide4,screen);
+  if(pic == "slidemike") apply_surface(0,0,slidemike,screen);
+  if(pic == "slidebrad") apply_surface(0,0,slidebrad,screen);
+  if(pic == "slidesean") apply_surface(0,0,slidesean,screen);
+  if(pic == "slidesneal") apply_surface(0,0,slidesneal,screen);
   if(pic == "slide5"){
     apply_surface(0,0,slide5,screen);
     SDL_Rect crossOut1,crossOut2;
@@ -585,6 +594,11 @@ void Stage::clean_up()
   SDL_FreeSurface(slide4);
   SDL_FreeSurface(slide5);
   SDL_FreeSurface(slide6);
+  SDL_FreeSurface(slidemike);
+  SDL_FreeSurface(slidebrad);
+  SDL_FreeSurface(slidesean);
+  SDL_FreeSurface(slidesneal);
+  SDL_FreeSurface(youwin);
 
   //Quit SDL
   SDL_Quit();

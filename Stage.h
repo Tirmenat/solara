@@ -54,6 +54,11 @@ class Stage{
   SDL_Surface *slide4;
   SDL_Surface *slide5;
   SDL_Surface *slide6;
+  SDL_Surface *slidemike;
+  SDL_Surface *slidebrad;
+  SDL_Surface *slidesean;
+  SDL_Surface *slidesneal;
+  SDL_Surface *youwin;
   SDL_Surface *screen;
   int size_x;
   int size_y;
