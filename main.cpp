@@ -484,7 +484,7 @@ int main(void)
 
       case 8:
 	hero = new Hero(0,0,200,0,0,0,5000);
-	sean = new Sean(50,0,52,51,1,53,2,3,4*BASE_VELOCITY,180,&island[2],hero);
+	sean = new Sean(0,0,0,50,50,50,50,0,4*BASE_VELOCITY,180,&island[2],hero);
 	island[2].addUnit(hero);
 	island[2].addUnit(sean);
 	island[2].addUnit(new Shooter(-650,-650,&island[2],hero));
@@ -526,11 +526,12 @@ int main(void)
 	break;
 
       case 9:
-	hero= new Hero(0,200,200,0,0,0,5000);
+	hero= new Hero(200,-50,200,0,0,0,5000);
 	sneal = new Sneal(50,-100,150,-100,BASE_VELOCITY*3,250,&island[3],hero);
 	island[3].addUnit(hero);
 	island[3].addUnit(sneal);
 	island[3].addArea(0,-400,400,400,3);
+	
 
 	p2s=1;
 	currentstage=3;
