@@ -33,6 +33,9 @@ void Sean::chase(double herox, double heroy)
   x=getx();
   y=gety();
   v=getmaxv();
+  cout << state << endl;
+  cout << x-xp3 << endl;
+  cout << y-yp3 << endl;
   if(state==1){
     angle = atan ((yp2-yp1)/(xp2-xp1));
     if (xp1>xp2 && yp1>yp2){
@@ -143,16 +146,16 @@ void Sean::chase(double herox, double heroy)
     }
   }
 
-  if(sqrt((x-xp2)*(x-xp2)+(y-yp2)*(y-yp2)) <= 4 && state==1){
+  if(sqrt((x-xp2)*(x-xp2)+(y-yp2)*(y-yp2)) <= 8 && state==1){
     state=2;
   }
-  if(sqrt((x-xp3)*(x-xp3)+(y-yp3)*(y-yp3)) <= 4 && state==3){
+  if(sqrt((x-xp3)*(x-xp3)+(y-yp3)*(y-yp3)) <= 8 && state==3){
     state=4;
   }
-  if(sqrt((x-xp4)*(x-xp4)+(y-yp4)*(y-yp4)) <= 4 && state==5){
+  if(sqrt((x-xp4)*(x-xp4)+(y-yp4)*(y-yp4)) <= 8 && state==5){
     state=6;
   }
-  if(sqrt((x-xp1)*(x-xp1)+(y-yp1)*(y-yp1)) <= 4 && state==7){
+  if(sqrt((x-xp1)*(x-xp1)+(y-yp1)*(y-yp1)) <= 8 && state==7){
     state=8;
   }
   if(state==2 || state==4 || state==6 || state==8){
