@@ -14,8 +14,8 @@ Stage Implementation file */
 #include <cmath>
 //DOES THIS WORK???
 
-#define SCREEN_WIDTH 600
-#define SCREEN_HEIGHT 600
+#define SCREEN_WIDTH 500
+#define SCREEN_HEIGHT 500
 #define SCREEN_BPP 32
 
 Stage::Stage()

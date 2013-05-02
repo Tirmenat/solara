@@ -484,9 +484,31 @@ int main(void)
 
       case 8:
 	hero = new Hero(0,0,200,0,0,0,5000);
-	sean = new Sean(50,50,50,100,100,100,100,50,BASE_VELOCITY,180,&island[2],hero);
+
+	sean = new Sean(0,0,0,50,50,50,50,0,4*BASE_VELOCITY,180,&island[2],hero);
+>
 	island[2].addUnit(hero);
 	island[2].addUnit(sean);
+	island[2].addUnit(new Shooter(-650,-650,&island[2],hero));
+	island[2].addUnit(new Shooter(650,650,&island[2],hero));
+	island[2].addUnit(new Shooter(650,-650,&island[2],hero));
+	island[2].addUnit(new Shooter(-650,650,&island[2],hero));
+	island[2].addUnit(new Shooter(-650,0,&island[2],hero));
+	island[2].addUnit(new Shooter(650,0,&island[2],hero));
+	island[2].addUnit(new Shooter(0,-650,&island[2],hero));
+	island[2].addUnit(new Shooter(0,650,&island[2],hero));
+	island[2].addUnit(new Tank(0,500,BASE_VELOCITY,200,hero));
+	island[2].addUnit(new Tank(0,-500,BASE_VELOCITY,200,hero));
+	island[2].addUnit(new Tank(500,0,BASE_VELOCITY,200,hero));
+	island[2].addUnit(new Tank(-500,0,BASE_VELOCITY,200,hero));
+	island[2].addUnit(new Patroller(-350,-100,-100,-350,5*BASE_VELOCITY/3,80,hero));
+	island[2].addUnit(new Patroller(350,100,100,350,5*BASE_VELOCITY/3,80,hero));
+	island[2].addUnit(new Patroller(-350,100,-100,350,5*BASE_VELOCITY/3,80,hero));
+	island[2].addUnit(new Patroller(350,-100,100,-350,5*BASE_VELOCITY/3,80,hero));
+	island[2].addUnit(new Burster(0,575,3*BASE_VELOCITY,50,hero));
+	island[2].addUnit(new Burster(0,-575,3*BASE_VELOCITY,50,hero));
+	island[2].addUnit(new Burster(575,0,3*BASE_VELOCITY,50,hero));
+	island[2].addUnit(new Burster(-575,0,3*BASE_VELOCITY,50,hero));
 	island[2].addArea(-400,-400,800,800,1);
 	island[2].addArea(-100, -100, 200,200,3);
 	island[2].addArea(-300,-300,200,200,3);
@@ -497,19 +519,21 @@ int main(void)
 	island[2].addArea(-75,400,150,150,2);
 	island[2].addArea(-550,-75,150,150,2);
 	island[2].addArea(400,-75,150,150,2);
-	island[2].addArea(-675,-675, 1250, 150,4);
-	island[2].addArea(-675,-545, 150, 1110,4);
-	island[2].addArea(-675, 550, 1250, 150,4);
+	island[2].addArea(-675,-675, 1385, 150,4);
+	island[2].addArea(-675,-545, 150, 1090,4);
+	island[2].addArea(-675, 550, 1375, 150,4);
+	island[2].addArea(550, -537, 150, 1090,4);
 	p2s=1;
 	currentstage=2;
 	break;
 
       case 9:
-	hero= new Hero(0,0,200,0,0,0,5000);
+	hero= new Hero(200,-50,200,0,0,0,5000);
 	sneal = new Sneal(50,-100,150,-100,BASE_VELOCITY*3,250,&island[3],hero);
 	island[3].addUnit(hero);
 	island[3].addUnit(sneal);
 	island[3].addArea(0,-400,400,400,3);
+	
 
 	p2s=1;
 	currentstage=3;

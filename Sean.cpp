@@ -33,6 +33,9 @@ void Sean::chase(double herox, double heroy)
   x=getx();
   y=gety();
   v=getmaxv();
+  cout << state << endl;
+  cout << x-xp3 << endl;
+  cout << y-yp3 << endl;
   if(state==1){
     angle = atan ((yp2-yp1)/(xp2-xp1));
     if (xp1>xp2 && yp1>yp2){
