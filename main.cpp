@@ -484,7 +484,8 @@ int main(void)
 
       case 8:
 	hero = new Hero(0,0,200,0,0,0,5000);
-	sean = new Sean(0,0,0,50,50,50,50,0,4*BASE_VELOCITY,180,&island[2],hero);
+
+	sean = new Sean(50,50,50,100,100,100,100,50,4*BASE_VELOCITY,180,&island[2],hero);
 	island[2].addUnit(hero);
 	island[2].addUnit(sean);
 	island[2].addUnit(new Shooter(-650,-650,&island[2],hero));
