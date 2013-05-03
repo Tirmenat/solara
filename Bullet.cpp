@@ -35,36 +35,6 @@ Bullet::Bullet(Unit* shooter, double direction, int r, int g, int b, bool hero)
   //0=bullet gone
   setHealth(1);
   setMaxHealth(1);
-  /*  switch(direction)
-    {
-      
-
-      
-    case UP:
-      setx(shooter->getx()+SPRWIDTH/2-BULLETWIDTH/2);
-      sety(shooter->gety()-BULLETLENGTH);
-      setvx(shooter->getvx());
-      setvy(shooter->getvy() - BULLETV);
-      break;
-    case DOWN:
-      setx(shooter->getx()+SPRWIDTH-BULLETWIDTH/2);
-      sety(shooter->gety()+SPRLENGTH);
-      setvx(shooter->getvx());
-      setvy(shooter->getvy() + BULLETV);
-      break;
-    case LEFT:
-      setx(shooter->getx()-BULLETWIDTH);
-      sety(shooter->gety()+SPRLENGTH/2-BULLETLENGTH/2);
-      setvx(shooter->getvx() - BULLETV);
-      setvy(shooter->getvy());
-      break;
-    case RIGHT:
-      setx(shooter->getx()+SPRWIDTH);
-      sety(shooter->gety()+SPRLENGTH/2-BULLETLENGTH/2);
-      setvx(shooter->getvx() + BULLETV);
-      setvy(shooter->getvy());
-      break;
-      }*/
   
   fromHero = hero;
   setax(0);
@@ -180,5 +150,6 @@ void Bullet::apply_surface( int x, int y, SDL_Surface* source, SDL_Surface* dest
 
 bool Bullet::isFromHero()
 {
+  //used in collision and stuff
   return fromHero;
 }
