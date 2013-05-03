@@ -54,14 +54,6 @@ int main(void)
   //stage_test.addArea(50,50,400,400,6);
   // x1, y1, x2, y2, max v, sprite location 
  
-
-  //WEST LEVEL DESIGN
-  //Patroller patrol00(100,100,100,200,4*BASE_VELOCITY/5,20);
-  //Tank tank00(50,200,3*BASE_VELOCITY/10,13);
-  //Burster burster00(200,50,BASE_VELOCITY,17);
-  //Mike mike(50,50,200,50,BASE_VELOCITY,7,&stage_test);
- 
-  //Bullet bullet;
   Sound sounds;
   sounds.load_music("music1");
   sounds.play_music();
@@ -80,24 +72,14 @@ int main(void)
   int g=0;
   int b=0;
 
-  //Bullet* bullets[NUM_BULLETS] = {NULL};
-  //Patroller patrol_test2(250,250,100,100,100,5);
-  //stage_test.addUnit(&patrol_test2);
-  //stage_test.addArea(350-25,350-25,100,100,2);
-
-
-  //  Bullet bullet_test(&hero_test,0,0);
-  // stage_test.addUnit(&bullet_test);
-  //vector<Bullet*> bullets;
-  //Bullet not functioning properly yet, will work on fixing
-
+  //Time variables
   double dt = 1/60.0;
-
   clock_t start;
-
   double duration;
 
+  //First State
   int next = 0;
+
   bool quit = false;
   SDL_Event event;
   //  Bullet bullets;
@@ -314,7 +296,7 @@ int main(void)
 	    }	
 	  break;
 
-	case 10:
+	case 10:   //Slide after defeating Mike
 	  p2s=0;
 	  Stageless.drawTitle("slidemike",0,0,0);
 	  if( SDL_PollEvent( &event ) )
@@ -355,7 +337,7 @@ int main(void)
 	    }		  
 	  break;
 
-	case 11:
+	case 11:  //Slide state after defeating Brad
 	  p2s=0;
 	  Stageless.drawTitle("slidebrad",0,0,0);
 	  if( SDL_PollEvent( &event ) )
@@ -396,7 +378,7 @@ int main(void)
 	    }		  
 	  break;
 
-	case 12:
+	case 12:   //slide after defeating Sean
 	  p2s=0;
 	  Stageless.drawTitle("slidesean",0,0,0);
 	  if( SDL_PollEvent( &event ) )
@@ -437,7 +419,7 @@ int main(void)
 	    }		  
 	  break;
 
-	case 13:
+	case 13:  //Slide after defeating neal
 	  p2s=0;
 	  Stageless.drawTitle("slidesneal",0,0,0);
 	  if( SDL_PollEvent( &event ) )
@@ -480,7 +462,7 @@ int main(void)
 	    }		  
 	  break;
 
-	case 14:
+	case 14:   //End game slide
 	  p2s=0;
 	  Stageless.drawTitle("youwin",0,0,0);
 	  if( SDL_PollEvent( &event ) )
@@ -620,7 +602,7 @@ int main(void)
 	    }	
 	  break;
 	
-	case 6:
+	case 6:  //Head to West Island Level and design that level
 	  hero = new Hero(25,25,200,0,0,0,5000);
 	  mike = new Mike(1100,375,1225,375,2*BASE_VELOCITY,150,&island[0],hero);
 	  island[0].addUnit(hero);
@@ -652,7 +634,7 @@ int main(void)
 	  currentstage=0;
 	  break;
       
-	case 7:
+	case 7:   //Design South Island Level and go there
 	  hero = new Hero(75,385,200,0,0,0,5000);
 	  brad = new Brad(650,-800,750,-800,BASE_VELOCITY*3,130,&island[1],hero);
 	  island[1].addUnit(hero);
@@ -685,7 +667,7 @@ int main(void)
 	  currentstage=1;
 	  break;
 
-	case 8:
+	case 8:   //Design East Level and go there
 	  hero = new Hero(0,0,200,0,0,0,5000);
 
 	  sean = new Sean(-650,-650,651,-652,653,654,-655,656,3*BASE_VELOCITY,180,&island[2],hero);
@@ -729,7 +711,7 @@ int main(void)
 	  currentstage=2;
 	  break;
 
-	case 9:
+	case 9:   //Design North level and go there
 	  hero= new Hero(200,-50,200,0,0,0,5000);
 	  sneal = new Sneal(100,-3500,300,-3500,BASE_VELOCITY*3,250,&island[3],hero);
 	  island[3].addUnit(hero);
@@ -772,10 +754,10 @@ int main(void)
 	  break;
 	
 	}
-      if(p2s)
+      if(p2s)    //If the current state is a stage state
 	{
-	  bossdead = false;
-	  while(bossdead==false && quit ==false){
+	  bossdead = false;    
+	  while(bossdead==false && quit ==false){ //While the boss is still alive
 	    start = clock();
 	    //	    cout << "part 2" << endl;
 	    //      int time = time();
@@ -791,11 +773,11 @@ int main(void)
 		  {
 		    switch (event.key.keysym.sym)
 		      {
-		      case SDLK_ESCAPE:
+		      case SDLK_ESCAPE:  
 			quit = true;
 			Stageless.init();
 			break;
-		      case SDLK_UP:
+		      case SDLK_UP:   //The different bullet commands are here
 			if(island[currentstage].canFire())
 			  {
 			    island[currentstage].addUnit(new Bullet(hero,M_PI/2,r,g,b,true));
@@ -823,12 +805,7 @@ int main(void)
 			    sounds.play_effect("gun");
 			  }
 			break;
-		      case SDLK_e:
-			next = 5;
-			bossdead=true;
-			island[currentstage].clear_screen();
-			break;
-		      case SDLK_f:
+		      case SDLK_f:    //Same full screen
 			if(screen_state==0)
 			  {
 			    island[currentstage].init_fullscreen();
@@ -858,26 +835,19 @@ int main(void)
 		      }
 		  }
 	      }
-		
-	    //mike.patrol();
-	    //burster1.chase(hero.getx(),hero.gety());
-	    //tank1.chase(hero.getx(),hero.gety());
-	    //patrol1.chase(hero_test.getx(),hero_test.gety());
-	    //patrol_test2.chase(hero_test.getx(),hero_test.gety());
-	    //	    cout << "no here" << endl;
-	    //	    cout << "here" << endl;
-	    help=0;
-	    island[currentstage].checkCollisions(hero);
-	    switch(currentstage)
+
+	    help=0;  //Helps determine if boss is dead
+	    island[currentstage].checkCollisions(hero);  //collision
+	    switch(currentstage) //switch for each level to see if the boss for that level is dead
 	      {
 	      case 0:
 		if(mike->getHealth()<=0)
 		  {
 		    next=10;
 		    bossdead=true;
-		    island[currentstage].clear_screen();
+		    island[currentstage].clear_screen(); //Heads to new screen
 		  }  
-		else help=1;
+		else help=1; //Boss still alive
 		break;
 	      case 1:
 		if(brad->getHealth()<=0)
@@ -910,10 +880,11 @@ int main(void)
 	    if(hero->isDead())
 	      {
 		island[currentstage].init();
-		return 0;
+		return 0;  //Quits program if you let hero die
 	      }
-	    if(!(hero->isDead()) && (help==1))
+	    if(!(hero->isDead()) && (help==1))  //if the hero isn't dead and the boss for this stage is alive
 	      {
+		//Progress the stage forward
 		island[currentstage].perform(dt, hero);
 		hero->processEvent(dt);
 		island[currentstage].draw(r,g,b,already_south,already_east,already_west);
@@ -927,10 +898,10 @@ int main(void)
 	      }
 	  } //End stage loop   
 	  
-	  sounds.change_music("music1");
+	  sounds.change_music("music1"); //Changes back to menu music
 	  sounds.play_music();
 	  
-	  if(currentstage==0) already_west = 1;
+	  if(currentstage==0) already_west = 1; //Keeps track of what levels you have beaten
 	  if(currentstage==1) already_south = 1;
 	  if(currentstage==2) already_east = 1;
 	}

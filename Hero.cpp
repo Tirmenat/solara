@@ -27,7 +27,8 @@ void Hero::collide(Unit* u)
       if(!isInvulnerable())
 	setHealth(getHealth()-100);
       u->setHealth(0);
-      makeInvulnerable();
+      if(!isInvulnerable())
+	makeInvulnerable();
       //do damage
       //apply effects based on color
     }
@@ -35,7 +36,8 @@ void Hero::collide(Unit* u)
     {
       if(!isInvulnerable())
 	setHealth(getHealth()-100);
-      makeInvulnerable();
+      if(!isInvulnerable())
+	makeInvulnerable();
       //if(vx>0)
       //	setx(getx()-maxv*dt);
       //else
@@ -202,12 +204,12 @@ void Hero::draw(SDL_Surface* screen, int xo, int yo){
   // Character and direction
   if(status == UNIT_LEFT)
     {
-      if(getInvulnerable()%2 == 0)
+      if((getInvulnerable()/4)%2 == 0)
 	apply_surface( x+xo, y+yo, char_left, screen, &clip_char_left[frame]);
     }
   if(status == UNIT_RIGHT)
     {
-      if(getInvulnerable()%2 == 0)
+      if((getInvulnerable()/4)%2 == 0)
 	apply_surface( x+xo, y+yo, char_right, screen, &clip_char_right[frame]);
     }
 

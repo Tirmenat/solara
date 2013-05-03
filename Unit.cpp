@@ -413,7 +413,7 @@ bool Unit::isInvulnerable()
 
 void Unit::makeInvulnerable()
 {
-  invulnerable = 30;
+  invulnerable = 60;
 }
 
 int Unit::getInvulnerable()
