@@ -506,6 +506,7 @@ void Stage::drawTitle(string pic, int isWest, int isSouth, int isEast)
   if(pic == "slidebrad") apply_surface(0,0,slidebrad,screen);
   if(pic == "slidesean") apply_surface(0,0,slidesean,screen);
   if(pic == "slidesneal") apply_surface(0,0,slidesneal,screen);
+  if(pic == "youwin") apply_surface(0,0,youwin,screen);
   if(pic == "slide5"){
     apply_surface(0,0,slide5,screen);
     SDL_Rect crossOut1,crossOut2;

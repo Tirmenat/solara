@@ -440,7 +440,7 @@ int main(void)
 		    case SDLK_SPACE:
 		      sounds.change_music("music6");
 		      sounds.play_music();
-		      next=100;
+		      next=14;
 		      Stageless.clear_screen();
 		      break;
 		    case SDLK_f:
@@ -490,7 +490,7 @@ int main(void)
 		      else
 			{
 			  Stageless.init();
-			  Stageless.drawTitle("slidesneal",0,0,0);
+			  Stageless.drawTitle("youwin",0,0,0);
 			  screen_state=0;
 			}
 		      break;
