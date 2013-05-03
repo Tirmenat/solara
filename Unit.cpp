@@ -41,19 +41,21 @@ Unit::Unit(double X, double Y, double MAXV, double AX, double AY, int location, 
   ax = AX;
   ay = AY;
   maxv=MAXV;
-  char_left = NULL;
+  char_left = NULL; //determines if character is facing left/right
   char_right = NULL;
   load_files();
-  set_clips(location);
-  status = UNIT_RIGHT;
+  set_clips(location); //sets the clips
+  status = UNIT_RIGHT; //defaults to facing right
   moving = 0;
   frame = 0;
   setHealth(h);
-  setMaxHealth(h);
+  setMaxHealth(h); 
   invulnerable = 0;
 }
 
 // Set Functions
+
+//these ones are obvious
 void Unit::setx(double newx){
   x=newx;
 }
@@ -115,6 +117,7 @@ double Unit::getmaxv(){
   return clip;
   }*/
 
+//loads the image so the clips can be used
 SDL_Surface *Unit::load_image( std::string filename )
 {
   //Lazyfoo.net
@@ -151,9 +154,13 @@ SDL_Surface *Unit::load_image( std::string filename )
   return optimizedImage;
 }
 
+
+
 void Unit::apply_surface( int x, int y, SDL_Surface* source, SDL_Surface* destination, SDL_Rect* clip = NULL )
 {
-  //Lazyfoo.net
+
+  //this is the function that actually draws the image, it needs an xoffset and yoffset so the screen can scroll
+  //most of the code in this function is from Lazyfoo.net
 
   //Holds offsets
   SDL_Rect offset;
@@ -168,7 +175,7 @@ void Unit::apply_surface( int x, int y, SDL_Surface* source, SDL_Surface* destin
 
 bool Unit::load_files()
 {
-  //Lazyfoo.net 
+  //this is from Lazyfoo.net 
 
   //Load the surfaces
   char_left = load_image( "images/neal.png" );
@@ -207,6 +214,7 @@ void Unit::set_clips(int location){
 
 bool Unit::isEqualTo(Unit* u)
 {
+  //i'm not sure we actually use this function because we ended up using pointers instead and it's a lot easier to check if pointers point to the same value than if their dereferenced values are equal
   	if(u->getx() != x)
 		return false;
 	if(u->getx() != y)
@@ -222,28 +230,12 @@ bool Unit::isEqualTo(Unit* u)
 	return true;
 }
 
-/*
-bool Unit::operator==(Unit* u){ //returns 1 if u and *this are the same
-	//right now this isn't foolproof, may have to work on it l
-	if(u->getx() != x)
-		return false;
-	if(u->getx() != y)
-		return false;
-	if(u->getdx() != dx)
-		return false;
-	if(u.getdy() != dy)
-		return false;
-	if(u.getax() != ax)
-		return false;
-	if(u.getay() != ay)
-		return false;
-	return true;
-	}*/
-
 void Unit::increment(double dt){
-  
-  frameShift();
-  tickInvulnerable();
+  //we run this every frame to actually move the unit
+  //this is what makes the unit move
+
+  frameShift(); //make the unit shift frames 
+  tickInvulnerable(); //if the unit is invulnerable it will decrease the amount of time he will be invulnerable
   double angle;
   x=x + vx*dt;
   y=y + vy*dt;
@@ -282,6 +274,7 @@ void Unit::increment(double dt){
 }
 void Unit::frameShift()
 {
+  //changes the frame of the unit if it needs to
    if(ax>0)
     {
       status = UNIT_RIGHT;
@@ -318,6 +311,7 @@ void Unit::frameShift()
 
 bool Unit::isCollided(Unit* unit)
 {
+  //collision detection, this would have been easier if we had a getWidth and getHeight function, everything is rectangles as far as collision goes.
   int BULLETSIZE = 9;
   if(unit->isBullet())
     {
@@ -378,11 +372,13 @@ bool Unit::isCollided(Unit* unit)
 
 bool Unit::isBullet()
 {
+  //checks if a unit is a bullet. useful for collision
   return 0;
 }
 
 bool Unit::isFromHero()
 {
+  //checks if a unit is sourced from hero.  useful for collision
   return 0;
 }
 
@@ -393,6 +389,7 @@ int Unit::getHealth()
 
 void Unit::setHealth(int h)
 {
+  //obvious
   health = h;
 }
 
@@ -408,26 +405,31 @@ void Unit::setMaxHealth(int h)
 
 bool Unit::isInvulnerable()
 {
+  //returns true if a unit is invulnerable
   return (invulnerable>0);
 }
 
 void Unit::makeInvulnerable()
 {
+  //makes a unit invulnerable for 60 frames
   invulnerable = 60;
 }
 
 int Unit::getInvulnerable()
 {
+  //returns the current status of invulnerability. used in drawing things like healthbar and blinking the unit if it's invulnerable
   return invulnerable;
 }
 
 void Unit::tickInvulnerable()
 {
+  //decreases the amount of time unit is invulnerable if it is currently invulnerable
   if(isInvulnerable())
     invulnerable--;
 }
 
 int Unit::getColor()
 {
+  //returns the color of a bullet, useful for calculating damage
   return(0);
 }
