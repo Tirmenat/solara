@@ -20,9 +20,12 @@ void Enemy::collide(Unit* u)
 {
   if(u->isBullet() && u->isFromHero())
     {
-      setHealth(getHealth()-10);
-      if(getHealth()<0) setHealth(0);
-      u->setHealth(0);
+      setHealth(getHealth()-10); //subtract health
+      setHealth(getHealth()-(5*(u->getColor()/4))); //colored
+      setHealth(getHealth()-(5*(u->getColor()/2)%2)); //bullets
+      setHealth(getHealth()-(5*(u->getColor()/4)%2)); //do more damages
+      if(getHealth()<0) setHealth(0); //fixes healthbar errors
+      u->setHealth(0); //will kill the bullet so it doesn't collide more
     }
 }
 
@@ -142,7 +145,8 @@ void Enemy::increment(double dt){
         else if (vx<0 && vy>0){
           vx = -maxv*cos(angle);
           vy = -maxv*sin(angle);
-        }      vx = maxv*cos(angle);
+        }      
+	vx = maxv*cos(angle);
 	vy = maxv*sin(angle);
       }
     }

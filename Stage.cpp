@@ -12,7 +12,7 @@ Stage Implementation file */
 #include "Stage.h"
 #include "Unit.h"
 #include <cmath>
-//DOES THIS WORK???
+
 
 #define SCREEN_WIDTH 500
 #define SCREEN_HEIGHT 500
@@ -29,7 +29,7 @@ Stage::Stage()
   set_clips();
   xoffset = 100;
   yoffset = 100;
-  maxBullets = 5;
+  maxBullets = 5; //max number of bullets on screen is 5
   currBullets = 0;
 }
 
@@ -55,13 +55,13 @@ void Stage::perform(double dt, Unit* hero)
     {
       if(!isOffScreen(units[i]))
 	{
-	  units[i]->increment(dt);
+	  units[i]->increment(dt); //if it's on screen draw it
 	}
       else
 	{
 	  if(units[i]->isBullet())
 	    {
-	      units[i]->setHealth(0);
+	      units[i]->setHealth(0); //if a bullet goes off screen don't draw it
 	    }
 	}
       if (units[i]->getHealth() <= 0)
@@ -223,6 +223,7 @@ bool Stage::load_files()
 
 void Stage::set_clips()
 {
+  //sets the clips
   //Clip range for terrain
   for(int i=0; i<60; ++i)
     {
